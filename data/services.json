@@ -1,0 +1,97 @@
+{
+  "auditDate": "2026-05-14",
+  "source": "https://home.wilden.myds.me/",
+  "privacy": "noindex,nofollow",
+  "mode": "語婕 AI OS",
+  "statusLegend": {
+    "Reachable": "目前可載入頁面或登入頁。",
+    "JS required": "服務可能有效，但需要瀏覽器 JavaScript 才能完整呈現。",
+    "Loading": "頁面回傳 loading shell，需要瀏覽器或人工確認。",
+    "Login page": "可看到登入入口，但功能需帳號驗證。",
+    "Sign in": "外部服務可連線，需登入帳號。",
+    "External": "外部公開服務或入口。",
+    "External login": "外部登入入口，需確認是否適合公開展示。",
+    "Empty response": "目前觀察到空回應，需要人工確認。",
+    "Needs check": "尚未確認有效性或是否適合公開。",
+    "Needs URL": "原首頁有 widget，但未解析到明確公開 URL。",
+    "Widget only": "原首頁只有 widget 狀態，沒有公開連結。",
+    "Widget missing": "原首頁 widget 類型或資料缺失。"
+  },
+  "categories": [
+    {
+      "id": "system-ops",
+      "title": "系統維運",
+      "services": [
+        {"name": "Cockpit", "url": "https://admin.wilden.myds.me/", "status": "Reachable", "description": "Port 9090｜系統總管。可載入 Web Console 登入頁。"},
+        {"name": "Dockge", "url": "https://docker.wilden.myds.me/", "status": "JS required", "description": "Port 5001｜Docker 管理。頁面回報需要 JavaScript。"},
+        {"name": "Scrutiny", "url": "https://scrutiny.wilden.myds.me/", "status": "Reachable", "description": "Port 8081｜硬碟健康監控。可轉入 /web/。"},
+        {"name": "File Browser", "url": "https://file.wilden.myds.me/", "status": "Empty response", "description": "Port 8086｜網頁檔案總管。需人工確認登入與內容。"},
+        {"name": "Watchtower", "url": null, "status": "Widget only", "description": "自動更新 Docker 容器。原首頁只有 widget 狀態，無公開連結。"}
+      ]
+    },
+    {
+      "id": "network-home",
+      "title": "網路與家庭",
+      "services": [
+        {"name": "AdGuard Home", "url": null, "status": "Needs URL", "description": "DNS / filter dashboard。原首頁顯示 Queries、Blocked、Filtered、Latency，但未解析到可公開 URL。"}
+      ]
+    },
+    {
+      "id": "dev-apple",
+      "title": "開發與 Apple",
+      "services": [
+        {"name": "qBittorrent", "url": null, "status": "Needs URL", "description": "下載器 widget。原首頁顯示 Leech、Download、Seed、Upload，但未解析到可公開 URL。"},
+        {"name": "Memos", "url": null, "status": "Widget missing", "description": "原首頁顯示 Missing Widget Type: memos，建議更新 widget 或檢查服務。"}
+      ]
+    },
+    {
+      "id": "read-listen",
+      "title": "閱讀與聽覺",
+      "services": [
+        {"name": "Audiobookshelf", "url": "https://audiobook.wilden.myds.me/", "status": "Loading", "description": "Port 13378｜雜誌與有聲書。頁面回傳 Loading。"},
+        {"name": "Navidrome", "url": "https://music.wilden.myds.me/", "status": "JS required", "description": "Port 4533｜音樂串流。轉到 /app/ 並需要 JavaScript。"},
+        {"name": "Calibre Web", "url": "https://calibre.wilden.myds.me/", "status": "Needs check", "description": "Port 8083｜編輯電子書。需再次人工確認登入狀態。"}
+      ]
+    },
+    {
+      "id": "play-ai",
+      "title": "互動娛樂",
+      "services": [
+        {"name": "SillyTavern", "url": "https://sillytavern.wilden.myds.me/", "status": "Login page", "description": "Port 8000｜AI 角色扮演。可轉到 /login。"},
+        {"name": "RomM", "url": "https://rom.wilden.myds.me/", "status": "Empty response", "description": "Port 8087｜遊戲博物館。需人工確認前端載入狀態。"}
+      ]
+    },
+    {
+      "id": "personal-bookmarks",
+      "title": "個人資料書籤",
+      "services": [
+        {"name": "Synology DS418play", "url": "https://quickconnect.to/", "status": "External login", "description": "QuickConnect 入口。建議登入前確認是否要公開展示。"},
+        {"name": "Immich", "url": "https://immich.wilden.myds.me/", "status": "Needs check", "description": "相片與個人資料服務。需人工確認是否適合公開連結。"},
+        {"name": "Stable Diffusion", "url": "https://sd.wilden.myds.me/", "status": "Empty response", "description": "AI 圖像生成服務。需確認是否仍可用。"},
+        {"name": "ComfyUI M2 Pro", "url": "https://comfyui.wilden.myds.me/", "status": "Loading", "description": "Port 8000｜頁面顯示 Loading ComfyUI。"},
+        {"name": "PLEX", "url": "https://app.plex.tv/", "status": "External", "description": "外部 Plex 入口，通常需要帳號登入。"},
+        {"name": "AL 艾因的幻想", "url": "https://ainlee.myqnapcloud.com/", "status": "Needs check", "description": "QNAP / 個人服務入口，需人工確認。"},
+        {"name": "Ani 的 NAS", "url": "https://ainlee.myqnapcloud.com:1743/", "status": "Needs check", "description": "QNAP TS469L，Port 1743。需人工確認。"}
+      ]
+    },
+    {
+      "id": "ai-services",
+      "title": "AI Services",
+      "services": [
+        {"name": "Gemini", "url": "https://gemini.google.com/", "status": "Sign in", "description": "Google AI 服務。可連線，需 Google 帳號登入。"},
+        {"name": "Grok", "url": "https://grok.com/", "status": "Reachable", "description": "xAI Grok 入口。可連線，可能需要登入。"},
+        {"name": "NotebookLM", "url": "https://notebooklm.google.com/", "status": "Sign in", "description": "Google NotebookLM，轉往 Google 登入頁。"}
+      ]
+    },
+    {
+      "id": "other-links",
+      "title": "Other",
+      "services": [
+        {"name": "Switch520", "url": "https://www.gamer520.com/", "status": "Reachable", "description": "外部站台可連線，但內容屬性建議再確認是否適合放在公開入口。"},
+        {"name": "Self-Hosted Dashboard Icons", "url": "https://selfh.st/", "status": "Reachable", "description": "自架服務圖示與 self-hosted 資源。"},
+        {"name": "Material Design Icons", "url": "https://pictogrammers.com/", "status": "Reachable", "description": "Pictogrammers 開源圖示資源。"},
+        {"name": "Simple Icons", "url": "https://simpleicons.org/", "status": "Reachable", "description": "品牌圖示資源。"}
+      ]
+    }
+  ]
+}

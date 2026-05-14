@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>語婕 Dashboard | Wilden Chen AI OS</title>
+  <meta name="description" content="語婕 AI OS dashboard with homelab services, AI tools, personal data bookmarks, and link audit status.">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="portal-shell navbar">
+      <a class="brand" href="../"><span class="brand-mark">婕</span><span>語婕 AI OS</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="../dashboard/">Dashboard</a>
+        <a href="../openclaw/">OpenClaw</a>
+        <a href="../ai-tools/">AI Tools</a>
+        <a href="../knowledge-base/">Knowledge Base</a>
+        <a href="../legacy/">Legacy Articles</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="portal-shell page-main">
+    <section class="page-hero">
+      <p class="kicker"><span class="pulse" aria-hidden="true"></span> Control surface</p>
+      <h1>語婕 Dashboard</h1>
+      <p class="lede">弘儒哥，這裡是語婕替你整理的個人 AI OS 主控台。原 homelab 首頁的服務入口都先收進來，並標記目前可觀察到的狀態；服務清單同步整理於 data/services.json，方便語婕後續巡檢與更新。</p>
+    </section>
+
+    <section class="status-strip" aria-label="Audit summary">
+      <div><span>Source</span><strong>home.wilden.myds.me</strong></div>
+      <div><span>Audit date</span><strong>2026-05-14</strong></div>
+      <div><span>Privacy</span><strong>noindex,nofollow</strong></div>
+      <div><span>Mode</span><strong>AI OS</strong></div>
+      <div><span>Data</span><strong><a href="../data/services.json">services.json</a></strong></div>
+    </section>
+
+    <section class="service-section" aria-labelledby="system-ops">
+      <h2 id="system-ops">系統維運</h2>
+      <div class="service-grid">
+        <a class="service-card" href="https://admin.wilden.myds.me/" rel="noopener"><span class="badge badge-live">Reachable</span><h3>Cockpit</h3><p>Port 9090｜系統總管。可載入 Web Console 登入頁。</p></a>
+        <a class="service-card" href="https://docker.wilden.myds.me/" rel="noopener"><span class="badge badge-warn">JS required</span><h3>Dockge</h3><p>Port 5001｜Docker 管理。頁面回報需要 JavaScript。</p></a>
+        <a class="service-card" href="https://scrutiny.wilden.myds.me/" rel="noopener"><span class="badge badge-live">Reachable</span><h3>Scrutiny</h3><p>Port 8081｜硬碟健康監控。可轉入 /web/。</p></a>
+        <a class="service-card" href="https://file.wilden.myds.me/" rel="noopener"><span class="badge badge-unknown">Empty response</span><h3>File Browser</h3><p>Port 8086｜網頁檔案總管。需人工確認登入與內容。</p></a>
+        <article class="service-card"><span class="badge badge-unknown">Widget only</span><h3>Watchtower</h3><p>自動更新 Docker 容器。原首頁只有 widget 狀態，無公開連結。</p></article>
+      </div>
+    </section>
+
+    <section class="service-section" aria-labelledby="network-home">
+      <h2 id="network-home">網路與家庭</h2>
+      <div class="service-grid">
+        <article class="service-card"><span class="badge badge-unknown">Needs URL</span><h3>AdGuard Home</h3><p>DNS / filter dashboard。原首頁顯示 Queries、Blocked、Filtered、Latency，但未解析到可公開 URL。</p></article>
+      </div>
+    </section>
+
+    <section class="service-section" aria-labelledby="dev-apple">
+      <h2 id="dev-apple">開發與 Apple</h2>
+      <div class="service-grid">
+        <article class="service-card"><span class="badge badge-unknown">Needs URL</span><h3>qBittorrent</h3><p>下載器 widget。原首頁顯示 Leech、Download、Seed、Upload，但未解析到可公開 URL。</p></article>
+        <article class="service-card"><span class="badge badge-warn">Widget missing</span><h3>Memos</h3><p>原首頁顯示 Missing Widget Type: memos，建議更新 widget 或檢查服務。</p></article>
+      </div>
+    </section>
+
+    <section class="service-section" aria-labelledby="read-listen">
+      <h2 id="read-listen">閱讀與聽覺</h2>
+      <div class="service-grid">
+        <a class="service-card" href="https://audiobook.wilden.myds.me/" rel="noopener"><span class="badge badge-warn">Loading</span><h3>Audiobookshelf</h3><p>Port 13378｜雜誌與有聲書。頁面回傳 Loading。</p></a>
+        <a class="service-card" href="https://music.wilden.myds.me/" rel="noopener"><span class="badge badge-warn">JS required</span><h3>Navidrome</h3><p>Port 4533｜音樂串流。轉到 /app/ 並需要 JavaScript。</p></a>
+        <a class="service-card" href="https://calibre.wilden.myds.me/" rel="noopener"><span class="badge badge-unknown">Needs check</span><h3>Calibre Web</h3><p>Port 8083｜編輯電子書。需再次人工確認登入狀態。</p></a>
+      </div>
+    </section>
+
+    <section class="service-section" aria-labelledby="play-ai">
+      <h2 id="play-ai">互動娛樂</h2>
+      <div class="service-grid">
+        <a class="service-card" href="https://sillytavern.wilden.myds.me/" rel="noopener"><span class="badge badge-live">Login page</span><h3>SillyTavern</h3><p>Port 8000｜AI 角色扮演。可轉到 /login。</p></a>
+        <a class="service-card" href="https://rom.wilden.myds.me/" rel="noopener"><span class="badge badge-unknown">Empty response</span><h3>RomM</h3><p>Port 8087｜遊戲博物館。需人工確認前端載入狀態。</p></a>
+      </div>
+    </section>
+
+    <section class="service-section" aria-labelledby="personal-bookmarks">
+      <h2 id="personal-bookmarks">個人資料書籤</h2>
+      <div class="service-grid">
+        <a class="service-card" href="https://quickconnect.to/" rel="noopener"><span class="badge badge-warn">External login</span><h3>Synology DS418play</h3><p>QuickConnect 入口。建議登入前確認是否要公開展示。</p></a>
+        <a class="service-card" href="https://immich.wilden.myds.me/" rel="noopener"><span class="badge badge-unknown">Needs check</span><h3>Immich</h3><p>相片與個人資料服務。需人工確認是否適合公開連結。</p></a>
+        <a class="service-card" href="https://sd.wilden.myds.me/" rel="noopener"><span class="badge badge-unknown">Empty response</span><h3>Stable Diffusion</h3><p>AI 圖像生成服務。需確認是否仍可用。</p></a>
+        <a class="service-card" href="https://comfyui.wilden.myds.me/" rel="noopener"><span class="badge badge-warn">Loading</span><h3>ComfyUI M2 Pro</h3><p>Port 8000｜頁面顯示 Loading ComfyUI。</p></a>
+        <a class="service-card" href="https://app.plex.tv/" rel="noopener"><span class="badge badge-live">External</span><h3>PLEX</h3><p>外部 Plex 入口，通常需要帳號登入。</p></a>
+        <a class="service-card" href="https://ainlee.myqnapcloud.com/" rel="noopener"><span class="badge badge-unknown">Needs check</span><h3>AL 艾因的幻想</h3><p>QNAP / 個人服務入口，需人工確認。</p></a>
+        <a class="service-card" href="https://ainlee.myqnapcloud.com:1743/" rel="noopener"><span class="badge badge-unknown">Needs check</span><h3>Ani 的 NAS</h3><p>QNAP TS469L，Port 1743。需人工確認。</p></a>
+      </div>
+    </section>
+
+    <section class="service-section" aria-labelledby="ai-services">
+      <h2 id="ai-services">AI Services</h2>
+      <div class="service-grid">
+        <a class="service-card" href="https://gemini.google.com/" rel="noopener"><span class="badge badge-live">Sign in</span><h3>Gemini</h3><p>Google AI 服務。可連線，需 Google 帳號登入。</p></a>
+        <a class="service-card" href="https://grok.com/" rel="noopener"><span class="badge badge-live">Reachable</span><h3>Grok</h3><p>xAI Grok 入口。可連線，可能需要登入。</p></a>
+        <a class="service-card" href="https://notebooklm.google.com/" rel="noopener"><span class="badge badge-live">Sign in</span><h3>NotebookLM</h3><p>Google NotebookLM，轉往 Google 登入頁。</p></a>
+      </div>
+    </section>
+
+    <section class="service-section" aria-labelledby="other-links">
+      <h2 id="other-links">Other</h2>
+      <div class="service-grid">
+        <a class="service-card" href="https://www.gamer520.com/" rel="noopener"><span class="badge badge-live">Reachable</span><h3>Switch520</h3><p>外部站台可連線，但內容屬性建議再確認是否適合放在公開入口。</p></a>
+        <a class="service-card" href="https://selfh.st/" rel="noopener"><span class="badge badge-live">Reachable</span><h3>Self-Hosted Dashboard Icons</h3><p>自架服務圖示與 self-hosted 資源。</p></a>
+        <a class="service-card" href="https://pictogrammers.com/" rel="noopener"><span class="badge badge-live">Reachable</span><h3>Material Design Icons</h3><p>Pictogrammers 開源圖示資源。</p></a>
+        <a class="service-card" href="https://simpleicons.org/" rel="noopener"><span class="badge badge-live">Reachable</span><h3>Simple Icons</h3><p>品牌圖示資源。</p></a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
