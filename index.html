@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Wilden Chen AI Portal</title>
+  <meta name="description" content="Personal AI operating portal for OpenClaw, AI tools, research notes, legacy articles, and long-term knowledge navigation.">
+  <link rel="stylesheet" href="assets/css/portal.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="portal-shell navbar">
+      <a class="brand" href="./" aria-label="Wilden Chen AI Portal home">
+        <span class="brand-mark">AI</span>
+        <span>Wilden OS</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="legacy/">Legacy Articles</a>
+        <a href="openclaw/">OpenClaw</a>
+        <a href="ai-tools/">AI Tools</a>
+        <a href="knowledge-base/">Knowledge Base</a>
+        <a href="dashboard/">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="portal-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="kicker"><span class="pulse" aria-hidden="true"></span> Personal AI Portal / low-profile cyberdeck</p>
+        <h1 id="hero-title">個人 AI 作業系統<span class="gradient-text">入口</span></h1>
+        <p class="lede">這裡會逐步演化成個人 AI 管家、OpenClaw / AI Agent Portal、技術研究與長期知識庫的入口。舊有 Swift 與 iOS 教學內容保留為可存取的歷史資料，不覆蓋、不刪除。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="dashboard/">Enter Dashboard</a>
+          <a class="button" href="legacy/">Browse Legacy Articles</a>
+        </div>
+      </div>
+
+      <aside class="console-card" aria-label="Portal status console">
+        <div class="console-topbar" aria-hidden="true">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="console-body">
+          <div><span class="command">portal.boot</span> --mode personal</div>
+          <div class="dim">preserve_legacy: <span class="value">true</span></div>
+          <div class="dim">framework_weight: <span class="value">zero</span></div>
+          <div class="dim">deployment: <span class="value">GitHub Pages static</span></div>
+          <br>
+          <div><span class="command">routes.sync</span></div>
+          <div class="dim">/legacy /openclaw /ai-tools /knowledge-base /dashboard</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="portal-grid" aria-label="Portal routes">
+      <a class="portal-card" href="legacy/">
+        <span class="card-index">01 / Archive</span>
+        <h2>Legacy Articles</h2>
+        <p>保留十五年前的 Swift、iOS 與設計模式文章，作為歷史知識入口。</p>
+      </a>
+      <a class="portal-card" href="openclaw/">
+        <span class="card-index">02 / Agent</span>
+        <h2>OpenClaw</h2>
+        <p>預留 OpenClaw 與 AI Agent 研究、任務鏈、工具整合的主入口。</p>
+      </a>
+      <a class="portal-card" href="ai-tools/">
+        <span class="card-index">03 / Tools</span>
+        <h2>AI Tools</h2>
+        <p>整理常用 AI 工具、工作流與個人自動化能力清單。</p>
+      </a>
+      <a class="portal-card" href="knowledge-base/">
+        <span class="card-index">04 / Knowledge</span>
+        <h2>Knowledge Base</h2>
+        <p>建立長期維護的研究筆記、索引與可回溯知識地圖。</p>
+      </a>
+      <a class="portal-card" href="dashboard/">
+        <span class="card-index">05 / Control</span>
+        <h2>Dashboard</h2>
+        <p>未來作為個人 AI 管家的狀態面板、快捷入口與任務總覽。</p>
+      </a>
+    </section>
+  </main>
+
+  <footer class="portal-shell site-footer">
+    <span>Wilden Chen AI Portal · static-first · legacy-preserving</span>
+  </footer>
+</body>
+</html>
