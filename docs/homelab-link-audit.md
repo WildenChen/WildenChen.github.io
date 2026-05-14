@@ -1,11 +1,11 @@
-# 語婕 Homelab Link Audit
+# Homelab Link Audit
 
 Audit date: 2026-05-14
 Source reviewed: `https://home.wilden.myds.me/`
 
 ## 巡檢摘要
 
-語婕已把原 homelab 首頁的內容整理進 Dashboard，並同步整理成 `data/services.json` 作為後續巡檢資料來源。因為許多服務需要登入、JavaScript 或私有網路狀態，這份 audit 不把「能開頁面」等同於「功能完整可用」，而是先標記目前可觀察到的狀態。
+此階段已把原 homelab 首頁的內容整理進 Dashboard，並同步整理成 `data/services.json` 作為後續巡檢資料來源。因為許多服務需要登入、JavaScript 或私有網路狀態，這份 audit 不把「能開頁面」等同於「功能完整可用」，而是先標記目前可觀察到的狀態。
 
 ## 系統維運
 
