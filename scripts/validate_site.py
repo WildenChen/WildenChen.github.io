@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the static 語婕 AI OS GitHub Pages site."""
+"""Validate the static Wilden AI Portal GitHub Pages site."""
 
 from __future__ import annotations
 
