@@ -1,3 +1,7 @@
+---
+title: "一個簡單的 Class"
+---
+
 # 一個簡單的 Class
 
 ```swift

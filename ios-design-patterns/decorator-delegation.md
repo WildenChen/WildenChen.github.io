@@ -1,3 +1,7 @@
+---
+title: "委派"
+---
+
 # 委派
 
 裝飾者模式的另一種實現方案是委派。在這種機制下，一個物件可以和另一個物件相關聯。比如你在用 `UITableView` ，你必須實現 `tableView(_:numberOfRowsInSection:)` 這個委派方法。

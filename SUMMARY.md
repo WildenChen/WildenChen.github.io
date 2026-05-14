@@ -1,6 +1,11 @@
+---
+title: "Table of contents"
+permalink: /SUMMARY.html
+---
+
 # Table of contents
 
-* [關於 Swift 程式語言開發](README.md)
+* [關於 Swift 程式語言開發](swift.html)
 * [第一章 Swift 語言介紹與開發環境](chapter1/README.md)
   * [程式開發工具 Xcode](chapter1/chapter1-1.md)
   * [第一個 Hello World!](chapter1/chapter1-2.md)

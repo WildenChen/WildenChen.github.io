@@ -1,3 +1,7 @@
+---
+title: "類別成員的存取控制"
+---
+
 # 類別成員的存取控制
 
 在 Swift 中，存取控制字元共有5個，即 open、public、internal、fileprivate、private。

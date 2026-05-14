@@ -1,3 +1,7 @@
+---
+title: "什麼是封裝"
+---
+
 # 什麼是封裝
 
 封裝 \(encapsuiation\) ，又叫隱藏實現 \(Hiding the implementation\) ，實際的意思是將實現的細節隱藏起來，只將必要的功能介面對外公開。

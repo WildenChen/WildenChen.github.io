@@ -1,0 +1,40 @@
+title: Wilden Portal
+description: Wilden 的 HomeLab、AI 工具與 Swift Archive。
+lang: zh-Hant
+timezone: Asia/Taipei
+url: "https://wildenchen.github.io"
+baseurl: ""
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+include:
+  - SUMMARY.md
+defaults:
+  - scope:
+      path: "chapter*"
+    values:
+      layout: legacy_article
+      article_section: Swift Archive
+      robots: noindex,nofollow
+  - scope:
+      path: "ios-design-patterns"
+    values:
+      layout: legacy_article
+      article_section: iOS Design Patterns
+      robots: noindex,nofollow
+  - scope:
+      path: "SUMMARY.md"
+    values:
+      layout: legacy_article
+      article_section: Swift Archive
+      robots: noindex,nofollow
+exclude:
+  - scripts/
+  - docs/
+  - CNAME-bake

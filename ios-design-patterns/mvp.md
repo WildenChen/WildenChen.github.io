@@ -1,3 +1,7 @@
+---
+title: "設計模式之神話 - MVP"
+---
+
 # 設計模式之神話 - MVP
 
 Model-View-Presenter，簡稱 MVP，是設計模式中一種對針對 MVC 模式，再審議後所延伸提出的一種設計模式。

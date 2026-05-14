@@ -1,3 +1,7 @@
+---
+title: "本章小結"
+---
+
 # 本章小結
 
 最後結果的檔案可以在 [FlickrPhotos](https://github.com/wildenchen/swift-bethel-of-the-road/tree/eed3c8ff6c1141681b3d3b2c69fac406cd11c24c/DesignPatterns/FlickrPhotos-Finish.zip) 下載。

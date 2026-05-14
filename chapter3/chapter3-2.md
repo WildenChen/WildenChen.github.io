@@ -1,3 +1,7 @@
+---
+title: "true 與 false：條件運算式的結果\(待補\)"
+---
+
 # true 與 false：條件運算式的結果\(待補\)
 
 如果成立\(true\) 輸出名字，不成立\(false\) 輸出 no Name。

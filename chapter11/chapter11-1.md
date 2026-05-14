@@ -1,3 +1,7 @@
+---
+title: "Swift 命名規則"
+---
+
 # Swift 命名規則
 
 多熟悉 Apple 的 cocoaTouch Framrwork 提供的 API 的命名方式。 原則上仿照 Apple Swift 官方推薦的方式來撰寫。

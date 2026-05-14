@@ -1,3 +1,7 @@
+---
+title: "如何使用 MVP 模式"
+---
+
 # 如何使用 MVP 模式
 
 MVP 模式中，最重要的是 Model，由於 MVP 中，會廣泛的用到觀察者模式來完成彼此間的溝通，為了簡化程式碼，我們透過 LionEvents 中的 EventDispatcher 來實踐。
