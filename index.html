@@ -21,88 +21,107 @@
   <header class="site-header">
     <div class="portal-shell navbar">
       <a class="brand" href="./" aria-label="Wilden AI Portal home">
-        <span class="brand-mark">墨</span>
-        <span>Wilden AI Portal</span>
+        <span class="brand-mark">W.</span>
+        <span>Wilden Portal</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="legacy/">Legacy Articles</a>
+        <a href="dashboard/">Dashboard</a>
+        <a href="legacy/">Swift Archive</a>
         <a href="openclaw/">OpenClaw</a>
         <a href="ai-tools/">AI Tools</a>
         <a href="knowledge-base/">Knowledge Base</a>
-        <a href="dashboard/">Dashboard</a>
       </nav>
     </div>
   </header>
 
   <main class="portal-shell">
     <section class="hero" aria-labelledby="hero-title">
-      <div>
-        <p class="kicker"><span class="pulse" aria-hidden="true"></span> Personal AI steward · Homelab atlas · Knowledge gate</p>
-        <h1 id="hero-title">以水墨留白整理一座<span class="gradient-text">個人 AI Portal</span></h1>
-        <p class="lede">這個首頁是新的長期入口：上層承接個人 AI 管家、HomeLab 服務地圖、OpenClaw / AI Agent 研究與知識庫；下層保留舊 Swift / iOS 教學文章，不刪除、不覆蓋、不混合歷史資料。</p>
+      <div class="hero-copy">
+        <p class="kicker"><span class="pulse" aria-hidden="true"></span> Mobile control surface</p>
+        <h1 id="hero-title">Wilden <span class="gradient-text">Portal</span></h1>
+        <p class="lede">這裡改成你手機與平板上的主入口：HomeLab 服務、AI 工具、OpenClaw 研究、知識庫與舊 Swift 文章分層管理。重點是快速打開、狀態清楚、長期可維護。</p>
         <div class="hero-actions">
-          <a class="button primary" href="dashboard/">進入 Dashboard</a>
-          <a class="button" href="legacy/">查看 Legacy Articles</a>
+          <a class="button primary" href="dashboard/">Dashboard</a>
+          <a class="button" href="legacy/">Swift Archive</a>
+          <a class="button" href="ai-tools/">AI Tools</a>
         </div>
       </div>
 
-      <aside class="assistant-card" aria-label="Portal principles">
-        <div class="assistant-avatar" aria-hidden="true">AI</div>
-        <p class="assistant-line">此站採用純 HTML / CSS 的 GitHub Pages 架構，先建立穩定資訊架構與入口。公開頁面維持 noindex / nofollow；HomeLab 連結只作為狀態索引，後續再逐步確認有效性與公開適切性。</p>
+      <aside class="assistant-card" aria-label="Portal status">
+        <div class="assistant-avatar" aria-hidden="true">PWA</div>
+        <p class="assistant-line">目前已具備加到 iPhone / Android 主畫面的 PWA 基礎。下一個結構重點是把舊 Markdown 教學文章重新產生成真正 HTML 閱讀頁，而不是直接開 `.md` 原文。</p>
         <div class="assistant-grid">
-          <div><span>Style</span><strong>Ink wash</strong></div>
+          <div><span>Mode</span><strong>Fullscreen PWA</strong></div>
           <div><span>Stack</span><strong>Static HTML</strong></div>
           <div><span>Privacy</span><strong>No Index</strong></div>
-          <div><span>Archive</span><strong>Preserved</strong></div>
+          <div><span>Next</span><strong>MD to HTML</strong></div>
         </div>
       </aside>
     </section>
 
     <section class="portal-grid" aria-label="Portal routes">
+      <a class="portal-card" href="dashboard/">
+        <span class="card-index">01 / Homelab</span>
+        <h2>Dashboard</h2>
+        <p>HomeLab 與個人服務地圖，標記 reachable、login required、needs review 等狀態。</p>
+      </a>
       <a class="portal-card" href="legacy/">
-        <span class="card-index">01 / Archive</span>
-        <h2>Legacy Articles</h2>
-        <p>舊 Swift、iOS 與設計模式文章集中在獨立入口，維持原始 Markdown 與章節路徑。</p>
+        <span class="card-index">02 / Archive</span>
+        <h2>Swift Archive</h2>
+        <p>舊 Swift、iOS 與設計模式文章集中在獨立入口；下一步會恢復網頁閱讀格式。</p>
       </a>
       <a class="portal-card" href="openclaw/">
-        <span class="card-index">02 / Agent</span>
+        <span class="card-index">03 / Agent</span>
         <h2>OpenClaw</h2>
         <p>AI Agent、記憶、工具呼叫、自主巡檢與公開可分享的研究脈絡。</p>
       </a>
       <a class="portal-card" href="ai-tools/">
-        <span class="card-index">03 / Tools</span>
+        <span class="card-index">04 / Tools</span>
         <h2>AI Tools</h2>
         <p>外部 AI、本機生圖、NotebookLM、ComfyUI 與常用 workflow 的入口清單。</p>
       </a>
       <a class="portal-card" href="knowledge-base/">
-        <span class="card-index">04 / Memory</span>
+        <span class="card-index">05 / Memory</span>
         <h2>Knowledge Base</h2>
         <p>長期維護的知識索引：研究筆記、技術目錄、變更紀錄與待整理事項。</p>
       </a>
-      <a class="portal-card" href="dashboard/">
-        <span class="card-index">05 / Homelab</span>
-        <h2>Dashboard</h2>
-        <p>HomeLab 與個人服務地圖，標記 reachable、login required、needs review 等狀態。</p>
-      </a>
+    </section>
+
+    <section class="quick-grid" aria-label="Current priorities">
+      <article class="quick-panel">
+        <p class="card-index">Ready</p>
+        <h2>Mobile Web App</h2>
+        <p>Manifest、iOS meta、icons 與 service worker 已放好。從手機加入主畫面後，會以 App-like 模式開啟。</p>
+      </article>
+      <article class="quick-panel">
+        <p class="card-index">Needs repair</p>
+        <h2>Markdown Articles</h2>
+        <p>舊 Swift 章節目前仍是 `.md` 原文。需要新增產生器或 Jekyll layout，才能恢復正式網頁。</p>
+      </article>
+      <article class="quick-panel">
+        <p class="card-index">Design</p>
+        <h2>Operator Style</h2>
+        <p>視覺改為安靜、清楚、偏控制台的風格；手機上先看到入口與狀態，不再用大段氛圍文案。</p>
+      </article>
     </section>
 
     <section class="split-section" id="architecture" aria-labelledby="architecture-title">
       <div class="content-panel">
-        <p class="kicker"><span class="pulse" aria-hidden="true"></span> Restructure strategy</p>
-        <h2 id="architecture-title">先分層，再逐步現代化</h2>
-        <p>目前 repository 已有早期 GitBook 章節、首頁、portal 子頁、服務資料與文件。這次先保留既有章節路徑，讓舊文章透過 <a href="legacy/">Legacy Articles</a> 查閱；新的 AI Portal 則放在根目錄首頁與五個清楚的靜態子入口。</p>
+        <p class="kicker"><span class="pulse" aria-hidden="true"></span> Site structure</p>
+        <h2 id="architecture-title">保留內容，入口重做</h2>
+        <p>目前 repository 已有早期 GitBook 章節、首頁、portal 子頁、服務資料與文件。新的入口先維持純靜態，讓手機版操作穩定；舊 Swift 文章會保留原始 Markdown，再補一層 HTML 閱讀頁。</p>
         <div class="section-actions">
           <a class="button primary" href="docs/site-restructure-analysis.md">查看結構分析</a>
           <a class="button" href="docs/public-site-plan.md">查看公開站規劃</a>
         </div>
       </div>
       <div class="content-panel assistant-notes">
-        <p class="card-index">Guiding rules</p>
-        <h2>重構守則</h2>
+        <p class="card-index">Rules</p>
+        <h2>維護原則</h2>
         <ul>
           <li><strong>保留歷史</strong>：不刪除、不覆蓋舊 Swift / iOS Markdown。</li>
-          <li><strong>入口分離</strong>：新首頁與 Legacy Articles 分開，避免新舊內容混雜。</li>
-          <li><strong>簡單穩定</strong>：暫不導入大型 framework，維持 GitHub Pages 可直接部署。</li>
+          <li><strong>入口清楚</strong>：Dashboard、AI Tools、Knowledge、Legacy 各自分層。</li>
+          <li><strong>簡單穩定</strong>：先不導入大型 framework，維持 GitHub Pages 可直接部署。</li>
           <li><strong>低調公開</strong>：所有 HTML 保留 robots meta，並用 robots.txt 阻擋索引。</li>
         </ul>
       </div>
@@ -110,7 +129,7 @@
   </main>
 
   <footer class="portal-shell site-footer">
-    <span>Wilden AI Portal · personal AI steward · homelab atlas · noindex / nofollow</span>
+    <span>Wilden Portal · PWA · Homelab · Knowledge · noindex / nofollow</span>
   </footer>
   <script src="assets/js/pwa.js" defer></script>
 </body>

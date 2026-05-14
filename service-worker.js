@@ -1,4 +1,4 @@
-const CACHE_NAME = "wilden-ai-portal-v1";
+const CACHE_NAME = "wilden-ai-portal-v2";
 const CORE_ASSETS = [
   "./",
   "./index.html",
