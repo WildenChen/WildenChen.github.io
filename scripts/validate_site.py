@@ -26,6 +26,8 @@ class PageParser(HTMLParser):
             self.links.append(attr["href"])
         if tag == "link" and "href" in attr:
             self.links.append(attr["href"])
+        if tag == "script" and "src" in attr:
+            self.links.append(attr["src"])
         if tag == "meta":
             self.meta.append(attr)
         if tag == "h3":
@@ -113,6 +115,51 @@ def validate_services() -> list[str]:
     return errors
 
 
+def validate_pwa() -> list[str]:
+    errors: list[str] = []
+    manifest_path = ROOT / "manifest.webmanifest"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+    if manifest.get("display") != "fullscreen":
+        errors.append("manifest.webmanifest: display must remain fullscreen")
+    if manifest.get("start_url") != "./" or manifest.get("scope") != "./":
+        errors.append("manifest.webmanifest: start_url and scope must remain root-relative to the manifest")
+
+    icon_paths = [
+        ROOT / "assets" / "icons" / "apple-touch-icon.png",
+        ROOT / "assets" / "icons" / "icon-32.png",
+        ROOT / "assets" / "icons" / "icon-192.png",
+        ROOT / "assets" / "icons" / "icon-512.png",
+        ROOT / "assets" / "icons" / "maskable-192.png",
+        ROOT / "assets" / "icons" / "maskable-512.png",
+    ]
+    for icon_path in icon_paths:
+        if not icon_path.exists():
+            errors.append(f"{icon_path.relative_to(ROOT)}: missing PWA icon")
+
+    worker_path = ROOT / "service-worker.js"
+    register_path = ROOT / "assets" / "js" / "pwa.js"
+    if not worker_path.exists():
+        errors.append("service-worker.js: missing service worker")
+    if not register_path.exists():
+        errors.append("assets/js/pwa.js: missing service worker registration")
+
+    for page in iter_html_pages():
+        text = page.read_text(encoding="utf-8")
+        required = [
+            'viewport-fit=cover',
+            'name="apple-mobile-web-app-capable" content="yes"',
+            'name="apple-mobile-web-app-status-bar-style" content="black-translucent"',
+            'rel="manifest"',
+            'assets/js/pwa.js',
+        ]
+        for snippet in required:
+            if snippet not in text:
+                errors.append(f"{page.relative_to(ROOT)}: missing PWA snippet {snippet}")
+
+    return errors
+
+
 def validate_robots_txt() -> list[str]:
     expected = "User-agent: *\nDisallow: /\n"
     actual = (ROOT / "robots.txt").read_text(encoding="utf-8")
@@ -120,7 +167,7 @@ def validate_robots_txt() -> list[str]:
 
 
 def main() -> int:
-    errors = validate_html() + validate_services() + validate_robots_txt()
+    errors = validate_html() + validate_services() + validate_pwa() + validate_robots_txt()
     if errors:
         print("\n".join(errors))
         return 1

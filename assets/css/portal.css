@@ -30,6 +30,7 @@ html {
 body {
   min-height: 100%;
   margin: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   color: var(--text);
   background:
     radial-gradient(circle at 16% 8%, rgba(17, 23, 19, 0.13), transparent 18rem),
