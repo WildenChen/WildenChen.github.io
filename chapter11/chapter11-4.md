@@ -1,3 +1,7 @@
+---
+title: "Swift 內建函數"
+---
+
 # Swift 內建函數
 
 ## [Functions](https://developer.apple.com/library/ios/documentation/Swift/Reference/Swift_StandardLibrary_Functions/index.html#//apple_ref/doc/uid/TP40016052)

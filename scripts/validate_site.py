@@ -48,7 +48,11 @@ class PageParser(HTMLParser):
 
 
 def iter_html_pages() -> list[Path]:
-    return sorted(path for path in ROOT.glob("**/*.html") if ".git" not in path.parts)
+    return sorted(
+        path
+        for path in ROOT.glob("**/*.html")
+        if ".git" not in path.parts and not any(part.startswith("_") for part in path.parts)
+    )
 
 
 def local_target_exists(page: Path, href: str) -> bool:
@@ -61,7 +65,22 @@ def local_target_exists(page: Path, href: str) -> bool:
     path = page.parent / unquote(parsed.path)
     if href.endswith("/") or parsed.path.endswith("/") or parsed.path in ("./", "../"):
         path = path / "index.html"
-    return path.exists()
+    if path.exists():
+        return True
+
+    # Jekyll renders legacy Markdown files into HTML during GitHub Pages builds.
+    # Keep source validation useful before `_site` exists by accepting generated
+    # HTML targets when their Markdown source is present.
+    if path.suffix == ".html":
+        if path.name == "swift.html" and (ROOT / "index.md").exists():
+            return True
+        markdown_source = path.with_suffix(".md")
+        if markdown_source.exists():
+            return True
+        readme_source = path.parent / "README.md"
+        if path.name == "README.html" and readme_source.exists():
+            return True
+    return False
 
 
 def validate_html() -> list[str]:
@@ -160,6 +179,27 @@ def validate_pwa() -> list[str]:
     return errors
 
 
+def validate_jekyll() -> list[str]:
+    errors: list[str] = []
+    required = [ROOT / "_config.yml", ROOT / "_layouts" / "default.html", ROOT / "_layouts" / "legacy_article.html"]
+    for path in required:
+        if not path.exists():
+            errors.append(f"{path.relative_to(ROOT)}: missing Jekyll layout support")
+
+    markdown_paths = [ROOT / "index.md", ROOT / "SUMMARY.md"]
+    markdown_paths += sorted(ROOT.glob("chapter*/*.md"))
+    markdown_paths += sorted((ROOT / "ios-design-patterns").glob("*.md"))
+    for path in markdown_paths:
+        text = path.read_text(encoding="utf-8")
+        if not text.startswith("---\n"):
+            errors.append(f"{path.relative_to(ROOT)}: missing Jekyll front matter")
+
+    legacy_index = (ROOT / "legacy" / "index.html").read_text(encoding="utf-8")
+    if '.md"' in legacy_index or ".md'" in legacy_index:
+        errors.append("legacy/index.html: archive links must point at generated HTML pages")
+    return errors
+
+
 def validate_robots_txt() -> list[str]:
     expected = "User-agent: *\nDisallow: /\n"
     actual = (ROOT / "robots.txt").read_text(encoding="utf-8")
@@ -167,7 +207,7 @@ def validate_robots_txt() -> list[str]:
 
 
 def main() -> int:
-    errors = validate_html() + validate_services() + validate_pwa() + validate_robots_txt()
+    errors = validate_html() + validate_services() + validate_pwa() + validate_jekyll() + validate_robots_txt()
     if errors:
         print("\n".join(errors))
         return 1

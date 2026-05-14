@@ -1,3 +1,7 @@
+---
+title: "Class 與 Struct 格式規範"
+---
+
 # Class 與 Struct 格式規範
 
 ```swift

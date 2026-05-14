@@ -1,3 +1,7 @@
+---
+title: "設計模式之王 - MVC"
+---
+
 # 設計模式之王 - MVC
 
 ![](../.gitbook/assets/mvc1.png)

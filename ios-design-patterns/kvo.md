@@ -1,3 +1,7 @@
+---
+title: "鍵值觀察 - KVO"
+---
+
 # 鍵值觀察 - KVO
 
 在 KVO 中，實體物件可以註冊監聽任何屬性的變化，不管它是否持有該屬性。如果感興趣的話，可以讀一讀[蘋果 KVO 編程指南](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html)。

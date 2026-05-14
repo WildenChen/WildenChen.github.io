@@ -1,3 +1,7 @@
+---
+title: "入門 - 開始"
+---
+
 # 入門 - 開始
 
 下載[初始項目](https://github.com/wildenchen/swift-bethel-of-the-road/tree/eed3c8ff6c1141681b3d3b2c69fac406cd11c24c/DesignPatterns/workspaces/FlickrPhotos-Start.zip)並解壓，在 Xcode 中打開 `FlickrPhotos.xcworkspace` 專案。

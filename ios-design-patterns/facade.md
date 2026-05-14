@@ -1,3 +1,7 @@
+---
+title: "外觀模式 - Facade"
+---
+
 # 外觀模式 - Facade
 
 ![](../.gitbook/assets/facade1.jpg)

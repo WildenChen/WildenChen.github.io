@@ -4,25 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#111713">
+  <meta name="theme-color" content="#1f3a5f">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Wilden Portal">
+  <meta name="apple-mobile-web-app-title" content="Wilden 書房">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-  <title>Wilden AI Portal | Personal AI, Homelab, Knowledge</title>
-  <meta name="description" content="Wilden AI Portal：個人 AI 管家入口、homelab 入口、OpenClaw 研究與 legacy Swift archive。">
+  <title>Wilden 書房 | Personal AI, Homelab, Knowledge</title>
+  <meta name="description" content="Wilden 書房：和風 PWA 入口、homelab 入口、OpenClaw 研究與 Swift Archive。">
   <link rel="stylesheet" href="assets/css/portal.css">
 </head>
 <body>
   <header class="site-header">
     <div class="portal-shell navbar">
-      <a class="brand" href="./" aria-label="Wilden AI Portal home">
-        <span class="brand-mark">W.</span>
-        <span>Wilden Portal</span>
+      <a class="brand" href="./" aria-label="Wilden 書房 home">
+        <span class="brand-mark">和</span>
+        <span>Wilden 書房</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="dashboard/">Dashboard</a>
@@ -37,9 +37,9 @@
   <main class="portal-shell">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="kicker"><span class="pulse" aria-hidden="true"></span> Mobile control surface</p>
-        <h1 id="hero-title">Wilden <span class="gradient-text">Portal</span></h1>
-        <p class="lede">這裡改成你手機與平板上的主入口：HomeLab 服務、AI 工具、OpenClaw 研究、知識庫與舊 Swift 文章分層管理。重點是快速打開、狀態清楚、長期可維護。</p>
+        <p class="kicker"><span class="pulse" aria-hidden="true"></span> Japanese mobile reading room</p>
+        <h1 id="hero-title">Wilden <span class="gradient-text">書房</span></h1>
+        <p class="lede">這裡改成手機與平板都好讀的和風入口：像一間安靜的行動書房，先放 HomeLab、AI 工具與 Swift Archive，再用留白、紙感與清楚層級降低閱讀壓力。</p>
         <div class="hero-actions">
           <a class="button primary" href="dashboard/">Dashboard</a>
           <a class="button" href="legacy/">Swift Archive</a>
@@ -49,12 +49,12 @@
 
       <aside class="assistant-card" aria-label="Portal status">
         <div class="assistant-avatar" aria-hidden="true">PWA</div>
-        <p class="assistant-line">目前已具備加到 iPhone / Android 主畫面的 PWA 基礎。下一個結構重點是把舊 Markdown 教學文章重新產生成真正 HTML 閱讀頁，而不是直接開 `.md` 原文。</p>
+        <p class="assistant-line">現在重新導入 Jekyll layout：舊 Swift Markdown 會被 GitHub Pages 轉成 HTML 閱讀頁。手機加入主畫面後，入口與文章都維持像 App 一樣的全螢幕閱讀體驗。</p>
         <div class="assistant-grid">
           <div><span>Mode</span><strong>Fullscreen PWA</strong></div>
           <div><span>Stack</span><strong>Static HTML</strong></div>
           <div><span>Privacy</span><strong>No Index</strong></div>
-          <div><span>Next</span><strong>MD to HTML</strong></div>
+          <div><span>Jekyll</span><strong>Layout Restored</strong></div>
         </div>
       </aside>
     </section>
@@ -68,7 +68,7 @@
       <a class="portal-card" href="legacy/">
         <span class="card-index">02 / Archive</span>
         <h2>Swift Archive</h2>
-        <p>舊 Swift、iOS 與設計模式文章集中在獨立入口；下一步會恢復網頁閱讀格式。</p>
+        <p>舊 Swift、iOS 與設計模式文章集中在獨立入口，透過 Jekyll layout 恢復 HTML 閱讀格式。</p>
       </a>
       <a class="portal-card" href="openclaw/">
         <span class="card-index">03 / Agent</span>
@@ -96,20 +96,20 @@
       <article class="quick-panel">
         <p class="card-index">Needs repair</p>
         <h2>Markdown Articles</h2>
-        <p>舊 Swift 章節目前仍是 `.md` 原文。需要新增產生器或 Jekyll layout，才能恢復正式網頁。</p>
+        <p>舊 Swift 章節已補 front matter 與 Jekyll layout，GitHub Pages 會產生可閱讀的 HTML 頁面。</p>
       </article>
       <article class="quick-panel">
         <p class="card-index">Design</p>
-        <h2>Operator Style</h2>
-        <p>視覺改為安靜、清楚、偏控制台的風格；手機上先看到入口與狀態，不再用大段氛圍文案。</p>
+        <h2>Washitsu Style</h2>
+        <p>視覺改為和紙底色、藍染主色、朱色點綴與大留白；手機上字距更鬆、卡片更好點。</p>
       </article>
     </section>
 
     <section class="split-section" id="architecture" aria-labelledby="architecture-title">
       <div class="content-panel">
         <p class="kicker"><span class="pulse" aria-hidden="true"></span> Site structure</p>
-        <h2 id="architecture-title">保留內容，入口重做</h2>
-        <p>目前 repository 已有早期 GitBook 章節、首頁、portal 子頁、服務資料與文件。新的入口先維持純靜態，讓手機版操作穩定；舊 Swift 文章會保留原始 Markdown，再補一層 HTML 閱讀頁。</p>
+        <h2 id="architecture-title">保留內容，改成和風行動入口</h2>
+        <p>目前 repository 已有早期 GitBook 章節、首頁、portal 子頁、服務資料與文件。新的入口保留靜態部署的穩定性，並重新導入 Jekyll layout，讓舊 Swift Markdown 在 GitHub Pages 上回到網頁閱讀狀態。</p>
         <div class="section-actions">
           <a class="button primary" href="docs/site-restructure-analysis.md">查看結構分析</a>
           <a class="button" href="docs/public-site-plan.md">查看公開站規劃</a>
@@ -121,7 +121,7 @@
         <ul>
           <li><strong>保留歷史</strong>：不刪除、不覆蓋舊 Swift / iOS Markdown。</li>
           <li><strong>入口清楚</strong>：Dashboard、AI Tools、Knowledge、Legacy 各自分層。</li>
-          <li><strong>簡單穩定</strong>：先不導入大型 framework，維持 GitHub Pages 可直接部署。</li>
+          <li><strong>簡單穩定</strong>：不用大型 framework，交給 GitHub Pages / Jekyll 產生文章頁。</li>
           <li><strong>低調公開</strong>：所有 HTML 保留 robots meta，並用 robots.txt 阻擋索引。</li>
         </ul>
       </div>
@@ -129,7 +129,7 @@
   </main>
 
   <footer class="portal-shell site-footer">
-    <span>Wilden Portal · PWA · Homelab · Knowledge · noindex / nofollow</span>
+    <span>Wilden 書房 · 和風 PWA · Homelab · Knowledge · noindex / nofollow</span>
   </footer>
   <script src="assets/js/pwa.js" defer></script>
 </body>

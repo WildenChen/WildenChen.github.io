@@ -1,3 +1,7 @@
+---
+title: "事件流 - Event Flow"
+---
+
 # 事件流 - Event Flow
 
 `LionEvents` 是雄獅資訊目前 iOS 行動開發使用的一個框架，它實踐了 iOS 所沒有的事件機制，效能比 KVO 以及 Notification 還要快，目前的版本還少了 weak 弱引用的宣告，所以在 ARC 中還有些記憶體釋放的問題，在短時間內會盡快改版\(等到我有空時\)。

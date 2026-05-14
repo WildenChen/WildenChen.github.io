@@ -1,3 +1,11 @@
+---
+title: "關於 Swift 程式語言開發"
+permalink: /swift.html
+layout: legacy_article
+article_section: Swift Archive
+robots: noindex,nofollow
+---
+
 # 關於 Swift 程式語言開發
 
 ## Swift Bethel of The Road

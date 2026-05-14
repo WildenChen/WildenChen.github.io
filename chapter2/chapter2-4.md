@@ -1,3 +1,7 @@
+---
+title: "基本資料型別"
+---
+
 # 基本資料型別
 
 Swift 中預定義的基本資料型別一共有：Int、Float、Double、Bool、String等，以下為大家介紹常用的資料型別。
