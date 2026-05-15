@@ -4,48 +4,94 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#1f3a5f">
+  <meta name="theme-color" content="#163b3a">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Wilden 書房">
+  <meta name="apple-mobile-web-app-title" content="Wilden Hub">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
-  <title>OpenClaw | Wilden 書房</title>
-  <meta name="description" content="OpenClaw section of Wilden 書房.">
+  <title>OpenClaw | Wilden Hub</title>
+  <meta name="description" content="OpenClaw public research index for agent memory, tool use, inspection, and reporting.">
   <link rel="stylesheet" href="../assets/css/portal.css">
 </head>
 <body>
   <header class="site-header">
     <div class="portal-shell navbar">
-      <a class="brand" href="../"><span class="brand-mark">和</span><span>Wilden 書房</span></a>
+      <a class="brand" href="../"><span class="brand-mark">W</span><span>Wilden Hub</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="../dashboard/">Dashboard</a>
-        <a href="../legacy/">Swift Archive</a>
-        <a href="../openclaw/">OpenClaw</a>
         <a href="../ai-tools/">AI Tools</a>
+        <a href="../openclaw/">OpenClaw</a>
         <a href="../knowledge-base/">Knowledge Base</a>
+        <a href="../legacy/">Swift Archive</a>
       </nav>
     </div>
   </header>
   <main class="portal-shell page-main">
     <section class="page-hero">
-      <p class="kicker"><span class="pulse" aria-hidden="true"></span> AI Agent soul layer</p>
+      <p class="kicker"><span class="pulse" aria-hidden="true"></span> Agent research</p>
       <h1>OpenClaw</h1>
-      <p class="lede">OpenClaw 是個人 AI Agent 的研究入口：記憶、決策門、主動巡檢、工具呼叫與技術回報都會在這裡逐步整理。公開頁面只呈現可公開的專業設定，不放置私密 SOUL 內容。</p>
+      <p class="lede">OpenClaw 是個人 AI Agent 的公開研究入口。這裡只整理能公開分享的架構：記憶、工具呼叫、主動巡檢、風險判斷與回報格式。</p>
     </section>
-    <section class="content-panel">
-      <h2>Current phase</h2>
-      <ul>
-        <li>建立穩定 GitHub Pages 靜態路由。</li>
-        <li>維持零前端框架與低維護成本。</li>
-        <li>後續可逐步加入內容、索引與互動功能。</li>
-      </ul>
-      <div class="section-actions">
-        <a class="button primary" href="../">Back to Portal</a>
-        <a class="button" href="../legacy/">Legacy Archive</a>
+
+    <section class="directory-grid" aria-label="OpenClaw research tracks">
+      <article class="directory-card">
+        <span class="card-index">01</span>
+        <h2>Memory</h2>
+        <p>把專案、決策、偏好與巡檢結果整理成可追溯的長期記憶。</p>
+      </article>
+      <article class="directory-card">
+        <span class="card-index">02</span>
+        <h2>Tool Use</h2>
+        <p>把檔案、瀏覽器、GitHub、行事曆與本機工具變成可控的行動能力。</p>
+      </article>
+      <article class="directory-card">
+        <span class="card-index">03</span>
+        <h2>Inspection</h2>
+        <p>主動檢查網站、服務狀態、連結品質與公開風險。</p>
+      </article>
+      <article class="directory-card">
+        <span class="card-index">04</span>
+        <h2>Decision Gates</h2>
+        <p>在推送、公開、刪除、暴露私密資訊前先做風險判斷。</p>
+      </article>
+      <article class="directory-card">
+        <span class="card-index">05</span>
+        <h2>Reports</h2>
+        <p>把技術結果寫成短、清楚、可接續的回報，而不是留下零散紀錄。</p>
+      </article>
+      <article class="directory-card">
+        <span class="card-index">06</span>
+        <h2>Public Boundary</h2>
+        <p>公開頁只描述能力與方法，不放私密人格設定、憑證或內部記憶內容。</p>
+      </article>
+    </section>
+
+    <section class="split-section" aria-labelledby="openclaw-map-title">
+      <div class="content-panel">
+        <p class="card-index">Current map</p>
+        <h2 id="openclaw-map-title">現在先和網站維運連在一起</h2>
+        <ul>
+          <li><strong>Dashboard</strong>：服務狀態、可公開入口與待確認連結。</li>
+          <li><strong>AI Tools</strong>：外部 AI 與本機實驗工具。</li>
+          <li><strong>Knowledge Base</strong>：巡檢紀錄、公開文件與研究索引。</li>
+        </ul>
+        <div class="section-actions">
+          <a class="button primary" href="../dashboard/">查看 Dashboard</a>
+          <a class="button" href="../knowledge-base/">查看 Knowledge</a>
+        </div>
+      </div>
+      <div class="content-panel">
+        <p class="card-index">Next</p>
+        <h2>下一步</h2>
+        <ul>
+          <li>新增公開能力矩陣：能做什麼、不能公開什麼、需要人工確認什麼。</li>
+          <li>把巡檢結果沉到 Knowledge Base，讓每次調整都有脈絡。</li>
+          <li>建立一頁 OpenClaw 變更紀錄，避免研究方向漂掉。</li>
+        </ul>
       </div>
     </section>
   </main>

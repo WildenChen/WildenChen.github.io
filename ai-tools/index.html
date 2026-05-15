@@ -4,48 +4,97 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#1f3a5f">
+  <meta name="theme-color" content="#163b3a">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Wilden 書房">
+  <meta name="apple-mobile-web-app-title" content="Wilden Hub">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
-  <title>AI Tools | Wilden 書房</title>
-  <meta name="description" content="AI Tools section of Wilden 書房.">
+  <title>AI Tools | Wilden Hub</title>
+  <meta name="description" content="Wilden Hub AI tools index for external AI services, local image tools, and research workflows.">
   <link rel="stylesheet" href="../assets/css/portal.css">
 </head>
 <body>
   <header class="site-header">
     <div class="portal-shell navbar">
-      <a class="brand" href="../"><span class="brand-mark">和</span><span>Wilden 書房</span></a>
+      <a class="brand" href="../"><span class="brand-mark">W</span><span>Wilden Hub</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="../dashboard/">Dashboard</a>
-        <a href="../legacy/">Swift Archive</a>
-        <a href="../openclaw/">OpenClaw</a>
         <a href="../ai-tools/">AI Tools</a>
+        <a href="../openclaw/">OpenClaw</a>
         <a href="../knowledge-base/">Knowledge Base</a>
+        <a href="../legacy/">Swift Archive</a>
       </nav>
     </div>
   </header>
   <main class="portal-shell page-main">
     <section class="page-hero">
-      <p class="kicker"><span class="pulse" aria-hidden="true"></span> AI toolbox</p>
+      <p class="kicker"><span class="pulse" aria-hidden="true"></span> AI workbench</p>
       <h1>AI Tools</h1>
-      <p class="lede">AI Tools 是個人 AI 工作流的工具箱：Gemini、Grok、NotebookLM、ComfyUI、Stable Diffusion 與可公開分享的工作流。每個入口會標記是否需登入、是否仍有效、是否需要人工確認。</p>
+      <p class="lede">把常用 AI 入口依工作情境整理：查詢與推理、筆記整理、本機生圖、角色互動，以及還需要人工確認的服務。</p>
     </section>
-    <section class="content-panel">
-      <h2>Current phase</h2>
-      <ul>
-        <li>建立穩定 GitHub Pages 靜態路由。</li>
-        <li>維持零前端框架與低維護成本。</li>
-        <li>後續可逐步加入內容、索引與互動功能。</li>
-      </ul>
-      <div class="section-actions">
-        <a class="button primary" href="../">Back to Portal</a>
-        <a class="button" href="../legacy/">Legacy Archive</a>
+
+    <section class="directory-grid" aria-label="AI tool groups">
+      <a class="directory-card" href="https://gemini.google.com/" rel="noopener">
+        <span class="card-index">Cloud AI</span>
+        <h2>Gemini</h2>
+        <p>Google AI 入口，適合查詢、長文整理與跨 Google 生態工作。</p>
+        <span class="service-action">Open</span>
+      </a>
+      <a class="directory-card" href="https://grok.com/" rel="noopener">
+        <span class="card-index">Cloud AI</span>
+        <h2>Grok</h2>
+        <p>xAI Grok 入口，適合快速查詢、社群脈絡與即時資訊輔助。</p>
+        <span class="service-action">Open</span>
+      </a>
+      <a class="directory-card" href="https://notebooklm.google.com/" rel="noopener">
+        <span class="card-index">Knowledge</span>
+        <h2>NotebookLM</h2>
+        <p>把資料集、筆記、文件整理成可追問的研究空間。</p>
+        <span class="service-action">Open</span>
+      </a>
+      <a class="directory-card" href="https://comfyui.wilden.myds.me/" rel="noopener">
+        <span class="card-index">Local Image</span>
+        <h2>ComfyUI M2 Pro</h2>
+        <p>本機節點式生圖工作流，目前狀態仍需人工確認。</p>
+        <span class="service-action">Open</span>
+      </a>
+      <a class="directory-card" href="https://sd.wilden.myds.me/" rel="noopener">
+        <span class="card-index">Local Image</span>
+        <h2>Stable Diffusion</h2>
+        <p>AI 圖像生成服務，公開入口是否仍可用需再確認。</p>
+        <span class="service-action">Open</span>
+      </a>
+      <a class="directory-card" href="https://sillytavern.wilden.myds.me/" rel="noopener">
+        <span class="card-index">Interaction</span>
+        <h2>SillyTavern</h2>
+        <p>角色互動與對話實驗入口，已觀察到登入頁。</p>
+        <span class="service-action">Open</span>
+      </a>
+    </section>
+
+    <section class="split-section" aria-labelledby="workflow-title">
+      <div class="content-panel">
+        <p class="card-index">Workflows</p>
+        <h2 id="workflow-title">建議整理成四條工作流</h2>
+        <ul>
+          <li><strong>研究查詢</strong>：Gemini、Grok 與 NotebookLM。</li>
+          <li><strong>長文整理</strong>：NotebookLM 搭配 Knowledge Base 的文件索引。</li>
+          <li><strong>生圖實驗</strong>：ComfyUI、Stable Diffusion 與可公開的 prompt 範本。</li>
+          <li><strong>角色互動</strong>：SillyTavern 與 OpenClaw 的 Agent 研究脈絡。</li>
+        </ul>
+      </div>
+      <div class="content-panel">
+        <p class="card-index">Next</p>
+        <h2>下一步</h2>
+        <ul>
+          <li>把常用 prompt、模型設定與 workflow 成果拆成可公開筆記。</li>
+          <li>確認本機服務哪些適合公開連結，哪些只保留在私有 Dashboard。</li>
+          <li>把 AI Tools 與 Knowledge Base 交叉連結，避免筆記散落。</li>
+        </ul>
       </div>
     </section>
   </main>

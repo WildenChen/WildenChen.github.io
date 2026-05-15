@@ -4,48 +4,96 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#1f3a5f">
+  <meta name="theme-color" content="#163b3a">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Wilden 書房">
+  <meta name="apple-mobile-web-app-title" content="Wilden Hub">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
-  <title>Knowledge Base | Wilden 書房</title>
-  <meta name="description" content="Knowledge Base section of Wilden 書房.">
+  <title>Knowledge Base | Wilden Hub</title>
+  <meta name="description" content="Wilden Hub knowledge base index for site docs, homelab audits, OpenClaw notes, and Swift archive.">
   <link rel="stylesheet" href="../assets/css/portal.css">
 </head>
 <body>
   <header class="site-header">
     <div class="portal-shell navbar">
-      <a class="brand" href="../"><span class="brand-mark">和</span><span>Wilden 書房</span></a>
+      <a class="brand" href="../"><span class="brand-mark">W</span><span>Wilden Hub</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="../dashboard/">Dashboard</a>
-        <a href="../legacy/">Swift Archive</a>
-        <a href="../openclaw/">OpenClaw</a>
         <a href="../ai-tools/">AI Tools</a>
+        <a href="../openclaw/">OpenClaw</a>
         <a href="../knowledge-base/">Knowledge Base</a>
+        <a href="../legacy/">Swift Archive</a>
       </nav>
     </div>
   </header>
   <main class="portal-shell page-main">
     <section class="page-hero">
-      <p class="kicker"><span class="pulse" aria-hidden="true"></span> Long-term memory</p>
+      <p class="kicker"><span class="pulse" aria-hidden="true"></span> Long-term index</p>
       <h1>Knowledge Base</h1>
-      <p class="lede">Knowledge Base 是長期維護的知識入口：研究筆記、技術索引、legacy article、homelab 變更紀錄與 OpenClaw 知識地圖都會逐步收進來，避免重要事情被遺忘。</p>
+      <p class="lede">這裡放可以公開的長期索引：站台規劃、HomeLab 巡檢、OpenClaw 研究、AI 工具整理與舊 Swift 文章入口。</p>
     </section>
-    <section class="content-panel">
-      <h2>Current phase</h2>
-      <ul>
-        <li>建立穩定 GitHub Pages 靜態路由。</li>
-        <li>維持零前端框架與低維護成本。</li>
-        <li>後續可逐步加入內容、索引與互動功能。</li>
-      </ul>
-      <div class="section-actions">
-        <a class="button primary" href="../">Back to Portal</a>
-        <a class="button" href="../legacy/">Legacy Archive</a>
+
+    <section class="directory-grid" aria-label="Knowledge resources">
+      <a class="directory-card" href="../docs/site-restructure-analysis.md">
+        <span class="card-index">Site</span>
+        <h2>架構分析</h2>
+        <p>目前 GitHub Pages 架構、入口分層、維護原則與下一步。</p>
+        <span class="service-action">Read</span>
+      </a>
+      <a class="directory-card" href="../docs/public-site-plan.md">
+        <span class="card-index">Plan</span>
+        <h2>公開站規劃</h2>
+        <p>Wilden Hub 的定位、公開邊界、Dashboard 與 OpenClaw 的關係。</p>
+        <span class="service-action">Read</span>
+      </a>
+      <a class="directory-card" href="../docs/homelab-link-audit.md">
+        <span class="card-index">Audit</span>
+        <h2>HomeLab 巡檢</h2>
+        <p>原 HomeLab 入口整理、服務狀態與哪些連結需要人工確認。</p>
+        <span class="service-action">Read</span>
+      </a>
+      <a class="directory-card" href="../legacy/">
+        <span class="card-index">Archive</span>
+        <h2>Swift Archive</h2>
+        <p>舊 Swift、iOS 與設計模式教學文章，已轉成 HTML 閱讀入口。</p>
+        <span class="service-action">Open</span>
+      </a>
+      <a class="directory-card" href="../openclaw/">
+        <span class="card-index">Research</span>
+        <h2>OpenClaw</h2>
+        <p>AI Agent 記憶、工具使用、巡檢與公開能力矩陣。</p>
+        <span class="service-action">Open</span>
+      </a>
+      <a class="directory-card" href="../ai-tools/">
+        <span class="card-index">Tools</span>
+        <h2>AI Tools</h2>
+        <p>外部 AI、本機生圖、筆記整理與角色互動工具入口。</p>
+        <span class="service-action">Open</span>
+      </a>
+    </section>
+
+    <section class="split-section" aria-labelledby="knowledge-next-title">
+      <div class="content-panel">
+        <p class="card-index">Structure</p>
+        <h2 id="knowledge-next-title">之後可以長成三層知識庫</h2>
+        <ul>
+          <li><strong>索引層</strong>：每個主題只有摘要、入口與狀態。</li>
+          <li><strong>筆記層</strong>：放公開研究筆記、巡檢紀錄與教學整理。</li>
+          <li><strong>資料層</strong>：保留 JSON、audit log、維護文件，但不搶主動線。</li>
+        </ul>
+      </div>
+      <div class="content-panel">
+        <p class="card-index">Next</p>
+        <h2>下一步</h2>
+        <ul>
+          <li>替 OpenClaw、AI Tools 各建立一份持續更新的 changelog。</li>
+          <li>把 Swift Archive 裡最常回看的文章加到精選索引。</li>
+          <li>把 Dashboard 的待確認服務變成巡檢清單。</li>
+        </ul>
       </div>
     </section>
   </main>

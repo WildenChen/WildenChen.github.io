@@ -110,9 +110,18 @@ def validate_services() -> list[str]:
     if services.get("privacy") != "noindex,nofollow":
         errors.append("data/services.json: privacy must remain noindex,nofollow")
 
-    dashboard_parser = PageParser()
-    dashboard_parser.feed((ROOT / "dashboard" / "index.html").read_text(encoding="utf-8"))
-    dashboard_headings = set(dashboard_parser.headings)
+    dashboard_html = (ROOT / "dashboard" / "index.html").read_text(encoding="utf-8")
+    dashboard_js = ROOT / "assets" / "js" / "dashboard.js"
+    if not dashboard_js.exists():
+        errors.append("assets/js/dashboard.js: missing dashboard renderer")
+    else:
+        dashboard_script = dashboard_js.read_text(encoding="utf-8")
+        if "../data/services.json" not in dashboard_script:
+            errors.append("assets/js/dashboard.js: dashboard must load data/services.json")
+    if 'href="../data/services.json"' in dashboard_html or 'href="/data/services.json"' in dashboard_html:
+        errors.append("dashboard/index.html: raw services JSON must not be a visible navigation link")
+    if 'id="service-catalog"' not in dashboard_html:
+        errors.append("dashboard/index.html: missing service catalog mount")
 
     seen_names: set[str] = set()
     for category in services.get("categories", []):
@@ -129,8 +138,6 @@ def validate_services() -> list[str]:
             if name in seen_names:
                 errors.append(f"data/services.json: duplicated service name {name}")
             seen_names.add(name)
-            if name not in dashboard_headings:
-                errors.append(f"dashboard/index.html: missing service card for {name}")
 
     return errors
 

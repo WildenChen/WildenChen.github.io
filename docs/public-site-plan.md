@@ -1,8 +1,8 @@
-# Wilden AI Portal Public Entry Plan
+# Wilden Hub Public Entry Plan
 
 ## 目標定位
 
-這個 GitHub Pages repository 不是單純作品集，也不是把 homelab 降級成公開展示頁。它的本質是「Wilden AI Portal 的對外入口」：
+這個 GitHub Pages repository 不是單純作品集，也不是把 homelab 降級成公開展示頁。它的本質是「Wilden Hub 的對外入口」：
 
 - 個人 AI 助理入口：個人 AI 管家作為 OpenClaw 的操作入口。
 - Homelab 總控地圖：保留原 homelab 首頁的服務分類與入口，但標註狀態與風險。
@@ -45,8 +45,8 @@ GitHub Pages 入口會把這些服務整理成「Dashboard」，但加入狀態�
 
 ## 建議資訊架構
 
-1. **Home**：Wilden AI Portal 的人格入口、核心路由、homelab map 摘要。
-2. **Dashboard**：完整 homelab / AI / 個人資料 / Other 服務地圖與巡檢狀態。
+1. **Home**：Wilden Hub 的核心路由，避免把原始資料檔與維護文件放在主動線。
+2. **Dashboard**：完整 homelab / AI / 個人資料 / Other 服務地圖與巡檢狀態，由 `data/services.json` 透過 `assets/js/dashboard.js` 渲染。
 3. **OpenClaw**：AI Agent 核心、記憶、自主巡檢、工具呼叫與技術回報設計。
 4. **AI Tools**：Gemini、Grok、NotebookLM、ComfyUI、Stable Diffusion 與 workflow。
 5. **Knowledge Base**：長期記憶、技術筆記、研究索引、變更紀錄。
@@ -54,7 +54,7 @@ GitHub Pages 入口會把這些服務整理成「Dashboard」，但加入狀態�
 
 ## 下一階段建議
 
-- Dashboard 的服務目錄已整理為 `data/services.json`，後續可再由腳本產生 HTML 或巡檢報告，避免資料分散。
+- Dashboard 的服務目錄已整理為 `data/services.json`，畫面由 `assets/js/dashboard.js` 產生卡片、統計與狀態篩選，避免把 JSON 檔直接暴露成使用者入口。
 - 定期用 GitHub Actions 或本機腳本更新 `data/services.json` 的狀態，但不要把 credentials 放到公開 repo。
 - OpenClaw 頁面可補「OpenClaw 公開能力矩陣」：記憶、巡檢、風險判斷、工具呼叫、回報格式。
 - AI Tools 頁面可分成「外部 AI」、「本機生圖」、「AI 工具鏈」、「待確認」。
