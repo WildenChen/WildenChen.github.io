@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -193,6 +194,10 @@ def validate_jekyll() -> list[str]:
         text = path.read_text(encoding="utf-8")
         if not text.startswith("---\n"):
             errors.append(f"{path.relative_to(ROOT)}: missing Jekyll front matter")
+        for link in re.findall(r"\]\((?!https?://|mailto:|#)([^)]+\.md(?:#[^)]+)?)\)", text):
+            errors.append(
+                f"{path.relative_to(ROOT)}: legacy article links must point at generated HTML pages, not {link}"
+            )
 
     legacy_index = (ROOT / "legacy" / "index.html").read_text(encoding="utf-8")
     if '.md"' in legacy_index or ".md'" in legacy_index:

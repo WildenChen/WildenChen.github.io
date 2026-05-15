@@ -2,4 +2,4 @@
 
 ˊ中文文字測試
 
-appgo.me
+https://wildenchen.github.io

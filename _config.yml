@@ -37,4 +37,3 @@ defaults:
 exclude:
   - scripts/
   - docs/
-  - CNAME-bake
