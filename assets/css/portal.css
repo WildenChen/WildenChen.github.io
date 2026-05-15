@@ -556,6 +556,75 @@ h3 {
   color: var(--signal);
 }
 
+.archive-section {
+  padding: 4px 0 36px;
+}
+
+.section-heading {
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.chapter-grid.compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.chapter-card {
+  display: grid;
+  min-height: 156px;
+  gap: 10px;
+  align-content: start;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+.chapter-card:hover,
+.chapter-card:focus-visible {
+  border-color: rgba(201, 95, 66, 0.36);
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.98);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.chapter-card span {
+  width: max-content;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--sky);
+  background: rgba(255, 255, 255, 0.66);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.chapter-card strong {
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.chapter-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
 .service-section {
   margin-top: 30px;
 }
@@ -787,6 +856,8 @@ h3 {
   .portal-grid,
   .focus-grid,
   .directory-grid,
+  .chapter-grid,
+  .chapter-grid.compact,
   .quick-grid,
   .service-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -856,6 +927,8 @@ h3 {
   .portal-grid,
   .focus-grid,
   .directory-grid,
+  .chapter-grid,
+  .chapter-grid.compact,
   .legacy-list,
   .quick-grid,
   .assistant-grid,
