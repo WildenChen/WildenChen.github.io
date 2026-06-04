@@ -194,9 +194,9 @@ def validate_jekyll() -> list[str]:
         if not path.exists():
             errors.append(f"{path.relative_to(ROOT)}: missing Jekyll layout support")
 
-    markdown_paths = [ROOT / "index.md", ROOT / "SUMMARY.md"]
-    markdown_paths += sorted(ROOT.glob("chapter*/*.md"))
-    markdown_paths += sorted((ROOT / "ios-design-patterns").glob("*.md"))
+    markdown_paths = [ROOT / "swift-road" / "swift.md", ROOT / "swift-road" / "SUMMARY.md"]
+    markdown_paths += sorted(ROOT.glob("swift-road/chapter*/*.md"))
+    markdown_paths += sorted((ROOT / "swift-design-patterns").glob("*.md"))
     for path in markdown_paths:
         text = path.read_text(encoding="utf-8")
         if not text.startswith("---\n"):
@@ -206,9 +206,9 @@ def validate_jekyll() -> list[str]:
                 f"{path.relative_to(ROOT)}: legacy article links must point at generated HTML pages, not {link}"
             )
 
-    legacy_index = (ROOT / "legacy" / "index.html").read_text(encoding="utf-8")
+    legacy_index = (ROOT / "swift-road" / "index.html").read_text(encoding="utf-8")
     if '.md"' in legacy_index or ".md'" in legacy_index:
-        errors.append("legacy/index.html: archive links must point at generated HTML pages")
+        errors.append("swift-road/index.html: archive links must point at generated HTML pages")
     return errors
 
 

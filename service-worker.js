@@ -1,14 +1,11 @@
-const CACHE_NAME = "wilden-ai-portal-v5";
+const CACHE_NAME = "wilden-ai-portal-v6";
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./assets/css/portal.css",
   "./manifest.webmanifest",
-  "./dashboard/",
-  "./legacy/",
-  "./openclaw/",
-  "./ai-tools/",
-  "./knowledge-base/",
+  "./swift-road/",
+  "./swift-design-patterns/",
   "./data/services.json",
   "./assets/js/dashboard.js",
   "./assets/icons/icon-192.png",

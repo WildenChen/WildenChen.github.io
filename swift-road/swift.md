@@ -1,8 +1,8 @@
 ---
 title: "關於 Swift 程式語言開發"
-permalink: /swift.html
+permalink: /swift-road/swift.html
 layout: legacy_article
-article_section: Swift Archive
+article_section: Swift 殿堂之路
 robots: noindex,nofollow
 ---
 

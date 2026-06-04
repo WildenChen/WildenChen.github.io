@@ -17,22 +17,28 @@ include:
   - SUMMARY.md
 defaults:
   - scope:
-      path: "chapter*"
+      path: "swift-road/chapter*"
     values:
       layout: legacy_article
       article_section: Swift 殿堂之路
       robots: noindex,nofollow
   - scope:
-      path: "ios-design-patterns"
+      path: "swift-design-patterns"
     values:
       layout: legacy_article
-      article_section: iOS Design Patterns
+      article_section: 實作 Swift 設計模式
       robots: noindex,nofollow
   - scope:
-      path: "SUMMARY.md"
+      path: "swift-road/SUMMARY.md"
     values:
       layout: legacy_article
-      article_section: Swift Archive
+      article_section: Swift 殿堂之路
+      robots: noindex,nofollow
+  - scope:
+      path: "swift-road/swift.md"
+    values:
+      layout: legacy_article
+      article_section: Swift 殿堂之路
       robots: noindex,nofollow
 exclude:
   - scripts/
