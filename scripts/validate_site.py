@@ -166,10 +166,13 @@ def validate_pwa() -> list[str]:
 
     worker_path = ROOT / "service-worker.js"
     register_path = ROOT / "assets" / "js" / "pwa.js"
+    reader_path = ROOT / "assets" / "js" / "reader.js"
     if not worker_path.exists():
         errors.append("service-worker.js: missing service worker")
     if not register_path.exists():
         errors.append("assets/js/pwa.js: missing service worker registration")
+    if not reader_path.exists():
+        errors.append("assets/js/reader.js: missing GitBook reader script")
 
     for page in iter_html_pages():
         text = page.read_text(encoding="utf-8")

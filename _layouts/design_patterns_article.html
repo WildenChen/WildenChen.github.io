@@ -1,40 +1,99 @@
 ---
 layout: default
 ---
-<main class="portal-shell article-shell">
-  <aside class="article-toc" aria-label="Swift design patterns navigation">
-    <p class="card-index">實作 Swift 設計模式</p>
-    <a href="{{ '/swift-design-patterns/' | relative_url }}">關於本書 & 簡介</a>
-    <a href="{{ '/swift-design-patterns/gettingstarted.html' | relative_url }}">入門 - 開始</a>
-    <a href="{{ '/swift-design-patterns/mvc.html' | relative_url }}">設計模式之王 - MVC</a>
-    <a href="{{ '/swift-design-patterns/use-mvc.html' | relative_url }}">如何使用 MVC 模式</a>
-    <a href="{{ '/swift-design-patterns/simplefactory.html' | relative_url }}">簡易工廠 - Simple Factory</a>
-    <a href="{{ '/swift-design-patterns/use-simplefactory.html' | relative_url }}">如何使用簡易工廠模式</a>
-    <a href="{{ '/swift-design-patterns/facade.html' | relative_url }}">外觀模式 - Facade</a>
-    <a href="{{ '/swift-design-patterns/use-facade.html' | relative_url }}">如何使用外觀模式</a>
-    <a href="{{ '/swift-design-patterns/decorator.html' | relative_url }}">裝飾者模式 - Decorator</a>
-    <a href="{{ '/swift-design-patterns/decorator-extension.html' | relative_url }}">裝飾者 - 擴展</a>
-    <a href="{{ '/swift-design-patterns/use-decorator-extension.html' | relative_url }}">如何使用擴展</a>
-    <a href="{{ '/swift-design-patterns/decorator-delegation.html' | relative_url }}">裝飾者 - 委派</a>
-    <a href="{{ '/swift-design-patterns/use-decorator-delegation.html' | relative_url }}">如何使用委派模式</a>
-    <a href="{{ '/swift-design-patterns/singleton.html' | relative_url }}">單例模式 - Singleton</a>
-    <a href="{{ '/swift-design-patterns/use-singleton.html' | relative_url }}">如何使用單例模式</a>
-    <a href="{{ '/swift-design-patterns/adapter.html' | relative_url }}">適配器模式 - Adapter</a>
-    <a href="{{ '/swift-design-patterns/use-adapter.html' | relative_url }}">如何使用適配器模式</a>
-    <a href="{{ '/swift-design-patterns/observer.html' | relative_url }}">觀察者模式 - Observer</a>
-    <a href="{{ '/swift-design-patterns/notification.html' | relative_url }}">通知 - Notification</a>
-    <a href="{{ '/swift-design-patterns/kvo.html' | relative_url }}">鍵值觀察 - KVO</a>
-    <a href="{{ '/swift-design-patterns/eventflow.html' | relative_url }}">事件流 - Event Flow</a>
-    <a href="{{ '/swift-design-patterns/mvp.html' | relative_url }}">設計模式之神話 - MVP</a>
-    <a href="{{ '/swift-design-patterns/use-mvp.html' | relative_url }}">如何使用 MVP 模式</a>
-    <a href="{{ '/swift-design-patterns/finaltouches.html' | relative_url }}">最後的潤色</a>
-    <a href="{{ '/swift-design-patterns/final.html' | relative_url }}">本章小結</a>
-  </aside>
-  <article class="article-card">
-    <div class="article-meta">
-      <span>{{ page.article_section | default: '實作 Swift 設計模式' }}</span>
-      <a href="{{ '/swift-design-patterns/' | relative_url }}">回到 實作 Swift 設計模式</a>
+<!-- Reading progress bar -->
+<div class="reader-progress-track" role="progressbar" aria-label="閱讀進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div id="reader-progress" class="reader-progress-fill"></div>
+</div>
+
+<!-- Mobile sidebar overlay -->
+<div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+<main class="portal-shell article-shell reader-shell">
+
+  <!-- Hamburger toggle (visible on mobile) -->
+  <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="article-toc">
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+  </button>
+
+  <aside id="article-toc" class="article-toc" aria-label="實作 Swift 設計模式 章節導覽">
+    <div class="toc-header">
+      <p class="card-index">實作 Swift 設計模式</p>
+      <a class="toc-home-link" href="{{ '/swift-design-patterns/' | relative_url }}">← 書本首頁</a>
     </div>
-    {{ content }}
-  </article>
+    <nav class="toc-nav">
+      <a href="{{ '/swift-design-patterns/' | relative_url }}">關於本書 &amp; 簡介</a>
+      <a href="{{ '/swift-design-patterns/gettingstarted.html' | relative_url }}">入門 - 開始</a>
+
+      <span class="toc-section-label">MVC 模式</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/mvc.html' | relative_url }}">設計模式之王 - MVC</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/use-mvc.html' | relative_url }}">如何使用 MVC 模式</a>
+
+      <span class="toc-section-label">簡易工廠</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/simplefactory.html' | relative_url }}">簡易工廠 - Simple Factory</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/use-simplefactory.html' | relative_url }}">如何使用簡易工廠模式</a>
+
+      <span class="toc-section-label">外觀模式</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/facade.html' | relative_url }}">外觀模式 - Facade</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/use-facade.html' | relative_url }}">如何使用外觀模式</a>
+
+      <span class="toc-section-label">裝飾者模式</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/decorator.html' | relative_url }}">裝飾者模式 - Decorator</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/decorator-extension.html' | relative_url }}">裝飾者 - 擴展</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/use-decorator-extension.html' | relative_url }}">如何使用擴展</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/decorator-delegation.html' | relative_url }}">裝飾者 - 委派</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/use-decorator-delegation.html' | relative_url }}">如何使用委派模式</a>
+
+      <span class="toc-section-label">單例模式</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/singleton.html' | relative_url }}">單例模式 - Singleton</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/use-singleton.html' | relative_url }}">如何使用單例模式</a>
+
+      <span class="toc-section-label">適配器模式</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/adapter.html' | relative_url }}">適配器模式 - Adapter</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/use-adapter.html' | relative_url }}">如何使用適配器模式</a>
+
+      <span class="toc-section-label">觀察者模式</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/observer.html' | relative_url }}">觀察者模式 - Observer</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/notification.html' | relative_url }}">通知 - Notification</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/kvo.html' | relative_url }}">鍵值觀察 - KVO</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/eventflow.html' | relative_url }}">事件流 - Event Flow</a>
+
+      <span class="toc-section-label">MVP 模式</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/mvp.html' | relative_url }}">設計模式之神話 - MVP</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/use-mvp.html' | relative_url }}">如何使用 MVP 模式</a>
+
+      <span class="toc-section-label">收尾</span>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/finaltouches.html' | relative_url }}">最後的潤色</a>
+      <a class="toc-sub" href="{{ '/swift-design-patterns/final.html' | relative_url }}">本章小結</a>
+
+      <a class="toc-cross-link" href="{{ '/swift-road/' | relative_url }}">Swift 殿堂之路 ↗</a>
+    </nav>
+  </aside>
+
+  <div class="reader-content">
+    <article class="article-card">
+      <div class="article-meta">
+        <span>{{ page.article_section | default: '實作 Swift 設計模式' }}</span>
+        <a href="{{ '/swift-design-patterns/' | relative_url }}">← 回到 實作 Swift 設計模式</a>
+      </div>
+      {{ content }}
+    </article>
+
+    <!-- Prev / Next navigation -->
+    <nav class="chapter-nav" aria-label="章節導覽">
+      <a id="btn-prev" class="chapter-nav-btn prev" href="#" aria-disabled="true" tabindex="-1">
+        <span class="nav-direction">← 上一篇</span>
+        <span class="nav-label">…</span>
+      </a>
+      <a id="btn-next" class="chapter-nav-btn next" href="#" aria-disabled="true" tabindex="-1">
+        <span class="nav-direction">下一篇 →</span>
+        <span class="nav-label">…</span>
+      </a>
+    </nav>
+  </div>
+
 </main>
+
+<script src="{{ '/assets/js/reader.js' | relative_url }}" defer></script>

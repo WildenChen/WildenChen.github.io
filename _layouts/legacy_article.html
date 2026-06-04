@@ -1,28 +1,146 @@
 ---
 layout: default
 ---
-<main class="portal-shell article-shell">
-  <aside class="article-toc" aria-label="Swift archive navigation">
-    <p class="card-index">Swift 殿堂之路</p>
-    <a href="{{ '/swift-road/swift.html' | relative_url }}">關於 Swift 程式語言開發</a>
-    <a href="{{ '/swift-road/SUMMARY.html' | relative_url }}">完整目錄</a>
-    <a href="{{ '/swift-road/chapter1/README.html' | relative_url }}">第一章 開發環境</a>
-    <a href="{{ '/swift-road/chapter2/README.html' | relative_url }}">第二章 基本元素</a>
-    <a href="{{ '/swift-road/chapter3/README.html' | relative_url }}">第三章 流程控制</a>
-    <a href="{{ '/swift-road/chapter4/README.html' | relative_url }}">第四章 函數</a>
-    <a href="{{ '/swift-road/chapter5/README.html' | relative_url }}">第五章 類別與物件</a>
-    <a href="{{ '/swift-road/chapter6/README.html' | relative_url }}">第六章 封裝與結構</a>
-    <a href="{{ '/swift-road/chapter7/README.html' | relative_url }}">第七章 複合與繼承</a>
-    <a href="{{ '/swift-road/chapter8/README.html' | relative_url }}">第八章 多型與轉型</a>
-    <a href="{{ '/swift-road/chapter9/README.html' | relative_url }}">第九章 協定與委派</a>
-    <a href="{{ '/swift-design-patterns/' | relative_url }}">實作 Swift 設計模式 ↗</a>
-    <a href="{{ '/swift-road/chapter11/README.html' | relative_url }}">第十一章 附錄</a>
-  </aside>
-  <article class="article-card">
-    <div class="article-meta">
-      <span>{{ page.article_section | default: 'Legacy Article' }}</span>
-      <a href="{{ '/swift-road/' | relative_url }}">回到 Swift 殿堂之路</a>
+<!-- Reading progress bar -->
+<div class="reader-progress-track" role="progressbar" aria-label="閱讀進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div id="reader-progress" class="reader-progress-fill"></div>
+</div>
+
+<!-- Mobile sidebar overlay -->
+<div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+<main class="portal-shell article-shell reader-shell">
+
+  <!-- Hamburger toggle (visible on mobile) -->
+  <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="article-toc">
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+  </button>
+
+  <aside id="article-toc" class="article-toc" aria-label="Swift 殿堂之路 章節導覽">
+    <div class="toc-header">
+      <p class="card-index">Swift 殿堂之路</p>
+      <a class="toc-home-link" href="{{ '/swift-road/' | relative_url }}">← 書本首頁</a>
     </div>
-    {{ content }}
-  </article>
+    <nav class="toc-nav">
+      <a href="{{ '/swift-road/swift.html' | relative_url }}">關於 Swift 程式語言開發</a>
+      <a href="{{ '/swift-road/SUMMARY.html' | relative_url }}">完整目錄</a>
+
+      <span class="toc-section-label">第一章 開發環境</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter1/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter1/chapter1-1.html' | relative_url }}">程式開發工具 Xcode</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter1/chapter1-2.html' | relative_url }}">第一個 Hello World!</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter1/chapter1-3.html' | relative_url }}">本章小節</a>
+
+      <span class="toc-section-label">第二章 基本元素</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/chpater2-1.html' | relative_url }}">資料的本質與重要性質</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/chapter2-2.html' | relative_url }}">變數的宣告和可選值</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/chapter2-3.html' | relative_url }}">常數與變數</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/chapter2-4.html' | relative_url }}">基本資料型別</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/chapter2-5.html' | relative_url }}">運算子、運算式及應用</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/chapter2-6.html' | relative_url }}">Swift 的保留字</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/chapter2-7.html' | relative_url }}">變數的命名</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter2/chapter2-8.html' | relative_url }}">本章小節</a>
+
+      <span class="toc-section-label">第三章 流程控制</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter3/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter3/chapter3-1.html' | relative_url }}">什麼是過程導向</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter3/chapter3-2.html' | relative_url }}">條件運算式</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter3/chapter3-3.html' | relative_url }}">if-else</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter3/chapter3-4.html' | relative_url }}">陣列與迴圈</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter3/chapter3-5.html' | relative_url }}">本章小節</a>
+
+      <span class="toc-section-label">第四章 函數</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter4/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter4/chapter4-1.html' | relative_url }}">定義函數的四種方法</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter4/chapter4-2.html' | relative_url }}">參數</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter4/chapter4-3.html' | relative_url }}">函數的本質</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter4/chapter4-4.html' | relative_url }}">函數進階使用技巧</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter4/ben-zhang-xiao-jie-dai-bu.html' | relative_url }}">本章小節</a>
+
+      <span class="toc-section-label">第五章 類別與物件</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-1.html' | relative_url }}">一個簡單的 Class</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-2.html' | relative_url }}">類別與物件</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-3.html' | relative_url }}">Class 的成員</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-4.html' | relative_url }}">建立與使用</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-5.html' | relative_url }}">格式規範</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-6.html' | relative_url }}">實體屬性和實體方法</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-6-2.html' | relative_url }}">下標（進階）</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-7.html' | relative_url }}">靜態屬性和靜態方法</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-8.html' | relative_url }}">構造函數</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-9.html' | relative_url }}">實體引用和值複製</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-10.html' | relative_url }}">self 關鍵字</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-11.html' | relative_url }}">方法重載</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-12.html' | relative_url }}">標準實例</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter5/chapter5-13.html' | relative_url }}">本章小結</a>
+
+      <span class="toc-section-label">第六章 封裝與結構</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter6/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter6/chapter6-1.html' | relative_url }}">什麼是封裝</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter6/chapter6-2.html' | relative_url }}">為什麼需要封裝</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter6/chapter6-3.html' | relative_url }}">套件與命名空間</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter6/chapter6-4.html' | relative_url }}">類別成員的存取控制</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter6/chapter6-5.html' | relative_url }}">get 與 set</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter6/chapter6-6.html' | relative_url }}">類別的存取控制</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter6/chapter6-7.html' | relative_url }}">本章小結</a>
+
+      <span class="toc-section-label">第七章 複合與繼承</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter7/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter7/chapter7-1.html' | relative_url }}">如何實現複合</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter7/chapter7-2.html' | relative_url }}">如何實現繼承</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter7/chapter7-3.html' | relative_url }}">本章小節</a>
+
+      <span class="toc-section-label">第八章 多型與轉型</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter8/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter8/chapter8-1.html' | relative_url }}">類型檢查和轉換</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter8/chapter8-2.html' | relative_url }}">上下轉換</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter8/chapter8-3.html' | relative_url }}">本章小結</a>
+
+      <span class="toc-section-label">第九章 協定與委派</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter9/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter9/chapter9-1.html' | relative_url }}">什麼是協定</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter9/chapter9-2.html' | relative_url }}">什麼是委派</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter9/ben-zhang-xiao-jie.html' | relative_url }}">本章小節</a>
+
+      <a class="toc-cross-link" href="{{ '/swift-design-patterns/' | relative_url }}">實作 Swift 設計模式 ↗</a>
+
+      <span class="toc-section-label">第十一章 附錄</span>
+      <a class="toc-sub" href="{{ '/swift-road/chapter11/README.html' | relative_url }}">章節介紹</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter11/chapter11-1.html' | relative_url }}">Swift 命名規則</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter11/chapter11-4.html' | relative_url }}">Swift 內建函數</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter11/chapter11-5.html' | relative_url }}">Swift CocoaPods</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter11/swift-xin-ren-kao-ti.html' | relative_url }}">Swift 新人考題</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter11/wei-zi-chuan-ying-yong.html' | relative_url }}">字串應用</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter11/wei-zhen-lie-ying-yong.html' | relative_url }}">陣列應用</a>
+      <a class="toc-sub" href="{{ '/swift-road/chapter11/wei-zheng-ze-yun-suan-shi.html' | relative_url }}">正則運算式</a>
+    </nav>
+  </aside>
+
+  <div class="reader-content">
+    <article class="article-card">
+      <div class="article-meta">
+        <span>{{ page.article_section | default: 'Swift 殿堂之路' }}</span>
+        <a href="{{ '/swift-road/' | relative_url }}">← 回到 Swift 殿堂之路</a>
+      </div>
+      {{ content }}
+    </article>
+
+    <!-- Prev / Next navigation -->
+    <nav class="chapter-nav" aria-label="章節導覽">
+      <a id="btn-prev" class="chapter-nav-btn prev" href="#" aria-disabled="true" tabindex="-1">
+        <span class="nav-direction">← 上一篇</span>
+        <span class="nav-label">…</span>
+      </a>
+      <a id="btn-next" class="chapter-nav-btn next" href="#" aria-disabled="true" tabindex="-1">
+        <span class="nav-direction">下一篇 →</span>
+        <span class="nav-label">…</span>
+      </a>
+    </nav>
+  </div>
+
 </main>
+
+<script src="{{ '/assets/js/reader.js' | relative_url }}" defer></script>
