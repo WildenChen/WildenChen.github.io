@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
   <title>Swift 殿堂之路 | Wilden Hub</title>
-  <meta name="description" content="從 Swift 基礎元素、流程控制、函數，到物件導向與協定委派，本教程為您奠定紮實的 Swift 開發根基。">
+  <meta name="description" content="從 Swift 基礎元素、流程控制、函數進階，到物件導向與協定委派，為 iOS 開發者量身打造的系統化學習路線。">
   <link rel="stylesheet" href="../assets/css/portal.css">
 </head>
 <body>
@@ -22,99 +22,177 @@
     <div class="portal-shell navbar">
       <a class="brand" href="../"><span class="brand-mark">W</span><span>Wilden Hub</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="../swift-road/">Swift 殿堂之路</a>
+        <a href="../swift-road/" aria-current="page">Swift 殿堂之路</a>
         <a href="../swift-design-patterns/">Swift 設計模式</a>
         <a href="https://github.com/WildenChen" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
   </header>
-  <main class="portal-shell page-main">
-    <section class="page-hero">
-      <p class="kicker"><span class="pulse" aria-hidden="true"></span> Technical Book</p>
-      <h1>Swift 殿堂之路</h1>
-      <p class="lede">從 Swift 基礎語法與元素、流程控制、函數進階使用，到物件導向核心、協定與委派模式，本著作旨在為您打造紮實的 Swift 開發實力。</p>
-    </section>
 
-    <section class="status-strip" aria-label="Archive summary">
-      <div><span>Format</span><strong>HTML via Jekyll</strong></div>
-      <div><span>Chapters</span><strong>11</strong></div>
-      <div><span>Design</span><strong>iOS Patterns</strong></div>
-      <div><span>Index</span><strong>SUMMARY.html</strong></div>
-    </section>
-
-    <section class="directory-grid" aria-label="Recommended archive entries">
-      <a class="directory-card" href="./swift.html">
-        <span class="card-index">Start</span>
-        <h2>關於 Swift 程式語言開發</h2>
-        <p>原書前言與背景，適合從這裡理解這批文章的脈絡。</p>
-        <span class="service-action">Read</span>
-      </a>
-      <a class="directory-card" href="./chapter1/README.html">
-        <span class="card-index">Beginner</span>
-        <h2>Swift 語言介紹與開發環境</h2>
-        <p>從 Xcode、第一個 Hello World 與開發環境開始。</p>
-        <span class="service-action">Read</span>
-      </a>
-      <a class="directory-card" href="../swift-design-patterns/">
-        <span class="card-index">Patterns</span>
-        <h2>實作 Swift 設計模式</h2>
-        <p>MVC、Factory、Facade、Decorator、Singleton、Adapter、Observer、MVP。</p>
-        <span class="service-action">Read</span>
-      </a>
-    </section>
-
-    <section class="split-section" aria-labelledby="archive-route-title">
-      <div class="content-panel">
-        <p class="card-index">Reading route</p>
-        <h2 id="archive-route-title">建議閱讀路線</h2>
-        <ul>
-          <li><strong>入門</strong>：第一章到第四章，建立 Swift 基本語法與函數概念。</li>
-          <li><strong>物件導向</strong>：第五章到第九章，理解 class、封裝、繼承、多型與委派。</li>
-          <li><strong>設計模式</strong>：實作 Swift 設計模式，回到 app 架構與實作模式。</li>
-          <li><strong>附錄</strong>：第十一章，查命名規則、內建函數與補充題目。</li>
-        </ul>
-      </div>
-      <div class="content-panel">
-        <p class="card-index">Full index</p>
-        <h2>完整目錄仍保留</h2>
-        <p>如果要照原 GitBook 順序瀏覽，可以打開完整 `SUMMARY.html`。這裡的章節卡片是整理後的快速入口。</p>
-        <div class="section-actions">
-          <a class="button primary" href="./SUMMARY.html">完整目錄</a>
-          <a class="button" href="../">回首頁</a>
+  <main>
+    <!-- ── Book Hero ─────────────────────────────────────────────── -->
+    <section class="book-hero portal-shell" aria-labelledby="book-title">
+      <div class="book-hero-copy">
+        <p class="kicker">Technical Book · Swift</p>
+        <h1 id="book-title">Swift 殿堂之路</h1>
+        <p class="lede">
+          從零開始，系統化學習 Apple 官方程式語言。
+          涵蓋基本語法、物件導向核心、協定與委派，
+          帶你建立紮實的 Swift 開發基礎。
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="./chapter1/README.html">開始閱讀 →</a>
+          <a class="button" href="./SUMMARY.html">完整目錄</a>
+        </div>
+        <div class="book-meta-row">
+          <span class="book-meta-chip">11 章節</span>
+          <span class="book-meta-chip">Swift 語言</span>
+          <span class="book-meta-chip">iOS 開發</span>
+          <span class="book-meta-chip">OOP 物件導向</span>
         </div>
       </div>
-    </section>
-
-    <section class="archive-section" aria-labelledby="swift-chapters-title">
-      <div class="section-heading">
-        <p class="card-index">Swift chapters</p>
-        <h2 id="swift-chapters-title">Swift 基礎與物件導向</h2>
-      </div>
-      <div class="chapter-grid">
-        <a class="chapter-card" href="./chapter1/README.html"><span>01</span><strong>Swift 語言介紹與開發環境</strong><p>Xcode、Hello World 與開發起步。</p></a>
-        <a class="chapter-card" href="./chapter2/README.html"><span>02</span><strong>Swift 語言基本元素</strong><p>資料、變數、型別、運算子與命名。</p></a>
-        <a class="chapter-card" href="./chapter3/README.html"><span>03</span><strong>Swift 流程控制</strong><p>條件、迴圈與流程判斷。</p></a>
-        <a class="chapter-card" href="./chapter4/README.html"><span>04</span><strong>Swift 函數與進階技巧</strong><p>函數定義、參數與進階使用方式。</p></a>
-        <a class="chapter-card" href="./chapter5/README.html"><span>05</span><strong>類別與物件</strong><p>Class、Object、成員、構造函數與 self。</p></a>
-        <a class="chapter-card" href="./chapter6/README.html"><span>06</span><strong>封裝、類別、結構</strong><p>封裝、存取控制、套件與命名空間。</p></a>
-        <a class="chapter-card" href="./chapter7/README.html"><span>07</span><strong>複合與繼承</strong><p>物件關係、複合與繼承概念。</p></a>
-        <a class="chapter-card" href="./chapter8/README.html"><span>08</span><strong>多型與轉型</strong><p>類型檢查、上下轉換與多型觀念。</p></a>
-        <a class="chapter-card" href="./chapter9/README.html"><span>09</span><strong>協定與委派</strong><p>Protocol、Delegate 與 iOS 常見設計方式。</p></a>
+      <div class="book-hero-visual" aria-hidden="true">
+        <div class="spine-stack">
+          <div class="spine-item" style="--c: #EA580C; --d: 0.15s;">Ch 1–4<br>基礎</div>
+          <div class="spine-item" style="--c: #D97706; --d: 0.25s;">Ch 5–9<br>OOP</div>
+          <div class="spine-item" style="--c: #7C3AED; --d: 0.05s;">Ch 11<br>附錄</div>
+        </div>
+        <div class="book-glow"></div>
       </div>
     </section>
 
-    <section class="archive-section" aria-labelledby="pattern-title">
-      <div class="section-heading">
-        <p class="card-index">Patterns and appendix</p>
-        <h2 id="pattern-title">設計模式與附錄</h2>
+    <!-- ── Stats Bar ─────────────────────────────────────────────── -->
+    <div class="book-stats-bar portal-shell" role="list" aria-label="書本統計">
+      <div role="listitem"><span>章節數</span><strong>11</strong></div>
+      <div role="listitem"><span>程式語言</span><strong>Swift</strong></div>
+      <div role="listitem"><span>平台</span><strong>iOS / macOS</strong></div>
+      <div role="listitem"><span>難度</span><strong>入門 → 進階</strong></div>
+    </div>
+
+    <!-- ── Learning Path ─────────────────────────────────────────── -->
+    <section class="portal-shell book-section" aria-labelledby="path-title">
+      <div class="book-section-header">
+        <p class="card-index">Learning Path</p>
+        <h2 id="path-title">建議學習路線</h2>
       </div>
-      <div class="chapter-grid compact">
-        <a class="chapter-card" href="../swift-design-patterns/"><span>10</span><strong>實作 Swift 設計模式</strong><p>MVC、Factory、Facade、Decorator、Singleton、Adapter、Observer、MVP。</p></a>
-        <a class="chapter-card" href="./chapter11/README.html"><span>11</span><strong>附錄</strong><p>Swift 命名規則、內建函數、CocoaPods 與新人考題。</p></a>
-        <a class="chapter-card" href="./SUMMARY.html"><span>All</span><strong>完整 GitBook 目錄</strong><p>保留原本完整章節順序與所有文章入口。</p></a>
+      <div class="learning-path">
+        <a class="path-card path-beginner" href="./chapter1/README.html">
+          <div class="path-stage">Stage 1 · 入門</div>
+          <h3>語言基礎</h3>
+          <p>第 1 到第 4 章 — Xcode 環境、Swift 語法、變數型別、流程控制與函數。</p>
+          <div class="path-chapters">Ch 1 · Ch 2 · Ch 3 · Ch 4</div>
+          <span class="path-cta">開始 →</span>
+        </a>
+        <a class="path-card path-intermediate" href="./chapter5/README.html">
+          <div class="path-stage">Stage 2 · 進階</div>
+          <h3>物件導向</h3>
+          <p>第 5 到第 9 章 — 類別與物件、封裝、繼承、多型、協定與委派模式。</p>
+          <div class="path-chapters">Ch 5 · Ch 6 · Ch 7 · Ch 8 · Ch 9</div>
+          <span class="path-cta">繼續 →</span>
+        </a>
+        <a class="path-card path-patterns" href="../swift-design-patterns/">
+          <div class="path-stage">Stage 3 · 實戰</div>
+          <h3>設計模式</h3>
+          <p>延伸至《實作 Swift 設計模式》 — MVC、Factory、Facade、Observer、MVP。</p>
+          <div class="path-chapters">獨立電子書 ↗</div>
+          <span class="path-cta">前往 →</span>
+        </a>
       </div>
     </section>
+
+    <!-- ── Chapter Grid ───────────────────────────────────────────── -->
+    <section class="portal-shell book-section" aria-labelledby="chapters-title">
+      <div class="book-section-header">
+        <p class="card-index">All Chapters</p>
+        <h2 id="chapters-title">所有章節</h2>
+      </div>
+      <div class="chapter-index-grid">
+        <a class="chapter-index-card" href="./chapter1/README.html">
+          <span class="ci-num">01</span>
+          <div>
+            <strong>Swift 語言介紹與開發環境</strong>
+            <p>Xcode 安裝、第一個 Hello World、iOS 應用程式的基本組成原理。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter2/README.html">
+          <span class="ci-num">02</span>
+          <div>
+            <strong>Swift 語言基本元素</strong>
+            <p>資料型別、變數與常數宣告、可選值（Optional）、運算子與保留字。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter3/README.html">
+          <span class="ci-num">03</span>
+          <div>
+            <strong>Swift 流程控制</strong>
+            <p>if-else 條件判斷、陣列與 for 迴圈、過程導向程式設計思維。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter4/README.html">
+          <span class="ci-num">04</span>
+          <div>
+            <strong>函數與進階使用技巧</strong>
+            <p>函數的四種定義方式、參數傳遞、函數本質與 closure 進階應用。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter5/README.html">
+          <span class="ci-num">05</span>
+          <div>
+            <strong>類別與物件</strong>
+            <p>Class 定義、成員屬性與方法、構造函數（init）、self 關鍵字與方法重載。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter6/README.html">
+          <span class="ci-num">06</span>
+          <div>
+            <strong>封裝、類別、結構</strong>
+            <p>封裝的概念與原則、存取控制（public / private）、get / set、套件命名空間。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter7/README.html">
+          <span class="ci-num">07</span>
+          <div>
+            <strong>複合與繼承</strong>
+            <p>物件複合（has-a）、繼承（is-a）的區別與實現方式，多層繼承關係設計。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter8/README.html">
+          <span class="ci-num">08</span>
+          <div>
+            <strong>多型與轉型</strong>
+            <p>類型檢查（is / as）、上轉型（Upcasting）與下轉型（Downcasting）實戰。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter9/README.html">
+          <span class="ci-num">09</span>
+          <div>
+            <strong>協定與委派</strong>
+            <p>Protocol 定義與遵從、Delegate 模式原理，iOS SDK 中最核心的設計思維。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="../swift-design-patterns/">
+          <span class="ci-num" style="background: rgba(124,58,237,0.15); color: #A78BFA; border-color: rgba(124,58,237,0.3);">10</span>
+          <div>
+            <strong>實作 Swift 設計模式 ↗</strong>
+            <p>MVC、Factory、Facade、Decorator、Singleton、Adapter、Observer、MVP 完整實戰。</p>
+          </div>
+        </a>
+        <a class="chapter-index-card" href="./chapter11/README.html">
+          <span class="ci-num">11</span>
+          <div>
+            <strong>附錄</strong>
+            <p>Swift 命名規則、內建函數速查、CocoaPods 使用說明與新人自我測驗題目。</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Footer ──────────────────────────────────────────────────── -->
+    <footer class="portal-shell site-footer">
+      <span>Swift 殿堂之路 · Wilden Chen · GitHub Pages · noindex / nofollow</span>
+    </footer>
   </main>
+
   <script src="../assets/js/pwa.js" defer></script>
 </body>
 </html>

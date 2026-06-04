@@ -197,6 +197,7 @@ def validate_jekyll() -> list[str]:
         ROOT / "_layouts" / "default.html",
         ROOT / "_layouts" / "legacy_article.html",
         ROOT / "_layouts" / "design_patterns_article.html",
+        ROOT / "_layouts" / "book_cover.html",
     ]
     for path in required:
         if not path.exists():
