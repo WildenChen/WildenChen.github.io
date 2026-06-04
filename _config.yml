@@ -20,7 +20,7 @@ defaults:
       path: "chapter*"
     values:
       layout: legacy_article
-      article_section: Swift Archive
+      article_section: Swift 殿堂之路
       robots: noindex,nofollow
   - scope:
       path: "ios-design-patterns"

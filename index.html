@@ -13,8 +13,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-  <title>Wilden Hub | Homelab, AI, Swift Archive</title>
-  <meta name="description" content="Wilden Hub：HomeLab 服務入口、AI 工作區、OpenClaw 研究與 Swift Archive。">
+  <title>Wilden Hub | Swift 殿堂之路, Swift 設計模式, GitHub</title>
+  <meta name="description" content="Wilden Hub：個人技術著作電子書與開源專案集。收錄實作 Swift 設計模式與 Swift 殿堂之路。">
   <link rel="stylesheet" href="assets/css/portal.css">
 </head>
 <body>
@@ -25,11 +25,8 @@
         <span>Wilden Hub</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="dashboard/">Dashboard</a>
-        <a href="ai-tools/">AI Tools</a>
-        <a href="openclaw/">OpenClaw</a>
-        <a href="knowledge-base/">Knowledge Base</a>
-        <a href="legacy/">Swift Archive</a>
+        <a href="legacy/">Swift 殿堂之路</a>
+        <a href="ios-design-patterns/README.html">Swift 設計模式</a>
         <a href="https://github.com/WildenChen" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
@@ -38,121 +35,125 @@
   <main class="portal-shell">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <h1 id="hero-title">Central Hub</h1>
-        <p class="lede">整合 HomeLab 服務、AI 智能工作區、OpenClaw 研究與技術文檔的集中式數位閘道。專為流暢體驗與高效運作而設計。</p>
+        <h1 id="hero-title">Wilden Hub</h1>
+        <p class="lede">個人技術著作與開源專案集。收錄 iOS 與 Swift 的系統化開發經驗，並展示精選的開源社群工具。</p>
         <div class="hero-actions">
-          <a class="button primary" href="dashboard/">啟動 Dashboard</a>
-          <a class="button" href="ai-tools/">AI 智慧工具</a>
-          <a class="button" href="https://github.com/WildenChen" target="_blank" rel="noopener">GitHub 檔案庫</a>
+          <a class="button primary" href="legacy/">閱讀 Swift 殿堂之路</a>
+          <a class="button" href="ios-design-patterns/README.html">實作 Swift 設計模式</a>
         </div>
       </div>
 
       <aside class="assistant-card" aria-label="Site summary">
-        <div class="assistant-avatar" aria-hidden="true">Hub</div>
-        <p class="assistant-line">核心系統運作中。已將主要連線路由至 Dashboard，並持續同步知識庫矩陣與技術文檔。</p>
+        <div class="assistant-avatar" aria-hidden="true">Lib</div>
+        <p class="assistant-line">歡迎來到我的技術書架。這裡整理了我撰寫的 Swift 電子書著作，以及在 GitHub 發布的開源軟體框架與輔助程式。</p>
         <div class="assistant-grid">
+          <div><span>Author</span><strong>Wilden Chen</strong></div>
           <div><span>Publish</span><strong>GitHub Pages</strong></div>
-          <div><span>Archive</span><strong>HTML Articles</strong></div>
-          <div><span>Mobile</span><strong>Home Screen Ready</strong></div>
-          <div><span>Privacy</span><strong>No Index</strong></div>
+          <div><span>Platform</span><strong>Swift / TS</strong></div>
+          <div><span>Focus</span><strong>iOS & AI Tools</strong></div>
         </div>
       </aside>
     </section>
 
-    <section class="focus-grid" aria-label="Primary routes">
-      <a class="focus-card focus-card-main" href="dashboard/">
-        <span class="card-index">HomeLab</span>
-        <h2>Dashboard</h2>
-        <p>集中管理所有自架服務與外部端點，具備即時狀態標籤與連線層級分類功能，實現高效運維。</p>
-      </a>
-      <a class="focus-card" href="ai-tools/">
-        <span class="card-index">AI Workbench</span>
-        <h2>AI Tools</h2>
-        <p>強大的 AI 生產力中樞，整合 Gemini、Grok、NotebookLM 及本機高階運算生成工作流。</p>
-      </a>
-      <a class="focus-card" href="openclaw/">
-        <span class="card-index">Agent Lab</span>
-        <h2>OpenClaw</h2>
-        <p>專注於 AI Agent 研究與開發，涵蓋長期記憶、工具呼叫、自動化巡檢及進階研究日誌。</p>
-      </a>
-      <a class="focus-card" href="knowledge-base/">
-        <span class="card-index">Reference</span>
-        <h2>Knowledge Base</h2>
-        <p>結構化的長期知識庫矩陣，包含進階技術文檔、開發指南與研究索引。</p>
-      </a>
-      <a class="focus-card" href="legacy/">
-        <span class="card-index">Archive</span>
-        <h2>Swift Archive</h2>
-        <p>保存 iOS 開發、Swift 語言特性與設計模式的經典文檔館，提供友善的閱讀體驗。</p>
-      </a>
-    </section>
-
-    <section class="open-source-section" id="open-source" aria-labelledby="open-source-title">
-      <p class="card-index">Open Source</p>
-      <h2 id="open-source-title">開源專案與社群貢獻</h2>
-      <div class="project-grid">
-        <a class="project-card" href="https://github.com/WildenChen/LionEvents" target="_blank" rel="noopener">
-          <div class="project-badge swift">Swift</div>
-          <h3>LionEvents</h3>
-          <p>仿 ActionScript 3.0 事件流設計的 iOS/Swift 事件監聽與發送框架。效能超越傳統 KVO 與 NotificationCenter，提供高度解耦的元件通訊機制。</p>
-          <div class="project-meta">
-            <span>⭐ 8 Stars</span>
-            <span>🍴 1 Fork</span>
+    <section class="bookshelf-container" aria-label="Digital Bookshelf">
+      <!-- Shelf 1: Technical Books -->
+      <div class="shelf-row">
+        <div class="shelf-header">
+          <span class="card-index">01 / Books</span>
+          <h2>技術著作電子書</h2>
+        </div>
+        <div class="shelf-books-wrapper">
+          <div class="shelf-books">
+            <!-- Book 1: Swift 設計模式 -->
+            <a class="book-wrapper" href="ios-design-patterns/README.html">
+              <div class="book-card" style="--spine-bg: #312E81; --cover-bg: linear-gradient(135deg, #4F46E5, #312E81)">
+                <div class="book-spine"></div>
+                <div class="book-front">
+                  <div class="book-header">
+                    <span class="book-badge">Patterns</span>
+                    <h3>實作 Swift<br>設計模式</h3>
+                  </div>
+                  <p class="book-desc">系統化講解 MVC、Factory、Facade、Decorator、Observer、MVP 等 iOS 常見架構與設計模式的實踐指南。</p>
+                  <div class="book-footer">
+                    <span>iOS / Swift</span>
+                    <span>Read →</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <!-- Book 2: Swift 殿堂之路 -->
+            <a class="book-wrapper" href="legacy/">
+              <div class="book-card" style="--spine-bg: #7C2D12; --cover-bg: linear-gradient(135deg, #EA580C, #7C2D12)">
+                <div class="book-spine"></div>
+                <div class="book-front">
+                  <div class="book-header">
+                    <span class="book-badge">Swift</span>
+                    <h3>Swift<br>殿堂之路</h3>
+                  </div>
+                  <p class="book-desc">從 Xcode 開發環境、基本元素、流程控制到物件導向核心，為 Swift 程式語言學習者量身打造的實用教程。</p>
+                  <div class="book-footer">
+                    <span>Swift Core</span>
+                    <span>Read →</span>
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
-        </a>
-        <a class="project-card" href="https://github.com/WildenChen/ollama-cloud-proxy" target="_blank" rel="noopener">
-          <div class="project-badge typescript">TypeScript</div>
-          <h3>ollama-cloud-proxy</h3>
-          <p>專為 Ollama Cloud 設計的輔助代理程式，優化遠端大語言模型 (LLM) 連線代理與流量調度，提升本機與雲端的 AI 協作開發體驗。</p>
-          <div class="project-meta">
-            <span>⭐ 1 Star</span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section class="quick-grid" aria-label="System features">
-      <article class="quick-panel">
-        <p class="card-index">Performance</p>
-        <h2>靜態架構驅動</h2>
-        <p>採用高度最佳化的靜態網頁生成技術，確保極致的載入速度與系統可靠性。</p>
-      </article>
-      <article class="quick-panel">
-        <p class="card-index">Experience</p>
-        <h2>PWA 跨平台支援</h2>
-        <p>完美支援漸進式網頁應用程式架構，提供如同原生 App 般流暢的跨裝置存取體驗。</p>
-      </article>
-      <article class="quick-panel">
-        <p class="card-index">Security</p>
-        <h2>隱私與存取控制</h2>
-        <p>阻絕外部搜尋引擎索引，確保個人 HomeLab 與數據端點的安全性與隱密性。</p>
-      </article>
-    </section>
-
-    <section class="split-section" id="architecture" aria-labelledby="architecture-title">
-      <div class="content-panel">
-        <p class="card-index">Architecture</p>
-        <h2 id="architecture-title">五大核心系統區塊</h2>
-        <p>網站架構以高效邏輯分離：Dashboard 監控服務端點、AI Tools 提升生產力、OpenClaw 深化前沿研究、Knowledge Base 累積專業文檔、Swift Archive 保存經典技術資產。</p>
-        <div class="section-actions">
-          <a class="button primary" href="dashboard/">存取 Dashboard</a>
-          <a class="button" href="knowledge-base/">瀏覽 Knowledge Base</a>
+          <div class="shelf-base" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(99, 102, 241, 0.15);"></div>
         </div>
       </div>
-      <div class="content-panel assistant-notes">
-        <p class="card-index">Status</p>
-        <h2>目前系統運行狀態</h2>
-        <ul>
-          <li><strong>Dashboard</strong>：即時端點連線狀態同步正常。</li>
-          <li><strong>AI Tools</strong>：工作流模組已就緒。</li>
-          <li><strong>Security</strong>：全域防護與無索引策略 (No Index) 已啟用。</li>
-        </ul>
+
+      <!-- Shelf 2: Open Source Projects -->
+      <div class="shelf-row">
+        <div class="shelf-header">
+          <span class="card-index">02 / Open Source</span>
+          <h2>開源專案與貢獻</h2>
+        </div>
+        <div class="shelf-books-wrapper">
+          <div class="shelf-books">
+            <!-- Book 3: LionEvents -->
+            <a class="book-wrapper" href="https://github.com/WildenChen/LionEvents" target="_blank" rel="noopener">
+              <div class="book-card" style="--spine-bg: #065F46; --cover-bg: linear-gradient(135deg, #059669, #065F46)">
+                <div class="book-spine"></div>
+                <div class="book-front">
+                  <div class="book-header">
+                    <span class="book-badge swift">Swift</span>
+                    <h3>LionEvents</h3>
+                  </div>
+                  <p class="book-desc">仿 ActionScript 3.0 事件流設計的 iOS/Swift 事件監聽與發送框架。效能超越傳統 KVO 與 NotificationCenter。</p>
+                  <div class="book-footer">
+                    <span>⭐ 8 Stars</span>
+                    <span>GitHub ↗</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <!-- Book 4: ollama-cloud-proxy -->
+            <a class="book-wrapper" href="https://github.com/WildenChen/ollama-cloud-proxy" target="_blank" rel="noopener">
+              <div class="book-card" style="--spine-bg: #1E3A8A; --cover-bg: linear-gradient(135deg, #2563EB, #1E3A8A)">
+                <div class="book-spine"></div>
+                <div class="book-front">
+                  <div class="book-header">
+                    <span class="book-badge typescript">TS</span>
+                    <h3>ollama-cloud<br>-proxy</h3>
+                  </div>
+                  <p class="book-desc">專為 Ollama Cloud 設計的輔助代理程式，優化遠端大語言模型連線代理與流量調度，提升 AI 協作開發體驗。</p>
+                  <div class="book-footer">
+                    <span>⭐ 1 Star</span>
+                    <span>GitHub ↗</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="shelf-base" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(16, 185, 129, 0.15);"></div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="portal-shell site-footer">
-    <span>Wilden Hub · GitHub Pages · Homelab · AI · Swift Archive · noindex / nofollow</span>
+    <span>Wilden Hub · © 2026 · 技術著作與開源專案集 · noindex / nofollow</span>
   </footer>
   <script src="assets/js/pwa.js" defer></script>
 </body>
