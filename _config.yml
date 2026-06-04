@@ -25,7 +25,7 @@ defaults:
   - scope:
       path: "swift-design-patterns"
     values:
-      layout: legacy_article
+      layout: design_patterns_article
       article_section: 實作 Swift 設計模式
       robots: noindex,nofollow
   - scope:

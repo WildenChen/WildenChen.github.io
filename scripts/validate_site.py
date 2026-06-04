@@ -189,7 +189,12 @@ def validate_pwa() -> list[str]:
 
 def validate_jekyll() -> list[str]:
     errors: list[str] = []
-    required = [ROOT / "_config.yml", ROOT / "_layouts" / "default.html", ROOT / "_layouts" / "legacy_article.html"]
+    required = [
+        ROOT / "_config.yml",
+        ROOT / "_layouts" / "default.html",
+        ROOT / "_layouts" / "legacy_article.html",
+        ROOT / "_layouts" / "design_patterns_article.html",
+    ]
     for path in required:
         if not path.exists():
             errors.append(f"{path.relative_to(ROOT)}: missing Jekyll layout support")
