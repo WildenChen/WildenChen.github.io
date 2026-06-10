@@ -40,8 +40,17 @@
     <section class="status-strip" aria-label="Quick overview">
       <div><span>Categories</span><strong>6</strong></div>
       <div><span>Tools</span><strong id="tool-count">--</strong></div>
-      <div><span>Last Audit</span><strong>2026-05-14</strong></div>
+      <div><span>Last Audit</span><strong>2026-06-10</strong></div>
       <div><span>Privacy</span><strong>noindex</strong></div>
+    </section>
+
+    <section class="dashboard-tools" aria-label="Tool filters">
+      <div class="status-legend">
+        <span class="legend-item"><span class="legend-dot"></span> Active / reachable</span>
+        <span class="legend-item"><span class="legend-dot warn"></span> Needs check</span>
+        <span class="legend-item"><span class="legend-dot local"></span> Local only</span>
+      </div>
+      <div class="filter-group" id="tool-filters" aria-label="Tool category filters"></div>
     </section>
 
     <section id="tool-catalog" aria-live="polite">
@@ -55,6 +64,7 @@
   <script>
     (function () {
       var toolsData = null;
+      var activeCategory = 'all';
 
       function makeEl(tag, className, text) {
         var el = document.createElement(tag);
@@ -77,6 +87,27 @@
         return 'badge-unknown';
       }
 
+      function renderFilters(data) {
+        var filters = document.getElementById('tool-filters');
+        var all = flattenTools(data);
+        filters.innerHTML = '';
+
+        [{ id: 'all', title: 'All', count: all.length }].concat(data.categories.map(function (cat) {
+          return { id: cat.id, title: cat.title, count: cat.tools.length };
+        })).forEach(function (item) {
+          var button = makeEl('button', 'filter-chip', item.title + ' ' + item.count);
+          button.type = 'button';
+          button.dataset.category = item.id;
+          button.setAttribute('aria-pressed', activeCategory === item.id ? 'true' : 'false');
+          button.addEventListener('click', function () {
+            activeCategory = item.id;
+            renderFilters(data);
+            render(data, true);
+          });
+          filters.appendChild(button);
+        });
+      }
+
       function renderToolCard(tool) {
         var card = makeEl(tool.url ? 'a' : 'article', 'service-card');
         if (tool.url) { card.href = tool.url; card.rel = 'noopener'; }
@@ -97,15 +128,17 @@
         return card;
       }
 
-      function render(data) {
+      function render(data, skipFilters) {
         toolsData = data;
         var all = flattenTools(data);
         document.getElementById('tool-count').textContent = String(all.length);
+        if (!skipFilters) renderFilters(data);
 
         var catalog = document.getElementById('tool-catalog');
         catalog.innerHTML = '';
 
         data.categories.forEach(function (cat) {
+          if (activeCategory !== 'all' && activeCategory !== cat.id) return;
           var section = makeEl('section', 'service-section');
           var heading = makeEl('h2', '', cat.title);
           heading.id = cat.id;
@@ -119,6 +152,13 @@
           section.appendChild(grid);
           catalog.appendChild(section);
         });
+
+        if (!catalog.children.length) {
+          var empty = makeEl('div', 'notice-panel');
+          empty.appendChild(makeEl('h2', '', '沒有符合的工具'));
+          empty.appendChild(makeEl('p', '', '換一個分類篩選，或回到 All 檢視完整清單。'));
+          catalog.appendChild(empty);
+        }
       }
 
       fetch('../data/tools.json')

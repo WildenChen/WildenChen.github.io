@@ -34,7 +34,7 @@
     <section class="page-hero">
       <p class="kicker"><span class="pulse" aria-hidden="true"></span> Portfolio</p>
       <h1>作品與著作</h1>
-      <p class="lede">10 年 iOS 開發經驗，從 Swift 程式語言教學、設計模式實作到開源框架與 AI 工具整合。這裡收錄了我的技術著作與開源專案。</p>
+      <p class="lede">10 年 iOS 開發經驗，從 Swift 程式語言教學、設計模式實作到開源框架與 AI 工具整合。這裡不是履歷列表，而是我把實戰經驗沉澱成書、工具與研究系統的作品索引。</p>
     </section>
 
     <section class="split-section" aria-labelledby="about-title">
@@ -47,7 +47,7 @@
       <div class="content-panel">
         <p class="card-index">Roadmap</p>
         <h2>技術路線</h2>
-        <ul>
+        <ul class="quest-list">
           <li><strong>iOS / Swift</strong>：App 開發、框架設計、設計模式</li>
           <li><strong>Android / Kotlin</strong>：跨平台開發實務</li>
           <li><strong>AI Agent</strong>：OpenClaw、記憶系統、工具呼叫</li>
@@ -110,21 +110,41 @@
         <a class="directory-card" href="https://github.com/WildenChen/LionEvents" target="_blank" rel="noopener">
           <span class="card-index">Swift</span>
           <h2>LionEvents</h2>
-          <p>仿 ActionScript 3.0 事件流設計的 iOS/Swift 事件監聽與發送框架。效能超越傳統 KVO 與 NotificationCenter。</p>
+          <p>仿 ActionScript 3.0 事件流設計的 iOS/Swift 事件監聽與發送框架。解決 UIKit 專案中事件分派、低耦合通知與效能取捨問題。</p>
+          <p><strong>Stack</strong>：Swift / iOS Framework<br><strong>Status</strong>：Legacy open source archive</p>
           <span class="service-action">GitHub ↗</span>
         </a>
         <a class="directory-card" href="https://github.com/WildenChen/ollama-cloud-proxy" target="_blank" rel="noopener">
           <span class="card-index">TypeScript</span>
           <h2>ollama-cloud-proxy</h2>
-          <p>為 Ollama Cloud 設計的輔助代理程式。處理 key pool、fallback、streaming 與相容性問題，讓多個免費帳號更穩定地接入 AI 工具。</p>
+          <p>為了讓 OpenClaw / Codex 類工具更穩定接入 Ollama Cloud，我做了一個代理層處理 key pool、fallback、streaming 與 API 相容性。</p>
+          <p><strong>Stack</strong>：TypeScript / Docker / SQLite<br><strong>Status</strong>：Active build</p>
           <span class="service-action">GitHub ↗</span>
         </a>
         <div class="directory-card">
           <span class="card-index">Research</span>
           <h2>OpenClaw</h2>
-          <p>個人 AI Agent 研究專案：記憶系統、工具呼叫、主動巡檢、風險判斷閘道與結構化回報格式。</p>
+          <p>個人 AI Agent 研究專案：記憶系統、工具呼叫、Telegram 入口、主動巡檢、風險判斷閘道與結構化回報格式。</p>
+          <p><strong>Stack</strong>：Agent workflow / MCP / Telegram<br><strong>Status</strong>：Private research, public notes</p>
           <span class="service-action"><a href="../openclaw/" style="color: var(--sky); text-decoration: none;">Learn more →</a></span>
         </div>
+      </div>
+    </section>
+
+    <section class="split-section" aria-labelledby="work-notes-title">
+      <div class="content-panel">
+        <p class="card-index">Story Hooks</p>
+        <h2 id="work-notes-title">接下來可補的作品故事</h2>
+        <ul class="quest-list">
+          <li><strong>Swift 書籍</strong>：補「從教學整理到知識出版」的背景，說明為什麼把開發經驗系統化。</li>
+          <li><strong>LionEvents</strong>：補一段事件流設計與 iOS 原生通知機制的取捨。</li>
+          <li><strong>ollama-cloud-proxy</strong>：補 Roadmap、相容性挑戰與 OpenClaw / Codex 使用情境。</li>
+        </ul>
+      </div>
+      <div class="content-panel">
+        <p class="card-index">Public Profile</p>
+        <h2>作品集要傳達的定位</h2>
+        <p>我不是只會列技術棧，而是會把工具、架構、文件與長期維護流程串成一套工作系統。Works 頁面要讓第一次來的人很快看懂這件事。</p>
       </div>
     </section>
   </main>

@@ -34,14 +34,14 @@
     <section class="page-hero">
       <p class="kicker"><span class="pulse" aria-hidden="true"></span> AI Research</p>
       <h1>AI Lab</h1>
-      <p class="lede">AI 工具研究、模型比較與 Agent 架構的個人實驗室。從 OpenClaw、MiniMax 到 ollama-cloud-proxy，記錄實際使用的方案取捨與工作流設計。</p>
+      <p class="lede">AI 工具研究、模型比較與 Agent 架構的個人實驗室。這裡整理我實際在用的方案、續用理由、替代選項與工作流設計，不只是工具心得。</p>
     </section>
 
     <section class="split-section" aria-labelledby="research-focus-title">
       <div class="content-panel">
         <p class="card-index">Research</p>
         <h2 id="research-focus-title">目前研究方向</h2>
-        <ul>
+        <ul class="quest-list">
           <li><strong>OpenClaw</strong>：AI Agent 記憶系統、工具呼叫、決策閘道</li>
           <li><strong>ollama-cloud-proxy</strong>：key pool、fallback、streaming 代理層</li>
           <li><strong>MiniMax M3</strong>：OpenClaw 主模型整合評估</li>
@@ -52,7 +52,7 @@
       <div class="content-panel">
         <p class="card-index">Approach</p>
         <h2>設計原則</h2>
-        <ul>
+        <ul class="quest-list">
           <li>不只是用 AI，而是在設計自己的 AI 工作流</li>
           <li>每個決策都要有紀錄：為什麼選這個方案</li>
           <li>公開分享能力與架構，不放私密設定與憑證</li>
@@ -61,9 +61,58 @@
       </div>
     </section>
 
+    <section aria-labelledby="matrix-title">
+      <div class="shelf-header" style="margin-bottom: 24px;">
+        <span class="card-index">02 / Matrix</span>
+        <h2 id="matrix-title">AI Tools Matrix</h2>
+      </div>
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Primary Role</th>
+            <th>Why Keep It</th>
+            <th>Current Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ChatGPT Plus</strong></td>
+            <td>討論、規劃、長文脈絡</td>
+            <td>適合複雜任務拆解與多輪產品/技術推敲。</td>
+            <td>主力使用</td>
+          </tr>
+          <tr>
+            <td><strong>Google AI Pro</strong></td>
+            <td>Gemini、Antigravity、長上下文</td>
+            <td>和 Google 生態、長文件與 Coding Agent 實驗互補。</td>
+            <td>保留一個帳號比較</td>
+          </tr>
+          <tr>
+            <td><strong>MiniMax M3</strong></td>
+            <td>OpenClaw 主模型候選</td>
+            <td>評估 Agent 場景下的價格、速度與品質平衡。</td>
+            <td>持續觀察額度</td>
+          </tr>
+          <tr>
+            <td><strong>OpenCode</strong></td>
+            <td>Coding Agent / 小說工作流</td>
+            <td>適合測試長內容生成與程式代理的不同工作節奏。</td>
+            <td>實驗中</td>
+          </tr>
+          <tr>
+            <td><strong>ollama-cloud-proxy</strong></td>
+            <td>模型代理層</td>
+            <td>讓多帳號、fallback、streaming 與 Ollama 相容性可控。</td>
+            <td>自製工具</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
     <section aria-labelledby="tool-radar-title">
       <div class="shelf-header" style="margin-bottom: 24px;">
-        <span class="card-index">03 / Tools</span>
+        <span class="card-index">03 / Radar</span>
         <h2 id="tool-radar-title">AI 工具雷達</h2>
       </div>
       <div class="directory-grid">
@@ -123,7 +172,7 @@
         <p class="card-index">Decision Log</p>
         <h2 id="decision-log-title">技術決策紀錄</h2>
         <p>每個方案選擇背後都有取捨。這裡記錄為什麼選這個、不選那個，以及實際使用後的心得。</p>
-        <ul>
+        <ul class="quest-list">
           <li>為什麼 ChatGPT Plus 年繳</li>
           <li>為什麼 OpenClaw 主模型用 MiniMax M3</li>
           <li>為什麼需要 ollama-cloud-proxy 做 key rotation</li>
@@ -136,7 +185,7 @@
       <div class="content-panel">
         <p class="card-index">Next</p>
         <h2>下一步</h2>
-        <ul>
+        <ul class="quest-list">
           <li>把每個決策寫成獨立筆記，沉到 Knowledge Base</li>
           <li>建立 AI 工具比較表（價格、速度、品質、適用場景）</li>
           <li>整理 OpenClaw + ollama-cloud-proxy 的整體架構圖</li>

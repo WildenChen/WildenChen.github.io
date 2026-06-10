@@ -32,14 +32,14 @@
   </header>
   <main class="portal-shell page-main">
     <section class="page-hero">
-      <p class="kicker"><span class="pulse" aria-hidden="true"></span> 2026-06 · Living document</p>
+      <p class="kicker"><span class="pulse" aria-hidden="true"></span> 2026-06-10 · Save file</p>
       <h1>最近在做什麼</h1>
-      <p class="lede">這頁是持續更新的個人實驗室日誌。記錄目前專注的方向、正在做的專案、最近學到的教訓，以及接下來的目標。</p>
+      <p class="lede">這頁是持續更新的個人實驗室日誌。用任務板的方式記錄目前專注、正在做的專案、最近踩到的坑，以及下一個存檔點。</p>
     </section>
 
     <section class="focus-grid" aria-label="Current status">
       <div class="focus-card focus-card-main">
-        <p class="card-index">Focus</p>
+        <p class="card-index">Main Quest</p>
         <h2>目前專注</h2>
         <p style="margin-top: 16px; font-size: 1.05rem; line-height: 1.8;">
           <strong style="color: var(--sky);">AI Agent 記憶系統</strong><br>
@@ -55,9 +55,9 @@
         </p>
       </div>
       <div class="focus-card">
-        <p class="card-index">Recent</p>
+        <p class="card-index">Side Quest</p>
         <h2>最近在研究</h2>
-        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.8; font-size: 0.9rem;">
+        <ul class="quest-list">
           <li>OpenClaw Agent 架構</li>
           <li>MiniMax M3 模型評估</li>
           <li>OpenCode GO 工作流</li>
@@ -65,27 +65,27 @@
         </ul>
       </div>
       <div class="focus-card">
-        <p class="card-index">Project</p>
+        <p class="card-index">Build Log</p>
         <h2>最近專案</h2>
-        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.8; font-size: 0.9rem;">
+        <ul class="quest-list">
           <li>ollama-cloud-proxy</li>
           <li>Wilden Hub v2</li>
           <li>Dashboard 儀表板</li>
         </ul>
       </div>
       <div class="focus-card">
-        <p class="card-index">Struggles</p>
+        <p class="card-index">Bug Log</p>
         <h2>最近踩坑</h2>
-        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.8; font-size: 0.9rem;">
+        <ul class="quest-list">
           <li>GitBook Git Sync</li>
           <li>MiniMax 額度管理</li>
           <li>反向代理 SSL 憑證</li>
         </ul>
       </div>
       <div class="focus-card">
-        <p class="card-index">Next</p>
-        <h2>近期目標</h2>
-        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.8; font-size: 0.9rem;">
+        <p class="card-index">Next Save</p>
+        <h2>下一個存檔點</h2>
+        <ul class="quest-list">
           <li>完成 OpenClaw 記憶模組</li>
           <li>公開 ollama-cloud-proxy v1</li>
           <li>寫一篇 AI Agent 架構筆記</li>
@@ -97,7 +97,8 @@
       <div class="content-panel">
         <p class="card-index">Updates</p>
         <h2 id="update-log-title">近期變更</h2>
-        <ul>
+        <ul class="timeline-log">
+          <li><strong>2026-06-10</strong> — Wilden Hub 改成整站 16-bit RPG 風格，新增 AI Tools Matrix 與 Tools 篩選。</li>
           <li><strong>2026-06</strong> — Wilden Hub 新增 Works / AI Lab / Tools / Now 四大入口</li>
           <li><strong>2026-05</strong> — 完成 HomeLab 服務稽核、Dashboard 動態載入</li>
           <li><strong>2026-04</strong> — ollama-cloud-proxy 概念驗證、OpenClaw 記憶系統設計</li>
@@ -106,7 +107,7 @@
       <div class="content-panel">
         <p class="card-index">Note</p>
         <h2>這頁怎麼更新</h2>
-        <p>直接編輯 <code>now/index.html</code> 的內容區塊即可。保持簡單：每個區塊 3–5 條重點，讓人一眼看出目前的狀態。</p>
+        <p>直接編輯 <code>now/index.html</code> 的內容區塊即可。保持簡單：每個任務區 3–5 條重點，讓人一眼看出目前狀態，並保留最後更新日期。</p>
       </div>
     </section>
   </main>

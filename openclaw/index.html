@@ -37,6 +37,44 @@
       <p class="lede">OpenClaw 是個人 AI Agent 的公開研究入口。這裡只整理能公開分享的架構：記憶、工具呼叫、主動巡檢、風險判斷與回報格式。</p>
     </section>
 
+    <section aria-labelledby="capability-title">
+      <div class="shelf-header" style="margin-bottom: 24px;">
+        <span class="card-index">00 / Matrix</span>
+        <h2 id="capability-title">公開能力矩陣</h2>
+      </div>
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Public Description</th>
+            <th>Private Boundary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Memory</strong></td>
+            <td>保存專案脈絡、決策理由、偏好與巡檢摘要，讓 Agent 不必每次重頭理解。</td>
+            <td>不公開個人記憶原文、憑證、私密人格設定或未整理的原始資料。</td>
+          </tr>
+          <tr>
+            <td><strong>Tool Use</strong></td>
+            <td>把本機檔案、瀏覽器、GitHub、知識庫與服務狀態檢查變成可控行動。</td>
+            <td>公開站只放架構與入口，不提供執行工具或控制內網服務的能力。</td>
+          </tr>
+          <tr>
+            <td><strong>Decision Gates</strong></td>
+            <td>在推送、公開、刪除、暴露設定前做風險檢查，降低誤操作機率。</td>
+            <td>實際規則與敏感清單留在私有工作區，不放到 GitHub Pages。</td>
+          </tr>
+          <tr>
+            <td><strong>Reports</strong></td>
+            <td>把執行結果寫成短、清楚、可接續的技術回報。</td>
+            <td>只公開可分享版本，內部錯誤、帳號、URL 與 token 一律遮蔽。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
     <section class="directory-grid" aria-label="OpenClaw research tracks">
       <article class="directory-card">
         <span class="card-index">01</span>
@@ -74,7 +112,7 @@
       <div class="content-panel">
         <p class="card-index">Current map</p>
         <h2 id="openclaw-map-title">現在先和網站維運連在一起</h2>
-        <ul>
+        <ul class="quest-list">
           <li><strong>Dashboard</strong>：服務狀態、可公開入口與待確認連結。</li>
           <li><strong>AI Tools</strong>：外部 AI 與本機實驗工具。</li>
           <li><strong>Knowledge Base</strong>：巡檢紀錄、公開文件與研究索引。</li>
@@ -87,7 +125,7 @@
       <div class="content-panel">
         <p class="card-index">Next</p>
         <h2>下一步</h2>
-        <ul>
+        <ul class="quest-list">
           <li>新增公開能力矩陣：能做什麼、不能公開什麼、需要人工確認什麼。</li>
           <li>把巡檢結果沉到 Knowledge Base，讓每次調整都有脈絡。</li>
           <li>建立一頁 OpenClaw 變更紀錄，避免研究方向漂掉。</li>

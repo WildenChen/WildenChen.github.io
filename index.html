@@ -13,8 +13,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-  <title>Wilden Hub | Swift 殿堂之路, Swift 設計模式, GitHub</title>
-  <meta name="description" content="Wilden Hub：個人技術著作電子書與開源專案集。收錄實作 Swift 設計模式與 Swift 殿堂之路。">
+  <title>Wilden Hub | Works, AI Lab, Tools, Now</title>
+  <meta name="description" content="Wilden Hub：技術作品、AI 工具研究、HomeLab 私人工具入口與最近進度。">
   <link rel="stylesheet" href="assets/css/portal.css">
 </head>
 <body>
@@ -35,17 +35,20 @@
   </header>
 
   <main class="portal-shell">
-    <section class="hero pixel-scanlines" aria-labelledby="hero-title" style="position: relative;">
+    <section class="hero pixel-hero pixel-scanlines" aria-labelledby="hero-title" style="position: relative;">
       <div class="hero-copy pixel-grid" style="position: relative;">
         <div class="pixel-w-decoration" aria-hidden="true">
           <div class="pixel-art-w"></div>
         </div>
         <span class="pixel-accent-bar"></span>
         <h1 id="hero-title" style="position: relative; z-index: 1;">Wilden Hub</h1>
-        <p class="lede">個人技術著作與開源專案集。收錄 iOS 與 Swift 的系統化開發經驗，並展示精選的開源社群工具。</p>
+        <p class="lede">我的技術作品、AI 工具研究、開源專案與私人工作台入口。公開看起來像作品集，自己用起來像每天會打開的控制台。</p>
+        <div class="rpg-dialogue">
+          <p><strong>Current Quest</strong>：把 iOS / Swift 經驗、OpenClaw、ollama-cloud-proxy、HomeLab 與 Coding Agent 工作流整理成可持續更新的公開基地。</p>
+        </div>
         <div class="hero-actions">
-          <a class="button primary" href="https://wilden-chen.gitbook.io/swift-bethel-of-the-road" target="_blank" rel="noopener">閱讀 Swift 殿堂之路 ↗</a>
-          <a class="button" href="https://wilden-chen.gitbook.io/swift-design-patterns" target="_blank" rel="noopener">實作 Swift 設計模式 ↗</a>
+          <a class="button primary" href="./ai-lab/">進入 AI Lab</a>
+          <a class="button" href="./works/">查看 Works</a>
         </div>
       </div>
 
@@ -57,41 +60,57 @@
         <div class="pixel-avatar" aria-hidden="true">
           <div class="pixel-avatar-inner"></div>
         </div>
-        <p class="assistant-line">歡迎來到我的技術書架。這裡整理了我撰寫的 Swift 電子書著作，以及在 GitHub 發布的開源軟體框架與輔助程式。</p>
+        <p class="assistant-line">這裡是 Wilden Hub 的主基地。入口分成作品、AI 研究、私人工具與 Now 日誌；敏感服務只保留說明與狀態，不公開實際控制能力。</p>
         <div class="assistant-grid">
           <div><span>Author</span><strong>Wilden Chen</strong></div>
-          <div><span>Publish</span><strong>GitHub Pages</strong></div>
-          <div><span>Platform</span><strong>Swift / TS</strong></div>
-          <div><span>Focus</span><strong>iOS & AI Tools</strong></div>
+          <div><span>Mode</span><strong>Public Hub</strong></div>
+          <div><span>Stack</span><strong>Swift / TS / AI</strong></div>
+          <div><span>Status</span><strong>noindex</strong></div>
         </div>
       </aside>
     </section>
 
-    <section class="quick-grid" aria-label="Quick entry points">
-      <a class="quick-panel pixel-card" href="./works/" style="position: relative;">
-        <span class="pixel-accent-bar"></span>
-        <p class="card-index" style="font-family: 'Press Start 2P', monospace; font-size: 0.5rem; letter-spacing: 0;">01 / Works</p>
+    <section class="map-grid" aria-label="Wilden Hub map">
+      <a class="map-node works" href="./works/">
+        <p class="card-index">01 / Works</p>
         <h2 style="margin-bottom: 12px;">作品與著作</h2>
         <p>Swift 電子書、開源專案、技術路線。我的技術名片。</p>
       </a>
-      <a class="quick-panel pixel-card" href="./ai-lab/" style="position: relative;">
-        <span class="pixel-accent-bar"></span>
-        <p class="card-index" style="font-family: 'Press Start 2P', monospace; font-size: 0.5rem; letter-spacing: 0;">02 / AI Lab</p>
+      <a class="map-node ai" href="./ai-lab/">
+        <p class="card-index">02 / AI Lab</p>
         <h2 style="margin-bottom: 12px;">AI 工具研究所</h2>
         <p>OpenClaw、MiniMax、ollama-cloud-proxy。AI 工作流研究筆記。</p>
       </a>
-      <a class="quick-panel pixel-card" href="./tools/" style="position: relative;">
-        <span class="pixel-accent-bar"></span>
-        <p class="card-index" style="font-family: 'Press Start 2P', monospace; font-size: 0.5rem; letter-spacing: 0;">03 / Tools</p>
+      <a class="map-node tools" href="./tools/">
+        <p class="card-index">03 / Tools</p>
         <h2 style="margin-bottom: 12px;">私人工具入口</h2>
         <p>HomeLab 服務、Agent 閘道、訂閱管理、開發工具。</p>
       </a>
-      <a class="quick-panel pixel-card" href="./now/" style="position: relative;">
-        <span class="pixel-accent-bar"></span>
-        <p class="card-index" style="font-family: 'Press Start 2P', monospace; font-size: 0.5rem; letter-spacing: 0;">04 / Now</p>
+      <a class="map-node now" href="./now/">
+        <p class="card-index">04 / Now</p>
         <h2 style="margin-bottom: 12px;">最近在做什麼</h2>
         <p>目前專注、進行中專案、踩坑紀錄與近期目標。</p>
       </a>
+    </section>
+
+    <section class="split-section" aria-labelledby="current-quests-title">
+      <div class="content-panel">
+        <p class="card-index">Quest Board</p>
+        <h2 id="current-quests-title">目前最值得追的任務</h2>
+        <ul class="quest-list">
+          <li><strong>OpenClaw</strong>：把記憶、工具呼叫、Telegram 入口與公開回報格式整理成能力矩陣。</li>
+          <li><strong>ollama-cloud-proxy</strong>：補完整 key rotation、fallback、streaming 相容性的產品故事。</li>
+          <li><strong>AI Tools Matrix</strong>：把 ChatGPT Plus、Google AI Pro、MiniMax、OpenCode、Copilot 的分工寫清楚。</li>
+        </ul>
+      </div>
+      <div class="content-panel">
+        <p class="card-index">Save Point</p>
+        <h2>公開邊界</h2>
+        <p>GitHub Pages 只負責展示、索引與入口。真正需要登入、憑證、內網控制或個人資料的功能，維持在私有反向代理與本機工具裡。</p>
+        <div class="section-actions" style="margin-top: 20px;">
+          <a class="button" href="./tools/">查看工具入口</a>
+        </div>
+      </div>
     </section>
 
     <section class="bookshelf-container" aria-label="Digital Bookshelf">
