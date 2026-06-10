@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#163b3a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Wilden Hub">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+  <title>AI Lab | Wilden Hub</title>
+  <meta name="description" content="Wilden Hub AI Lab：AI 工具研究、模型比較、OpenClaw Agent 與 AI 工作流架構。">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="portal-shell navbar">
+      <a class="brand" href="../"><span class="brand-mark">W</span><span>Wilden Hub</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="../works/">Works</a>
+        <a href="../ai-lab/">AI Lab</a>
+        <a href="../tools/">Tools</a>
+        <a href="../now/">Now</a>
+        <a href="https://github.com/WildenChen" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main class="portal-shell page-main">
+    <section class="page-hero">
+      <p class="kicker"><span class="pulse" aria-hidden="true"></span> AI Research</p>
+      <h1>AI Lab</h1>
+      <p class="lede">AI 工具研究、模型比較與 Agent 架構的個人實驗室。從 OpenClaw、MiniMax 到 ollama-cloud-proxy，記錄實際使用的方案取捨與工作流設計。</p>
+    </section>
+
+    <section class="split-section" aria-labelledby="research-focus-title">
+      <div class="content-panel">
+        <p class="card-index">Research</p>
+        <h2 id="research-focus-title">目前研究方向</h2>
+        <ul>
+          <li><strong>OpenClaw</strong>：AI Agent 記憶系統、工具呼叫、決策閘道</li>
+          <li><strong>ollama-cloud-proxy</strong>：key pool、fallback、streaming 代理層</li>
+          <li><strong>MiniMax M3</strong>：OpenClaw 主模型整合評估</li>
+          <li><strong>OpenCode</strong>：Coding Agent 與小說寫作實驗</li>
+          <li><strong>AI Coding Workflow</strong>：Codex、Antigravity、Copilot 方案比較</li>
+        </ul>
+      </div>
+      <div class="content-panel">
+        <p class="card-index">Approach</p>
+        <h2>設計原則</h2>
+        <ul>
+          <li>不只是用 AI，而是在設計自己的 AI 工作流</li>
+          <li>每個決策都要有紀錄：為什麼選這個方案</li>
+          <li>公開分享能力與架構，不放私密設定與憑證</li>
+          <li>工具要能互相串接，而不是各自孤島</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="tool-radar-title">
+      <div class="shelf-header" style="margin-bottom: 24px;">
+        <span class="card-index">03 / Tools</span>
+        <h2 id="tool-radar-title">AI 工具雷達</h2>
+      </div>
+      <div class="directory-grid">
+        <div class="directory-card">
+          <span class="card-index">Chat</span>
+          <h2>ChatGPT Plus</h2>
+          <p>主力討論與規劃。年繳方案，適合長文脈絡與複雜任務拆解。</p>
+        </div>
+        <div class="directory-card">
+          <span class="card-index">Search</span>
+          <h2>Gemini / Google AI Pro</h2>
+          <p>Antigravity 實驗、Gemini 2.5 長上下文處理。保留一個 Pro 帳號做方案比較。</p>
+        </div>
+        <div class="directory-card">
+          <span class="card-index">Agent</span>
+          <h2>OpenClaw</h2>
+          <p>私人 AI Agent：語婕入口、Telegram Bot、工作記憶、工具呼叫。</p>
+          <span class="service-action"><a href="../openclaw/" style="color: var(--sky); text-decoration: none;">Research →</a></span>
+        </div>
+        <div class="directory-card">
+          <span class="card-index">Model</span>
+          <h2>MiniMax M3</h2>
+          <p>OpenClaw 主模型。評估 M3 在 Agent 場景下的價格、速度與品質平衡。</p>
+        </div>
+        <div class="directory-card">
+          <span class="card-index">Code</span>
+          <h2>OpenCode</h2>
+          <p>Coding Agent 與小說寫作實驗。評估作為日常開發輔助的可行性。</p>
+        </div>
+        <div class="directory-card">
+          <span class="card-index">Proxy</span>
+          <h2>ollama-cloud-proxy</h2>
+          <p>自製 Ollama Cloud 代理層：key rotation、fallback 機制、streaming 相容性。</p>
+          <span class="service-action"><a href="https://github.com/WildenChen/ollama-cloud-proxy" target="_blank" rel="noopener" style="color: var(--sky); text-decoration: none;">GitHub ↗</a></span>
+        </div>
+        <div class="directory-card">
+          <span class="card-index">IDE</span>
+          <h2>Copilot / Codex</h2>
+          <p>GitHub Copilot Student 方案 vs Codex 的程式輔助體驗對比。</p>
+        </div>
+        <div class="directory-card">
+          <span class="card-index">Image</span>
+          <h2>ComfyUI / SD</h2>
+          <p>本機 Stable Diffusion 與 ComfyUI 工作流。M2 Pro 上的生圖實驗。</p>
+          <span class="service-action"><a href="../ai-tools/" style="color: var(--sky); text-decoration: none;">Tools →</a></span>
+        </div>
+        <div class="directory-card">
+          <span class="card-index">Audio</span>
+          <h2>MiniMax Audio / TTS</h2>
+          <p>語音合成與音訊處理實驗。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="split-section" aria-labelledby="decision-log-title">
+      <div class="content-panel">
+        <p class="card-index">Decision Log</p>
+        <h2 id="decision-log-title">技術決策紀錄</h2>
+        <p>每個方案選擇背後都有取捨。這裡記錄為什麼選這個、不選那個，以及實際使用後的心得。</p>
+        <ul>
+          <li>為什麼 ChatGPT Plus 年繳</li>
+          <li>為什麼 OpenClaw 主模型用 MiniMax M3</li>
+          <li>為什麼需要 ollama-cloud-proxy 做 key rotation</li>
+          <li>為什麼 Coding Agent 需要工作記憶庫</li>
+        </ul>
+        <div class="section-actions" style="margin-top: 20px;">
+          <a class="button" href="../knowledge-base/">前往 Knowledge Base</a>
+        </div>
+      </div>
+      <div class="content-panel">
+        <p class="card-index">Next</p>
+        <h2>下一步</h2>
+        <ul>
+          <li>把每個決策寫成獨立筆記，沉到 Knowledge Base</li>
+          <li>建立 AI 工具比較表（價格、速度、品質、適用場景）</li>
+          <li>整理 OpenClaw + ollama-cloud-proxy 的整體架構圖</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/pwa.js" defer></script>
+</body>
+</html>

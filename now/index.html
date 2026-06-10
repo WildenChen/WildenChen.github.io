@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#163b3a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Wilden Hub">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+  <title>Now | Wilden Hub</title>
+  <meta name="description" content="Wilden 最近在做什麼：研究、專案、踩坑紀錄與近期目標。">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="portal-shell navbar">
+      <a class="brand" href="../"><span class="brand-mark">W</span><span>Wilden Hub</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="../works/">Works</a>
+        <a href="../ai-lab/">AI Lab</a>
+        <a href="../tools/">Tools</a>
+        <a href="../now/">Now</a>
+        <a href="https://github.com/WildenChen" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main class="portal-shell page-main">
+    <section class="page-hero">
+      <p class="kicker"><span class="pulse" aria-hidden="true"></span> 2026-06 · Living document</p>
+      <h1>最近在做什麼</h1>
+      <p class="lede">這頁是持續更新的個人實驗室日誌。記錄目前專注的方向、正在做的專案、最近學到的教訓，以及接下來的目標。</p>
+    </section>
+
+    <section class="focus-grid" aria-label="Current status">
+      <div class="focus-card focus-card-main">
+        <p class="card-index">Focus</p>
+        <h2>目前專注</h2>
+        <p style="margin-top: 16px; font-size: 1.05rem; line-height: 1.8;">
+          <strong style="color: var(--sky);">AI Agent 記憶系統</strong><br>
+          研究如何讓 AI Agent 在專案、決策與巡檢之間保持長期記憶，減少重複告知上下文。
+        </p>
+        <p style="margin-top: 12px; font-size: 1.05rem; line-height: 1.8;">
+          <strong style="color: var(--sky);">ollama-cloud-proxy</strong><br>
+          繼續打磨 key rotation、fallback 機制與 streaming 相容性。
+        </p>
+        <p style="margin-top: 12px; font-size: 1.05rem; line-height: 1.8;">
+          <strong style="color: var(--sky);">Wilden Hub 重構</strong><br>
+          把個人網站從展示櫃升級為 AI 工作台入口。
+        </p>
+      </div>
+      <div class="focus-card">
+        <p class="card-index">Recent</p>
+        <h2>最近在研究</h2>
+        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.8; font-size: 0.9rem;">
+          <li>OpenClaw Agent 架構</li>
+          <li>MiniMax M3 模型評估</li>
+          <li>OpenCode GO 工作流</li>
+          <li>SSL Pinning G2/G3</li>
+        </ul>
+      </div>
+      <div class="focus-card">
+        <p class="card-index">Project</p>
+        <h2>最近專案</h2>
+        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.8; font-size: 0.9rem;">
+          <li>ollama-cloud-proxy</li>
+          <li>Wilden Hub v2</li>
+          <li>Dashboard 儀表板</li>
+        </ul>
+      </div>
+      <div class="focus-card">
+        <p class="card-index">Struggles</p>
+        <h2>最近踩坑</h2>
+        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.8; font-size: 0.9rem;">
+          <li>GitBook Git Sync</li>
+          <li>MiniMax 額度管理</li>
+          <li>反向代理 SSL 憑證</li>
+        </ul>
+      </div>
+      <div class="focus-card">
+        <p class="card-index">Next</p>
+        <h2>近期目標</h2>
+        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.8; font-size: 0.9rem;">
+          <li>完成 OpenClaw 記憶模組</li>
+          <li>公開 ollama-cloud-proxy v1</li>
+          <li>寫一篇 AI Agent 架構筆記</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="split-section" aria-labelledby="update-log-title">
+      <div class="content-panel">
+        <p class="card-index">Updates</p>
+        <h2 id="update-log-title">近期變更</h2>
+        <ul>
+          <li><strong>2026-06</strong> — Wilden Hub 新增 Works / AI Lab / Tools / Now 四大入口</li>
+          <li><strong>2026-05</strong> — 完成 HomeLab 服務稽核、Dashboard 動態載入</li>
+          <li><strong>2026-04</strong> — ollama-cloud-proxy 概念驗證、OpenClaw 記憶系統設計</li>
+        </ul>
+      </div>
+      <div class="content-panel">
+        <p class="card-index">Note</p>
+        <h2>這頁怎麼更新</h2>
+        <p>直接編輯 <code>now/index.html</code> 的內容區塊即可。保持簡單：每個區塊 3–5 條重點，讓人一眼看出目前的狀態。</p>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/pwa.js" defer></script>
+</body>
+</html>

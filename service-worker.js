@@ -7,7 +7,12 @@ const CORE_ASSETS = [
   "./manifest.webmanifest",
   "./swift-road/",
   "./swift-design-patterns/",
+  "./works/",
+  "./ai-lab/",
+  "./tools/",
+  "./now/",
   "./data/services.json",
+  "./data/tools.json",
   "./assets/js/dashboard.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png"

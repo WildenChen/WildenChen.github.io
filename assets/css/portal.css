@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap');
 
 :root {
   color-scheme: dark;
@@ -379,6 +379,7 @@ h3 {
 /* Interactive Cards */
 .portal-card:hover,
 .focus-card:hover,
+.quick-panel:hover,
 .directory-card:hover,
 .service-card:hover,
 .chapter-card:hover,
@@ -463,13 +464,18 @@ h3 {
 }
 
 .quick-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   padding: 12px 0 48px;
 }
 
 .quick-panel,
 .notice-panel {
   padding: 24px;
+}
+
+.quick-panel {
+  display: block;
+  text-decoration: none;
 }
 
 .quick-panel h2,
@@ -1554,4 +1560,143 @@ h3 {
     bottom: max(24px, env(safe-area-inset-bottom));
     left: max(20px, env(safe-area-inset-left));
   }
+}
+
+/* ==========================================================================
+   8-Bit Pixel Styles
+   ========================================================================== */
+.pixel-art-w {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  box-shadow:
+    0px 0px, 8px 0px, 16px 0px, 40px 0px, 48px 0px, 56px 0px,
+    0px 8px, 8px 8px, 16px 8px, 40px 8px, 48px 8px, 56px 8px,
+    0px 16px, 8px 16px, 16px 16px, 40px 16px, 48px 16px, 56px 16px,
+    0px 24px, 16px 24px, 40px 24px, 56px 24px,
+    0px 32px, 16px 32px, 40px 32px, 56px 32px,
+    0px 40px, 24px 40px, 32px 40px, 56px 40px,
+    0px 48px, 24px 48px, 32px 48px, 56px 48px,
+    0px 56px, 56px 56px;
+  image-rendering: pixelated;
+}
+
+.pixel-w-decoration {
+  position: absolute;
+  transform: scale(6);
+  transform-origin: top right;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pixel-grid {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.pixel-card {
+  border-radius: 0 !important;
+  border: 3px solid var(--line-strong) !important;
+  box-shadow:
+    4px 4px 0 0 rgba(59, 130, 246, 0.08),
+    var(--shadow) !important;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s !important;
+}
+
+.pixel-card:hover {
+  border-color: var(--accent) !important;
+  box-shadow:
+    4px 4px 0 0 var(--accent-glow),
+    var(--shadow) !important;
+}
+
+.pixel-avatar {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 2px solid var(--line-strong);
+  background: transparent;
+  image-rendering: pixelated;
+  position: relative;
+}
+
+.pixel-avatar-inner {
+  width: 4px;
+  height: 4px;
+  background: var(--sky);
+  box-shadow:
+    0px -4px, 4px -4px, 8px -4px,
+    -4px 0px, 0px 0px, 4px 0px, 8px 0px, 12px 0px,
+    -4px 4px, 0px 4px, 4px 4px, 8px 4px, 12px 4px,
+    -4px 8px, 0px 8px, 4px 8px, 8px 8px, 12px 8px,
+    0px 12px, 4px 12px, 8px 12px;
+  transform: scale(3);
+  transform-origin: top left;
+  opacity: 0.9;
+}
+
+.pixel-text {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.pixel-text-sm {
+  font-size: 0.55rem;
+  line-height: 1.6;
+}
+
+.pixel-text-lg {
+  font-size: 0.75rem;
+  line-height: 1.8;
+}
+
+/* Pixel scanline overlay */
+.pixel-scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Pixel corner brackets */
+.pixel-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--accent);
+  border-style: solid;
+  opacity: 0.3;
+}
+
+.pixel-corner-tl { top: -4px; left: -4px; border-width: 2px 0 0 2px; }
+.pixel-corner-tr { top: -4px; right: -4px; border-width: 2px 2px 0 0; }
+.pixel-corner-bl { bottom: -4px; left: -4px; border-width: 0 0 2px 2px; }
+.pixel-corner-br { bottom: -4px; right: -4px; border-width: 0 2px 2px 0; }
+
+/* Pixel section accent */
+.pixel-accent-bar {
+  display: block;
+  width: 32px;
+  height: 4px;
+  background: var(--accent);
+  margin-bottom: 12px;
+  box-shadow: 4px 0 8px var(--accent-glow);
 }

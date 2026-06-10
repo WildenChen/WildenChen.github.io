@@ -1,0 +1,63 @@
+{
+  "auditDate": "2026-06-10",
+  "privacy": "noindex,nofollow",
+  "categories": [
+    {
+      "id": "ai-agent",
+      "title": "AI Agent",
+      "tools": [
+        {"name": "OpenClaw Gateway", "url": null, "status": "online", "statusLabel": "Active", "description": "OpenClaw AI Agent 主要閘道。記憶、工具呼叫、決策閘道。"},
+        {"name": "Yujie Console", "url": null, "status": "online", "statusLabel": "Active", "description": "語婕專用入口。整合 OpenClaw Agent 與 Telegram Bot。"},
+        {"name": "Telegram Bot", "url": null, "status": "online", "statusLabel": "Active", "description": "Telegram 上的 AI Agent 互動介面。"}
+      ]
+    },
+    {
+      "id": "homelab",
+      "title": "HomeLab 服務",
+      "tools": [
+        {"name": "Cockpit", "url": "https://admin.wilden.myds.me/", "status": "online", "statusLabel": "Reachable", "description": "Port 9090｜系統總管。Web Console 登入頁。"},
+        {"name": "Dockge", "url": "https://docker.wilden.myds.me/", "status": "needs-check", "statusLabel": "JS required", "description": "Port 5001｜Docker 管理。需要 JavaScript。"},
+        {"name": "Scrutiny", "url": "https://scrutiny.wilden.myds.me/", "status": "online", "statusLabel": "Reachable", "description": "Port 8081｜硬碟健康監控。"},
+        {"name": "Audiobookshelf", "url": "https://audiobook.wilden.myds.me/", "status": "needs-check", "statusLabel": "Loading", "description": "Port 13378｜雜誌與有聲書。"},
+        {"name": "Navidrome", "url": "https://music.wilden.myds.me/", "status": "needs-check", "statusLabel": "JS required", "description": "Port 4533｜音樂串流。"},
+        {"name": "Immich", "url": null, "status": "needs-check", "statusLabel": "Needs check", "description": "相片與個人資料服務。"}
+      ]
+    },
+    {
+      "id": "dev-workflow",
+      "title": "開發與工作流",
+      "tools": [
+        {"name": "GitHub Actions", "url": "https://github.com/WildenChen", "status": "online", "statusLabel": "External", "description": "CI/CD 與自動化工作流。"},
+        {"name": "GitBook", "url": "https://wilden-chen.gitbook.io/", "status": "online", "statusLabel": "External", "description": "Swift 殿堂之路與設計模式的發布平台。"},
+        {"name": "Uptime Monitor", "url": null, "status": "online", "statusLabel": "Active", "description": "服務狀態監控。自動檢查端點可用性。"}
+      ]
+    },
+    {
+      "id": "subscription",
+      "title": "訂閱與額度",
+      "tools": [
+        {"name": "ChatGPT Plus", "url": null, "status": "online", "statusLabel": "Active", "description": "年繳方案。主力 AI 討論與規劃。"},
+        {"name": "Google One AI Pro", "url": null, "status": "online", "statusLabel": "Active", "description": "Gemini 進階功能與長上下文實驗。"},
+        {"name": "MiniMax 額度", "url": null, "status": "needs-check", "statusLabel": "Needs check", "description": "M3 模型 API 用量與餘額追蹤。"},
+        {"name": "GitHub Copilot", "url": null, "status": "online", "statusLabel": "Active", "description": "Student 方案。IDE 輔助。"}
+      ]
+    },
+    {
+      "id": "knowledge",
+      "title": "知識庫",
+      "tools": [
+        {"name": "Obsidian Vault", "url": null, "status": "online", "statusLabel": "Active", "description": "個人知識庫與筆記系統。"},
+        {"name": "Knowledge Base", "url": "../knowledge-base/", "status": "online", "statusLabel": "Published", "description": "Wilden Hub 公開知識索引。"},
+        {"name": "Prompt Collection", "url": null, "status": "online", "statusLabel": "Active", "description": "常用 AI Prompt 收藏與分類。"}
+      ]
+    },
+    {
+      "id": "ssl-security",
+      "title": "安全與憑證",
+      "tools": [
+        {"name": "SSL Certificate Check", "url": null, "status": "online", "statusLabel": "Active", "description": "反向代理 SSL 憑證到期檢查。"},
+        {"name": "DNS Manager", "url": null, "status": "online", "statusLabel": "Active", "description": "網域名稱與 DNS 紀錄管理。"}
+      ]
+    }
+  ]
+}

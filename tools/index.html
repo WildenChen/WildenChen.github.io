@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#163b3a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Wilden Hub">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/icon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+  <title>Tools | Wilden Hub</title>
+  <meta name="description" content="Wilden Hub local tools portal for homelab services, AI agent gateways, and personal infrastructure.">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="portal-shell navbar">
+      <a class="brand" href="../"><span class="brand-mark">W</span><span>Wilden Hub</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="../works/">Works</a>
+        <a href="../ai-lab/">AI Lab</a>
+        <a href="../tools/">Tools</a>
+        <a href="../now/">Now</a>
+        <a href="https://github.com/WildenChen" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main class="portal-shell page-main">
+    <section class="page-hero">
+      <p class="kicker"><span class="pulse" aria-hidden="true"></span> Local Portal</p>
+      <h1>Tools</h1>
+      <p class="lede">私人工具與服務入口。這裡只放工具說明與狀態，實際連結部署在內網反向代理之後。</p>
+    </section>
+
+    <section class="status-strip" aria-label="Quick overview">
+      <div><span>Categories</span><strong>6</strong></div>
+      <div><span>Tools</span><strong id="tool-count">--</strong></div>
+      <div><span>Last Audit</span><strong>2026-05-14</strong></div>
+      <div><span>Privacy</span><strong>noindex</strong></div>
+    </section>
+
+    <section id="tool-catalog" aria-live="polite">
+      <div class="notice-panel">
+        <h2>正在載入工具清單...</h2>
+        <p>若載入時間過長，請確認網路連線。</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var toolsData = null;
+
+      function makeEl(tag, className, text) {
+        var el = document.createElement(tag);
+        if (className) el.className = className;
+        if (text) el.textContent = text;
+        return el;
+      }
+
+      function flattenTools(data) {
+        return data.categories.reduce(function (items, cat) {
+          return items.concat(cat.tools.map(function (t) {
+            return Object.assign({ categoryId: cat.id, categoryTitle: cat.title }, t);
+          }));
+        }, []);
+      }
+
+      function getBadgeClass(status) {
+        if (status === 'online') return 'badge-live';
+        if (status === 'degraded' || status === 'needs-check') return 'badge-warn';
+        return 'badge-unknown';
+      }
+
+      function renderToolCard(tool) {
+        var card = makeEl(tool.url ? 'a' : 'article', 'service-card');
+        if (tool.url) { card.href = tool.url; card.rel = 'noopener'; }
+
+        var top = makeEl('div', 'service-card-top');
+        top.appendChild(makeEl('span', 'badge ' + getBadgeClass(tool.status), tool.statusLabel || tool.status));
+        top.appendChild(makeEl('span', 'service-category', tool.categoryTitle));
+        card.appendChild(top);
+
+        card.appendChild(makeEl('h3', '', tool.name));
+        if (tool.description) card.appendChild(makeEl('p', '', tool.description));
+
+        if (tool.url) {
+          card.appendChild(makeEl('span', 'service-action', tool.actionLabel || 'Open'));
+        } else {
+          card.appendChild(makeEl('span', 'service-action muted-action', 'Local only'));
+        }
+        return card;
+      }
+
+      function render(data) {
+        toolsData = data;
+        var all = flattenTools(data);
+        document.getElementById('tool-count').textContent = String(all.length);
+
+        var catalog = document.getElementById('tool-catalog');
+        catalog.innerHTML = '';
+
+        data.categories.forEach(function (cat) {
+          var section = makeEl('section', 'service-section');
+          var heading = makeEl('h2', '', cat.title);
+          heading.id = cat.id;
+          section.setAttribute('aria-labelledby', cat.id);
+          section.appendChild(heading);
+
+          var grid = makeEl('div', 'service-grid');
+          cat.tools.forEach(function (tool) {
+            grid.appendChild(renderToolCard(Object.assign({ categoryTitle: cat.title }, tool)));
+          });
+          section.appendChild(grid);
+          catalog.appendChild(section);
+        });
+      }
+
+      fetch('../data/tools.json')
+        .then(function (r) {
+          if (!r.ok) throw new Error('Failed to load');
+          return r.json();
+        })
+        .then(render)
+        .catch(function () {
+          var catalog = document.getElementById('tool-catalog');
+          catalog.innerHTML = '';
+          var err = makeEl('div', 'notice-panel');
+          err.appendChild(makeEl('h2', '', '工具清單暫時無法載入'));
+          err.appendChild(makeEl('p', '', '請稍後重新整理。'));
+          catalog.appendChild(err);
+        });
+    })();
+  </script>
+  <script src="../assets/js/pwa.js" defer></script>
+</body>
+</html>
