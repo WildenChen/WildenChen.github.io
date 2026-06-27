@@ -6,8 +6,6 @@ title: "如何使用單例模式"
 
 可以看下這個圖：
 
-![](../.gitbook/assets/singleton1.png)
-
 這是一個日誌類，有一個屬性 \(是一個單例對象\) 和兩個方法 \(`sharedInstance()` 和 `init()`\)。
 
 第一次調用 `sharedInstance()` 的時候， `instance` 屬性還沒有初始化。所以我們要創建一個新實例並且返回。
@@ -200,8 +198,6 @@ class ImageCache {
 而原本測試的 `PhotoDelegate`就先刪除吧，避免程式碼的雜亂。
 
 在模擬器中執行，會發現一開始會出現 10 個整齊排列的藍色框框，這些都是我們寫的 PhotoView ，如果網路正常的情況下，會在 Xcode 裡的 Console 視窗出現 `LoadFlickrDataComplete!count:99` ，表示 Flickr 的資料載入完成，然後我們再按下最下面的紅色按鈕，載入圖片。
-
-![](../.gitbook/assets/singleton2.png)
 
 完成到這一步的Demo：
 

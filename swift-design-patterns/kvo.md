@@ -44,8 +44,6 @@ override func observeValue(forKeyPath keyPath: String?, of object: Any?, change:
 
 再次運行項目，你會發現一切正常了：
 
-![](../.gitbook/assets/kvo1.png)
-
 注意：一定要記得移除觀察者，否則如果物件已經銷毀了還給它發送消息會導致應用閃退。
 
 完成到這一步的Demo：

@@ -36,8 +36,6 @@ class FlickrAPI{
 
 像之前的 `LionCoffee` 才是典型的簡易工廠設計模式，另外 Apple 提供的 API 下，最典型的簡易工廠模式則是 `UIColor`。
 
-![](../.gitbook/assets/simplefactory1.png)
-
 Flickr API 申請網址： [https://www.flickr.com/services/api/](https://www.flickr.com/services/api/)
 
 完成到這一步的Demo：

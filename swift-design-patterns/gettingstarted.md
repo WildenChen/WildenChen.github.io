@@ -12,8 +12,6 @@ title: "入門 - 開始"
 * `AppleDegegate.swift` 是我們應用程式主要的程式進入點，裡面的 UIWindow 為主要的視覺容器，並且把畫面的主頁 `MainViewController.swift` 設定好背景顏色為白色。
 * `FlickrAPI.swf`是 Flickr 的 API 網址基本資料。
 
-![](../.gitbook/assets/intro-1.png)
-
 > 注意：其實當你建立一個新的 Xcode 的專案的時候，你的程式碼裡面就已經有很多設計模式的影子了： MVC、委託、代理、單一。
 
 在學習第一個設計模式之前，你需要建立兩個類別，用來存儲和展示照片資料。

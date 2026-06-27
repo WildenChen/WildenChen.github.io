@@ -22,8 +22,6 @@ title: "實作 Swift 設計模式"
 
 先來預覽一下最終的結果：
 
-![](../.gitbook/assets/swiftdesignpattern1.png)
-
 我們將會完成一個完整的應用，展示 Flickr 推薦照片 的瀏覽器應用程式。
 
 通過開發這個應用程式，我們會接觸一些 Cocoa 中常見的設計模式：
