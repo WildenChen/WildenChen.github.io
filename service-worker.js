@@ -1,17 +1,10 @@
-const CACHE_NAME = "wilden-ai-portal-v10";
+const CACHE_NAME = "wilden-ai-portal-v11";
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./assets/css/portal.css",
-  "./assets/js/reader.js",
   "./assets/js/portal.js",
   "./manifest.webmanifest",
-  "./swift-road/",
-  "./swift-design-patterns/",
-  "./works/",
-  "./ai-lab/",
-  "./tools/",
-  "./now/",
   "./data/console-data.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png"
@@ -34,24 +27,22 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  const request = event.request;
+  if (event.request.method !== "GET") return;
 
-  if (request.method !== "GET") {
-    return;
-  }
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
 
-  const url = new URL(request.url);
-  if (url.origin !== self.location.origin) {
-    return;
-  }
+  // Only intercept navigation (HTML page) requests;
+  // subresource requests (JS/CSS/images) load directly to avoid SW interference.
+  if (event.request.mode !== "navigate") return;
 
   event.respondWith(
-    fetch(request)
+    fetch(event.request)
       .then((response) => {
         const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
         return response;
       })
-      .catch(() => caches.match(request).then((cached) => cached || caches.match("./")))
+      .catch(() => caches.match(event.request))
   );
 });
