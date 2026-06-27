@@ -669,10 +669,9 @@
       .arch-km-grid { grid-template-columns: 1fr; }
       .arch-detail { width: 100%; right: 0; }
       .arch-filter-wrap { gap: 4px; }
-      .arch-filter-pill { font-size: 0.65rem; padding: 3px 8px; }
     }
 
-    /* ─── AI OS Architecture Explorer ─── */
+    /* ─── AI OS Architecture Explorer: Flow Map System ─── */
     .arch-hero {
       position: relative;
       padding: 12px 16px; margin-bottom: 28px;
@@ -693,10 +692,10 @@
     }
     .arch-hero-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; position: relative; }
 
-    /* ─── Arch Tabs ─── */
+    /* ─── tabs ─── */
     .arch-tabs {
       display: flex; gap: 3px; flex-wrap: wrap;
-      margin-bottom: 0; border-bottom: 1px solid var(--border);
+      margin-bottom: 16px; border-bottom: 1px solid var(--border);
     }
     .arch-tab {
       padding: 9px 16px;
@@ -708,38 +707,8 @@
     }
     .arch-tab:hover { color: var(--text); }
     .arch-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-    .arch-panel { display: none; padding: 20px 0; }
+    .arch-panel { display: none; padding: 0; }
     .arch-panel.active { display: block; }
-
-    /* ─── Arch search & filter ─── */
-    .arch-toolbar {
-      display: flex; align-items: center; flex-wrap: wrap;
-      gap: 10px; margin-bottom: 16px;
-    }
-    .arch-search {
-      flex: 1; min-width: 180px; max-width: 320px;
-      padding: 8px 14px; border-radius: 10px;
-      border: 1px solid var(--border); background: var(--surface);
-      color: var(--text); font-size: 0.85rem;
-      outline: none; transition: border-color 0.2s;
-    }
-    .arch-search:focus { border-color: var(--accent); }
-    .arch-search::placeholder { color: var(--faint); }
-    .arch-filter-wrap {
-      display: flex; flex-wrap: wrap; gap: 6px;
-    }
-    .arch-filter-pill {
-      padding: 4px 12px; border-radius: 20px;
-      border: 1px solid var(--border);
-      font-size: 0.72rem; font-weight: 500;
-      cursor: pointer; background: transparent;
-      color: var(--faint); transition: all 0.2s;
-    }
-    .arch-filter-pill:hover { border-color: var(--border-hover); color: var(--text); }
-    .arch-filter-pill.active {
-      border-color: var(--accent); color: var(--accent);
-      background: rgba(45,212,191,0.08);
-    }
 
     /* ─── Detail Panel ─── */
     .arch-detail-overlay {
@@ -791,192 +760,211 @@
     }
     .arch-detail-notes::before { content: '備註'; display: block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--faint); margin-bottom: 6px; }
 
-    /* ─── View: Layer Diagram ─── */
-    .arch-layers {
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .arch-layer {
-      padding: 14px 18px; border-radius: 12px;
-      border: 1px solid var(--border); background: var(--surface);
-      transition: all 0.2s;
-    }
-    .arch-layer:hover { border-color: var(--border-hover); }
-    .arch-layer-header {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
-    }
-    .arch-layer-bar {
-      width: 3px; height: 18px; border-radius: 2px; flex-shrink: 0;
-    }
-    .arch-layer-label {
-      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.05em; color: var(--faint);
-    }
-    .arch-layer-arrow {
-      text-align: center; font-size: 0.7rem; color: var(--faint);
-      padding: 2px 0;
-    }
-    .arch-nodes {
-      display: flex; flex-wrap: wrap; gap: 6px;
-    }
-    .arch-node {
+    /* ─── Flow Map: shared node styles ─── */
+    .fm-node {
+      display: inline-flex; align-items: center; gap: 4px;
       padding: 6px 14px; border-radius: 8px;
-      font-size: 0.78rem; font-weight: 500;
+      font-size: 0.8rem; font-weight: 600;
       border: 1px solid transparent; cursor: pointer;
       transition: all 0.2s; user-select: none;
+      white-space: nowrap;
     }
-    .arch-node:hover { transform: translateY(-1px); }
-    .arch-node.selected { border-color: currentColor; box-shadow: 0 0 0 1px currentColor; }
-    .arch-node-type-person { background: rgba(45,212,191,0.1); color: var(--accent); border-color: rgba(45,212,191,0.2); }
-    .arch-node-type-entry { background: rgba(56,189,248,0.1); color: var(--sky); border-color: rgba(56,189,248,0.2); }
-    .arch-node-type-agent { background: rgba(139,92,246,0.1); color: var(--purple); border-color: rgba(139,92,246,0.2); }
-    .arch-node-type-engine { background: rgba(248,214,109,0.1); color: var(--gold); border-color: rgba(248,214,109,0.2); }
-    .arch-node-type-fuel { background: rgba(244,63,94,0.1); color: var(--rose); border-color: rgba(244,63,94,0.2); }
-    .arch-node-type-knowledge { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.2); }
-    .arch-node-type-media { background: rgba(236,72,153,0.1); color: var(--pink); border-color: rgba(236,72,153,0.2); }
-    .arch-node-type-infra { background: rgba(99,102,241,0.1); color: var(--indigo); border-color: rgba(99,102,241,0.2); }
-    .arch-node-s { font-size: 0.65rem; color: var(--faint); margin-left: 4px; }
+    .fm-node:hover { transform: translateY(-1px); filter: brightness(1.15); }
+    .fm-node.selected { border-color: currentColor; box-shadow: 0 0 0 1px currentColor; }
+    .fm-node.person { background: rgba(45,212,191,0.12); color: var(--accent); border-color: rgba(45,212,191,0.25); }
+    .fm-node.entry { background: rgba(56,189,248,0.12); color: var(--sky); border-color: rgba(56,189,248,0.25); }
+    .fm-node.agent { background: rgba(139,92,246,0.12); color: var(--purple); border-color: rgba(139,92,246,0.25); }
+    .fm-node.engine { background: rgba(248,214,109,0.12); color: var(--gold); border-color: rgba(248,214,109,0.25); }
+    .fm-node.fuel { background: rgba(244,63,94,0.12); color: var(--rose); border-color: rgba(244,63,94,0.25); }
+    .fm-node.knowledge { background: rgba(34,197,94,0.12); color: var(--green); border-color: rgba(34,197,94,0.25); }
+    .fm-node.media { background: rgba(236,72,153,0.12); color: var(--pink); border-color: rgba(236,72,153,0.25); }
+    .fm-node.infra { background: rgba(99,102,241,0.12); color: var(--indigo); border-color: rgba(99,102,241,0.25); }
+    .fm-node .fm-badge {
+      display: inline-block; font-size: 0.6rem; font-weight: 700;
+      padding: 1px 6px; border-radius: 4px;
+      background: rgba(255,255,255,0.08); color: var(--faint);
+      margin-left: 2px;
+    }
+    .fm-node .fm-badge.paid { background: rgba(45,212,191,0.2); color: var(--accent); }
+    .fm-node .fm-badge.free { background: rgba(56,189,248,0.2); color: var(--sky); }
+    .fm-node .fm-badge.self { background: rgba(139,92,246,0.2); color: var(--purple); }
+    .fm-node .fm-badge.exploring { background: rgba(245,158,11,0.2); color: var(--amber); }
 
-    /* ─── View: Entries ─── */
-    .arch-entry-grid {
-      display: grid; gap: 16px;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* ─── Flow arrow (→) ─── */
+    .fm-arrow {
+      display: inline-flex; align-items: center;
+      color: var(--faint); font-size: 0.85rem;
+      padding: 0 4px; flex-shrink: 0;
+      user-select: none;
     }
-    .arch-entry-card {
-      padding: 18px; border-radius: 12px;
-      border: 1px solid var(--border); background: var(--surface);
-      cursor: pointer; transition: all 0.2s;
+    .fm-arrow.v { flex-direction: column; padding: 4px 0; font-size: 0.7rem; }
+    .fm-arrow .fm-arrow-label {
+      font-size: 0.6rem; color: var(--faint);
+      margin-left: 3px; font-weight: 500;
     }
-    .arch-entry-card:hover { border-color: var(--border-hover); background: var(--surface-alt); }
-    .arch-entry-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1rem; font-weight: 700; margin-bottom: 4px;
-    }
-    .arch-entry-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
-    .arch-entry-links {
-      display: flex; flex-direction: column; gap: 4px;
-      font-size: 0.78rem;
-    }
-    .arch-entry-link {
+
+    /* ─── Flow branch ─── */
+    .fm-branch {
       display: flex; align-items: center; gap: 6px;
-      padding: 4px 8px; border-radius: 6px;
-      background: rgba(255,255,255,0.03);
+      padding: 6px 0;
     }
-    .arch-entry-link-arrow { color: var(--faint); }
-    .arch-entry-link-label { color: var(--sky); }
-    .arch-entry-link-dest { color: var(--muted); }
+    .fm-branch-label {
+      font-size: 0.72rem; color: var(--muted);
+      min-width: 90px; text-align: right;
+      flex-shrink: 0; font-weight: 500;
+    }
 
-    /* ─── View: Agent Flow ─── */
-    .arch-agent-flow {
+    /* ─── Map header ─── */
+    .fm-header {
+      display: flex; align-items: baseline; gap: 12px;
+      margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .fm-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+    }
+    .fm-desc { font-size: 0.82rem; color: var(--muted); }
+
+    /* ─── Zone (for deployment map) ─── */
+    .fm-zone {
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); overflow: hidden;
+    }
+    .fm-zone-header {
+      padding: 10px 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .fm-zone-body {
+      padding: 12px 16px;
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ─── Group (for fuel map) ─── */
+    .fm-group {
+      border: 1px solid var(--border); border-radius: 10px;
+      background: var(--surface); padding: 14px;
+    }
+    .fm-group-header {
+      font-size: 0.78rem; font-weight: 700;
+      margin-bottom: 8px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .fm-group-body {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+
+    /* ─── Dual column (for agent map) ─── */
+    .fm-dual {
       display: grid; gap: 20px;
       grid-template-columns: 1fr 1fr;
     }
-    .arch-agent-col {
-      padding: 20px; border-radius: 12px;
-      border: 1px solid var(--border); background: var(--surface);
+    .fm-col {
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); padding: 16px;
     }
-    .arch-agent-col-title {
+    .fm-col-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem; font-weight: 700; margin-bottom: 14px;
+      font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;
       padding-bottom: 8px; border-bottom: 2px solid;
     }
-    .arch-agent-step {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 0; font-size: 0.85rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+    .fm-col-flow {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
     }
-    .arch-agent-step:last-child { border-bottom: none; }
-    .arch-agent-step-icon {
-      width: 22px; height: 22px; border-radius: 50%;
-      display: grid; place-items: center;
-      font-size: 0.65rem; font-weight: 700; flex-shrink: 0;
+    .fm-col-note {
+      margin-top: 10px;
+      font-size: 0.75rem; color: var(--faint);
+      padding: 8px 10px; border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      line-height: 1.6;
     }
-    .arch-agent-step-text { color: var(--muted); }
-    .arch-agent-step-text strong { color: var(--text); }
 
-    /* ─── View: Fuel Pipeline ─── */
-    .arch-fuel-grid {
-      display: grid; gap: 20px;
-      grid-template-columns: repeat(2, 1fr);
+    /* ─── Daily usage specific ─── */
+    .fm-daily {
+      display: flex; flex-direction: column; gap: 2px;
     }
-    .arch-fuel-group {
-      padding: 20px; border-radius: 12px;
-      border: 1px solid var(--border); background: var(--surface);
-    }
-    .arch-fuel-group h4 {
-      font-size: 0.82rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.04em; margin-bottom: 14px;
-      padding-bottom: 8px; border-bottom: 1px solid var(--border);
-    }
-    .arch-fuel-group.paid h4 { color: var(--accent); }
-    .arch-fuel-group.free h4 { color: var(--sky); }
-    .arch-fuel-item {
+    .fm-daily-row {
       display: flex; align-items: center; gap: 8px;
-      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: 0.82rem;
+      padding: 5px 10px; border-radius: 8px;
+      flex-wrap: wrap;
     }
-    .arch-fuel-item:last-child { border-bottom: none; }
-    .arch-fuel-source { font-weight: 600; color: var(--text); white-space: nowrap; }
-    .arch-fuel-arrow { color: var(--faint); flex-shrink: 0; font-size: 0.7rem; }
-    .arch-fuel-dest { color: var(--muted); flex-wrap: wrap; gap: 2px; }
-    .arch-fuel-dest-item { display: inline; }
-    .arch-fuel-dest-item + .arch-fuel-dest-item::before { content: ', '; color: var(--faint); }
+    .fm-daily-row:hover { background: rgba(255,255,255,0.02); }
+    .fm-daily-label {
+      font-size: 0.72rem; color: var(--muted);
+      min-width: 90px; font-weight: 500;
+    }
 
-    /* ─── View: Deployment ─── */
-    .arch-deploy-grid {
-      display: grid; gap: 16px;
-      grid-template-columns: repeat(3, 1fr);
+    /* ─── Deployment specific ─── */
+    .fm-deploy {
+      display: flex; flex-direction: column; gap: 20px;
     }
-    .arch-deploy-col {
-      padding: 20px; border-radius: 12px;
-      border: 1px solid var(--border); background: var(--surface);
+    .fm-deploy-zone {
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); overflow: hidden;
     }
-    .arch-deploy-col h4 {
+    .fm-deploy-zone-header {
+      padding: 10px 16px;
       font-family: 'Outfit', sans-serif;
-      font-size: 1rem; font-weight: 700; margin-bottom: 2px;
+      font-size: 0.9rem; font-weight: 700;
+      border-bottom: 1px solid var(--border);
     }
-    .arch-deploy-sub { font-size: 0.74rem; color: var(--faint); margin-bottom: 14px; }
-    .arch-deploy-item {
+    .fm-deploy-zone-body {
+      padding: 12px 16px;
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .fm-deploy-cross {
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 12px 16px;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.015);
+    }
+    .fm-deploy-cross-title {
+      font-size: 0.72rem; font-weight: 700; color: var(--faint);
+      text-transform: uppercase; letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .fm-deploy-cross-item {
       display: flex; align-items: center; gap: 8px;
-      padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
     }
-    .arch-deploy-item:last-child { border-bottom: none; }
-    .arch-deploy-dot {
-      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
-    }
-    .arch-deploy-name { color: var(--text); }
-    .arch-deploy-desc { font-size: 0.72rem; color: var(--faint); margin-left: auto; }
+    .fm-deploy-cross-item .fm-arrow { padding: 0 2px; }
 
-    /* ─── View: Knowledge & Media ─── */
-    .arch-km-grid {
-      display: grid; gap: 20px;
-      grid-template-columns: 1fr 1fr;
+    /* ─── Edge popup ─── */
+    .arch-edge-popup {
+      display: none;
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 110;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      max-width: 360px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
-    .arch-km-col {
-      padding: 20px; border-radius: 12px;
-      border: 1px solid var(--border); background: var(--surface);
+    .arch-edge-popup.open { display: block; }
+    .arch-edge-popup h3 {
+      font-size: 0.95rem; margin-bottom: 8px; font-family: 'Outfit', sans-serif;
     }
-    .arch-km-col h4 {
-      font-size: 0.82rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.04em; margin-bottom: 14px;
-      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    .arch-edge-popup p {
+      font-size: 0.82rem; color: var(--muted); margin: 4px 0;
     }
-    .arch-km-step {
-      display: flex; align-items: center; gap: 8px;
-      padding: 6px 0; font-size: 0.82rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .arch-km-step:last-child { border-bottom: none; }
-    .arch-km-step-icon {
-      width: 20px; font-size: 0.7rem; text-align: center; flex-shrink: 0;
+    .arch-edge-popup .arch-edge-close {
+      position: absolute; top: 8px; right: 10px;
+      background: none; border: none; color: var(--faint); font-size: 1.1rem;
+      cursor: pointer;
     }
 
-    /* ─── Arch connections (SVG) ─── */
-    .arch-connections {
-      padding: 20px 0; text-align: center;
-    }
-    .arch-connections svg {
-      max-width: 100%; height: auto;
+    /* ─── Responsive ─── */
+    @media (max-width: 700px) {
+      .fm-dual { grid-template-columns: 1fr; }
+      .fm-daily-label { min-width: 70px; font-size: 0.68rem; }
+      .fm-branch-label { min-width: 70px; font-size: 0.68rem; }
+      .fm-node { font-size: 0.72rem; padding: 4px 10px; }
+      .arch-detail { width: 100%; }
     }
   </style>
 </head>
@@ -1015,12 +1003,7 @@
     <section class="shell section" id="arch" aria-labelledby="arch-title">
       <div class="arch-hero">
         <div class="arch-hero-title">AI OS Architecture Explorer</div>
-        <div class="arch-hero-desc">以不同視角探索我的 AI 服務架構、Agent 關係與 HomeLab 部署。</div>
-      </div>
-
-      <div class="arch-toolbar">
-        <input class="arch-search" type="text" id="archSearch" placeholder="搜尋節點…" autocomplete="off">
-        <div class="arch-filter-wrap" id="archFilterWrap"></div>
+        <div class="arch-hero-desc">以 4 張流程圖看懂 AI 架構的關係與流向。</div>
       </div>
 
       <div class="arch-tabs" id="archTabs"></div>
@@ -1031,6 +1014,10 @@
         <button class="arch-detail-close" id="archDetailClose">&times;</button>
         <div id="archDetailContent"></div>
       </aside>
+      <div class="arch-edge-popup" id="archEdgePopup">
+        <button class="arch-edge-close" id="archEdgeClose">&times;</button>
+        <div id="archEdgeContent"></div>
+      </div>
     </section>
 
     <!-- ─── AI 架構互動地圖 ─── -->
@@ -1502,98 +1489,37 @@
       var A = ARCH_DATA;
 
       function $(id) { return document.getElementById(id); }
-      function make(tag, cls, text) {
+      function make(tag, cls, html) {
         var el = document.createElement(tag);
         if (cls) el.className = cls;
-        if (text != null) el.textContent = text;
+        if (html != null) el.innerHTML = html;
         return el;
       }
-      function $$(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+      function textEl(tag, cls, txt) {
+        var el = document.createElement(tag);
+        if (cls) el.className = cls;
+        if (txt != null) el.textContent = txt;
+        return el;
+      }
 
-      /* ─── State ─── */
-      var activeArchTab = 'overview';
-      var archSearchVal = '';
-      var archActiveFilters = [];
-      var archSelectedNodeId = null;
       var nodeMap = {};
-      var edgeMap = {};
-
       A.nodes.forEach(function (n) { nodeMap[n.id] = n; });
+      var edgeMap = {};
       A.edges.forEach(function (e) { edgeMap[e.from + '-' + e.to] = e; });
 
-      var ALL_TAGS = [];
-      A.nodes.forEach(function (n) {
-        n.tags.forEach(function (t) {
-          if (ALL_TAGS.indexOf(t) === -1) ALL_TAGS.push(t);
-        });
-      });
-      ALL_TAGS.sort();
+      var activeMapId = 'daily-usage';
+      var selectedNodeId = null;
 
-      /* ─── Tab System ─── */
-      function renderArchTabs() {
-        var container = $('archTabs');
-        container.innerHTML = '';
-        A.views.forEach(function (v) {
-          var btn = make('button', 'arch-tab' + (v.id === activeArchTab ? ' active' : ''), v.title);
-          btn.dataset.view = v.id;
-          btn.addEventListener('click', function () { switchArchTab(v.id); });
-          container.appendChild(btn);
-        });
-      }
-
-      function switchArchTab(id) {
-        activeArchTab = id;
-        $$('.arch-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.view === id); });
-        renderArchView(id);
-      }
-
-      /* ─── Filter Pills ─── */
-      function renderArchFilters() {
-        var wrap = $('archFilterWrap');
-        wrap.innerHTML = '';
-        var all = make('span', 'arch-filter-pill' + (archActiveFilters.length === 0 ? ' active' : ''), '全部');
-        all.addEventListener('click', function () {
-          archActiveFilters = [];
-          $$('.arch-filter-pill').forEach(function (p) { p.classList.remove('active'); });
-          all.classList.add('active');
-          renderArchView(activeArchTab);
-        });
-        wrap.appendChild(all);
-        ALL_TAGS.forEach(function (tag) {
-          var pill = make('span', 'arch-filter-pill', tag);
-          pill.addEventListener('click', function () {
-            all.classList.remove('active');
-            var idx = archActiveFilters.indexOf(tag);
-            if (idx >= 0) archActiveFilters.splice(idx, 1);
-            else archActiveFilters.push(tag);
-            pill.classList.toggle('active', idx < 0);
-            if (archActiveFilters.length === 0) all.classList.add('active');
-            renderArchView(activeArchTab);
-          });
-          wrap.appendChild(pill);
-        });
-      }
-
-      function matchesArchFilter(n) {
-        if (archActiveFilters.length === 0) return true;
-        return archActiveFilters.some(function (f) { return n.tags.indexOf(f) >= 0; });
-      }
-
-      function matchesArchSearch(n) {
-        if (!archSearchVal) return true;
-        var s = archSearchVal;
-        return (n.name + n.description + n.type + n.location + n.payment).toLowerCase().indexOf(s) >= 0;
-      }
-
+      /* ─── Node detail ─── */
       function showArchNode(nodeId) {
-        archSelectedNodeId = nodeId;
-        renderArchView(activeArchTab);
+        selectedNodeId = nodeId;
+        renderMap(activeMapId);
         var n = nodeMap[nodeId];
         if (!n) return;
-        var content = $('archDetailContent');
-        content.innerHTML = '';
-        content.appendChild(make('div', 'arch-detail-name', n.name));
-        content.appendChild(make('div', 'arch-detail-desc', n.description));
+        var c = $('archDetailContent');
+        c.innerHTML = '';
+        c.appendChild(textEl('div', 'arch-detail-name', n.name));
+        c.appendChild(textEl('div', 'arch-detail-desc', n.description));
         var fields = [
           { label: '類型', value: n.type },
           { label: '位置', value: n.location },
@@ -1602,313 +1528,405 @@
           { label: '狀態', value: n.status }
         ];
         fields.forEach(function (f) {
-          var row = make('div', 'arch-detail-row');
-          row.appendChild(make('span', 'arch-detail-label', f.label));
-          row.appendChild(make('span', 'arch-detail-value', f.value));
-          content.appendChild(row);
+          var row = make('div', 'arch-detail-row', '<span class="arch-detail-label">' + f.label + '</span><span class="arch-detail-value">' + f.value + '</span>');
+          c.appendChild(row);
         });
-        if (n.tags && n.tags.length) {
-          var tags = make('div', 'arch-detail-tags');
-          n.tags.forEach(function (t) {
-            tags.appendChild(make('span', 'arch-detail-tag', t));
-          });
-          content.appendChild(tags);
-        }
         if (n.notes && n.notes.length) {
-          var notes = make('div', 'arch-detail-notes');
-          n.notes.forEach(function (note) {
-            notes.appendChild(make('div', '', '• ' + note));
-          });
-          content.appendChild(notes);
+          var notes = make('div', 'arch-detail-notes', '• ' + n.notes.join('<br>• '));
+          c.appendChild(notes);
         }
         $('archDetail').classList.add('open');
         $('archDetailOverlay').classList.add('open');
       }
 
-      /* ─── View: Layer Overview ─── */
-      function renderOverview() {
-        var view = A.views.filter(function (v) { return v.id === 'overview'; })[0];
+      /* ─── Edge popup ─── */
+      function showArchEdge(edgeId) {
+        var e = edgeMap[edgeId];
+        if (!e) return;
+        var from = nodeMap[e.from];
+        var to = nodeMap[e.to];
+        var c = $('archEdgeContent');
+        c.innerHTML = '<h3>' + (from ? from.name : e.from) + ' → ' + (to ? to.name : e.to) + '</h3>' +
+          '<p><strong>關係：</strong>' + e.label + '</p>' +
+          '<p><strong>類型：</strong>' + e.type + '</p>';
+        $('archEdgePopup').classList.add('open');
+      }
+
+      /* ─── Tabs ─── */
+      function renderArchTabs() {
+        var container = $('archTabs');
+        container.innerHTML = '';
+        A.maps.forEach(function (m) {
+          var btn = textEl('button', 'arch-tab' + (m.id === activeMapId ? ' active' : ''), m.title);
+          btn.dataset.view = m.id;
+          btn.addEventListener('click', function () { switchArchTab(m.id); });
+          container.appendChild(btn);
+        });
+      }
+
+      function switchArchTab(id) {
+        activeMapId = id;
+        selectedNodeId = null;
+        $$('.arch-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.view === id); });
+        renderMap(id);
+      }
+
+      function $$(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+
+      /* ─── Shared: node type class ─── */
+      function nodeTypeCls(n) {
+        return { person: 'person', entry: 'entry', agent: 'agent', engine: 'engine', fuel: 'fuel', knowledge: 'knowledge', media: 'media', infra: 'infra' }[n.type] || 'entry';
+      }
+
+      function makeNodeEl(id, extraCls) {
+        var n = nodeMap[id];
+        if (!n) return null;
+        var cls = 'fm-node ' + nodeTypeCls(n) + (selectedNodeId === id ? ' selected' : '') + (extraCls ? ' ' + extraCls : '');
+        var el = textEl('span', cls, n.name);
+        el.addEventListener('click', function (e) { e.stopPropagation(); showArchNode(id); });
+        return el;
+      }
+
+      function makeArrow(label) {
+        return make('span', 'fm-arrow', '→' + (label ? ' <span class="fm-arrow-label">' + label + '</span>' : ''));
+      }
+
+      function makeArrowV(label) {
+        return make('span', 'fm-arrow v', '↓' + (label ? ' <span class="fm-arrow-label">' + label + '</span>' : ''));
+      }
+
+      /* ════════════════════════════════════════════
+         Map 1：我的日常使用路徑
+         ════════════════════════════════════════════ */
+      function renderDailyUsage() {
         var container = $('archPanels');
         container.innerHTML = '';
-        var layers = make('div', 'arch-layers');
-        view.layers.forEach(function (layerDef, li) {
-          var layer = make('div', 'arch-layer');
-          var header = make('div', 'arch-layer-header');
-          var bar = make('div', 'arch-layer-bar');
-          bar.style.background = layerDef.color;
-          header.appendChild(bar);
-          header.appendChild(make('span', 'arch-layer-label', layerDef.label));
-          layer.appendChild(header);
-          var nodes = make('div', 'arch-nodes');
-          A.nodes.forEach(function (n) {
-            if (n.layer !== layerDef.id) return;
-            if (!matchesArchFilter(n) || !matchesArchSearch(n)) return;
-            var node = make('span', 'arch-node arch-node-type-' + n.type + (archSelectedNodeId === n.id ? ' selected' : ''), n.name);
-            var sub = make('span', 'arch-node-s', n.type);
-            node.appendChild(sub);
-            node.addEventListener('click', function () { showArchNode(n.id); });
-            nodes.appendChild(node);
+
+        var header = make('div', 'fm-header', '<div class="fm-title">我的日常使用路徑</div><div class="fm-desc">從弘儒出發的 8 條使用路徑，展示每條路徑的入口工具與背後服務。</div>');
+        container.appendChild(header);
+
+        var wrapper = make('div', 'fm-daily', '');
+
+        var flows = [
+          { label: '想清楚', path: ['hongru', 'chatgpt', 'chatgpt-plus'] },
+          { label: '查資料', path: ['hongru', 'gemini', 'google-ai-pro'] },
+          { label: '整理文件', path: ['hongru', 'notebooklm', 'google-ai-pro'] },
+          { label: '生活／帳務／陪伴', path: ['hongru', 'yujie', 'openclaw'] },
+          { label: 'HomeLab／機器', path: ['hongru', 'xiaomi', 'hermes'] },
+          { label: '正式 coding', path: ['hongru', 'codex-entry', 'chatgpt-plus'] },
+          { label: '工程救火', path: ['hongru', 'antigravity2', 'google-ai-pro'] },
+          { label: '日常開發', path: ['hongru', 'opencode-entry', 'opencode-go'] }
+        ];
+
+        flows.forEach(function (f) {
+          var row = make('div', 'fm-daily-row', '');
+          var label = make('span', 'fm-daily-label', f.label);
+          row.appendChild(label);
+          f.path.forEach(function (nodeId, idx) {
+            if (idx > 0) {
+              var eKey = f.path[idx - 1] + '-' + nodeId;
+              var edge = edgeMap[eKey];
+              var arrow = makeArrow(edge ? edge.label : '');
+              if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+              row.appendChild(arrow);
+            }
+            var el = makeNodeEl(nodeId);
+            if (el) row.appendChild(el);
           });
-          layer.appendChild(nodes);
-          layers.appendChild(layer);
-          if (li < view.layers.length - 1) {
-            var arrow = make('div', 'arch-layer-arrow', '↓');
-            layers.appendChild(arrow);
+          wrapper.appendChild(row);
+        });
+
+        container.appendChild(wrapper);
+      }
+
+      /* ════════════════════════════════════════════
+         Map 2：Agent 關係圖
+         ════════════════════════════════════════════ */
+      function renderAgentRelations() {
+        var container = $('archPanels');
+        container.innerHTML = '';
+
+        var header = make('div', 'fm-header', '<div class="fm-title">Agent 關係圖</div><div class="fm-desc">語婕與筱蜜的完整路徑對照。</div>');
+        container.appendChild(header);
+
+        var dual = make('div', 'fm-dual', '');
+
+        // Left: 語婕
+        var leftCol = make('div', 'fm-col', '');
+        var leftTitle = textEl('div', 'fm-col-title', '語婕路徑');
+        leftTitle.style.borderBottomColor = 'var(--pink)';
+        leftTitle.style.color = 'var(--pink)';
+        leftCol.appendChild(leftTitle);
+        var leftFlow = make('div', 'fm-col-flow', '');
+        var leftPath = ['hongru', 'yujie', 'openclaw', 'kb-yujie', 'mcp-x4', 'agnes-yujie', 'media-yujie'];
+        leftPath.forEach(function (nodeId, idx) {
+          if (idx > 0) {
+            var eKey = leftPath[idx - 1] + '-' + nodeId;
+            var edge = edgeMap[eKey];
+            var arrow = makeArrowV(edge ? edge.label : '');
+            if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+            leftFlow.appendChild(arrow);
           }
+          var el = makeNodeEl(nodeId);
+          if (el) leftFlow.appendChild(el);
         });
-        container.appendChild(layers);
+        var leftNote = make('div', 'fm-col-note', '語婕管生活：生活提醒、帳務、訂閱、陪伴。<br>技術問題可整理 brief 給筱蜜。');
+        leftCol.appendChild(leftFlow);
+        leftCol.appendChild(leftNote);
+        dual.appendChild(leftCol);
+
+        // Right: 筱蜜
+        var rightCol = make('div', 'fm-col', '');
+        var rightTitle = textEl('div', 'fm-col-title', '筱蜜路徑');
+        rightTitle.style.borderBottomColor = 'var(--purple)';
+        rightTitle.style.color = 'var(--purple)';
+        rightCol.appendChild(rightTitle);
+        var rightFlow = make('div', 'fm-col-flow', '');
+        var rightPath = ['hongru', 'xiaomi', 'hermes', 'kb-xiaomi', 'mcp-x4', 'agnes-xiaomi', 'media-xiaomi'];
+        rightPath.forEach(function (nodeId, idx) {
+          if (idx > 0) {
+            var eKey = rightPath[idx - 1] + '-' + nodeId;
+            var edge = edgeMap[eKey];
+            var arrow = makeArrowV(edge ? edge.label : '');
+            if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+            rightFlow.appendChild(arrow);
+          }
+          var el = makeNodeEl(nodeId);
+          if (el) rightFlow.appendChild(el);
+        });
+        // 筱蜜 upgrade suggestions
+        var upgradeNote = '筱蜜管機器：Docker、PM2、log、SOP。<br>';
+        upgradeNote += '必要時建議升級到：';
+        ['codex-engine', 'antigravity2-engine', 'opencode-engine'].forEach(function (engId, i) {
+          if (i > 0) upgradeNote += '、';
+          upgradeNote += nodeMap[engId].name;
+        });
+        upgradeNote += '。';
+        var rightNote = make('div', 'fm-col-note', upgradeNote);
+        rightNote.addEventListener('click', function () {});
+        rightCol.appendChild(rightFlow);
+        rightCol.appendChild(rightNote);
+        dual.appendChild(rightCol);
+
+        container.appendChild(dual);
+
+        var footNote = make('div', 'fm-col-note', 'Agnes 是語婕與筱蜜背後的自拍引擎，不是弘儒直接操作。MCP 知識庫是活資料來源。');
+        footNote.style.marginTop = '12px';
+        container.appendChild(footNote);
       }
 
-      /* ─── View: Entries ─── */
-      function renderEntriesView() {
+      /* ════════════════════════════════════════════
+         Map 3：模型燃料與端點
+         ════════════════════════════════════════════ */
+      function renderFuelMap() {
         var container = $('archPanels');
         container.innerHTML = '';
-        var grid = make('div', 'arch-entry-grid');
-        var entryIds = ['chatgpt', 'gemini', 'notebooklm', 'yujie', 'xiaomi', 'codex-entry', 'antigravity2', 'opencode-entry', 'claude-cc'];
-        entryIds.forEach(function (id) {
-          var n = nodeMap[id];
-          if (!n || !matchesArchFilter(n) || !matchesArchSearch(n)) return;
-          var card = make('div', 'arch-entry-card');
-          var name = make('div', 'arch-entry-name', n.name);
-          if (n.status === 'exploring') name.innerHTML += ' <span style="font-size:0.65rem;color:var(--amber);font-weight:600;">探索中</span>';
-          card.appendChild(name);
-          card.appendChild(make('div', 'arch-entry-desc', n.description));
-          var links = make('div', 'arch-entry-links');
-          A.edges.forEach(function (e) {
-            if (e.from !== id) return;
-            var link = make('div', 'arch-entry-link');
-            link.appendChild(make('span', 'arch-entry-link-arrow', '→'));
-            link.appendChild(make('span', 'arch-entry-link-label', e.label));
-            var dest = nodeMap[e.to];
-            link.appendChild(make('span', 'arch-entry-link-dest', dest ? dest.name : e.to));
-            link.addEventListener('click', function (ev) { ev.stopPropagation(); showArchNode(e.to); });
-            links.appendChild(link);
+
+        var header = make('div', 'fm-header', '<div class="fm-title">模型燃料與端點關係圖</div><div class="fm-desc">誰供應模型、誰管理端點、誰消費額度。</div>');
+        container.appendChild(header);
+
+        var grid = make('div', '', '');
+        grid.style.cssText = 'display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));';
+
+        var groups = [
+          {
+            title: '<span style="color:var(--accent)">●</span> ChatGPT Plus（付費·雲端）',
+            provider: 'chatgpt-plus',
+            consumers: ['chatgpt', 'codex-entry', 'codex-engine']
+          },
+          {
+            title: '<span style="color:var(--sky)">●</span> Google AI Pro（付費·雲端）',
+            provider: 'google-ai-pro',
+            consumers: ['gemini', 'antigravity2', 'notebooklm', 'antigravity2-engine']
+          },
+          {
+            title: '<span style="color:var(--gold)">●</span> OpenCode GO（付費·雲端）',
+            provider: 'opencode-go',
+            consumers: ['opencode-entry', 'claude-cc', 'opencode-engine', 'claude-cc-engine']
+          },
+          {
+            title: '<span style="color:var(--purple)">●</span> Ollama-cloud-Proxy（自架·M2 Pro）',
+            provider: 'ollama-cloud-proxy',
+            consumers: ['ollama-accounts']
+          },
+          {
+            title: '<span style="color:var(--green)">●</span> NewAPI（自架·Mint）',
+            provider: 'newapi',
+            consumers: ['nvidia-nim', 'opencode-zen']
+          },
+          {
+            title: '<span style="color:var(--pink)">●</span> Agnes API（付費·API）',
+            provider: 'agnes',
+            consumers: ['agnes-yujie', 'agnes-xiaomi']
+          },
+          {
+            title: '<span style="color:var(--amber)">●</span> Copilot Student（免費·雲端）',
+            provider: 'copilot-student',
+            consumers: []
+          }
+        ];
+
+        groups.forEach(function (g) {
+          var group = make('div', 'fm-group', '');
+          group.innerHTML = '<div class="fm-group-header">' + g.title + '</div>';
+          var body = make('div', 'fm-group-body', '');
+          var providerEl = makeNodeEl(g.provider);
+          if (providerEl) body.appendChild(providerEl);
+          g.consumers.forEach(function (cId, i) {
+            var eKey = g.provider + '-' + cId;
+            var edge = edgeMap[eKey];
+            var row = make('div', '', '');
+            row.style.cssText = 'display:flex;align-items:center;gap:6px;padding-left:12px;';
+            var arrow = makeArrow(edge ? edge.label : '');
+            if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+            row.appendChild(arrow);
+            var el = makeNodeEl(cId);
+            if (el) row.appendChild(el);
+            body.appendChild(row);
           });
-          card.appendChild(links);
-          card.addEventListener('click', function () { showArchNode(id); });
-          grid.appendChild(card);
+          group.appendChild(body);
+          grid.appendChild(group);
         });
+
         container.appendChild(grid);
-      }
 
-      /* ─── View: Agent Flow ─── */
-      function renderAgentFlow() {
-        var container = $('archPanels');
-        container.innerHTML = '';
-        var flow = make('div', 'arch-agent-flow');
-
-        var yujieCol = makeAgentColumn('語婕', '#ec4899', [
-          { text: '弘儒 → Telegram 語婕', icon: '👤', iconBg: 'var(--accent)' },
-          { text: '平台：<strong>OpenClaw</strong>', icon: '🤖', iconBg: 'var(--purple)' },
-          { text: '負責：生活 / 提醒 / 帳務 / 陪伴', icon: '📋', iconBg: 'var(--sky)' },
-          { text: '知識：<strong>語婕知識庫 MCP</strong>', icon: '📚', iconBg: 'var(--green)' },
-          { text: '自拍：<strong>Agnes 語婕 key</strong>', icon: '📸', iconBg: 'var(--pink)' }
-        ]);
-        flow.appendChild(yujieCol);
-
-        var xiaomiCol = makeAgentColumn('筱蜜', '#8b5cf6', [
-          { text: '弘儒 → Telegram 筱蜜', icon: '👤', iconBg: 'var(--accent)' },
-          { text: '平台：<strong>Hermes</strong>', icon: '🤖', iconBg: 'var(--purple)' },
-          { text: '負責：HomeLab / Docker / PM2 / log / SOP', icon: '🛠', iconBg: 'var(--gold)' },
-          { text: '知識：<strong>HomeLab 知識庫 MCP</strong>', icon: '📚', iconBg: 'var(--green)' },
-          { text: '自拍：<strong>Agnes 筱蜜 key</strong>', icon: '📸', iconBg: 'var(--pink)' },
-          { text: '必要時建議升級到 Codex / Antigravity2 / OpenCode', icon: '⬆', iconBg: 'var(--amber)' }
-        ]);
-        flow.appendChild(xiaomiCol);
-
-        container.appendChild(flow);
-
-        var note = make('div', 'arch-km-step', '');
-        note.style.cssText = 'margin-top:14px;padding:12px 16px;border-radius:10px;background:rgba(255,255,255,0.03);font-size:0.8rem;color:var(--faint);line-height:1.7;';
-        note.innerHTML = '語婕管生活。筱蜜管機器。Agnes 是自拍引擎，不是我直接操作。MCP 是活資料來源。';
+        var note = make('div', 'fm-col-note', '付費訂閱（ChatGPT Plus / Google AI Pro / OpenCode GO）是主要模型來源。自架代理（Ollama-cloud-Proxy / NewAPI）管理免費端點。Agnes 提供媒體生成能力。');
+        note.style.marginTop = '12px';
         container.appendChild(note);
       }
 
-      function makeAgentColumn(title, color, steps) {
-        var col = make('div', 'arch-agent-col');
-        var titleEl = make('div', 'arch-agent-col-title', title);
-        titleEl.style.borderBottomColor = color;
-        titleEl.style.color = color;
-        col.appendChild(titleEl);
-        steps.forEach(function (s) {
-          var step = make('div', 'arch-agent-step');
-          var icon = make('div', 'arch-agent-step-icon', s.icon);
-          icon.style.background = s.iconBg + '22';
-          step.appendChild(icon);
-          var text = make('div', 'arch-agent-step-text');
-          text.innerHTML = s.text;
-          step.appendChild(text);
-          col.appendChild(step);
-        });
-        return col;
-      }
-
-      /* ─── View: Fuel ─── */
-      function renderFuelView() {
+      /* ════════════════════════════════════════════
+         Map 4：HomeLab 部署關係圖
+         ════════════════════════════════════════════ */
+      function renderDeploymentMap() {
         var container = $('archPanels');
         container.innerHTML = '';
-        var grid = make('div', 'arch-fuel-grid');
 
-        var paid = make('div', 'arch-fuel-group paid');
-        paid.appendChild(make('h4', '', '付費'));
-        [['ChatGPT Plus', 'ChatGPT、Codex'], ['Google AI Pro', 'Gemini、Antigravity2、NotebookLM'], ['OpenCode GO', 'OpenCode、Claude + CC Switch']].forEach(function (pair) {
-          var item = make('div', 'arch-fuel-item');
-          item.appendChild(make('span', 'arch-fuel-source', pair[0]));
-          item.appendChild(make('span', 'arch-fuel-arrow', '→'));
-          item.appendChild(make('span', 'arch-fuel-dest', pair[1]));
-          item.addEventListener('click', function () { showArchNode(pair[0].replace(/ /g, '-').toLowerCase()); });
-          paid.appendChild(item);
+        var header = make('div', 'fm-header', '<div class="fm-title">HomeLab 部署關係圖</div><div class="fm-desc">所有服務跑在哪台主機上，以及跨主機的依賴關係。</div>');
+        container.appendChild(header);
+
+        var deploy = make('div', 'fm-deploy', '');
+
+        // Zone 1: 雲端
+        var cloudZone = make('div', 'fm-deploy-zone', '');
+        cloudZone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--sky)">☁️ 雲端</div>';
+        var cloudBody = make('div', 'fm-deploy-zone-body', '');
+        var cloudServices = ['chatgpt-plus', 'google-ai-pro', 'opencode-go', 'copilot-student', 'nvidia-nim', 'opencode-zen', 'agnes'];
+        cloudServices.forEach(function (id) {
+          var el = makeNodeEl(id);
+          if (el) cloudBody.appendChild(el);
         });
-        grid.appendChild(paid);
+        cloudZone.appendChild(cloudBody);
+        deploy.appendChild(cloudZone);
 
-        var free = make('div', 'arch-fuel-group free');
-        free.appendChild(make('h4', '', '免費'));
-        [['Ollama-cloud-Proxy', 'Ollama 免費帳號 x15'], ['NewAPI → Nvidia NIM', 'NIM x4'], ['NewAPI → OpenCode Zen', 'OpenCode Zen x4'], ['Agnes 語婕 key', '語婕自拍/影片'], ['Agnes 筱蜜 key', '筱蜜自拍/影片'], ['Copilot Student', 'IDE 補完']].forEach(function (pair) {
-          var item = make('div', 'arch-fuel-item');
-          item.appendChild(make('span', 'arch-fuel-source', pair[0]));
-          item.appendChild(make('span', 'arch-fuel-arrow', '→'));
-          item.appendChild(make('span', 'arch-fuel-dest', pair[1]));
-          free.appendChild(item);
+        // Arrow between zones
+        var arrow1 = make('div', '', '');
+        arrow1.style.cssText = 'text-align:center;font-size:0.8rem;color:var(--faint);padding:2px 0;';
+        arrow1.textContent = '↓ 運行·承載';
+        deploy.appendChild(arrow1);
+
+        // Zone 2: M2 Pro
+        var m2Zone = make('div', 'fm-deploy-zone', '');
+        m2Zone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--purple)">🖥 M2 Pro Mac mini（AI 主機）</div>';
+        var m2Body = make('div', 'fm-deploy-zone-body', '');
+        var m2Services = ['opencode-engine', 'ollama-cloud-proxy', 'comfyui', 'mcp-x4', 'openclaw', 'hermes'];
+        m2Services.forEach(function (id) {
+          var el = makeNodeEl(id);
+          if (el) m2Body.appendChild(el);
         });
-        grid.appendChild(free);
+        m2Zone.appendChild(m2Body);
+        deploy.appendChild(m2Zone);
 
-        container.appendChild(grid);
-      }
-
-      /* ─── View: Deployment ─── */
-      function renderDeployment() {
-        var container = $('archPanels');
-        container.innerHTML = '';
-        var grid = make('div', 'arch-deploy-grid');
-
-        var cloudData = {
-          title: '☁️ 雲端',
-          subtitle: 'ChatGPT / Gemini / NotebookLM / Codex / Antigravity2 / OpenCode / Claude + CC Switch 等',
-          color: 'var(--sky)',
-          items: [
-            { name: 'ChatGPT Plus / Codex' },
-            { name: 'Google AI Pro / Gemini / Antigravity2 / NotebookLM' },
-            { name: 'OpenCode GO' },
-            { name: 'GitHub Copilot Student' },
-            { name: 'Nvidia NIM x4' },
-            { name: 'OpenCode Zen x4' },
-            { name: 'Agnes API' }
-          ]
-        };
-        var m2proData = {
-          title: '🖥 M2 Pro Mac mini',
-          subtitle: 'AI 主機',
-          color: 'var(--purple)',
-          items: [
-            { name: 'Ollama-cloud-Proxy', desc: '管理 15 個 Ollama' },
-            { name: 'ComfyUI', desc: '本機生圖試驗' },
-            { name: 'MCP 知識庫 x4', desc: '活資料查詢' },
-            { name: 'OpenCode server', desc: '日常開發' },
-            { name: 'Hermes 筱蜜', desc: 'Agent 平台' },
-            { name: 'OpenClaw', desc: 'Agent 平台' },
-            { name: 'PM2 / Docker', desc: '常駐與容器管理' }
-          ]
-        };
-        var mintData = {
-          title: '🌱 Mint',
-          subtitle: 'HomeLab 基礎服務主機',
-          color: 'var(--green)',
-          items: [
-            { name: 'NewAPI', desc: '管理 NIM / Zen API key' },
-            { name: 'Gitea' }, { name: 'Home Assistant' }, { name: 'Vaultwarden' },
-            { name: 'OpenWebUI' }, { name: 'Dockge' },
-            { name: 'Memos' }, { name: 'Calibre / Audiobookshelf' },
-            { name: 'qBittorrent' }, { name: 'Homepage' },
-            { name: 'Scrutiny' }, { name: '其他 Docker 服務' }
-          ]
-        };
-
-        [cloudData, m2proData, mintData].forEach(function (d) {
-          var col = make('div', 'arch-deploy-col');
-          col.appendChild(make('h4', '', d.title));
-          if (d.subtitle) col.appendChild(make('div', 'arch-deploy-sub', d.subtitle));
-          d.items.forEach(function (item) {
-            var el = make('div', 'arch-deploy-item');
-            var dot = make('span', 'arch-deploy-dot');
-            dot.style.background = d.color;
-            el.appendChild(dot);
-            el.appendChild(make('span', 'arch-deploy-name', item.name));
-            if (item.desc) el.appendChild(make('span', 'arch-deploy-desc', item.desc));
-            col.appendChild(el);
-          });
-          grid.appendChild(col);
-        });
-
-        container.appendChild(grid);
-      }
-
-      /* ─── View: Knowledge & Media ─── */
-      function renderKM() {
-        var container = $('archPanels');
-        container.innerHTML = '';
-        var grid = make('div', 'arch-km-grid');
-
-        var kCol = make('div', 'arch-km-col');
-        kCol.appendChild(make('h4', '', '📚 知識管線'));
-        var kSteps = [
-          { icon: '📚', text: '4 個知識庫（語婕 / 筱蜜 / 技術文件 / HomeLab）' },
-          { icon: '🔌', text: '→ <strong>MCP x4</strong> 統一查詢介面' },
-          { icon: '🤖', text: '→ <strong>語婕 / 筱蜜 / Agent</strong> 查活資料' },
-          { icon: '📖', text: '→ NotebookLM 只吃整理後快照' },
-          { icon: '🧠', text: '→ ChatGPT 做判斷與修正' }
+        // Cross connections from M2 Pro
+        var m2Cross = make('div', 'fm-deploy-cross', '');
+        m2Cross.innerHTML = '<div class="fm-deploy-cross-title">M2 Pro 對外連線</div>';
+        var m2Outs = [
+          { from: 'ollama-cloud-proxy', to: 'ollama-accounts' },
+          { from: 'opencode-engine', to: 'comfyui', label: '腳本操作' }
         ];
-        kSteps.forEach(function (s) {
-          var step = make('div', 'arch-km-step');
-          step.appendChild(make('span', 'arch-km-step-icon', s.icon));
-          var text = make('div', '', '');
-          text.innerHTML = s.text;
-          text.style.cssText = 'color:var(--muted);font-size:0.82rem;line-height:1.5;';
-          step.appendChild(text);
-          kCol.appendChild(step);
+        m2Outs.forEach(function (conn) {
+          var item = make('div', 'fm-deploy-cross-item', '');
+          var fromNode = makeNodeEl(conn.from);
+          if (fromNode) item.appendChild(fromNode);
+          var eKey = conn.from + '-' + conn.to;
+          var edge = edgeMap[eKey];
+          var arrow = makeArrow(conn.label || (edge ? edge.label : ''));
+          if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+          item.appendChild(arrow);
+          var toNode = makeNodeEl(conn.to);
+          if (toNode) item.appendChild(toNode);
+          m2Cross.appendChild(item);
         });
-        grid.appendChild(kCol);
+        // MCP query from hermes
+        var mcpItem = make('div', 'fm-deploy-cross-item', '');
+        var hermesEl = makeNodeEl('hermes');
+        if (hermesEl) mcpItem.appendChild(hermesEl);
+        var mcpArrow = makeArrow('查詢');
+        (function () {
+          var eKey = 'hermes-to-mcp-x4';
+          var edge = edgeMap[eKey];
+          if (edge) mcpArrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+        })();
+        mcpItem.appendChild(mcpArrow);
+        var mcpEl = makeNodeEl('mcp-x4');
+        if (mcpEl) mcpItem.appendChild(mcpEl);
+        m2Cross.appendChild(mcpItem);
+        deploy.appendChild(m2Cross);
 
-        var mCol = make('div', 'arch-km-col');
-        mCol.appendChild(make('h4', '', '🎬 媒體管線'));
-        var mSteps = [
-          { icon: '👩', text: '<strong>語婕</strong> → Agnes 語婕免費 key → 自拍/影片' },
-          { icon: '👩‍💻', text: '<strong>筱蜜</strong> → Agnes 筱蜜免費 key → 自拍/影片' },
-          { icon: '🎨', text: '<strong>ComfyUI</strong>（M2 Pro 本機）' },
-          { icon: '🔧', text: '← OpenCode 腳本操作' },
-          { icon: '⚠️', text: '目前主要是 NSFW 試驗，效果不佳，非日常主力' }
+        var arrow2 = make('div', '', '');
+        arrow2.style.cssText = 'text-align:center;font-size:0.8rem;color:var(--faint);padding:2px 0;';
+        arrow2.textContent = '↓ 運行';
+        deploy.appendChild(arrow2);
+
+        // Zone 3: Mint
+        var mintZone = make('div', 'fm-deploy-zone', '');
+        mintZone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--green)">🌱 Mint（HomeLab 基礎服務主機）</div>';
+        var mintBody = make('div', 'fm-deploy-zone-body', '');
+        var mintServices = ['newapi'];
+        mintServices.forEach(function (id) {
+          var el = makeNodeEl(id);
+          if (el) mintBody.appendChild(el);
+        });
+        mintZone.appendChild(mintBody);
+        deploy.appendChild(mintZone);
+
+        // Cross connections from Mint
+        var mintCross = make('div', 'fm-deploy-cross', '');
+        mintCross.innerHTML = '<div class="fm-deploy-cross-title">Mint 對外連線</div>';
+        var mintOuts = [
+          { from: 'newapi', to: 'nvidia-nim' },
+          { from: 'newapi', to: 'opencode-zen' }
         ];
-        mSteps.forEach(function (s) {
-          var step = make('div', 'arch-km-step');
-          step.appendChild(make('span', 'arch-km-step-icon', s.icon));
-          var text = make('div', '', '');
-          text.innerHTML = s.text;
-          text.style.cssText = 'color:var(--muted);font-size:0.82rem;line-height:1.5;';
-          step.appendChild(text);
-          mCol.appendChild(step);
+        mintOuts.forEach(function (conn) {
+          var item = make('div', 'fm-deploy-cross-item', '');
+          var fromNode = makeNodeEl(conn.from);
+          if (fromNode) item.appendChild(fromNode);
+          var eKey = conn.from + '-' + conn.to;
+          var edge = edgeMap[eKey];
+          var arrow = makeArrow(edge ? edge.label : '');
+          if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+          item.appendChild(arrow);
+          var toNode = makeNodeEl(conn.to);
+          if (toNode) item.appendChild(toNode);
+          mintCross.appendChild(item);
         });
-        grid.appendChild(mCol);
+        deploy.appendChild(mintCross);
 
-        container.appendChild(grid);
+        container.appendChild(deploy);
       }
 
       /* ─── Router ─── */
-      function renderArchView(id) {
+      function renderMap(id) {
         switch (id) {
-          case 'overview': renderOverview(); break;
-          case 'entries': renderEntriesView(); break;
-          case 'agent-flow': renderAgentFlow(); break;
-          case 'fuel': renderFuelView(); break;
-          case 'deployment': renderDeployment(); break;
-          case 'knowledge-media': renderKM(); break;
+          case 'daily-usage': renderDailyUsage(); break;
+          case 'agent-relations': renderAgentRelations(); break;
+          case 'fuel': renderFuelMap(); break;
+          case 'deployment': renderDeploymentMap(); break;
         }
       }
 
       /* ─── Init ─── */
       document.addEventListener('DOMContentLoaded', function () {
-        $('archSearch').addEventListener('input', function () {
-          archSearchVal = this.value.toLowerCase().trim();
-          renderArchView(activeArchTab);
-        });
         $('archDetailClose').addEventListener('click', function () {
           $('archDetail').classList.remove('open');
           $('archDetailOverlay').classList.remove('open');
@@ -1917,9 +1935,11 @@
           $('archDetail').classList.remove('open');
           $('archDetailOverlay').classList.remove('open');
         });
+        $('archEdgeClose').addEventListener('click', function () {
+          $('archEdgePopup').classList.remove('open');
+        });
         renderArchTabs();
-        renderArchFilters();
-        renderArchView(activeArchTab);
+        renderMap(activeMapId);
       });
     })();
   </script>

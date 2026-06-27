@@ -223,6 +223,19 @@ var ARCH_DATA = {
 
     // ── 模型燃料層 ──
     {
+      id: 'agnes',
+      name: 'Agnes API',
+      type: 'fuel',
+      layer: 'fuel',
+      location: 'API',
+      payment: '付費',
+      directUse: '系統',
+      status: 'active',
+      tags: ['付費', 'API', '幕後'],
+      description: 'Agnes API 平台。提供語婕與筱蜜的免費獨立 key 進行自拍/影片。',
+      notes: ['我不是直接操作 Agnes', '語婕與筱蜜各自有獨立的 key']
+    },
+    {
       id: 'chatgpt-plus',
       name: 'ChatGPT Plus',
       type: 'fuel',
@@ -549,6 +562,11 @@ var ARCH_DATA = {
     { from: 'hermes', to: 'mcp-x4', label: '查詢', type: 'query' },
     { from: 'hermes', to: 'mint', label: '管理 Docker/PM2', type: 'manage' },
 
+    // 筱蜜建議升級路徑
+    { from: 'xiaomi', to: 'codex-engine', label: '建議升級', type: 'recommend' },
+    { from: 'xiaomi', to: 'antigravity2-engine', label: '建議升級', type: 'recommend' },
+    { from: 'xiaomi', to: 'opencode-engine', label: '建議升級', type: 'recommend' },
+
     // Agent → 媒體
     { from: 'openclaw', to: 'agnes-yujie', label: '自拍', type: 'media' },
     { from: 'hermes', to: 'agnes-xiaomi', label: '自拍', type: 'media' },
@@ -556,6 +574,8 @@ var ARCH_DATA = {
     { from: 'agnes-xiaomi', to: 'media-xiaomi', label: '輸出', type: 'output' },
 
     // 燃料管線
+    { from: 'agnes', to: 'agnes-yujie', label: '提供 key', type: 'provides' },
+    { from: 'agnes', to: 'agnes-xiaomi', label: '提供 key', type: 'provides' },
     { from: 'chatgpt-plus', to: 'codex-engine', label: '驅動', type: 'fuel-flow' },
     { from: 'google-ai-pro', to: 'antigravity2-engine', label: '驅動', type: 'fuel-flow' },
     { from: 'opencode-go', to: 'opencode-engine', label: '驅動', type: 'fuel-flow' },
@@ -582,142 +602,47 @@ var ARCH_DATA = {
     { from: 'kb-tech', to: 'mcp-x4', label: '提供', type: 'feeds' },
     { from: 'kb-homelab', to: 'mcp-x4', label: '提供', type: 'feeds' },
     { from: 'mcp-x4', to: 'openclaw', label: '供查詢', type: 'feeds' },
-    { from: 'mcp-x4', to: 'hermes', label: '供查詢', type: 'feeds' }
+    { from: 'mcp-x4', to: 'hermes', label: '供查詢', type: 'feeds' },
+
+    // 基礎設施關係
+    { from: 'cloud', to: 'chatgpt-plus', label: '承載', type: 'hosts' },
+    { from: 'cloud', to: 'google-ai-pro', label: '承載', type: 'hosts' },
+    { from: 'cloud', to: 'opencode-go', label: '承載', type: 'hosts' },
+    { from: 'cloud', to: 'nvidia-nim', label: '承載', type: 'hosts' },
+    { from: 'cloud', to: 'opencode-zen', label: '承載', type: 'hosts' },
+    { from: 'cloud', to: 'agnes', label: '承載', type: 'hosts' },
+    { from: 'cloud', to: 'copilot-student', label: '承載', type: 'hosts' }
   ],
 
-  // ─── 視角定義 ───
-  views: [
+  // ─── 流程圖定義 ───
+  maps: [
     {
-      id: 'overview',
-      title: 'AI OS 總覽',
-      description: '從上到下的分層架構。我不是有很多工具，而是有一個 AI OS。',
-      layers: [
-        { id: 'user', label: '我', color: 'var(--accent)' },
-        { id: 'entry', label: '使用入口層', color: 'var(--sky)' },
-        { id: 'agent', label: 'Agent 層', color: 'var(--purple)' },
-        { id: 'engine', label: '工程執行層', color: 'var(--gold)' },
-        { id: 'fuel', label: '模型燃料層', color: 'var(--rose)' },
-        { id: 'knowledge', label: '知識庫層', color: 'var(--green)' },
-        { id: 'media', label: '媒體層', color: 'var(--pink)' },
-        { id: 'infrastructure', label: '基礎設施層', color: 'var(--indigo)' }
-      ],
-      nodeIds: [
-        'hongru',
-        'chatgpt', 'gemini', 'notebooklm', 'yujie', 'xiaomi', 'codex-entry', 'antigravity2', 'opencode-entry', 'claude-cc',
-        'openclaw', 'hermes',
-        'codex-engine', 'antigravity2-engine', 'opencode-engine', 'claude-cc-engine',
-        'chatgpt-plus', 'google-ai-pro', 'opencode-go', 'ollama-cloud-proxy', 'newapi', 'nvidia-nim', 'opencode-zen', 'ollama-accounts',
-        'mcp-x4', 'kb-yujie', 'kb-xiaomi', 'kb-tech', 'kb-homelab',
-        'agnes-yujie', 'agnes-xiaomi', 'comfyui',
-        'm2pro', 'mint', 'cloud'
-      ],
-      edgeIds: []
+      id: 'daily-usage',
+      title: '我的日常使用路徑',
+      description: '從弘儒出發的 8 條使用路徑，展示每條路徑的入口工具與背後服務。',
+      nodeIds: ['hongru', 'chatgpt', 'gemini', 'notebooklm', 'yujie', 'xiaomi', 'codex-entry', 'antigravity2', 'opencode-entry', 'chatgpt-plus', 'google-ai-pro', 'openclaw', 'hermes', 'opencode-go'],
+      edgeIds: ['hongru-to-chatgpt', 'hongru-to-gemini', 'hongru-to-notebooklm', 'hongru-to-yujie', 'hongru-to-xiaomi', 'hongru-to-codex-entry', 'hongru-to-antigravity2', 'hongru-to-opencode-entry', 'chatgpt-to-chatgpt-plus', 'gemini-to-google-ai-pro', 'notebooklm-to-google-ai-pro', 'yujie-to-openclaw', 'xiaomi-to-hermes', 'codex-entry-to-chatgpt-plus', 'antigravity2-to-google-ai-pro', 'opencode-entry-to-opencode-go']
     },
     {
-      id: 'entries',
-      title: '使用入口',
-      description: '我會親自操作的入口工具，及其背後的訂閱與平台。',
-      nodeIds: [
-        'hongru',
-        'chatgpt', 'gemini', 'notebooklm', 'yujie', 'xiaomi', 'codex-entry', 'antigravity2', 'opencode-entry', 'claude-cc',
-        'openclaw', 'hermes',
-        'chatgpt-plus', 'google-ai-pro', 'opencode-go',
-        'kb-yujie', 'kb-xiaomi',
-        'agnes-yujie', 'agnes-xiaomi'
-      ],
-      edgeIds: [
-        'hongru-to-chatgpt', 'hongru-to-gemini', 'hongru-to-notebooklm', 'hongru-to-yujie', 'hongru-to-xiaomi',
-        'hongru-to-codex-entry', 'hongru-to-antigravity2', 'hongru-to-opencode-entry', 'hongru-to-claude-cc',
-        'yujie-to-openclaw', 'xiaomi-to-hermes',
-        'chatgpt-to-chatgpt-plus', 'gemini-to-google-ai-pro', 'notebooklm-to-google-ai-pro',
-        'codex-entry-to-chatgpt-plus', 'antigravity2-to-google-ai-pro',
-        'opencode-entry-to-opencode-go', 'claude-cc-to-opencode-go',
-        'openclaw-to-kb-yujie', 'hermes-to-kb-xiaomi',
-        'openclaw-to-agnes-yujie', 'hermes-to-agnes-xiaomi'
-      ]
-    },
-    {
-      id: 'agent-flow',
-      title: 'Agent 流程',
-      description: '語婕與筱蜜的左右對照流程圖。',
-      nodeIds: [
-        'hongru',
-        'yujie', 'xiaomi',
-        'openclaw', 'hermes',
-        'kb-yujie', 'kb-xiaomi',
-        'agnes-yujie', 'agnes-xiaomi',
-        'media-yujie', 'media-xiaomi',
-        'codex-engine', 'antigravity2-engine', 'opencode-engine'
-      ],
-      edgeIds: [
-        'hongru-to-yujie', 'hongru-to-xiaomi',
-        'yujie-to-openclaw', 'xiaomi-to-hermes',
-        'openclaw-to-kb-yujie', 'hermes-to-kb-xiaomi',
-        'openclaw-to-agnes-yujie', 'hermes-to-agnes-xiaomi',
-        'agnes-yujie-to-media-yujie', 'agnes-xiaomi-to-media-xiaomi'
-      ]
+      id: 'agent-relations',
+      title: 'Agent 關係圖',
+      description: '語婕與筱蜜的完整路徑對照。語婕管生活，筱蜜管機器。',
+      nodeIds: ['hongru', 'yujie', 'xiaomi', 'openclaw', 'hermes', 'kb-yujie', 'kb-xiaomi', 'mcp-x4', 'agnes-yujie', 'agnes-xiaomi', 'media-yujie', 'media-xiaomi', 'codex-engine', 'antigravity2-engine', 'opencode-engine'],
+      edgeIds: ['hongru-to-yujie', 'hongru-to-xiaomi', 'yujie-to-openclaw', 'xiaomi-to-hermes', 'openclaw-to-kb-yujie', 'hermes-to-kb-xiaomi', 'openclaw-to-mcp-x4', 'hermes-to-mcp-x4', 'openclaw-to-agnes-yujie', 'hermes-to-agnes-xiaomi', 'agnes-yujie-to-media-yujie', 'agnes-xiaomi-to-media-xiaomi', 'xiaomi-to-codex-engine', 'xiaomi-to-antigravity2-engine', 'xiaomi-to-opencode-engine']
     },
     {
       id: 'fuel',
-      title: '模型燃料',
-      description: '模型燃料管線：從付費/免費來源到工具。',
-      nodeIds: [
-        'chatgpt-plus', 'google-ai-pro', 'opencode-go',
-        'ollama-cloud-proxy', 'newapi',
-        'nvidia-nim', 'opencode-zen', 'ollama-accounts',
-        'copilot-student',
-        'chatgpt', 'gemini', 'notebooklm', 'codex-entry', 'antigravity2', 'opencode-entry', 'claude-cc',
-        'codex-engine', 'antigravity2-engine', 'opencode-engine', 'claude-cc-engine',
-        'agnes-yujie', 'agnes-xiaomi',
-        'media-yujie', 'media-xiaomi'
-      ],
-      edgeIds: [
-        'chatgpt-to-chatgpt-plus', 'gemini-to-google-ai-pro', 'notebooklm-to-google-ai-pro',
-        'codex-entry-to-chatgpt-plus', 'antigravity2-to-google-ai-pro',
-        'opencode-entry-to-opencode-go', 'claude-cc-to-opencode-go',
-        'chatgpt-plus-to-codex-engine', 'google-ai-pro-to-antigravity2-engine',
-        'opencode-go-to-opencode-engine', 'opencode-go-to-claude-cc-engine',
-        'ollama-cloud-proxy-to-ollama-accounts',
-        'newapi-to-nvidia-nim', 'newapi-to-opencode-zen'
-      ]
+      title: '模型燃料與端點',
+      description: '誰供應模型、誰管理端點、誰消費額度。',
+      nodeIds: ['chatgpt-plus', 'google-ai-pro', 'opencode-go', 'ollama-cloud-proxy', 'newapi', 'agnes', 'chatgpt', 'gemini', 'notebooklm', 'codex-entry', 'antigravity2', 'opencode-entry', 'claude-cc', 'codex-engine', 'antigravity2-engine', 'opencode-engine', 'claude-cc-engine', 'nvidia-nim', 'opencode-zen', 'ollama-accounts', 'agnes-yujie', 'agnes-xiaomi', 'copilot-student'],
+      edgeIds: ['chatgpt-to-chatgpt-plus', 'gemini-to-google-ai-pro', 'notebooklm-to-google-ai-pro', 'codex-entry-to-chatgpt-plus', 'antigravity2-to-google-ai-pro', 'opencode-entry-to-opencode-go', 'claude-cc-to-opencode-go', 'chatgpt-plus-to-codex-engine', 'google-ai-pro-to-antigravity2-engine', 'opencode-go-to-opencode-engine', 'opencode-go-to-claude-cc-engine', 'ollama-cloud-proxy-to-ollama-accounts', 'newapi-to-nvidia-nim', 'newapi-to-opencode-zen', 'agnes-to-agnes-yujie', 'agnes-to-agnes-xiaomi']
     },
     {
       id: 'deployment',
       title: 'HomeLab 部署',
-      description: '所有服務跑在哪台主機上。',
-      nodeIds: [
-        'cloud', 'm2pro', 'mint',
-        'chatgpt-plus', 'google-ai-pro', 'opencode-go', 'nvidia-nim', 'opencode-zen', 'copilot-student',
-        'ollama-cloud-proxy', 'comfyui', 'mcp-x4', 'openclaw', 'hermes', 'opencode-engine',
-        'newapi',
-        'chatgpt', 'gemini', 'notebooklm', 'codex-entry', 'antigravity2', 'opencode-entry'
-      ],
-      edgeIds: [
-        'm2pro-to-opencode-engine', 'm2pro-to-ollama-cloud-proxy', 'm2pro-to-comfyui',
-        'm2pro-to-mcp-x4', 'm2pro-to-openclaw', 'm2pro-to-hermes',
-        'mint-to-newapi'
-      ]
-    },
-    {
-      id: 'knowledge-media',
-      title: '知識庫與媒體',
-      description: '知識管線與媒體生成管線。',
-      nodeIds: [
-        'kb-yujie', 'kb-xiaomi', 'kb-tech', 'kb-homelab',
-        'mcp-x4',
-        'openclaw', 'hermes',
-        'notebooklm', 'chatgpt',
-        'agnes-yujie', 'agnes-xiaomi',
-        'media-yujie', 'media-xiaomi',
-        'comfyui', 'opencode-engine'
-      ],
-      edgeIds: [
-        'kb-yujie-to-mcp-x4', 'kb-xiaomi-to-mcp-x4', 'kb-tech-to-mcp-x4', 'kb-homelab-to-mcp-x4',
-        'mcp-x4-to-openclaw', 'mcp-x4-to-hermes',
-        'openclaw-to-agnes-yujie', 'hermes-to-agnes-xiaomi',
-        'agnes-yujie-to-media-yujie', 'agnes-xiaomi-to-media-xiaomi',
-        'opencode-engine-to-comfyui'
-      ]
+      description: '所有服務跑在哪台主機上，以及跨主機的依賴關係。',
+      nodeIds: ['cloud', 'm2pro', 'mint', 'chatgpt', 'gemini', 'notebooklm', 'codex-entry', 'antigravity2', 'opencode-entry', 'claude-cc', 'codex-engine', 'antigravity2-engine', 'opencode-engine', 'claude-cc-engine', 'chatgpt-plus', 'google-ai-pro', 'opencode-go', 'nvidia-nim', 'opencode-zen', 'copilot-student', 'agnes', 'ollama-cloud-proxy', 'comfyui', 'mcp-x4', 'openclaw', 'hermes', 'newapi', 'ollama-accounts', 'agnes-yujie', 'agnes-xiaomi'],
+      edgeIds: ['m2pro-to-opencode-engine', 'm2pro-to-ollama-cloud-proxy', 'm2pro-to-comfyui', 'm2pro-to-mcp-x4', 'm2pro-to-openclaw', 'm2pro-to-hermes', 'mint-to-newapi', 'cloud-to-chatgpt-plus', 'cloud-to-google-ai-pro', 'cloud-to-opencode-go', 'cloud-to-nvidia-nim', 'cloud-to-opencode-zen', 'cloud-to-agnes', 'cloud-to-copilot-student', 'ollama-cloud-proxy-to-ollama-accounts', 'newapi-to-nvidia-nim', 'newapi-to-opencode-zen', 'hermes-to-mcp-x4', 'opencode-engine-to-comfyui']
     }
   ]
 };
