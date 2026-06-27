@@ -824,8 +824,6 @@
         }
       }
 
-      $('searchInput').addEventListener('input', filterCurrentView);
-
       function matchesSearch(text) {
         if (!searchValue) return true;
         return (text || '').toLowerCase().indexOf(searchValue) !== -1;
@@ -1121,6 +1119,7 @@
 
       /* ─── Init ─── */
       document.addEventListener('DOMContentLoaded', function () {
+        $('searchInput').addEventListener('input', filterCurrentView);
         renderTabs();
         renderTasks();
         renderEntries();

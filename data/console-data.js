@@ -1,7 +1,7 @@
 // 弘儒個人控制台 — 所有資料集中管理
 // 修改這個檔案即可更新網站內容
 
-const CONSOLE_DATA = {
+var CONSOLE_DATA = {
 
   // ─── AI 架構互動地圖：任務定義 ───
   tasks: [
