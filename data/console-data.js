@@ -32,15 +32,15 @@ var CONSOLE_DATA = {
     {
       id: 'life',
       label: '生活 / 帳務 / 陪伴',
-      firstChoice: '語婕',
-      why: '語婕是專屬生活秘書，管理生活提醒、帳務、訂閱與陪伴',
-      behind: ['OpenClaw', '語婕知識庫 MCP', 'Agnes 語婕 key']
+      firstChoice: '語婕(OpenClaw)',
+      why: '語婕(OpenClaw)是專屬生活秘書，管理生活提醒、帳務、訂閱與陪伴',
+      behind: ['OpenClaw', '語婕(OpenClaw)知識庫 MCP', 'Agnes 語婕(OpenClaw) key']
     },
     {
       id: 'homelab',
       label: 'HomeLab / 機器',
-      firstChoice: '筱蜜',
-      why: '筱蜜是維運秘書，管理 Docker、PM2、服務檢查與 SOP',
+      firstChoice: '筱蜜(Hermes)',
+      why: '筱蜜(Hermes)是維運秘書，管理 Docker、PM2、服務檢查與 SOP',
       behind: ['Hermes', 'HomeLab 知識庫 MCP', 'PM2', 'Docker']
     },
     {
@@ -68,18 +68,18 @@ var CONSOLE_DATA = {
     },
     {
       id: 'yujie-selfie',
-      label: '語婕自拍',
-      firstChoice: '語婕',
-      why: '語婕自拍使用 Agnes 語婕免費獨立 key',
-      behind: ['Agnes 語婕免費獨立 key'],
+      label: '語婕(OpenClaw)自拍',
+      firstChoice: '語婕(OpenClaw)',
+      why: '語婕(OpenClaw)自拍使用 Agnes 語婕(OpenClaw)免費獨立 key',
+      behind: ['Agnes 語婕(OpenClaw)免費獨立 key'],
       note: '我不是直接操作 Agnes'
     },
     {
       id: 'xiaomi-selfie',
-      label: '筱蜜自拍',
-      firstChoice: '筱蜜',
-      why: '筱蜜自拍使用 Agnes 筱蜜免費獨立 key',
-      behind: ['Agnes 筱蜜免費獨立 key'],
+      label: '筱蜜(Hermes)自拍',
+      firstChoice: '筱蜜(Hermes)',
+      why: '筱蜜(Hermes)自拍使用 Agnes 筱蜜(Hermes)免費獨立 key',
+      behind: ['Agnes 筱蜜(Hermes)免費獨立 key'],
       note: '我不是直接操作 Agnes'
     }
   ],
@@ -106,20 +106,20 @@ var CONSOLE_DATA = {
           note: '主要查資料工具'
         },
         {
-          name: '語婕',
+          name: '語婕(OpenClaw)',
           category: 'Agent / 生活秘書',
           purpose: '生活、提醒、帳務、訂閱、陪伴、自拍/影片',
           payment: 'Agnes 免費 key',
           behind: 'OpenClaw + Agnes API',
-          note: 'Agnes 語婕 key 是免費獨立 key'
+          note: 'Agnes 語婕(OpenClaw) key 是免費獨立 key'
         },
         {
-          name: '筱蜜',
+          name: '筱蜜(Hermes)',
           category: 'Agent / 維運秘書',
           purpose: 'HomeLab、服務檢查、log、SOP、自拍/影片',
           payment: 'Agnes 免費 key',
           behind: 'Hermes + Agnes API',
-          note: '筱蜜要有秘書感，不要像機器人'
+          note: '筱蜜(Hermes)要有秘書感，不要像機器人'
         },
         {
           name: 'Codex',
@@ -193,7 +193,7 @@ var CONSOLE_DATA = {
         { name: 'ComfyUI', description: '本機生圖試驗，非日常主力' },
         { name: 'MCP 知識庫 x4', description: '活資料查詢' },
         { name: 'OpenCode server', description: '日常 HomeLab 開發' },
-        { name: 'Hermes 筱蜜', description: 'Agent 平台' },
+        { name: 'Hermes 筱蜜(Hermes)', description: 'Agent 平台' },
         { name: 'PM2 / Docker', description: '常駐與容器管理' }
       ]
     },
@@ -229,8 +229,8 @@ var CONSOLE_DATA = {
         { name: 'Ollama-cloud-Proxy', description: '15 個 Ollama 免費帳號管理入口', badge: '雙重身份' },
         { name: 'Nvidia NIM', description: '4 個免費帳號，由 NewAPI 管' },
         { name: 'OpenCode Zen', description: '4 個免費帳號，由 NewAPI 管' },
-        { name: 'Agnes 語婕 key', description: '免費' },
-        { name: 'Agnes 筱蜜 key', description: '免費' }
+        { name: 'Agnes 語婕(OpenClaw) key', description: '免費' },
+        { name: 'Agnes 筱蜜(Hermes) key', description: '免費' }
       ]
     },
     {
@@ -250,32 +250,32 @@ var CONSOLE_DATA = {
   agentRelations: {
     agents: [
       {
-        name: '語婕',
+        name: '語婕(OpenClaw)',
         platform: 'OpenClaw',
         role: '生活秘書',
         manages: '生活、提醒、帳務、陪伴',
-        selfie: 'Agnes 語婕 key',
-        knowledge: '語婕相關 MCP / 知識庫',
+        selfie: 'Agnes 語婕(OpenClaw) key',
+        knowledge: '語婕(OpenClaw)相關 MCP / 知識庫',
         color: '#ec4899'
       },
       {
-        name: '筱蜜',
+        name: '筱蜜(Hermes)',
         platform: 'Hermes',
         role: 'HomeLab 維運秘書',
         manages: '機器、服務、Docker、PM2、log、SOP',
-        selfie: 'Agnes 筱蜜 key',
+        selfie: 'Agnes 筱蜜(Hermes) key',
         knowledge: 'HomeLab MCP / 知識庫',
         note: '有秘書感，不要像機器人',
         color: '#8b5cf6'
       }
     ],
     connections: [
-      { from: '語婕', to: 'Agnes 語婕 key', type: '自拍' },
-      { from: '筱蜜', to: 'Agnes 筱蜜 key', type: '自拍' },
-      { from: '語婕', to: 'MCP 知識庫', type: '查詢' },
-      { from: '筱蜜', to: 'MCP 知識庫', type: '查詢' },
-      { from: '筱蜜', to: 'PM2 / Docker', type: '管理' },
-      { from: '筱蜜', to: 'HomeLab', type: '維運' },
+      { from: '語婕(OpenClaw)', to: 'Agnes 語婕(OpenClaw) key', type: '自拍' },
+      { from: '筱蜜(Hermes)', to: 'Agnes 筱蜜(Hermes) key', type: '自拍' },
+      { from: '語婕(OpenClaw)', to: 'MCP 知識庫', type: '查詢' },
+      { from: '筱蜜(Hermes)', to: 'MCP 知識庫', type: '查詢' },
+      { from: '筱蜜(Hermes)', to: 'PM2 / Docker', type: '管理' },
+      { from: '筱蜜(Hermes)', to: 'HomeLab', type: '維運' },
       { from: 'OpenCode', to: 'ComfyUI', type: '腳本操作' },
       { from: 'NewAPI', to: 'Nvidia NIM x4', type: '管理' },
       { from: 'NewAPI', to: 'OpenCode Zen x4', type: '管理' },
@@ -306,14 +306,14 @@ var CONSOLE_DATA = {
     {
       name: 'Agnes API',
       type: '雲端 API 服務',
-      description: '提供語婕與筱蜜的免費獨立 key',
-      children: ['語婕免費 key', '筱蜜免費 key']
+      description: '提供語婕(OpenClaw)與筱蜜(Hermes)的免費獨立 key',
+      children: ['語婕(OpenClaw)免費 key', '筱蜜(Hermes)免費 key']
     },
     {
       name: 'MCP 知識庫 x4',
       type: '自架於 M2 Pro',
       description: '4 個知識庫，供 Agent 查詢活資料',
-      children: ['語婕知識庫', '筱蜜知識庫', '技術文件', 'HomeLab']
+      children: ['語婕(OpenClaw)知識庫', '筱蜜(Hermes)知識庫', '技術文件', 'HomeLab']
     }
   ],
 

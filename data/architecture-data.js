@@ -62,7 +62,7 @@ var ARCH_DATA = {
     },
     {
       id: 'yujie',
-      name: '語婕',
+      name: '語婕(OpenClaw)',
       type: 'entry',
       layer: 'entry',
       location: 'API',
@@ -75,7 +75,7 @@ var ARCH_DATA = {
     },
     {
       id: 'xiaomi',
-      name: '筱蜜',
+      name: '筱蜜(Hermes)',
       type: 'entry',
       layer: 'entry',
       location: 'API',
@@ -147,10 +147,10 @@ var ARCH_DATA = {
       layer: 'agent',
       location: 'M2 Pro',
       payment: '自架',
-      directUse: '語婕',
+      directUse: '語婕(OpenClaw)',
       status: 'active',
       tags: ['自架', 'M2 Pro', 'Agent'],
-      description: '語婕的 Agent 平台。處理生活提醒、帳務、陪伴。',
+      description: '語婕(OpenClaw)的 Agent 平台。處理生活提醒、帳務、陪伴。',
       notes: ['Telegram 入口', '個人 AI Agent 研究平台']
     },
     {
@@ -160,10 +160,10 @@ var ARCH_DATA = {
       layer: 'agent',
       location: 'M2 Pro',
       payment: '自架',
-      directUse: '筱蜜',
+      directUse: '筱蜜(Hermes)',
       status: 'active',
       tags: ['自架', 'M2 Pro', 'Agent'],
-      description: '筱蜜的 Agent 平台。管理 HomeLab 維運。',
+      description: '筱蜜(Hermes)的 Agent 平台。管理 HomeLab 維運。',
       notes: ['Docker / PM2 管理', 'Telegram 入口']
     },
 
@@ -232,8 +232,8 @@ var ARCH_DATA = {
       directUse: '系統',
       status: 'active',
       tags: ['付費', 'API', '幕後'],
-      description: 'Agnes API 平台。提供語婕與筱蜜的免費獨立 key 進行自拍/影片。',
-      notes: ['我不是直接操作 Agnes', '語婕與筱蜜各自有獨立的 key']
+      description: 'Agnes API 平台。提供語婕(OpenClaw)與筱蜜(Hermes)的免費獨立 key 進行自拍/影片。',
+      notes: ['我不是直接操作 Agnes', '語婕(OpenClaw)與筱蜜(Hermes)各自有獨立的 key']
     },
     {
       id: 'chatgpt-plus',
@@ -369,28 +369,28 @@ var ARCH_DATA = {
     },
     {
       id: 'kb-yujie',
-      name: '語婕知識庫',
+      name: '語婕(OpenClaw)知識庫',
       type: 'knowledge',
       layer: 'knowledge',
       location: 'M2 Pro',
       payment: '自架',
-      directUse: '語婕',
+      directUse: '語婕(OpenClaw)',
       status: 'active',
       tags: ['自架', 'M2 Pro', '幕後', '知識庫'],
-      description: '語婕相關的 MCP 知識庫。',
+      description: '語婕(OpenClaw)相關的 MCP 知識庫。',
       notes: ['活資料查詢']
     },
     {
       id: 'kb-xiaomi',
-      name: '筱蜜知識庫',
+      name: '筱蜜(Hermes)知識庫',
       type: 'knowledge',
       layer: 'knowledge',
       location: 'M2 Pro',
       payment: '自架',
-      directUse: '筱蜜',
+      directUse: '筱蜜(Hermes)',
       status: 'active',
       tags: ['自架', 'M2 Pro', '幕後', '知識庫'],
-      description: '筱蜜相關的 MCP 知識庫。',
+      description: '筱蜜(Hermes)相關的 MCP 知識庫。',
       notes: ['HomeLab 維運資料']
     },
     {
@@ -423,28 +423,28 @@ var ARCH_DATA = {
     // ── Agnes 自拍引擎 ──
     {
       id: 'agnes-yujie',
-      name: 'Agnes 語婕 key',
+      name: 'Agnes 語婕(OpenClaw) key',
       type: 'media',
       layer: 'media',
       location: 'API',
       payment: '免費',
-      directUse: '語婕',
+      directUse: '語婕(OpenClaw)',
       status: 'active',
       tags: ['免費', 'API', '幕後', '媒體'],
-      description: '語婕的 Agnes 免費獨立 key。用於自拍/影片。',
+      description: '語婕(OpenClaw)的 Agnes 免費獨立 key。用於自拍/影片。',
       notes: ['我不是直接操作 Agnes']
     },
     {
       id: 'agnes-xiaomi',
-      name: 'Agnes 筱蜜 key',
+      name: 'Agnes 筱蜜(Hermes) key',
       type: 'media',
       layer: 'media',
       location: 'API',
       payment: '免費',
-      directUse: '筱蜜',
+      directUse: '筱蜜(Hermes)',
       status: 'active',
       tags: ['免費', 'API', '幕後', '媒體'],
-      description: '筱蜜的 Agnes 免費獨立 key。用於自拍/影片。',
+      description: '筱蜜(Hermes)的 Agnes 免費獨立 key。用於自拍/影片。',
       notes: ['我不是直接操作 Agnes']
     },
     {
@@ -462,28 +462,28 @@ var ARCH_DATA = {
     },
     {
       id: 'media-yujie',
-      name: '語婕自拍 / 影片',
+      name: '語婕(OpenClaw)自拍 / 影片',
       type: 'media',
       layer: 'media',
       location: '輸出',
       payment: '免費',
-      directUse: '語婕',
+      directUse: '語婕(OpenClaw)',
       status: 'active',
       tags: ['免費', '媒體'],
-      description: '語婕的自拍與影片輸出。',
+      description: '語婕(OpenClaw)的自拍與影片輸出。',
       notes: ['Agnes 免費 key 產生']
     },
     {
       id: 'media-xiaomi',
-      name: '筱蜜自拍 / 影片',
+      name: '筱蜜(Hermes)自拍 / 影片',
       type: 'media',
       layer: 'media',
       location: '輸出',
       payment: '免費',
-      directUse: '筱蜜',
+      directUse: '筱蜜(Hermes)',
       status: 'active',
       tags: ['免費', '媒體'],
-      description: '筱蜜的自拍與影片輸出。',
+      description: '筱蜜(Hermes)的自拍與影片輸出。',
       notes: ['Agnes 免費 key 產生']
     },
 
@@ -543,8 +543,8 @@ var ARCH_DATA = {
     { from: 'hongru', to: 'claude-cc', label: '測試', type: 'use' },
 
     // 入口 → Agent 平台
-    { from: 'yujie', to: 'openclaw', label: '語婕平台', type: 'runs-on' },
-    { from: 'xiaomi', to: 'hermes', label: '筱蜜平台', type: 'runs-on' },
+    { from: 'yujie', to: 'openclaw', label: '語婕(OpenClaw)平台', type: 'runs-on' },
+    { from: 'xiaomi', to: 'hermes', label: '筱蜜(Hermes)平台', type: 'runs-on' },
 
     // 入口 → 燃料
     { from: 'chatgpt', to: 'chatgpt-plus', label: '訂閱', type: 'payment' },
@@ -562,7 +562,7 @@ var ARCH_DATA = {
     { from: 'hermes', to: 'mcp-x4', label: '查詢', type: 'query' },
     { from: 'hermes', to: 'mint', label: '管理 Docker/PM2', type: 'manage' },
 
-    // 筱蜜建議升級路徑
+    // 筱蜜(Hermes)建議升級路徑
     { from: 'xiaomi', to: 'codex-engine', label: '建議升級', type: 'recommend' },
     { from: 'xiaomi', to: 'antigravity2-engine', label: '建議升級', type: 'recommend' },
     { from: 'xiaomi', to: 'opencode-engine', label: '建議升級', type: 'recommend' },
@@ -626,7 +626,7 @@ var ARCH_DATA = {
     {
       id: 'agent-relations',
       title: 'Agent 關係圖',
-      description: '語婕與筱蜜的完整路徑對照。語婕管生活，筱蜜管機器。',
+      description: '語婕(OpenClaw)與筱蜜(Hermes)的完整路徑對照。語婕(OpenClaw)管生活，筱蜜(Hermes)管機器。',
       nodeIds: ['hongru', 'yujie', 'xiaomi', 'openclaw', 'hermes', 'kb-yujie', 'kb-xiaomi', 'mcp-x4', 'agnes-yujie', 'agnes-xiaomi', 'media-yujie', 'media-xiaomi', 'codex-engine', 'antigravity2-engine', 'opencode-engine'],
       edgeIds: ['hongru-to-yujie', 'hongru-to-xiaomi', 'yujie-to-openclaw', 'xiaomi-to-hermes', 'openclaw-to-kb-yujie', 'hermes-to-kb-xiaomi', 'openclaw-to-mcp-x4', 'hermes-to-mcp-x4', 'openclaw-to-agnes-yujie', 'hermes-to-agnes-xiaomi', 'agnes-yujie-to-media-yujie', 'agnes-xiaomi-to-media-xiaomi', 'xiaomi-to-codex-engine', 'xiaomi-to-antigravity2-engine', 'xiaomi-to-opencode-engine']
     },
