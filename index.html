@@ -614,6 +614,92 @@
       display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;
     }
 
+    /* ─── Summary Strip ─── */
+    .summary-strip {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      padding: 16px 20px; margin: 20px 0;
+      border: 1px solid var(--border); border-radius: 12px;
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(19,27,46,0.6) 100%);
+    }
+    .summary-strip:hover { border-color: var(--border-hover); }
+    .summary-item {
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 2px; padding: 6px 14px 6px 10px;
+      border-right: 1px solid var(--border);
+      min-width: 90px;
+    }
+    .summary-item:last-child { border-right: none; }
+    .summary-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem; font-weight: 800;
+      line-height: 1.2;
+    }
+    .summary-label {
+      font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.04em; color: var(--faint);
+    }
+    .summary-detail {
+      font-size: 0.68rem; color: var(--muted); margin-top: 1px;
+    }
+
+    /* ─── Legend ─── */
+    .arch-legend {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      padding: 12px 16px; margin-bottom: 16px;
+      border: 1px solid var(--border); border-radius: 10px;
+      background: rgba(255,255,255,0.015);
+      font-size: 0.72rem;
+    }
+    .legend-group { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+    .legend-title {
+      font-weight: 700; color: var(--faint);
+      margin-right: 4px; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .legend-item { display: inline-flex; align-items: center; gap: 3px; cursor: default; }
+    .legend-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .legend-text { font-size: 0.65rem; color: var(--muted); }
+
+    /* ─── Cost View ─── */
+    .cost-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    .cost-col {
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); overflow: hidden;
+    }
+    .cost-col-header {
+      padding: 12px 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .cost-col-body { padding: 12px 16px; }
+    .cost-group {
+      margin-bottom: 12px;
+    }
+    .cost-group:last-child { margin-bottom: 0; }
+    .cost-group-title {
+      font-size: 0.72rem; font-weight: 700; color: var(--muted);
+      margin-bottom: 6px; padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cost-flow {
+      display: flex; flex-direction: column; gap: 4px;
+      padding-left: 6px;
+    }
+    .cost-flow-row {
+      display: flex; align-items: center; gap: 6px;
+      flex-wrap: wrap;
+    }
+    .cost-flow-arrow {
+      color: var(--faint); font-size: 0.75rem; flex-shrink: 0;
+    }
     /* ─── Responsive ─── */
 
     @media (max-width: 940px) {
@@ -779,16 +865,46 @@
     .fm-node.knowledge { background: rgba(34,197,94,0.12); color: var(--green); border-color: rgba(34,197,94,0.25); }
     .fm-node.media { background: rgba(236,72,153,0.12); color: var(--pink); border-color: rgba(236,72,153,0.25); }
     .fm-node.infra { background: rgba(99,102,241,0.12); color: var(--indigo); border-color: rgba(99,102,241,0.25); }
-    .fm-node .fm-badge {
-      display: inline-block; font-size: 0.6rem; font-weight: 700;
-      padding: 1px 6px; border-radius: 4px;
-      background: rgba(255,255,255,0.08); color: var(--faint);
-      margin-left: 2px;
+    .badge {
+      display: inline-flex; align-items: center;
+      padding: 1px 7px; border-radius: 4px;
+      font-size: 0.6rem; font-weight: 700; white-space: nowrap;
+      line-height: 1.6; letter-spacing: 0.01em;
     }
-    .fm-node .fm-badge.paid { background: rgba(45,212,191,0.2); color: var(--accent); }
-    .fm-node .fm-badge.free { background: rgba(56,189,248,0.2); color: var(--sky); }
-    .fm-node .fm-badge.self { background: rgba(139,92,246,0.2); color: var(--purple); }
-    .fm-node .fm-badge.exploring { background: rgba(245,158,11,0.2); color: var(--amber); }
+    .badge-row { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+    .fm-node .badge-row { margin-top: 2px; }
+
+    /* Payment badges */
+    .badge-payment.paid { background: rgba(248,214,109,0.15); color: var(--gold); }
+    .badge-payment.free { background: rgba(34,197,94,0.15); color: var(--green); }
+    .badge-payment.free-key { background: rgba(74,222,128,0.12); color: #6ee7b7; }
+    .badge-payment.free-account { background: rgba(34,197,94,0.1); color: var(--green); }
+    .badge-payment.self-hosted { background: rgba(99,102,241,0.15); color: var(--indigo); }
+    .badge-payment.exploring { background: rgba(139,92,246,0.15); color: var(--purple); }
+    .badge-payment.removed { background: rgba(255,255,255,0.06); color: var(--faint); text-decoration: line-through; }
+
+    /* Location badges */
+    .badge-location.cloud { background: rgba(56,189,248,0.15); color: var(--sky); }
+    .badge-location.m2-pro { background: rgba(99,102,241,0.15); color: var(--indigo); }
+    .badge-location.mint { background: rgba(45,212,191,0.15); color: var(--accent); }
+    .badge-location.local { background: rgba(245,158,11,0.15); color: var(--amber); }
+    .badge-location.n-a { background: rgba(255,255,255,0.04); color: var(--faint); }
+
+    /* Role badges */
+    .badge-role.direct-entry { background: rgba(56,189,248,0.15); color: var(--sky); }
+    .badge-role.agent { background: rgba(139,92,246,0.15); color: var(--purple); }
+    .badge-role.model-fuel { background: rgba(244,63,94,0.15); color: var(--rose); }
+    .badge-role.media-engine { background: rgba(236,72,153,0.15); color: var(--pink); }
+    .badge-role.knowledge { background: rgba(34,197,94,0.15); color: var(--green); }
+    .badge-role.backend { background: rgba(99,102,241,0.15); color: var(--indigo); }
+    .badge-role.bookmark { background: rgba(245,158,11,0.15); color: var(--amber); }
+    .badge-role.experiment { background: rgba(245,158,11,0.15); color: var(--amber); }
+    .badge-role.direct-entry { background: rgba(56,189,248,0.15); color: var(--sky); }
+
+    /* Role-based visual styles for flow map nodes */
+    .fm-node[data-direct="true"] { border-width: 2px; border-style: solid; }
+    .fm-node[data-role="backend"] { border-style: dashed; }
+    .fm-node.removed { opacity: 0.4; text-decoration: line-through; }
 
     /* ─── Flow arrow (→) ─── */
     .fm-arrow {
@@ -958,6 +1074,92 @@
       cursor: pointer;
     }
 
+    /* ─── Summary Strip ─── */
+    .summary-strip {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      padding: 16px 20px; margin: 20px 0;
+      border: 1px solid var(--border); border-radius: 12px;
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(19,27,46,0.6) 100%);
+    }
+    .summary-strip:hover { border-color: var(--border-hover); }
+    .summary-item {
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 2px; padding: 6px 14px 6px 10px;
+      border-right: 1px solid var(--border);
+      min-width: 90px;
+    }
+    .summary-item:last-child { border-right: none; }
+    .summary-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem; font-weight: 800;
+      line-height: 1.2;
+    }
+    .summary-label {
+      font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.04em; color: var(--faint);
+    }
+    .summary-detail {
+      font-size: 0.68rem; color: var(--muted); margin-top: 1px;
+    }
+
+    /* ─── Legend ─── */
+    .arch-legend {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      padding: 12px 16px; margin-bottom: 16px;
+      border: 1px solid var(--border); border-radius: 10px;
+      background: rgba(255,255,255,0.015);
+      font-size: 0.72rem;
+    }
+    .legend-group { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+    .legend-title {
+      font-weight: 700; color: var(--faint);
+      margin-right: 4px; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .legend-item { display: inline-flex; align-items: center; gap: 3px; cursor: default; }
+    .legend-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .legend-text { font-size: 0.65rem; color: var(--muted); }
+
+    /* ─── Cost View ─── */
+    .cost-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    .cost-col {
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); overflow: hidden;
+    }
+    .cost-col-header {
+      padding: 12px 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .cost-col-body { padding: 12px 16px; }
+    .cost-group {
+      margin-bottom: 12px;
+    }
+    .cost-group:last-child { margin-bottom: 0; }
+    .cost-group-title {
+      font-size: 0.72rem; font-weight: 700; color: var(--muted);
+      margin-bottom: 6px; padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cost-flow {
+      display: flex; flex-direction: column; gap: 4px;
+      padding-left: 6px;
+    }
+    .cost-flow-row {
+      display: flex; align-items: center; gap: 6px;
+      flex-wrap: wrap;
+    }
+    .cost-flow-arrow {
+      color: var(--faint); font-size: 0.75rem; flex-shrink: 0;
+    }
     /* ─── Responsive ─── */
     @media (max-width: 700px) {
       .fm-dual { grid-template-columns: 1fr; }
@@ -965,6 +1167,11 @@
       .fm-branch-label { min-width: 70px; font-size: 0.68rem; }
       .fm-node { font-size: 0.72rem; padding: 4px 10px; }
       .arch-detail { width: 100%; }
+      .summary-item { min-width: 0; border-right: none; padding: 4px 8px; }
+      .summary-strip { gap: 4px; padding: 12px 14px; }
+      .summary-num { font-size: 1.1rem; }
+      .cost-grid { grid-template-columns: 1fr; }
+      .arch-legend { gap: 8px; flex-direction: column; font-size: 0.65rem; }
     }
   </style>
 </head>
@@ -999,6 +1206,11 @@
       <p class="lede">AI OS 架構探索、工具管理、書籍與專案的個人入口。</p>
     </section>
 
+    <!-- ─── Summary Strip ─── -->
+    <section class="shell" aria-label="一眼看懂總覽">
+      <div class="summary-strip" id="summaryStrip"></div>
+    </section>
+
     <!-- ─── AI OS Architecture Explorer ─── -->
     <section class="shell section" id="arch" aria-labelledby="arch-title">
       <div class="arch-hero">
@@ -1006,6 +1218,7 @@
         <div class="arch-hero-desc">以 4 張流程圖看懂 AI 架構的關係與流向。</div>
       </div>
 
+      <div class="arch-legend" id="archLegend"></div>
       <div class="arch-tabs" id="archTabs"></div>
       <div class="arch-panels" id="archPanels"></div>
 
@@ -1518,13 +1731,27 @@
         if (!n) return;
         var c = $('archDetailContent');
         c.innerHTML = '';
-        c.appendChild(textEl('div', 'arch-detail-name', n.name));
+        // Name with badges
+        var nameEl = make('div', 'arch-detail-name', '');
+        nameEl.innerHTML = n.name;
+        c.appendChild(nameEl);
+        var badgeRow = make('div', 'badge-row', '');
+        var badges = [];
+        if (n.role) badges.push(roleLabel(n.role));
+        if (n.paymentStatus) badges.push(paymentLabel(n.paymentStatus));
+        if (n.deployLocation) badges.push(deployLabel(n.deployLocation));
+        if (badges.length) badgeRow.innerHTML = badges.join('');
+        c.appendChild(badgeRow);
+        // Description
         c.appendChild(textEl('div', 'arch-detail-desc', n.description));
+        // Fields
         var fields = [
           { label: '類型', value: n.type },
+          { label: '付款', value: paymentLabel(n.paymentStatus) },
+          { label: '部署', value: deployLabel(n.deployLocation) },
+          { label: '角色', value: roleLabel(n.role) },
+          { label: '直接使用', value: n.isDirectUse ? '是' : '否' },
           { label: '位置', value: n.location },
-          { label: '付費', value: n.payment },
-          { label: '直接使用', value: n.directUse },
           { label: '狀態', value: n.status }
         ];
         fields.forEach(function (f) {
@@ -1556,7 +1783,9 @@
       function renderArchTabs() {
         var container = $('archTabs');
         container.innerHTML = '';
-        A.maps.forEach(function (m) {
+        // 4 flow maps + 1 cost view
+        var tabs = A.maps.concat([{ id: 'cost-view', title: '成本視角' }]);
+        tabs.forEach(function (m) {
           var btn = textEl('button', 'arch-tab' + (m.id === activeMapId ? ' active' : ''), m.title);
           btn.dataset.view = m.id;
           btn.addEventListener('click', function () { switchArchTab(m.id); });
@@ -1578,11 +1807,44 @@
         return { person: 'person', entry: 'entry', agent: 'agent', engine: 'engine', fuel: 'fuel', knowledge: 'knowledge', media: 'media', infra: 'infra' }[n.type] || 'entry';
       }
 
+      /* ─── Badge helpers ─── */
+      function badgeLabel(cls, text) {
+        return '<span class="badge ' + cls + '">' + text + '</span>';
+      }
+      function paymentLabel(s) {
+        var map = {'paid':'付費','free':'免費','free-key':'免費 Key','free-account':'免費帳號','self-hosted':'自架','exploring':'探索中','removed':'已移除'};
+        return badgeLabel('badge-payment ' + s, map[s] || s);
+      }
+      function deployLabel(s) {
+        var map = {'cloud':'雲端','m2-pro':'M2 Pro','mint':'Mint','local':'本機','n/a':'不適用'};
+        return badgeLabel('badge-location ' + s, map[s] || s);
+      }
+      function roleLabel(s) {
+        var map = {'direct-entry':'直接入口','agent':'Agent','model-fuel':'模型燃料','media-engine':'媒體引擎','knowledge':'知識庫','backend':'後台服務','bookmark':'書籤','experiment':'實驗'};
+        return badgeLabel('badge-role ' + s, map[s] || s);
+      }
+
       function makeNodeEl(id, extraCls) {
         var n = nodeMap[id];
         if (!n) return null;
         var cls = 'fm-node ' + nodeTypeCls(n) + (selectedNodeId === id ? ' selected' : '') + (extraCls ? ' ' + extraCls : '');
-        var el = textEl('span', cls, n.name);
+        var el = make('span', cls, '');
+        // Name
+        el.innerHTML = n.name;
+        // Badges
+        var badges = [];
+        if (n.role) badges.push(roleLabel(n.role));
+        if (n.paymentStatus) badges.push(paymentLabel(n.paymentStatus));
+        if (n.deployLocation) badges.push(deployLabel(n.deployLocation));
+        if (badges.length) {
+          var row = make('span', 'badge-row', '');
+          row.innerHTML = badges.join('');
+          el.appendChild(row);
+        }
+        // Data attributes for role-based styling
+        if (n.isDirectUse) el.setAttribute('data-direct', 'true');
+        if (n.role) el.setAttribute('data-role', n.role);
+        if (n.paymentStatus === 'removed') el.classList.add('removed');
         el.addEventListener('click', function (e) { e.stopPropagation(); showArchNode(id); });
         return el;
       }
@@ -1915,6 +2177,172 @@
         container.appendChild(deploy);
       }
 
+      /* ════════════════════════════════════════════
+         Summary Strip
+         ════════════════════════════════════════════ */
+      function renderSummaryStrip() {
+        var nodes = A.nodes;
+        var directCount = nodes.filter(function (n) { return n.type === 'entry'; }).length;
+        var paidCount = nodes.filter(function (n) { return n.id === 'chatgpt-plus' || n.id === 'google-ai-pro' || n.id === 'opencode-go'; }).length;
+        var selfHosted = nodes.filter(function (n) { return n.paymentStatus === 'self-hosted' && n.type !== 'infra'; }).length;
+        var knowCount = nodes.filter(function (n) { return n.role === 'knowledge'; }).length;
+        var freeStr = 'Ollama ×15、NIM ×4、OpenCode Zen ×4、Agnes ×2、Copilot Student';
+
+        var container = $('summaryStrip');
+        container.innerHTML = '';
+        container.appendChild(makeItem(directCount, '直接入口', '我直接操作的介面'));
+        container.appendChild(makeItem(paidCount, '付費服務', 'ChatGPT Plus / Google AI Pro / OpenCode GO'));
+        container.appendChild(makeItem('×', '免費帳號 / Key', freeStr));
+        container.appendChild(makeItem(selfHosted, '自架服務', 'M2 Pro / Mint / MCP ×4 / NewAPI / Ollama-Proxy / ComfyUI / OpenCode'));
+        container.appendChild(makeItem(knowCount, '知識庫', '4 MCP + 個人知識庫'));
+
+        function makeItem(num, label, detail) {
+          var el = make('div', 'summary-item', '');
+          var numEl = make('span', 'summary-num', String(num));
+          numEl.style.color = num === '×' ? 'var(--accent)' : 'var(--gold)';
+          el.appendChild(numEl);
+          el.appendChild(textEl('span', 'summary-label', label));
+          el.appendChild(textEl('span', 'summary-detail', detail));
+          el.style.width = '';
+          return el;
+        }
+      }
+
+      /* ════════════════════════════════════════════
+         Cost View
+         ════════════════════════════════════════════ */
+      function renderCostView() {
+        var container = $('archPanels');
+        container.innerHTML = '';
+
+        var header = make('div', 'fm-header', '<div class="fm-title">成本／額度視角</div><div class="fm-desc">一眼看出哪些要花錢、哪些免費、哪些自架。</div>');
+        container.appendChild(header);
+
+        var grid = make('div', 'cost-grid', '');
+
+        // Column 1: 付費
+        var paidCol = make('div', 'cost-col', '');
+        paidCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment paid">付費</span> 訂閱服務</div>';
+        var paidBody = make('div', 'cost-col-body', '');
+        var subGroups = [
+          { title: 'ChatGPT Plus', items: ['chatgpt', 'codex-entry', 'codex-engine'] },
+          { title: 'Google AI Pro', items: ['gemini', 'antigravity2', 'notebooklm', 'antigravity2-engine'] },
+          { title: 'OpenCode GO', items: ['opencode-entry', 'claude-cc', 'opencode-engine', 'claude-cc-engine'] },
+          { title: 'Agnes API', items: ['agnes-yujie', 'agnes-xiaomi'] }
+        ];
+        subGroups.forEach(function (g) {
+          var group = make('div', 'cost-group', '');
+          group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
+          var flow = make('div', 'cost-flow', '');
+          g.items.forEach(function (id, i) {
+            var row = make('div', 'cost-flow-row', '');
+            if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
+            var el = makeNodeEl(id);
+            if (el) row.appendChild(el);
+            flow.appendChild(row);
+          });
+          group.appendChild(flow);
+          paidBody.appendChild(group);
+        });
+        paidCol.appendChild(paidBody);
+        grid.appendChild(paidCol);
+
+        // Column 2: 免費
+        var freeCol = make('div', 'cost-col', '');
+        freeCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment free">免費</span> 免費帳號 / Key</div>';
+        var freeBody = make('div', 'cost-col-body', '');
+        var freeGroups = [
+          { title: 'Copilot Student（學生方案）', items: ['copilot-student'] },
+          { title: 'Ollama ×15（由 Proxy 管理）', items: ['ollama-cloud-proxy', 'ollama-accounts'] },
+          { title: 'NIM ×4 / OpenCode Zen ×4（由 NewAPI 管理）', items: ['newapi', 'nvidia-nim', 'opencode-zen'] },
+          { title: 'Agnes 免費 Key', items: ['agnes-yujie', 'agnes-xiaomi'] }
+        ];
+        freeGroups.forEach(function (g) {
+          var group = make('div', 'cost-group', '');
+          group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
+          var flow = make('div', 'cost-flow', '');
+          g.items.forEach(function (id, i) {
+            var row = make('div', 'cost-flow-row', '');
+            if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
+            var el = makeNodeEl(id);
+            if (el) row.appendChild(el);
+            flow.appendChild(row);
+          });
+          group.appendChild(flow);
+          freeBody.appendChild(group);
+        });
+        freeCol.appendChild(freeBody);
+        grid.appendChild(freeCol);
+
+        // Column 3: 自架
+        var selfCol = make('div', 'cost-col', '');
+        selfCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment self-hosted">自架</span> 自架但非訂閱</div>';
+        var selfBody = make('div', 'cost-col-body', '');
+        var selfGroups = [
+          { title: 'Agent 平台', items: ['openclaw', 'hermes'] },
+          { title: '模型代理', items: ['ollama-cloud-proxy', 'newapi'] },
+          { title: '知識庫', items: ['mcp-x4', 'kb-yujie', 'kb-xiaomi', 'kb-tech', 'kb-homelab'] },
+          { title: '媒體', items: ['comfyui'] },
+          { title: '主機', items: ['m2pro', 'mint'] }
+        ];
+        selfGroups.forEach(function (g) {
+          var group = make('div', 'cost-group', '');
+          group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
+          var flow = make('div', 'cost-flow', '');
+          g.items.forEach(function (id, i) {
+            var row = make('div', 'cost-flow-row', '');
+            if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
+            var el = makeNodeEl(id);
+            if (el) row.appendChild(el);
+            flow.appendChild(row);
+          });
+          group.appendChild(flow);
+          selfBody.appendChild(group);
+        });
+        selfCol.appendChild(selfBody);
+        grid.appendChild(selfCol);
+
+        container.appendChild(grid);
+      }
+
+      /* ─── Legend ─── */
+      function renderLegend() {
+        var container = $('archLegend');
+        container.innerHTML = '';
+        
+        // Payment legend
+        var payGroup = make('div', 'legend-group', '');
+        payGroup.innerHTML = '<span class="legend-title">付款</span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span><span class="legend-text">付費</span></span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span><span class="legend-text">免費</span></span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:#6ee7b7"></span><span class="legend-text">免費Key</span></span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:var(--indigo)"></span><span class="legend-text">自架</span></span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span><span class="legend-text">探索中</span></span>';
+        container.appendChild(payGroup);
+        
+        // Direct/Backend legend
+        var borderGroup = make('div', 'legend-group', '');
+        borderGroup.innerHTML = '<span class="legend-title">外框</span>' +
+          '<span class="legend-item"><span style="display:inline-block;width:14px;height:10px;border:2px solid var(--text);border-radius:3px;margin-right:3px"></span><span class="legend-text">直接操作</span></span>' +
+          '<span class="legend-item"><span style="display:inline-block;width:14px;height:10px;border:1px dashed var(--muted);border-radius:3px;margin-right:3px"></span><span class="legend-text">幕後服務</span></span>';
+        container.appendChild(borderGroup);
+        
+        // Location legend
+        var locGroup = make('div', 'legend-group', '');
+        locGroup.innerHTML = '<span class="legend-title">部署</span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:var(--sky)"></span><span class="legend-text">雲端</span></span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:var(--indigo)"></span><span class="legend-text">M2 Pro</span></span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span><span class="legend-text">Mint</span></span>' +
+          '<span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span><span class="legend-text">本機</span></span>';
+        container.appendChild(locGroup);
+
+        // Arrow legend
+        var arrowGroup = make('div', 'legend-group', '');
+        arrowGroup.innerHTML = '<span class="legend-title">箭頭</span>' +
+          '<span class="legend-item"><span style="font-size:0.75rem;color:var(--faint)">→</span><span class="legend-text">依賴/使用</span></span>';
+        container.appendChild(arrowGroup);
+      }
+
       /* ─── Router ─── */
       function renderMap(id) {
         switch (id) {
@@ -1922,6 +2350,7 @@
           case 'agent-relations': renderAgentRelations(); break;
           case 'fuel': renderFuelMap(); break;
           case 'deployment': renderDeploymentMap(); break;
+          case 'cost-view': renderCostView(); break;
         }
       }
 
@@ -1938,6 +2367,8 @@
         $('archEdgeClose').addEventListener('click', function () {
           $('archEdgePopup').classList.remove('open');
         });
+        renderSummaryStrip();
+        renderLegend();
         renderArchTabs();
         renderMap(activeMapId);
       });
