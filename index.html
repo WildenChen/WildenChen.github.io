@@ -900,6 +900,70 @@
     .badge-role.bookmark { background: rgba(245,158,11,0.15); color: var(--amber); }
     .badge-role.experiment { background: rgba(245,158,11,0.15); color: var(--amber); }
     .badge-role.direct-entry { background: rgba(56,189,248,0.15); color: var(--sky); }
+    .badge-role.subscription-bundle { background: linear-gradient(135deg,rgba(248,214,109,0.2),rgba(245,158,11,0.1)); color: var(--gold); }
+
+    /* Service type badges (for subscription sub-services) */
+    .badge-service { }
+    .badge-service.direct-entry { background: rgba(56,189,248,0.15); color: var(--sky); }
+    .badge-service.coding { background: rgba(99,102,241,0.15); color: var(--indigo); }
+    .badge-service.research { background: rgba(139,92,246,0.15); color: var(--purple); }
+    .badge-service.analysis { background: rgba(244,63,94,0.15); color: var(--rose); }
+    .badge-service.media { background: rgba(236,72,153,0.15); color: var(--pink); }
+    .badge-service.voice { background: rgba(45,212,191,0.15); color: var(--accent); }
+    .badge-service.custom { background: rgba(245,158,11,0.15); color: var(--amber); }
+    .badge-service.document { background: rgba(34,197,94,0.15); color: var(--green); }
+    .badge-service.dev { background: rgba(56,189,248,0.15); color: var(--sky); }
+    .badge-service.ecosystem { background: rgba(45,212,191,0.15); color: var(--accent); }
+    .badge-service.search { background: rgba(99,102,241,0.15); color: var(--indigo); }
+    .badge-service.storage { background: rgba(248,214,109,0.15); color: var(--gold); }
+
+    /* Subscription bundle card layout */
+    .fm-bundle-container {
+      border: 1px solid var(--border); border-radius: 14px;
+      background: var(--surface); padding: 20px;
+      margin-bottom: 20px;
+    }
+    .fm-bundle-header {
+      display: flex; flex-direction: column; gap: 8px;
+      padding: 16px 20px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(248,214,109,0.08), rgba(245,158,11,0.04));
+      border: 1px solid rgba(248,214,109,0.15);
+      margin-bottom: 20px;
+    }
+    .fm-bundle-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .fm-bundle-desc {
+      font-size: 0.82rem; color: var(--muted);
+      line-height: 1.6;
+    }
+    .fm-bundle-note {
+      font-size: 0.72rem; color: var(--faint);
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px; line-height: 1.5;
+    }
+    .fm-bundle-children {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .fm-bundle-child {
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px; background: rgba(255,255,255,0.015);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .fm-bundle-child:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.03); }
+    .fm-bundle-child-name {
+      font-weight: 700; font-size: 0.8rem;
+      margin-bottom: 3px;
+    }
+    .fm-bundle-child-desc {
+      font-size: 0.68rem; color: var(--muted);
+      line-height: 1.4; margin-bottom: 4px;
+    }
 
     /* Role-based visual styles for flow map nodes */
     .fm-node[data-direct="true"] { border-width: 2px; border-style: solid; }
@@ -1172,6 +1236,9 @@
       .summary-num { font-size: 1.1rem; }
       .cost-grid { grid-template-columns: 1fr; }
       .arch-legend { gap: 8px; flex-direction: column; font-size: 0.65rem; }
+      .fm-bundle-children { grid-template-columns: 1fr 1fr; }
+      .fm-bundle-header { padding: 12px 14px; }
+      .fm-bundle-name { font-size: 1.05rem; }
     }
   </style>
 </head>
@@ -1783,8 +1850,8 @@
       function renderArchTabs() {
         var container = $('archTabs');
         container.innerHTML = '';
-        // 4 flow maps + 1 cost view
-        var tabs = A.maps.concat([{ id: 'cost-view', title: '成本視角' }]);
+        // 4 flow maps + cost view + bundles
+        var tabs = A.maps.concat([{ id: 'cost-view', title: '成本視角' }, { id: 'bundles', title: '訂閱包視角' }]);
         tabs.forEach(function (m) {
           var btn = textEl('button', 'arch-tab' + (m.id === activeMapId ? ' active' : ''), m.title);
           btn.dataset.view = m.id;
@@ -1820,8 +1887,12 @@
         return badgeLabel('badge-location ' + s, map[s] || s);
       }
       function roleLabel(s) {
-        var map = {'direct-entry':'直接入口','agent':'Agent','model-fuel':'模型燃料','media-engine':'媒體引擎','knowledge':'知識庫','backend':'後台服務','bookmark':'書籤','experiment':'實驗'};
+        var map = {'direct-entry':'直接入口','agent':'Agent','model-fuel':'模型燃料','media-engine':'媒體引擎','knowledge':'知識庫','backend':'後台服務','bookmark':'書籤','experiment':'實驗','subscription-bundle':'訂閱包'};
         return badgeLabel('badge-role ' + s, map[s] || s);
+      }
+      function serviceTypeBadge(s) {
+        var map = {'direct-entry':'直接入口','coding':'工程','research':'研究','analysis':'分析','media':'媒體','voice':'語音','custom':'自訂','document':'文件','dev':'開發','ecosystem':'生態','search':'搜尋','storage':'儲存'};
+        return badgeLabel('badge-service ' + s, map[s] || s);
       }
 
       function makeNodeEl(id, extraCls) {
@@ -2305,6 +2376,61 @@
         container.appendChild(grid);
       }
 
+      /* ════════════════════════════════════════════
+         Subscription Bundle Map
+         ════════════════════════════════════════════ */
+      function renderBundleMap() {
+        var container = $('archPanels');
+        container.innerHTML = '';
+        var header = make('div', 'fm-header', '<div class="fm-title">訂閱包視角</div><div class="fm-desc">把付費訂閱展開成可用服務，而不是只顯示單一工具。</div>');
+        container.appendChild(header);
+
+        ['chatgpt-plus', 'google-ai-pro'].forEach(function (bundleId) {
+          var bundle = nodeMap[bundleId];
+          if (!bundle) return;
+          var children = A.nodes.filter(function (n) { return n.bundleId === bundleId; });
+
+          var wrapper = make('div', 'fm-bundle-container', '');
+          var headerEl = make('div', 'fm-bundle-header', '');
+          var nameEl = make('div', 'fm-bundle-name', '');
+          var nameHtml = bundle.name;
+          var bundleRoleHtml = bundle.role ? roleLabel(bundle.role) : '';
+          var bundlePayHtml = bundle.paymentStatus ? paymentLabel(bundle.paymentStatus) : '';
+          var bundleLocHtml = bundle.deployLocation ? deployLabel(bundle.deployLocation) : '';
+          nameEl.innerHTML = nameHtml + ' ' + bundleRoleHtml + bundlePayHtml + bundleLocHtml;
+          headerEl.appendChild(nameEl);
+          headerEl.appendChild(textEl('div', 'fm-bundle-desc', bundle.description));
+          if (bundle.notes && bundle.notes.length) {
+            var noteEl = make('div', 'fm-bundle-note', '');
+            noteEl.innerHTML = '📌 ' + bundle.notes.join('<br>');
+            headerEl.appendChild(noteEl);
+          }
+          wrapper.appendChild(headerEl);
+
+          if (children.length) {
+            var grid = make('div', 'fm-bundle-children', '');
+            children.forEach(function (child) {
+              var card = make('div', 'fm-bundle-child', '');
+              card.addEventListener('click', function () { showArchNode(child.id); });
+              card.appendChild(textEl('div', 'fm-bundle-child-name', child.name));
+              if (child.description) {
+                card.appendChild(textEl('div', 'fm-bundle-child-desc', child.description));
+              }
+              var badgeRow = make('div', 'badge-row', '');
+              var badges = [];
+              if (child.serviceType) badges.push(serviceTypeBadge(child.serviceType));
+              if (child.paymentStatus) badges.push(paymentLabel(child.paymentStatus));
+              if (child.deployLocation) badges.push(deployLabel(child.deployLocation));
+              if (badges.length) badgeRow.innerHTML = badges.join('');
+              card.appendChild(badgeRow);
+              grid.appendChild(card);
+            });
+            wrapper.appendChild(grid);
+          }
+          container.appendChild(wrapper);
+        });
+      }
+
       /* ─── Legend ─── */
       function renderLegend() {
         var container = $('archLegend');
@@ -2351,6 +2477,7 @@
           case 'fuel': renderFuelMap(); break;
           case 'deployment': renderDeploymentMap(); break;
           case 'cost-view': renderCostView(); break;
+          case 'bundles': renderBundleMap(); break;
         }
       }
 
