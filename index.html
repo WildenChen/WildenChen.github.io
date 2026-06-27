@@ -62,22 +62,17 @@
 
     a { color: inherit; transition: all 0.2s ease; }
 
-    h1, h2, h3, h4, .brand, .section-label {
+    h1, h2, h3, h4, .brand, .section-label, .tab-btn {
       font-family: 'Outfit', sans-serif;
       letter-spacing: -0.02em;
     }
 
     h1, h2, h3, p { margin-top: 0; }
 
-    .shell {
-      width: min(100% - 32px, var(--max-width));
-      margin: 0 auto;
-    }
+    .shell { width: min(100% - 32px, var(--max-width)); margin: 0 auto; }
 
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      position: sticky; top: 0; z-index: 50;
       border-bottom: 1px solid var(--border);
       background: rgba(10, 14, 23, 0.8);
       backdrop-filter: blur(20px);
@@ -85,662 +80,580 @@
     }
 
     .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 12px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 18px; padding: 12px 0;
     }
 
     .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text);
-      font-size: 1.05rem;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--text); font-size: 1.05rem; font-weight: 700;
+      text-decoration: none; white-space: nowrap;
     }
 
     .brand-mark {
-      display: grid;
-      width: 32px;
-      height: 32px;
-      place-items: center;
+      display: grid; width: 32px; height: 32px; place-items: center;
       border-radius: 8px;
       background: linear-gradient(135deg, var(--accent), var(--sky));
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 800;
+      color: #fff; font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem; font-weight: 800;
     }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      overflow-x: auto;
-      scrollbar-width: none;
+      display: flex; align-items: center; gap: 4px;
+      overflow-x: auto; scrollbar-width: none;
     }
 
     .nav-links::-webkit-scrollbar { display: none; }
 
     .nav-links a {
-      padding: 8px 12px;
-      border-radius: 8px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-      text-decoration: none;
-      white-space: nowrap;
+      padding: 8px 12px; border-radius: 8px;
+      color: var(--muted); font-size: 0.82rem;
+      font-weight: 500; text-decoration: none; white-space: nowrap;
       transition: all 0.2s ease;
     }
 
-    .nav-links a:hover {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.05);
-    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
 
     .nav-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 40px;
-      height: 40px;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      cursor: pointer;
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; width: 40px; height: 40px; padding: 10px;
+      border: 1px solid var(--border); border-radius: 8px;
+      background: rgba(255,255,255,0.04); cursor: pointer;
     }
 
     .nav-toggle-bar {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background: var(--muted);
-      border-radius: 2px;
-      transition: all 0.25s;
+      display: block; width: 100%; height: 2px;
+      background: var(--muted); border-radius: 2px; transition: all 0.25s;
     }
 
     .nav-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      transition: opacity 0.3s;
+      display: none; position: fixed; inset: 0; z-index: -1;
+      background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.3s;
     }
 
     main { padding: 0 0 60px; }
 
     .site-footer {
-      padding: 32px 0 48px;
-      color: var(--faint);
-      font-size: 0.82rem;
-      text-align: center;
+      padding: 32px 0 48px; color: var(--faint);
+      font-size: 0.82rem; text-align: center;
       border-top: 1px solid var(--border);
     }
 
-    .section {
-      padding: 48px 0;
-    }
-
-    .section + .section {
-      border-top: 1px solid var(--border);
-    }
+    .section { padding: 48px 0; }
+    .section + .section { border-top: 1px solid var(--border); }
 
     .section-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
     }
 
     .section-bar {
-      width: 3px;
-      height: 24px;
-      border-radius: 2px;
-      background: var(--accent);
-      flex-shrink: 0;
+      width: 3px; height: 24px; border-radius: 2px;
+      background: var(--accent); flex-shrink: 0;
     }
 
     .section-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--faint);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--faint);
     }
 
     .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-      margin: 4px 0 0;
+      font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 4px 0 0;
     }
 
     .section-desc {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin: 8px 0 0;
-      max-width: 680px;
+      color: var(--muted); font-size: 0.92rem;
+      line-height: 1.7; margin: 6px 0 0; max-width: 680px;
     }
 
-    /* ─── Hero ─── */
     .hero {
-      padding: 64px 0 48px;
+      padding: 60px 0 40px;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
       margin-bottom: 12px;
       background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
     .hero .subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: var(--muted);
-      font-weight: 500;
-      margin-bottom: 16px;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--muted); font-weight: 500; margin-bottom: 14px;
     }
 
     .hero .lede {
-      color: var(--faint);
-      font-size: 0.92rem;
-      line-height: 1.8;
-      max-width: 680px;
+      color: var(--faint); font-size: 0.9rem;
+      line-height: 1.7; max-width: 620px;
     }
 
-    /* ─── Cards ─── */
     .card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--surface);
-      transition: all 0.25s ease;
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); transition: all 0.25s ease;
+    }
+    .card:hover { border-color: var(--border-hover); background: var(--surface-alt); transform: translateY(-2px); }
+
+    .card-grid { display: grid; gap: 16px; }
+
+    /* ─── Tabs ─── */
+    .map-tabs {
+      display: flex; gap: 4px; flex-wrap: wrap;
+      margin-bottom: 0; border-bottom: 1px solid var(--border);
     }
 
-    .card:hover {
-      border-color: var(--border-hover);
-      background: var(--surface-alt);
-      transform: translateY(-2px);
+    .tab-btn {
+      position: relative;
+      padding: 10px 18px;
+      border: none; border-bottom: 2px solid transparent;
+      font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; background: transparent;
+      color: var(--muted); transition: all 0.2s ease;
+      margin-bottom: -1px;
     }
 
-    .card-grid {
-      display: grid;
-      gap: 16px;
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active {
+      color: var(--accent); border-bottom-color: var(--accent);
     }
 
-    /* ─── Decision Cards ─── */
-    .decision-grid {
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    .tab-panel { display: none; padding: 24px 0; }
+    .tab-panel.active { display: block; }
+
+    /* ─── View 1: Tasks ─── */
+    .task-grid {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
     }
 
-    .decision-card {
-      display: block;
-      padding: 20px;
-      text-decoration: none;
-      border-left: 4px solid var(--card-color, var(--accent));
-      cursor: default;
+    .task-btn {
+      padding: 10px 18px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--muted); font-size: 0.88rem; font-weight: 500;
+      cursor: pointer; transition: all 0.2s ease;
     }
 
-    .decision-card .situation {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-      line-height: 1.5;
+    .task-btn:hover { border-color: var(--border-hover); color: var(--text); }
+    .task-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(45,212,191,0.08); }
+
+    .task-detail {
+      padding: 24px; border-radius: 12px;
+      border: 1px solid var(--border); background: var(--surface);
+      min-height: 120px;
     }
 
-    .decision-card .tool-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--card-color, var(--accent));
+    .task-detail-placeholder {
+      color: var(--faint); font-size: 0.9rem;
     }
 
-    /* ─── Tool Entry Cards ─── */
-    .tool-grid {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
-
-    .tool-card {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .tool-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+    .task-choice {
+      font-size: 1.15rem; font-weight: 700; color: var(--accent);
       margin-bottom: 12px;
     }
 
-    .tool-category {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--faint);
-      letter-spacing: 0.03em;
+    .task-why {
+      color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;
     }
 
-    .tool-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .task-behind {
+      font-size: 0.82rem; color: var(--faint);
     }
 
-    .tool-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 12px;
-      flex: 1;
+    .task-behind strong { color: var(--sky); }
+
+    .task-not-rec {
+      margin-top: 10px; padding: 10px 14px;
+      border-radius: 8px; background: rgba(244,63,94,0.08);
+      border: 1px solid rgba(244,63,94,0.15);
+      font-size: 0.82rem; color: var(--rose);
     }
 
-    .tool-note {
-      font-size: 0.8rem;
-      color: var(--faint);
-      line-height: 1.5;
+    .task-note {
+      margin-top: 10px; padding: 10px 14px;
+      border-radius: 8px; background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.15);
+      font-size: 0.82rem; color: var(--amber);
     }
 
-    /* ─── Agent Cards ─── */
-    .agent-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    /* ─── View 2: Entries ─── */
+    .entry-group { margin-bottom: 28px; }
 
-    .agent-card {
-      padding: 28px;
-      border-left: 4px solid var(--agent-color, var(--accent));
-    }
+    .entry-group:last-child { margin-bottom: 0; }
 
-    .agent-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--agent-color, var(--text));
-    }
-
-    .agent-info {
-      display: grid;
-      gap: 12px;
-    }
-
-    .agent-info-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .agent-info-item .label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--faint);
-    }
-
-    .agent-info-item .value {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ─── Subscription ─── */
-    .sub-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .sub-group {
-      padding: 24px;
-    }
-
-    .sub-group h3 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
+    .entry-group h3 {
+      font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 14px; padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
     }
 
-    .sub-group.paid h3 { color: var(--accent); }
-    .sub-group.free h3 { color: var(--sky); }
-    .sub-group.removed h3 { color: var(--rose); }
+    .entry-group.main h3 { color: var(--accent); }
+    .entry-group.exploring h3 { color: var(--amber); }
+
+    .entry-grid {
+      display: grid; gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .entry-card {
+      padding: 18px; cursor: pointer;
+    }
+
+    .entry-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; margin-bottom: 8px;
+    }
+
+    .entry-category {
+      font-size: 0.7rem; font-weight: 600; color: var(--faint);
+      letter-spacing: 0.03em;
+    }
+
+    .entry-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem; font-weight: 700; margin-bottom: 4px;
+    }
+
+    .entry-purpose {
+      font-size: 0.82rem; color: var(--muted); line-height: 1.5;
+    }
+
+    .entry-detail {
+      display: none; margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem; line-height: 1.6;
+    }
+
+    .entry-detail.open { display: block; }
+
+    .entry-detail .row {
+      display: flex; gap: 6px; margin-bottom: 6px;
+    }
+
+    .entry-detail .row-label {
+      color: var(--faint); font-weight: 600; min-width: 60px; flex-shrink: 0;
+    }
+
+    .entry-detail .row-value { color: var(--muted); }
+
+    /* ─── View 3: Locations ─── */
+    .location-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .location-card {
+      padding: 22px;
+    }
+
+    .location-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem; font-weight: 700; margin-bottom: 2px;
+    }
+
+    .location-subtitle {
+      font-size: 0.78rem; color: var(--faint); margin-bottom: 14px;
+    }
+
+    .loc-service {
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .loc-service:last-child { border-bottom: none; }
+
+    .loc-service-name {
+      font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 6px;
+    }
+
+    .loc-service-desc {
+      font-size: 0.74rem; color: var(--faint); margin-top: 2px;
+    }
+
+    .badge-dual {
+      display: inline-flex; align-items: center; padding: 2px 8px;
+      border-radius: 8px; font-size: 0.62rem; font-weight: 600;
+      background: rgba(139,92,246,0.12); color: var(--purple);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── View 4: Subscriptions ─── */
+    .sub-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sub-card {
+      padding: 22px;
+    }
+
+    .sub-card h3 {
+      font-size: 0.82rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 14px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sub-card.paid h3 { color: var(--accent); }
+    .sub-card.free h3 { color: var(--sky); }
+    .sub-card.self-hosted h3 { color: var(--indigo); }
 
     .sub-item {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
     }
 
     .sub-item:last-child { border-bottom: none; }
 
     .sub-item-name {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 2px;
+      font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 6px;
     }
 
     .sub-item-desc {
-      font-size: 0.78rem;
-      color: var(--faint);
+      font-size: 0.76rem; color: var(--faint); margin-top: 2px;
     }
 
-    /* ─── Self-hosted ─── */
-    .host-grid {
-      grid-template-columns: repeat(3, 1fr);
+    /* ─── View 5: Agent Relations ─── */
+    .agent-cards {
+      display: grid; gap: 20px;
+      grid-template-columns: repeat(2, 1fr); margin-bottom: 28px;
     }
 
-    .host-card {
+    .agent-card-lg {
       padding: 24px;
+      border-left: 3px solid var(--agent-color, var(--accent));
     }
 
-    .host-title {
+    .agent-card-lg .agent-name {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 2px;
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 14px;
+      color: var(--agent-color, var(--text));
     }
 
-    .host-subtitle {
-      font-size: 0.8rem;
-      color: var(--faint);
-      margin-bottom: 16px;
+    .agent-field {
+      margin-bottom: 8px;
     }
 
-    .host-service {
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    .agent-field-label {
+      font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--faint); margin-bottom: 2px;
     }
 
-    .host-service:last-child { border-bottom: none; }
+    .agent-field-value {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.5;
+    }
 
-    .host-service-name {
+    .relation-map {
+      padding: 24px; border-radius: 12px;
+      border: 1px solid var(--border); background: var(--surface);
+    }
+
+    .relation-map h4 {
+      font-size: 0.82rem; font-weight: 700; color: var(--faint);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;
+    }
+
+    .relation-list {
+      display: grid; gap: 8px;
+    }
+
+    .relation-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 12px; border-radius: 8px;
+      background: rgba(255,255,255,0.03);
       font-size: 0.85rem;
-      font-weight: 600;
     }
 
-    .host-service-desc {
-      font-size: 0.75rem;
-      color: var(--faint);
-      margin-top: 1px;
+    .relation-from {
+      font-weight: 600; color: var(--text); white-space: nowrap;
     }
 
-    /* ─── Knowledge Base ─── */
-    .kb-box {
-      padding: 28px;
+    .relation-arrow {
+      color: var(--faint); flex-shrink: 0;
     }
 
-    .kb-formula {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 20px;
+    .relation-label {
+      font-size: 0.7rem; color: var(--faint);
+      padding: 2px 8px; border-radius: 6px;
+      background: rgba(255,255,255,0.05); flex-shrink: 0;
     }
 
-    .kb-item {
-      padding: 16px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      text-align: center;
+    .relation-to {
+      color: var(--muted); white-space: nowrap;
     }
 
-    .kb-item .kb-label {
+    /* ─── View 6: Fuel Tree ─── */
+    .fuel-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .fuel-card {
+      padding: 22px;
+    }
+
+    .fuel-name {
       font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 6px;
+      font-size: 1rem; font-weight: 700; margin-bottom: 4px;
+      color: var(--sky);
     }
 
-    .kb-item .kb-desc {
-      font-size: 0.82rem;
-      color: var(--muted);
+    .fuel-type {
+      font-size: 0.72rem; font-weight: 600; color: var(--faint);
+      text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;
     }
+
+    .fuel-desc {
+      font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px;
+    }
+
+    .fuel-children {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+
+    .fuel-child {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      font-size: 0.82rem; color: var(--muted);
+    }
+
+    .fuel-child::before {
+      content: '└─';
+      color: var(--faint); font-size: 0.7rem;
+    }
+
+    /* ─── Search ─── */
+    .search-bar {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      flex: 1; max-width: 360px;
+      padding: 10px 16px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); font-size: 0.88rem;
+      outline: none; transition: border-color 0.2s ease;
+    }
+
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--faint); }
+
+    .search-hint {
+      font-size: 0.78rem; color: var(--faint);
+    }
+
+    /* ─── Badges ─── */
+    .badge {
+      display: inline-flex; align-items: center;
+      padding: 3px 10px; border-radius: 12px;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .badge-green { background: rgba(34,197,94,0.12); color: var(--green); }
+    .badge-amber { background: rgba(245,158,11,0.12); color: var(--amber); }
+    .badge-purple { background: rgba(139,92,246,0.12); color: var(--purple); }
+    .badge-rose { background: rgba(244,63,94,0.12); color: var(--rose); }
+    .badge-gray { background: rgba(255,255,255,0.06); color: var(--faint); }
+    .badge-accent { background: rgba(45,212,191,0.1); color: var(--accent); }
+
+    .btn {
+      display: inline-flex; align-items: center;
+      padding: 6px 14px; border: 1px solid var(--border);
+      border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s ease;
+      background: rgba(255,255,255,0.04);
+    }
+    .btn:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.08); }
+    .btn-primary { border-color: var(--accent); color: var(--accent); background: rgba(45,212,191,0.08); }
+    .btn-primary:hover { background: rgba(45,212,191,0.16); }
+    .btn-todo { opacity: 0.4; cursor: not-allowed; }
 
     /* ─── Books & Projects ─── */
-    .book-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .book-grid { grid-template-columns: repeat(2, 1fr); }
 
     .book-card {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
+      padding: 24px; display: flex; flex-direction: column;
     }
 
     .book-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;
     }
 
     .book-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 16px;
-      flex: 1;
+      font-size: 0.82rem; color: var(--muted);
+      line-height: 1.6; margin-bottom: 16px; flex: 1;
     }
 
     .book-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: auto;
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;
     }
 
-    .project-grid {
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
+    .project-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 
     .project-card {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
+      padding: 24px; display: flex; flex-direction: column;
     }
 
     .project-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 8px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; margin-bottom: 6px;
     }
 
     .project-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700;
     }
 
     .project-purpose {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 12px;
-      flex: 1;
+      font-size: 0.82rem; color: var(--muted);
+      line-height: 1.6; margin-bottom: 12px; flex: 1;
     }
 
     .project-meta {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
+      display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
     }
 
     .link-group {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: auto;
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .btn:hover {
-      border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .btn-primary {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(45, 212, 191, 0.08);
-    }
-
-    .btn-primary:hover {
-      background: rgba(45, 212, 191, 0.16);
-    }
-
-    .btn-todo {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-    }
-
-    .badge-green { background: rgba(34, 197, 94, 0.12); color: var(--green); }
-    .badge-amber { background: rgba(245, 158, 11, 0.12); color: var(--amber); }
-    .badge-purple { background: rgba(139, 92, 246, 0.12); color: var(--purple); }
-    .badge-rose { background: rgba(244, 63, 94, 0.12); color: var(--rose); }
-    .badge-gray { background: rgba(255, 255, 255, 0.06); color: var(--faint); }
-
-    /* ─── Status bar ─── */
-    .status-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .status-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--faint);
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-    }
-
-    .status-dot.active { background: var(--green); }
-    .status-dot.experiment { background: var(--amber); }
-    .status-dot.archived { background: var(--faint); }
 
     /* ─── Responsive ─── */
 
     @media (max-width: 940px) {
-      .agent-grid,
-      .sub-grid,
-      .host-grid,
-      .kb-formula {
+      .location-grid, .sub-grid, .agent-cards {
         grid-template-columns: 1fr;
       }
-
-      .book-grid {
-        grid-template-columns: 1fr;
-      }
+      .book-grid { grid-template-columns: 1fr; }
+      .entry-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 680px) {
-      .shell {
-        width: min(100% - 24px, var(--max-width));
-      }
+      .shell { width: min(100% - 24px, var(--max-width)); }
 
       .navbar {
-        align-items: stretch;
-        flex-direction: column;
-        gap: 10px;
-        padding: 14px 0;
+        align-items: stretch; flex-direction: column; gap: 10px; padding: 14px 0;
       }
 
-      .nav-toggle {
-        display: flex;
-        align-self: flex-end;
-      }
+      .nav-toggle { display: flex; align-self: flex-end; }
 
       .nav-links {
-        display: none;
-        flex-direction: column;
-        gap: 2px;
-        padding: 8px 0;
+        display: none; flex-direction: column; gap: 2px; padding: 8px 0;
       }
 
-      .nav-links.is-open {
-        display: flex;
-      }
+      .nav-links.is-open { display: flex; }
+      .nav-overlay.is-visible { display: block; opacity: 1; }
 
-      .nav-overlay.is-visible {
-        display: block;
-        opacity: 1;
-      }
+      .nav-links a { padding: 12px; border-radius: 8px; }
 
-      .nav-links a {
-        padding: 12px;
-        border-radius: 8px;
-      }
+      .section { padding: 32px 0; }
+      .hero { padding: 36px 0 28px; }
 
-      .section {
-        padding: 32px 0;
-      }
+      .tab-btn { font-size: 0.78rem; padding: 8px 12px; }
+      .task-grid { gap: 6px; }
+      .task-btn { font-size: 0.82rem; padding: 8px 14px; }
 
-      .decision-grid {
-        grid-template-columns: 1fr;
-      }
+      .fuel-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
 
-      .tool-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding: 40px 0 32px;
+      .relation-item {
+        flex-wrap: wrap; gap: 6px;
       }
     }
   </style>
@@ -758,12 +671,7 @@
         <span class="nav-toggle-bar"></span>
       </button>
       <nav class="nav-links" id="navLinks" aria-label="頁面導航">
-        <a href="#decision">決策</a>
-        <a href="#tools">工具</a>
-        <a href="#agents">Agent</a>
-        <a href="#subscriptions">訂閱</a>
-        <a href="#hosting">服務</a>
-        <a href="#knowledge">知識庫</a>
+        <a href="#map">地圖</a>
         <a href="#books">書籍</a>
         <a href="#projects">專案</a>
         <a href="https://github.com/WildenChen" target="_blank" rel="noopener">GitHub</a>
@@ -773,111 +681,66 @@
   </header>
 
   <main>
-    <!-- ─── Section 1: Hero ─── -->
+    <!-- ─── Hero ─── -->
     <section class="shell hero" aria-labelledby="hero-title">
       <h1 id="hero-title">弘儒個人控制台</h1>
       <p class="subtitle">AI 工具、Agent、訂閱、自架服務、書籍與專案的個人管理入口。</p>
-      <p class="lede">這個網站是我自己查詢用的控制台，用來整理 AI 工具、語婕、筱蜜、訂閱、免費帳號、自架服務、知識庫、書籍與 GitHub 專案。</p>
+      <p class="lede">切換視角快速理解架構，或往下找書籍與專案書籤。</p>
     </section>
 
-    <!-- ─── Section 2: 快速決策 ─── -->
-    <section class="shell section" id="decision" aria-labelledby="decision-title">
+    <!-- ─── AI 架構互動地圖 ─── -->
+    <section class="shell section" id="map" aria-labelledby="map-title">
       <div class="section-header">
         <div class="section-bar"></div>
         <div>
-          <div class="section-label">Quick Decision</div>
-          <h2 class="section-title">我現在該找誰？</h2>
+          <div class="section-label">Interactive Map</div>
+          <h2 class="section-title">AI 架構互動地圖</h2>
         </div>
       </div>
-      <p class="section-desc" style="margin-bottom: 24px;">依當下需求，直接找對的工具或 Agent。</p>
-      <div class="card-grid decision-grid" id="decisionGrid"></div>
-    </section>
+      <p class="section-desc" style="margin-bottom: 16px;">透過切換視角，逐步理解我的 AI 服務架構與 Agent 關係。</p>
 
-    <!-- ─── Section 3: 入口工具 ─── -->
-    <section class="shell section" id="tools" aria-labelledby="tools-title">
-      <div class="section-header">
-        <div class="section-bar"></div>
-        <div>
-          <div class="section-label">Tool Entries</div>
-          <h2 class="section-title">我會親自使用的入口</h2>
-        </div>
+      <div class="search-bar">
+        <input class="search-input" type="text" id="searchInput" placeholder="搜尋工具、Agent、服務…" autocomplete="off">
+        <span class="search-hint" id="searchHint"></span>
       </div>
-      <p class="section-desc" style="margin-bottom: 24px;">主力入口、工程入口、Agent、探索中工具的分類總覽。</p>
-      <div class="card-grid tool-grid" id="toolGrid"></div>
-    </section>
 
-    <!-- ─── Section 4: Agent ─── -->
-    <section class="shell section" id="agents" aria-labelledby="agents-title">
-      <div class="section-header">
-        <div class="section-bar"></div>
-        <div>
-          <div class="section-label">Agents</div>
-          <h2 class="section-title">語婕與筱蜜</h2>
-        </div>
-      </div>
-      <p class="section-desc" style="margin-bottom: 24px;">日常生活與 HomeLab 維運的 AI 秘書。</p>
-      <div class="card-grid agent-grid" id="agentGrid"></div>
-    </section>
+      <!-- Tabs -->
+      <div class="map-tabs" id="mapTabs"></div>
 
-    <!-- ─── Section 5: 訂閱與額度 ─── -->
-    <section class="shell section" id="subscriptions" aria-labelledby="sub-title">
-      <div class="section-header">
-        <div class="section-bar"></div>
-        <div>
-          <div class="section-label">Subscriptions</div>
-          <h2 class="section-title">訂閱與免費額度</h2>
+      <!-- Tab Panels -->
+      <div class="tab-panel active" id="panel-task">
+        <div class="task-grid" id="taskGrid"></div>
+        <div class="task-detail" id="taskDetail">
+          <div class="task-detail-placeholder">點選上方任務按鈕，查看建議工具與背後服務。</div>
         </div>
       </div>
-      <p class="section-desc" style="margin-bottom: 24px;">目前使用中的付費方案、免費權限與已移除服務。</p>
-      <div class="card-grid sub-grid" id="subGrid"></div>
-    </section>
 
-    <!-- ─── Section 6: 自架服務位置 ─── -->
-    <section class="shell section" id="hosting" aria-labelledby="host-title">
-      <div class="section-header">
-        <div class="section-bar"></div>
-        <div>
-          <div class="section-label">Infrastructure</div>
-          <h2 class="section-title">自架服務位置</h2>
-        </div>
+      <div class="tab-panel" id="panel-entry">
+        <div id="entryContainer"></div>
       </div>
-      <p class="section-desc" style="margin-bottom: 24px;">M2 Pro Mac mini、Mint 主機與雲端服務的部署地圖。</p>
-      <div class="card-grid host-grid" id="hostGrid"></div>
-    </section>
 
-    <!-- ─── Section 7: 知識庫 ─── -->
-    <section class="shell section" id="knowledge" aria-labelledby="kb-title">
-      <div class="section-header">
-        <div class="section-bar"></div>
-        <div>
-          <div class="section-label">Knowledge Base</div>
-          <h2 class="section-title">知識庫與文件整理</h2>
+      <div class="tab-panel" id="panel-location">
+        <div class="location-grid" id="locationGrid"></div>
+      </div>
+
+      <div class="tab-panel" id="panel-subscription">
+        <div class="sub-grid" id="subGrid"></div>
+      </div>
+
+      <div class="tab-panel" id="panel-agent">
+        <div class="agent-cards" id="agentCards"></div>
+        <div class="relation-map">
+          <h4>關係連線</h4>
+          <div class="relation-list" id="relationList"></div>
         </div>
       </div>
-      <div class="card kb-box">
-        <p style="color: var(--muted); line-height: 1.7; margin-bottom: 8px;">
-          我有 4 個知識庫，都有 MCP。MCP 用來查活資料、最新資料、Agent 需要的資料。
-          NotebookLM 用來做固定文件的說明書、FAQ、資料包整理。
-          ChatGPT 用來做最後判斷與修正。
-        </p>
-        <div class="kb-formula">
-          <div class="kb-item">
-            <div class="kb-label" style="color: var(--accent);">MCP</div>
-            <div class="kb-desc">活資料</div>
-          </div>
-          <div class="kb-item">
-            <div class="kb-label" style="color: var(--amber);">NotebookLM</div>
-            <div class="kb-desc">說明書</div>
-          </div>
-          <div class="kb-item">
-            <div class="kb-label" style="color: var(--sky);">ChatGPT</div>
-            <div class="kb-desc">判斷修正</div>
-          </div>
-        </div>
+
+      <div class="tab-panel" id="panel-fuel">
+        <div class="fuel-grid" id="fuelGrid"></div>
       </div>
     </section>
 
-    <!-- ─── Section 8: Books ─── -->
+    <!-- ─── Books ─── -->
     <section class="shell section" id="books" aria-labelledby="books-title">
       <div class="section-header">
         <div class="section-bar"></div>
@@ -886,11 +749,11 @@
           <h2 class="section-title">書籍管理入口</h2>
         </div>
       </div>
-      <p class="section-desc" style="margin-bottom: 24px;">我自己管理與查詢書籍用，不是對外行銷頁。</p>
+      <p class="section-desc" style="margin-bottom: 20px;">我自己管理與查詢書籍用。</p>
       <div class="card-grid book-grid" id="bookGrid"></div>
     </section>
 
-    <!-- ─── Section 9: GitHub 專案書籤 ─── -->
+    <!-- ─── Projects ─── -->
     <section class="shell section" id="projects" aria-labelledby="projects-title">
       <div class="section-header">
         <div class="section-bar"></div>
@@ -899,22 +762,22 @@
           <h2 class="section-title">GitHub 專案書籤</h2>
         </div>
       </div>
-      <p class="section-desc" style="margin-bottom: 24px;">我自己維護專案、快速跳轉 GitHub / 文件用。</p>
+      <p class="section-desc" style="margin-bottom: 20px;">快速跳轉 GitHub / 文件用。</p>
       <div class="card-grid project-grid" id="projectGrid"></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="shell">
-      弘儒個人控制台 · &copy; 2026 · 個人管理入口 · noindex / nofollow
-    </div>
+    <div class="shell">弘儒個人控制台 · &copy; 2026 · 個人管理入口 · noindex / nofollow</div>
   </footer>
 
   <script src="data/console-data.js"></script>
   <script>
     (function () {
       var D = CONSOLE_DATA;
+      var activeTab = 'task';
 
+      function $(id) { return document.getElementById(id); }
       function make(tag, cls, text) {
         var el = document.createElement(tag);
         if (cls) el.className = cls;
@@ -922,187 +785,317 @@
         return el;
       }
 
-      function append(parent) {
-        for (var i = 1; i < arguments.length; i++) {
-          if (arguments[i]) parent.appendChild(arguments[i]);
+      /* ─── Tab System ─── */
+      var TAB_KEYS = ['task', 'entry', 'location', 'subscription', 'agent', 'fuel'];
+      var TAB_LABELS = ['依任務看', '依入口看', '依部署位置看', '依訂閱狀態看', '依 Agent 關係看', '依幕後燃料看'];
+
+      function renderTabs() {
+        var container = $('mapTabs');
+        TAB_KEYS.forEach(function (key, i) {
+          var btn = make('button', 'tab-btn' + (key === activeTab ? ' active' : ''), TAB_LABELS[i]);
+          btn.dataset.tab = key;
+          btn.addEventListener('click', function () { switchTab(key); });
+          container.appendChild(btn);
+        });
+      }
+
+      function switchTab(key) {
+        activeTab = key;
+        $$('.tab-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.tab === key); });
+        $$('.tab-panel').forEach(function (p) { p.classList.toggle('active', p.id === 'panel-' + key); });
+        filterCurrentView();
+      }
+
+      function $$(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+
+      /* ─── Search ─── */
+      var searchValue = '';
+
+      function filterCurrentView() {
+        searchValue = ($('searchInput').value || '').toLowerCase().trim();
+        // Re-render current view with filter
+        switch (activeTab) {
+          case 'task': renderTasks(); break;
+          case 'entry': renderEntries(); break;
+          case 'location': renderLocations(); break;
+          case 'subscription': renderSubscriptions(); break;
+          case 'agent': renderAgentRelations(); break;
+          case 'fuel': renderFuel(); break;
         }
-        return parent;
       }
 
-      /* ─── Section 2: Decision Cards ─── */
-      function renderDecisions() {
-        var grid = document.getElementById('decisionGrid');
-        D.decisionCards.forEach(function (c) {
-          var card = make('div', 'card decision-card');
-          card.style.setProperty('--card-color', c.color);
-          card.appendChild(make('div', 'situation', c.situation));
-          card.appendChild(make('div', 'tool-name', c.tool));
-          grid.appendChild(card);
-        });
+      $('searchInput').addEventListener('input', filterCurrentView);
+
+      function matchesSearch(text) {
+        if (!searchValue) return true;
+        return (text || '').toLowerCase().indexOf(searchValue) !== -1;
       }
 
-      /* ─── Section 3: Tool Entries ─── */
-      function renderTools() {
-        var grid = document.getElementById('toolGrid');
-        D.toolEntries.forEach(function (t) {
-          var card = make('div', 'card tool-card');
-          var top = make('div', 'tool-card-top');
-          top.appendChild(make('span', 'tool-category', t.category));
-          var statusBadge = make('span', 'badge badge-gray', t.status);
-          top.appendChild(statusBadge);
-          card.appendChild(top);
-          card.appendChild(make('div', 'tool-name', t.name));
-          card.appendChild(make('div', 'tool-desc', t.description));
-          if (t.note) {
-            card.appendChild(make('div', 'tool-note', '→ ' + t.note));
-          }
-          grid.appendChild(card);
-        });
-      }
+      /* ─── View 1: Tasks ─── */
+      var activeTask = null;
 
-      /* ─── Section 4: Agents ─── */
-      function renderAgents() {
-        var grid = document.getElementById('agentGrid');
-        var agents = [D.agents.yujie, D.agents.xiaomi];
-        agents.forEach(function (a) {
-          var card = make('div', 'card agent-card');
-          card.style.setProperty('--agent-color', a.color);
-          card.appendChild(make('div', 'agent-name', a.name));
-
-          var info = make('div', 'agent-info');
-
-          var roleItem = make('div', 'agent-info-item');
-          roleItem.appendChild(make('div', 'label', '角色'));
-          roleItem.appendChild(make('div', 'value', a.role));
-          info.appendChild(roleItem);
-
-          var managesItem = make('div', 'agent-info-item');
-          managesItem.appendChild(make('div', 'label', '負責'));
-          managesItem.appendChild(make('div', 'value', a.manages));
-          info.appendChild(managesItem);
-
-          var selfieItem = make('div', 'agent-info-item');
-          selfieItem.appendChild(make('div', 'label', '自拍'));
-          selfieItem.appendChild(make('div', 'value', a.selfie));
-          info.appendChild(selfieItem);
-
-          var usageItem = make('div', 'agent-info-item');
-          usageItem.appendChild(make('div', 'label', '使用方式'));
-          usageItem.appendChild(make('div', 'value', a.usage));
-          info.appendChild(usageItem);
-
-          if (a.note) {
-            var noteItem = make('div', 'agent-info-item');
-            noteItem.appendChild(make('div', 'label', '備註'));
-            noteItem.appendChild(make('div', 'value', a.note));
-            info.appendChild(noteItem);
-          }
-
-          card.appendChild(info);
-          grid.appendChild(card);
-        });
-      }
-
-      /* ─── Section 5: Subscriptions ─── */
-      function renderSubscriptions() {
-        var grid = document.getElementById('subGrid');
-
-        function renderGroup(title, cls, items) {
-          var group = make('div', 'card sub-group ' + cls);
-          group.appendChild(make('h3', '', title));
-          items.forEach(function (item) {
-            var div = make('div', 'sub-item');
-            div.appendChild(make('div', 'sub-item-name', item.name));
-            if (item.description) {
-              div.appendChild(make('div', 'sub-item-desc', item.description));
-            }
-            group.appendChild(div);
+      function renderTasks() {
+        var grid = $('taskGrid');
+        grid.innerHTML = '';
+        D.tasks.forEach(function (t) {
+          var visible = matchesSearch(t.label) || matchesSearch(t.firstChoice) || matchesSearch(t.why);
+          if (!visible) return;
+          var btn = make('button', 'task-btn' + (activeTask === t.id ? ' active' : ''), t.label);
+          btn.addEventListener('click', function () {
+            activeTask = t.id;
+            renderTasks();
+            showTaskDetail(t);
           });
-          grid.appendChild(group);
+          grid.appendChild(btn);
+        });
+        // Re-show detail if active task still exists
+        if (activeTask) {
+          var found = D.tasks.filter(function (t) { return t.id === activeTask; })[0];
+          if (found) showTaskDetail(found);
         }
-
-        renderGroup('付費', 'paid', D.subscriptions.paid);
-        renderGroup('免費權限 / 免費帳號', 'free', D.subscriptions.free);
-        renderGroup('已移除', 'removed', D.subscriptions.removed);
       }
 
-      /* ─── Section 6: Self-hosted ─── */
-      function renderHosting() {
-        var grid = document.getElementById('hostGrid');
-        var hosts = [D.selfHosted.m2, D.selfHosted.mint, D.selfHosted.cloud];
-        hosts.forEach(function (h) {
-          var card = make('div', 'card host-card');
-          card.appendChild(make('div', 'host-title', h.title));
-          if (h.subtitle) {
-            card.appendChild(make('div', 'host-subtitle', h.subtitle));
-          }
-          h.services.forEach(function (s) {
-            var div = make('div', 'host-service');
-            div.appendChild(make('div', 'host-service-name', s.name));
-            if (s.description) {
-              div.appendChild(make('div', 'host-service-desc', s.description));
+      function showTaskDetail(t) {
+        var detail = $('taskDetail');
+        detail.innerHTML = '';
+
+        var choice = make('div', 'task-choice', '第一選擇：' + t.firstChoice);
+        detail.appendChild(choice);
+
+        var why = make('div', 'task-why', t.why);
+        detail.appendChild(why);
+
+        if (t.behind && t.behind.length) {
+          var behind = make('div', 'task-behind');
+          behind.innerHTML = '背後：<strong>' + t.behind.join('、') + '</strong>';
+          detail.appendChild(behind);
+        }
+
+        if (t.notRecommended) {
+          var notRec = make('div', 'task-not-rec', '✕ ' + t.notRecommended);
+          detail.appendChild(notRec);
+        }
+
+        if (t.note) {
+          var note = make('div', 'task-note', '→ ' + t.note);
+          detail.appendChild(note);
+        }
+      }
+
+      /* ─── View 2: Entries ─── */
+      function renderEntries() {
+        var container = $('entryContainer');
+        container.innerHTML = '';
+        D.entryGroups.forEach(function (g) {
+          var filtered = g.items.filter(function (item) {
+            return matchesSearch(item.name) || matchesSearch(item.purpose) || matchesSearch(item.category);
+          });
+          if (!filtered.length) return;
+
+          var group = make('div', 'entry-group' + (g.group === '主力' ? ' main' : ' exploring'));
+          group.appendChild(make('h3', '', g.group));
+
+          var grid = make('div', 'entry-grid');
+          filtered.forEach(function (item) {
+            var card = make('div', 'card entry-card');
+            card.dataset.name = item.name;
+
+            var header = make('div', 'entry-card-header');
+            header.appendChild(make('span', 'entry-category', item.category));
+            header.appendChild(make('span', 'badge badge-gray', item.payment));
+            card.appendChild(header);
+
+            card.appendChild(make('div', 'entry-name', item.name));
+            card.appendChild(make('div', 'entry-purpose', item.purpose));
+
+            var detail = make('div', 'entry-detail');
+            detail.innerHTML =
+              '<div class="row"><span class="row-label">背後</span><span class="row-value">' + (item.behind || '-') + '</span></div>' +
+              '<div class="row"><span class="row-label">備註</span><span class="row-value">' + (item.note || '-') + '</span></div>';
+            card.appendChild(detail);
+
+            card.addEventListener('click', function () {
+              detail.classList.toggle('open');
+            });
+
+            grid.appendChild(card);
+          });
+          group.appendChild(grid);
+          container.appendChild(group);
+        });
+      }
+
+      /* ─── View 3: Locations ─── */
+      function renderLocations() {
+        var grid = $('locationGrid');
+        grid.innerHTML = '';
+        D.locationGroups.forEach(function (g) {
+          var filtered = g.services.filter(function (s) {
+            return matchesSearch(s.name) || matchesSearch(s.description);
+          });
+          if (!filtered.length) return;
+
+          var card = make('div', 'card location-card');
+          card.appendChild(make('div', 'location-title', g.location));
+          if (g.subtitle) card.appendChild(make('div', 'location-subtitle', g.subtitle));
+
+          filtered.forEach(function (s) {
+            var div = make('div', 'loc-service');
+            var nameEl = make('div', 'loc-service-name', s.name);
+            if (s.badge) {
+              var badge = make('span', 'badge-dual', s.badge);
+              nameEl.appendChild(badge);
             }
+            div.appendChild(nameEl);
+            if (s.description) div.appendChild(make('div', 'loc-service-desc', s.description));
             card.appendChild(div);
           });
+
           grid.appendChild(card);
         });
       }
 
-      /* ─── Section 8: Books ─── */
+      /* ─── View 4: Subscriptions ─── */
+      function renderSubscriptions() {
+        var grid = $('subGrid');
+        grid.innerHTML = '';
+        D.subscriptionGroups.forEach(function (g) {
+          var filtered = g.items.filter(function (item) {
+            return matchesSearch(item.name) || matchesSearch(item.description);
+          });
+          if (!filtered.length) return;
+
+          var cls = g.group === '付費' ? 'paid' : (g.group === '免費' ? 'free' : 'self-hosted');
+          var card = make('div', 'card sub-card ' + cls);
+          card.appendChild(make('h3', '', g.group));
+
+          filtered.forEach(function (item) {
+            var div = make('div', 'sub-item');
+            var nameEl = make('div', 'sub-item-name', item.name);
+            if (item.badge) {
+              var badge = make('span', 'badge-dual', item.badge);
+              nameEl.appendChild(badge);
+            }
+            div.appendChild(nameEl);
+            if (item.description) div.appendChild(make('div', 'sub-item-desc', item.description));
+            card.appendChild(div);
+          });
+
+          grid.appendChild(card);
+        });
+      }
+
+      /* ─── View 5: Agent Relations ─── */
+      function renderAgentRelations() {
+        var cards = $('agentCards');
+        cards.innerHTML = '';
+        var list = $('relationList');
+        list.innerHTML = '';
+
+        D.agentRelations.agents.forEach(function (a) {
+          var visible = matchesSearch(a.name) || matchesSearch(a.role) || matchesSearch(a.manages);
+          if (!visible) return;
+
+          var card = make('div', 'card agent-card-lg');
+          card.style.setProperty('--agent-color', a.color || 'var(--accent)');
+          card.appendChild(make('div', 'agent-name', a.name));
+
+          var fields = [
+            { label: '平台', value: a.platform },
+            { label: '角色', value: a.role },
+            { label: '負責', value: a.manages },
+            { label: '自拍', value: a.selfie },
+            { label: '知識', value: a.knowledge }
+          ];
+          if (a.note) fields.push({ label: '備註', value: a.note });
+
+          fields.forEach(function (f) {
+            var field = make('div', 'agent-field');
+            field.appendChild(make('div', 'agent-field-label', f.label));
+            field.appendChild(make('div', 'agent-field-value', f.value));
+            card.appendChild(field);
+          });
+
+          cards.appendChild(card);
+        });
+
+        D.agentRelations.connections.forEach(function (c) {
+          var visible = matchesSearch(c.from) || matchesSearch(c.to) || matchesSearch(c.type);
+          if (!visible) return;
+
+          var item = make('div', 'relation-item');
+          item.appendChild(make('span', 'relation-from', c.from));
+          item.appendChild(make('span', 'relation-arrow', '→'));
+          item.appendChild(make('span', 'relation-label', c.type));
+          item.appendChild(make('span', 'relation-to', c.to));
+          list.appendChild(item);
+        });
+      }
+
+      /* ─── View 6: Fuel ─── */
+      function renderFuel() {
+        var grid = $('fuelGrid');
+        grid.innerHTML = '';
+        D.fuelItems.forEach(function (f) {
+          var visible = matchesSearch(f.name) || matchesSearch(f.type) || matchesSearch(f.description);
+          if (!visible) return;
+
+          var card = make('div', 'card fuel-card');
+          card.appendChild(make('div', 'fuel-name', f.name));
+          card.appendChild(make('div', 'fuel-type', f.type));
+          if (f.description) card.appendChild(make('div', 'fuel-desc', f.description));
+
+          if (f.children && f.children.length) {
+            var children = make('div', 'fuel-children');
+            f.children.forEach(function (child) {
+              children.appendChild(make('div', 'fuel-child', child));
+            });
+            card.appendChild(children);
+          }
+
+          grid.appendChild(card);
+        });
+      }
+
+      /* ─── Books ─── */
       function renderBooks() {
-        var grid = document.getElementById('bookGrid');
+        var grid = $('bookGrid');
         D.books.forEach(function (b) {
           var card = make('div', 'card book-card');
           card.appendChild(make('div', 'book-title', b.title));
           card.appendChild(make('div', 'book-desc', b.description));
 
           var actions = make('div', 'book-actions');
-
           if (b.readUrl) {
             var readBtn = make('a', 'btn btn-primary', '閱讀');
-            readBtn.href = b.readUrl;
-            readBtn.target = '_blank';
-            readBtn.rel = 'noopener';
+            readBtn.href = b.readUrl; readBtn.target = '_blank'; readBtn.rel = 'noopener';
             actions.appendChild(readBtn);
           }
-
           if (b.manageUrl) {
             var manageBtn = make('a', 'btn', '管理');
-            manageBtn.href = b.manageUrl;
-            manageBtn.target = '_blank';
-            manageBtn.rel = 'noopener';
+            manageBtn.href = b.manageUrl; manageBtn.target = '_blank'; manageBtn.rel = 'noopener';
             actions.appendChild(manageBtn);
           } else {
             actions.appendChild(make('span', 'btn btn-todo', '管理：TODO'));
           }
-
-          var statusBadge = make('span', 'badge badge-green', b.status);
-          actions.appendChild(statusBadge);
-
+          actions.appendChild(make('span', 'badge badge-green', b.status));
           card.appendChild(actions);
           grid.appendChild(card);
         });
       }
 
-      /* ─── Section 9: Projects ─── */
+      /* ─── Projects ─── */
       function renderProjects() {
-        var grid = document.getElementById('projectGrid');
+        var grid = $('projectGrid');
         D.projects.forEach(function (p) {
           var card = make('div', 'card project-card');
-
           var top = make('div', 'project-top');
           top.appendChild(make('div', 'project-name', p.name));
 
           var meta = make('div', 'project-meta');
-          var typeBadge = make('span', 'badge badge-purple', p.type);
-          meta.appendChild(typeBadge);
-
-          var statusClass = 'badge-gray';
-          if (p.status === '使用中') statusClass = 'badge-green';
-          else if (p.status === '實驗中') statusClass = 'badge-amber';
-          else if (p.status === '歸檔') statusClass = 'badge-rose';
-          var statusBadge = make('span', 'badge ' + statusClass, p.status);
-          meta.appendChild(statusBadge);
+          meta.appendChild(make('span', 'badge badge-purple', p.type));
+          var statusClass = { '使用中': 'badge-green', '實驗中': 'badge-amber', '歸檔': 'badge-rose' }[p.status] || 'badge-gray';
+          meta.appendChild(make('span', 'badge ' + statusClass, p.status));
 
           card.appendChild(top);
           card.appendChild(meta);
@@ -1112,20 +1105,15 @@
           for (var key in p.links) {
             var url = p.links[key];
             if (url) {
-              var btn = make('a', 'btn', key);
-              btn.href = url;
-              if (url.startsWith('http')) {
-                btn.target = '_blank';
-                btn.rel = 'noopener';
-              }
-              links.appendChild(btn);
+              var lnk = make('a', 'btn', key);
+              lnk.href = url;
+              if (url.startsWith('http')) { lnk.target = '_blank'; lnk.rel = 'noopener'; }
+              links.appendChild(lnk);
             } else {
               links.appendChild(make('span', 'btn btn-todo', key + '：TODO'));
             }
           }
-          if (!Object.keys(p.links).length) {
-            links.appendChild(make('span', 'btn btn-todo', 'TODO'));
-          }
+          if (!Object.keys(p.links).length) links.appendChild(make('span', 'btn btn-todo', 'TODO'));
           card.appendChild(links);
           grid.appendChild(card);
         });
@@ -1133,35 +1121,31 @@
 
       /* ─── Init ─── */
       document.addEventListener('DOMContentLoaded', function () {
-        renderDecisions();
-        renderTools();
-        renderAgents();
+        renderTabs();
+        renderTasks();
+        renderEntries();
+        renderLocations();
         renderSubscriptions();
-        renderHosting();
+        renderAgentRelations();
+        renderFuel();
         renderBooks();
         renderProjects();
       });
 
       /* ─── Mobile Nav ─── */
       document.addEventListener('DOMContentLoaded', function () {
-        var toggle = document.getElementById('navToggle');
-        var nav = document.getElementById('navLinks');
-        var overlay = document.getElementById('navOverlay');
-
+        var toggle = $('navToggle');
+        var nav = $('navLinks');
+        var overlay = $('navOverlay');
         function setOpen(open) {
           nav.classList.toggle('is-open', open);
           overlay.classList.toggle('is-visible', open);
           toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
           document.body.style.overflow = open ? 'hidden' : '';
         }
-
-        toggle.addEventListener('click', function () {
-          setOpen(!nav.classList.contains('is-open'));
-        });
+        toggle.addEventListener('click', function () { setOpen(!nav.classList.contains('is-open')); });
         overlay.addEventListener('click', function () { setOpen(false); });
-        nav.addEventListener('click', function (e) {
-          if (e.target.tagName === 'A') setOpen(false);
-        });
+        nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') setOpen(false); });
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false);
         });
