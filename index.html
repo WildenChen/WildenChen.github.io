@@ -4,220 +4,1170 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#163b3a">
+  <meta name="theme-color" content="#0a0e17">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Wilden Hub">
+  <meta name="apple-mobile-web-app-title" content="弘儒控制台">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-  <title>Wilden Hub | Works, AI Lab, Tools, Now</title>
-  <meta name="description" content="Wilden Hub：技術作品、AI 工具研究、HomeLab 私人工具入口與最近進度。">
-  <link rel="stylesheet" href="assets/css/portal.css">
+  <title>弘儒個人控制台</title>
+  <meta name="description" content="AI 工具、Agent、訂閱、自架服務、書籍與專案的個人管理入口。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0e17;
+      --surface: #131b2e;
+      --surface-alt: #1a2340;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.14);
+      --text: #e8edf5;
+      --muted: #8899b4;
+      --faint: #5a6b85;
+      --accent: #2dd4bf;
+      --accent-glow: rgba(45, 212, 191, 0.25);
+      --sky: #38bdf8;
+      --gold: #f8d66d;
+      --rose: #f43f5e;
+      --purple: #8b5cf6;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --indigo: #6366f1;
+      --pink: #ec4899;
+      --blue: #3b82f6;
+      --max-width: 1120px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      color: var(--text);
+      background: var(--bg);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; transition: all 0.2s ease; }
+
+    h1, h2, h3, h4, .brand, .section-label {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    .shell {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 14, 23, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--sky));
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar { display: none; }
+
+    .nav-links a {
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+    }
+
+    .nav-toggle-bar {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--muted);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    main { padding: 0 0 60px; }
+
+    .site-footer {
+      padding: 32px 0 48px;
+      color: var(--faint);
+      font-size: 0.82rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .section {
+      padding: 48px 0;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-bar {
+      width: 3px;
+      height: 24px;
+      border-radius: 2px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 4px 0 0;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 8px 0 0;
+      max-width: 680px;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      padding: 64px 0 48px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero .lede {
+      color: var(--faint);
+      font-size: 0.92rem;
+      line-height: 1.8;
+      max-width: 680px;
+    }
+
+    /* ─── Cards ─── */
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      transition: all 0.25s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-alt);
+      transform: translateY(-2px);
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    /* ─── Decision Cards ─── */
+    .decision-grid {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    .decision-card {
+      display: block;
+      padding: 20px;
+      text-decoration: none;
+      border-left: 4px solid var(--card-color, var(--accent));
+      cursor: default;
+    }
+
+    .decision-card .situation {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .decision-card .tool-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--card-color, var(--accent));
+    }
+
+    /* ─── Tool Entry Cards ─── */
+    .tool-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .tool-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tool-category {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--faint);
+      letter-spacing: 0.03em;
+    }
+
+    .tool-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tool-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .tool-note {
+      font-size: 0.8rem;
+      color: var(--faint);
+      line-height: 1.5;
+    }
+
+    /* ─── Agent Cards ─── */
+    .agent-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .agent-card {
+      padding: 28px;
+      border-left: 4px solid var(--agent-color, var(--accent));
+    }
+
+    .agent-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--agent-color, var(--text));
+    }
+
+    .agent-info {
+      display: grid;
+      gap: 12px;
+    }
+
+    .agent-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .agent-info-item .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--faint);
+    }
+
+    .agent-info-item .value {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─── Subscription ─── */
+    .sub-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sub-group {
+      padding: 24px;
+    }
+
+    .sub-group h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sub-group.paid h3 { color: var(--accent); }
+    .sub-group.free h3 { color: var(--sky); }
+    .sub-group.removed h3 { color: var(--rose); }
+
+    .sub-item {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .sub-item:last-child { border-bottom: none; }
+
+    .sub-item-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .sub-item-desc {
+      font-size: 0.78rem;
+      color: var(--faint);
+    }
+
+    /* ─── Self-hosted ─── */
+    .host-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .host-card {
+      padding: 24px;
+    }
+
+    .host-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .host-subtitle {
+      font-size: 0.8rem;
+      color: var(--faint);
+      margin-bottom: 16px;
+    }
+
+    .host-service {
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .host-service:last-child { border-bottom: none; }
+
+    .host-service-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .host-service-desc {
+      font-size: 0.75rem;
+      color: var(--faint);
+      margin-top: 1px;
+    }
+
+    /* ─── Knowledge Base ─── */
+    .kb-box {
+      padding: 28px;
+    }
+
+    .kb-formula {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .kb-item {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .kb-item .kb-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .kb-item .kb-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ─── Books & Projects ─── */
+    .book-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .book-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .book-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .book-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .project-grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .project-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .project-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .project-purpose {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .link-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .btn:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-primary {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(45, 212, 191, 0.08);
+    }
+
+    .btn-primary:hover {
+      background: rgba(45, 212, 191, 0.16);
+    }
+
+    .btn-todo {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .badge-green { background: rgba(34, 197, 94, 0.12); color: var(--green); }
+    .badge-amber { background: rgba(245, 158, 11, 0.12); color: var(--amber); }
+    .badge-purple { background: rgba(139, 92, 246, 0.12); color: var(--purple); }
+    .badge-rose { background: rgba(244, 63, 94, 0.12); color: var(--rose); }
+    .badge-gray { background: rgba(255, 255, 255, 0.06); color: var(--faint); }
+
+    /* ─── Status bar ─── */
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--faint);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .status-dot.active { background: var(--green); }
+    .status-dot.experiment { background: var(--amber); }
+    .status-dot.archived { background: var(--faint); }
+
+    /* ─── Responsive ─── */
+
+    @media (max-width: 940px) {
+      .agent-grid,
+      .sub-grid,
+      .host-grid,
+      .kb-formula {
+        grid-template-columns: 1fr;
+      }
+
+      .book-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 24px, var(--max-width));
+      }
+
+      .navbar {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px 0;
+      }
+
+      .nav-toggle {
+        display: flex;
+        align-self: flex-end;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 2px;
+        padding: 8px 0;
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-overlay.is-visible {
+        display: block;
+        opacity: 1;
+      }
+
+      .nav-links a {
+        padding: 12px;
+        border-radius: 8px;
+      }
+
+      .section {
+        padding: 32px 0;
+      }
+
+      .decision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 40px 0 32px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="portal-shell navbar">
-      <a class="brand" href="./" aria-label="Wilden Hub home">
-        <span class="brand-mark">W</span>
-        <span>Wilden Hub</span>
+    <div class="shell navbar">
+      <a class="brand" href="./" aria-label="弘儒個人控制台">
+        <span class="brand-mark">弘</span>
+        <span>弘儒個人控制台</span>
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="./works/">Works</a>
-        <a href="./ai-lab/">AI Lab</a>
-        <a href="./tools/">Tools</a>
-        <a href="./now/">Now</a>
+      <button class="nav-toggle" type="button" aria-label="選單" id="navToggle">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="nav-links" id="navLinks" aria-label="頁面導航">
+        <a href="#decision">決策</a>
+        <a href="#tools">工具</a>
+        <a href="#agents">Agent</a>
+        <a href="#subscriptions">訂閱</a>
+        <a href="#hosting">服務</a>
+        <a href="#knowledge">知識庫</a>
+        <a href="#books">書籍</a>
+        <a href="#projects">專案</a>
         <a href="https://github.com/WildenChen" target="_blank" rel="noopener">GitHub</a>
       </nav>
+      <div class="nav-overlay" id="navOverlay"></div>
     </div>
   </header>
 
-  <main class="portal-shell">
-    <section class="hero pixel-hero pixel-scanlines" aria-labelledby="hero-title" style="position: relative;">
-      <div class="hero-copy pixel-grid" style="position: relative;">
-        <div class="pixel-w-decoration" aria-hidden="true">
-          <div class="pixel-art-w"></div>
-        </div>
-        <span class="pixel-accent-bar"></span>
-        <h1 id="hero-title" style="position: relative; z-index: 1;">Wilden Hub</h1>
-        <p class="lede">我的技術作品、AI 工具研究、開源專案與私人工作台入口。公開看起來像作品集，自己用起來像每天會打開的控制台。</p>
-        <div class="rpg-dialogue">
-          <p><strong>Current Quest</strong>：把 iOS / Swift 經驗、OpenClaw、ollama-cloud-proxy、HomeLab 與 Coding Agent 工作流整理成可持續更新的公開基地。</p>
-        </div>
-        <div class="hero-actions">
-          <a class="button primary" href="./ai-lab/">進入 AI Lab</a>
-          <a class="button" href="./works/">查看 Works</a>
-        </div>
-      </div>
-
-      <aside class="assistant-card pixel-scanlines" aria-label="Site summary" style="position: relative;">
-        <div class="pixel-corner pixel-corner-tl"></div>
-        <div class="pixel-corner pixel-corner-tr"></div>
-        <div class="pixel-corner pixel-corner-bl"></div>
-        <div class="pixel-corner pixel-corner-br"></div>
-        <div class="pixel-avatar" aria-hidden="true">
-          <div class="pixel-avatar-inner"></div>
-        </div>
-        <p class="assistant-line">這裡是 Wilden Hub 的主基地。入口分成作品、AI 研究、私人工具與 Now 日誌；敏感服務只保留說明與狀態，不公開實際控制能力。</p>
-        <div class="assistant-grid">
-          <div><span>Author</span><strong>Wilden Chen</strong></div>
-          <div><span>Mode</span><strong>Public Hub</strong></div>
-          <div><span>Stack</span><strong>Swift / TS / AI</strong></div>
-          <div><span>Status</span><strong>noindex</strong></div>
-        </div>
-      </aside>
+  <main>
+    <!-- ─── Section 1: Hero ─── -->
+    <section class="shell hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">弘儒個人控制台</h1>
+      <p class="subtitle">AI 工具、Agent、訂閱、自架服務、書籍與專案的個人管理入口。</p>
+      <p class="lede">這個網站是我自己查詢用的控制台，用來整理 AI 工具、語婕、筱蜜、訂閱、免費帳號、自架服務、知識庫、書籍與 GitHub 專案。</p>
     </section>
 
-    <section class="map-grid" aria-label="Wilden Hub map">
-      <a class="map-node works" href="./works/">
-        <span class="map-node-icon" aria-hidden="true"></span>
-        <p class="card-index">01 / Works</p>
-        <h2 style="margin-bottom: 12px;">作品與著作</h2>
-        <p>Swift 電子書、開源專案、技術路線。我的技術名片。</p>
-      </a>
-      <a class="map-node ai" href="./ai-lab/">
-        <span class="map-node-icon" aria-hidden="true"></span>
-        <p class="card-index">02 / AI Lab</p>
-        <h2 style="margin-bottom: 12px;">AI 工具研究所</h2>
-        <p>OpenClaw、MiniMax、ollama-cloud-proxy。AI 工作流研究筆記。</p>
-      </a>
-      <a class="map-node tools" href="./tools/">
-        <span class="map-node-icon" aria-hidden="true"></span>
-        <p class="card-index">03 / Tools</p>
-        <h2 style="margin-bottom: 12px;">私人工具入口</h2>
-        <p>HomeLab 服務、Agent 閘道、訂閱管理、開發工具。</p>
-      </a>
-      <a class="map-node now" href="./now/">
-        <span class="map-node-icon" aria-hidden="true"></span>
-        <p class="card-index">04 / Now</p>
-        <h2 style="margin-bottom: 12px;">最近在做什麼</h2>
-        <p>目前專注、進行中專案、踩坑紀錄與近期目標。</p>
-      </a>
-    </section>
-
-    <section class="split-section" aria-labelledby="current-quests-title">
-      <div class="content-panel">
-        <p class="card-index">Quest Board</p>
-        <h2 id="current-quests-title">目前最值得追的任務</h2>
-        <ul class="quest-list">
-          <li><strong>OpenClaw</strong>：把記憶、工具呼叫、Telegram 入口與公開回報格式整理成能力矩陣。</li>
-          <li><strong>ollama-cloud-proxy</strong>：補完整 key rotation、fallback、streaming 相容性的產品故事。</li>
-          <li><strong>AI Tools Matrix</strong>：把 ChatGPT Plus、Google AI Pro、MiniMax、OpenCode、Copilot 的分工寫清楚。</li>
-        </ul>
-      </div>
-      <div class="content-panel">
-        <p class="card-index">Save Point</p>
-        <h2>公開邊界</h2>
-        <p>GitHub Pages 只負責展示、索引與入口。真正需要登入、憑證、內網控制或個人資料的功能，維持在私有反向代理與本機工具裡。</p>
-        <div class="section-actions" style="margin-top: 20px;">
-          <a class="button" href="./tools/">查看工具入口</a>
+    <!-- ─── Section 2: 快速決策 ─── -->
+    <section class="shell section" id="decision" aria-labelledby="decision-title">
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <div>
+          <div class="section-label">Quick Decision</div>
+          <h2 class="section-title">我現在該找誰？</h2>
         </div>
       </div>
+      <p class="section-desc" style="margin-bottom: 24px;">依當下需求，直接找對的工具或 Agent。</p>
+      <div class="card-grid decision-grid" id="decisionGrid"></div>
     </section>
 
-    <section class="bookshelf-container" aria-label="Digital Bookshelf">
-      <!-- Shelf 1: Technical Books -->
-      <div class="shelf-row">
-        <div class="shelf-header">
-          <span class="card-index">01 / Books</span>
-          <h2>技術著作電子書</h2>
+    <!-- ─── Section 3: 入口工具 ─── -->
+    <section class="shell section" id="tools" aria-labelledby="tools-title">
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <div>
+          <div class="section-label">Tool Entries</div>
+          <h2 class="section-title">我會親自使用的入口</h2>
         </div>
-        <div class="shelf-books-wrapper">
-          <div class="shelf-books">
-            <!-- Book 1: Swift 設計模式 -->
-            <a class="book-wrapper" href="https://wilden-chen.gitbook.io/swift-design-patterns" target="_blank" rel="noopener">
-              <div class="book-card" style="--spine-bg: #312E81; --cover-bg: linear-gradient(135deg, #4F46E5, #312E81)">
-                <div class="book-spine"></div>
-                <div class="book-front">
-                  <div class="book-header">
-                    <span class="book-badge">Patterns</span>
-                    <h3>實作 Swift<br>設計模式</h3>
-                  </div>
-                  <p class="book-desc">系統化講解 MVC、Factory、Facade、Decorator、Observer、MVP 等 iOS 常見架構與設計模式的實踐指南。</p>
-                  <div class="book-footer">
-                    <span>iOS / Swift</span>
-                    <span>Read →</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <!-- Book 2: Swift 殿堂之路 -->
-            <a class="book-wrapper" href="https://wilden-chen.gitbook.io/swift-bethel-of-the-road" target="_blank" rel="noopener">
-              <div class="book-card" style="--spine-bg: #7C2D12; --cover-bg: linear-gradient(135deg, #EA580C, #7C2D12)">
-                <div class="book-spine"></div>
-                <div class="book-front">
-                  <div class="book-header">
-                    <span class="book-badge">Swift</span>
-                    <h3>Swift<br>殿堂之路</h3>
-                  </div>
-                  <p class="book-desc">從 Xcode 開發環境、基本元素、流程控制到物件導向核心，為 Swift 程式語言學習者量身打造的實用教程。</p>
-                  <div class="book-footer">
-                    <span>Swift Core</span>
-                    <span>Read →</span>
-                  </div>
-                </div>
-              </div>
-            </a>
+      </div>
+      <p class="section-desc" style="margin-bottom: 24px;">主力入口、工程入口、Agent、探索中工具的分類總覽。</p>
+      <div class="card-grid tool-grid" id="toolGrid"></div>
+    </section>
+
+    <!-- ─── Section 4: Agent ─── -->
+    <section class="shell section" id="agents" aria-labelledby="agents-title">
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <div>
+          <div class="section-label">Agents</div>
+          <h2 class="section-title">語婕與筱蜜</h2>
+        </div>
+      </div>
+      <p class="section-desc" style="margin-bottom: 24px;">日常生活與 HomeLab 維運的 AI 秘書。</p>
+      <div class="card-grid agent-grid" id="agentGrid"></div>
+    </section>
+
+    <!-- ─── Section 5: 訂閱與額度 ─── -->
+    <section class="shell section" id="subscriptions" aria-labelledby="sub-title">
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <div>
+          <div class="section-label">Subscriptions</div>
+          <h2 class="section-title">訂閱與免費額度</h2>
+        </div>
+      </div>
+      <p class="section-desc" style="margin-bottom: 24px;">目前使用中的付費方案、免費權限與已移除服務。</p>
+      <div class="card-grid sub-grid" id="subGrid"></div>
+    </section>
+
+    <!-- ─── Section 6: 自架服務位置 ─── -->
+    <section class="shell section" id="hosting" aria-labelledby="host-title">
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <div>
+          <div class="section-label">Infrastructure</div>
+          <h2 class="section-title">自架服務位置</h2>
+        </div>
+      </div>
+      <p class="section-desc" style="margin-bottom: 24px;">M2 Pro Mac mini、Mint 主機與雲端服務的部署地圖。</p>
+      <div class="card-grid host-grid" id="hostGrid"></div>
+    </section>
+
+    <!-- ─── Section 7: 知識庫 ─── -->
+    <section class="shell section" id="knowledge" aria-labelledby="kb-title">
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <div>
+          <div class="section-label">Knowledge Base</div>
+          <h2 class="section-title">知識庫與文件整理</h2>
+        </div>
+      </div>
+      <div class="card kb-box">
+        <p style="color: var(--muted); line-height: 1.7; margin-bottom: 8px;">
+          我有 4 個知識庫，都有 MCP。MCP 用來查活資料、最新資料、Agent 需要的資料。
+          NotebookLM 用來做固定文件的說明書、FAQ、資料包整理。
+          ChatGPT 用來做最後判斷與修正。
+        </p>
+        <div class="kb-formula">
+          <div class="kb-item">
+            <div class="kb-label" style="color: var(--accent);">MCP</div>
+            <div class="kb-desc">活資料</div>
           </div>
-          <div class="shelf-base" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(99, 102, 241, 0.15);"></div>
-        </div>
-      </div>
-
-      <!-- Shelf 2: Open Source Projects -->
-      <div class="shelf-row">
-        <div class="shelf-header">
-          <span class="card-index">02 / Open Source</span>
-          <h2>開源專案與貢獻</h2>
-        </div>
-        <div class="shelf-books-wrapper">
-          <div class="shelf-books">
-            <!-- Book 3: LionEvents -->
-            <a class="book-wrapper" href="https://github.com/WildenChen/LionEvents" target="_blank" rel="noopener">
-              <div class="book-card" style="--spine-bg: #065F46; --cover-bg: linear-gradient(135deg, #059669, #065F46)">
-                <div class="book-spine"></div>
-                <div class="book-front">
-                  <div class="book-header">
-                    <span class="book-badge swift">Swift</span>
-                    <h3>LionEvents</h3>
-                  </div>
-                  <p class="book-desc">仿 ActionScript 3.0 事件流設計的 iOS/Swift 事件監聽與發送框架。效能超越傳統 KVO 與 NotificationCenter。</p>
-                  <div class="book-footer">
-                    <span>⭐ 8 Stars</span>
-                    <span>GitHub ↗</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <!-- Book 4: ollama-cloud-proxy -->
-            <a class="book-wrapper" href="https://github.com/WildenChen/ollama-cloud-proxy" target="_blank" rel="noopener">
-              <div class="book-card" style="--spine-bg: #1E3A8A; --cover-bg: linear-gradient(135deg, #2563EB, #1E3A8A)">
-                <div class="book-spine"></div>
-                <div class="book-front">
-                  <div class="book-header">
-                    <span class="book-badge typescript">TS</span>
-                    <h3>ollama-cloud<br>-proxy</h3>
-                  </div>
-                  <p class="book-desc">專為 Ollama Cloud 設計的輔助代理程式，優化遠端大語言模型連線代理與流量調度，提升 AI 協作開發體驗。</p>
-                  <div class="book-footer">
-                    <span>⭐ 1 Star</span>
-                    <span>GitHub ↗</span>
-                  </div>
-                </div>
-              </div>
-            </a>
+          <div class="kb-item">
+            <div class="kb-label" style="color: var(--amber);">NotebookLM</div>
+            <div class="kb-desc">說明書</div>
           </div>
-          <div class="shelf-base" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(16, 185, 129, 0.15);"></div>
+          <div class="kb-item">
+            <div class="kb-label" style="color: var(--sky);">ChatGPT</div>
+            <div class="kb-desc">判斷修正</div>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- ─── Section 8: Books ─── -->
+    <section class="shell section" id="books" aria-labelledby="books-title">
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <div>
+          <div class="section-label">Books</div>
+          <h2 class="section-title">書籍管理入口</h2>
+        </div>
+      </div>
+      <p class="section-desc" style="margin-bottom: 24px;">我自己管理與查詢書籍用，不是對外行銷頁。</p>
+      <div class="card-grid book-grid" id="bookGrid"></div>
+    </section>
+
+    <!-- ─── Section 9: GitHub 專案書籤 ─── -->
+    <section class="shell section" id="projects" aria-labelledby="projects-title">
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <div>
+          <div class="section-label">Projects</div>
+          <h2 class="section-title">GitHub 專案書籤</h2>
+        </div>
+      </div>
+      <p class="section-desc" style="margin-bottom: 24px;">我自己維護專案、快速跳轉 GitHub / 文件用。</p>
+      <div class="card-grid project-grid" id="projectGrid"></div>
     </section>
   </main>
 
-  <footer class="portal-shell site-footer">
-    <span>Wilden Hub · © 2026 · 技術著作與開源專案集 · noindex / nofollow</span>
+  <footer class="site-footer">
+    <div class="shell">
+      弘儒個人控制台 · &copy; 2026 · 個人管理入口 · noindex / nofollow
+    </div>
   </footer>
+
+  <script src="data/console-data.js"></script>
+  <script>
+    (function () {
+      var D = CONSOLE_DATA;
+
+      function make(tag, cls, text) {
+        var el = document.createElement(tag);
+        if (cls) el.className = cls;
+        if (text != null) el.textContent = text;
+        return el;
+      }
+
+      function append(parent) {
+        for (var i = 1; i < arguments.length; i++) {
+          if (arguments[i]) parent.appendChild(arguments[i]);
+        }
+        return parent;
+      }
+
+      /* ─── Section 2: Decision Cards ─── */
+      function renderDecisions() {
+        var grid = document.getElementById('decisionGrid');
+        D.decisionCards.forEach(function (c) {
+          var card = make('div', 'card decision-card');
+          card.style.setProperty('--card-color', c.color);
+          card.appendChild(make('div', 'situation', c.situation));
+          card.appendChild(make('div', 'tool-name', c.tool));
+          grid.appendChild(card);
+        });
+      }
+
+      /* ─── Section 3: Tool Entries ─── */
+      function renderTools() {
+        var grid = document.getElementById('toolGrid');
+        D.toolEntries.forEach(function (t) {
+          var card = make('div', 'card tool-card');
+          var top = make('div', 'tool-card-top');
+          top.appendChild(make('span', 'tool-category', t.category));
+          var statusBadge = make('span', 'badge badge-gray', t.status);
+          top.appendChild(statusBadge);
+          card.appendChild(top);
+          card.appendChild(make('div', 'tool-name', t.name));
+          card.appendChild(make('div', 'tool-desc', t.description));
+          if (t.note) {
+            card.appendChild(make('div', 'tool-note', '→ ' + t.note));
+          }
+          grid.appendChild(card);
+        });
+      }
+
+      /* ─── Section 4: Agents ─── */
+      function renderAgents() {
+        var grid = document.getElementById('agentGrid');
+        var agents = [D.agents.yujie, D.agents.xiaomi];
+        agents.forEach(function (a) {
+          var card = make('div', 'card agent-card');
+          card.style.setProperty('--agent-color', a.color);
+          card.appendChild(make('div', 'agent-name', a.name));
+
+          var info = make('div', 'agent-info');
+
+          var roleItem = make('div', 'agent-info-item');
+          roleItem.appendChild(make('div', 'label', '角色'));
+          roleItem.appendChild(make('div', 'value', a.role));
+          info.appendChild(roleItem);
+
+          var managesItem = make('div', 'agent-info-item');
+          managesItem.appendChild(make('div', 'label', '負責'));
+          managesItem.appendChild(make('div', 'value', a.manages));
+          info.appendChild(managesItem);
+
+          var selfieItem = make('div', 'agent-info-item');
+          selfieItem.appendChild(make('div', 'label', '自拍'));
+          selfieItem.appendChild(make('div', 'value', a.selfie));
+          info.appendChild(selfieItem);
+
+          var usageItem = make('div', 'agent-info-item');
+          usageItem.appendChild(make('div', 'label', '使用方式'));
+          usageItem.appendChild(make('div', 'value', a.usage));
+          info.appendChild(usageItem);
+
+          if (a.note) {
+            var noteItem = make('div', 'agent-info-item');
+            noteItem.appendChild(make('div', 'label', '備註'));
+            noteItem.appendChild(make('div', 'value', a.note));
+            info.appendChild(noteItem);
+          }
+
+          card.appendChild(info);
+          grid.appendChild(card);
+        });
+      }
+
+      /* ─── Section 5: Subscriptions ─── */
+      function renderSubscriptions() {
+        var grid = document.getElementById('subGrid');
+
+        function renderGroup(title, cls, items) {
+          var group = make('div', 'card sub-group ' + cls);
+          group.appendChild(make('h3', '', title));
+          items.forEach(function (item) {
+            var div = make('div', 'sub-item');
+            div.appendChild(make('div', 'sub-item-name', item.name));
+            if (item.description) {
+              div.appendChild(make('div', 'sub-item-desc', item.description));
+            }
+            group.appendChild(div);
+          });
+          grid.appendChild(group);
+        }
+
+        renderGroup('付費', 'paid', D.subscriptions.paid);
+        renderGroup('免費權限 / 免費帳號', 'free', D.subscriptions.free);
+        renderGroup('已移除', 'removed', D.subscriptions.removed);
+      }
+
+      /* ─── Section 6: Self-hosted ─── */
+      function renderHosting() {
+        var grid = document.getElementById('hostGrid');
+        var hosts = [D.selfHosted.m2, D.selfHosted.mint, D.selfHosted.cloud];
+        hosts.forEach(function (h) {
+          var card = make('div', 'card host-card');
+          card.appendChild(make('div', 'host-title', h.title));
+          if (h.subtitle) {
+            card.appendChild(make('div', 'host-subtitle', h.subtitle));
+          }
+          h.services.forEach(function (s) {
+            var div = make('div', 'host-service');
+            div.appendChild(make('div', 'host-service-name', s.name));
+            if (s.description) {
+              div.appendChild(make('div', 'host-service-desc', s.description));
+            }
+            card.appendChild(div);
+          });
+          grid.appendChild(card);
+        });
+      }
+
+      /* ─── Section 8: Books ─── */
+      function renderBooks() {
+        var grid = document.getElementById('bookGrid');
+        D.books.forEach(function (b) {
+          var card = make('div', 'card book-card');
+          card.appendChild(make('div', 'book-title', b.title));
+          card.appendChild(make('div', 'book-desc', b.description));
+
+          var actions = make('div', 'book-actions');
+
+          if (b.readUrl) {
+            var readBtn = make('a', 'btn btn-primary', '閱讀');
+            readBtn.href = b.readUrl;
+            readBtn.target = '_blank';
+            readBtn.rel = 'noopener';
+            actions.appendChild(readBtn);
+          }
+
+          if (b.manageUrl) {
+            var manageBtn = make('a', 'btn', '管理');
+            manageBtn.href = b.manageUrl;
+            manageBtn.target = '_blank';
+            manageBtn.rel = 'noopener';
+            actions.appendChild(manageBtn);
+          } else {
+            actions.appendChild(make('span', 'btn btn-todo', '管理：TODO'));
+          }
+
+          var statusBadge = make('span', 'badge badge-green', b.status);
+          actions.appendChild(statusBadge);
+
+          card.appendChild(actions);
+          grid.appendChild(card);
+        });
+      }
+
+      /* ─── Section 9: Projects ─── */
+      function renderProjects() {
+        var grid = document.getElementById('projectGrid');
+        D.projects.forEach(function (p) {
+          var card = make('div', 'card project-card');
+
+          var top = make('div', 'project-top');
+          top.appendChild(make('div', 'project-name', p.name));
+
+          var meta = make('div', 'project-meta');
+          var typeBadge = make('span', 'badge badge-purple', p.type);
+          meta.appendChild(typeBadge);
+
+          var statusClass = 'badge-gray';
+          if (p.status === '使用中') statusClass = 'badge-green';
+          else if (p.status === '實驗中') statusClass = 'badge-amber';
+          else if (p.status === '歸檔') statusClass = 'badge-rose';
+          var statusBadge = make('span', 'badge ' + statusClass, p.status);
+          meta.appendChild(statusBadge);
+
+          card.appendChild(top);
+          card.appendChild(meta);
+          card.appendChild(make('div', 'project-purpose', p.purpose));
+
+          var links = make('div', 'link-group');
+          for (var key in p.links) {
+            var url = p.links[key];
+            if (url) {
+              var btn = make('a', 'btn', key);
+              btn.href = url;
+              if (url.startsWith('http')) {
+                btn.target = '_blank';
+                btn.rel = 'noopener';
+              }
+              links.appendChild(btn);
+            } else {
+              links.appendChild(make('span', 'btn btn-todo', key + '：TODO'));
+            }
+          }
+          if (!Object.keys(p.links).length) {
+            links.appendChild(make('span', 'btn btn-todo', 'TODO'));
+          }
+          card.appendChild(links);
+          grid.appendChild(card);
+        });
+      }
+
+      /* ─── Init ─── */
+      document.addEventListener('DOMContentLoaded', function () {
+        renderDecisions();
+        renderTools();
+        renderAgents();
+        renderSubscriptions();
+        renderHosting();
+        renderBooks();
+        renderProjects();
+      });
+
+      /* ─── Mobile Nav ─── */
+      document.addEventListener('DOMContentLoaded', function () {
+        var toggle = document.getElementById('navToggle');
+        var nav = document.getElementById('navLinks');
+        var overlay = document.getElementById('navOverlay');
+
+        function setOpen(open) {
+          nav.classList.toggle('is-open', open);
+          overlay.classList.toggle('is-visible', open);
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        toggle.addEventListener('click', function () {
+          setOpen(!nav.classList.contains('is-open'));
+        });
+        overlay.addEventListener('click', function () { setOpen(false); });
+        nav.addEventListener('click', function (e) {
+          if (e.target.tagName === 'A') setOpen(false);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false);
+        });
+      });
+    })();
+  </script>
   <script src="assets/js/pwa.js" defer></script>
-  <script src="assets/js/portal.js" defer></script>
 </body>
 </html>
