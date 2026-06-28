@@ -9,7 +9,9 @@
     var workerUrl = new URL("../../service-worker.js", scriptUrl);
     var scopeUrl = new URL("../../", scriptUrl);
 
-    navigator.serviceWorker.register(workerUrl.pathname, { scope: scopeUrl.pathname }).catch(function () {
+    navigator.serviceWorker.register(workerUrl.pathname, { scope: scopeUrl.pathname }).then(function (registration) {
+      registration.update();
+    }).catch(function () {
       // The site still works as a static page if registration is unavailable.
     });
   });
