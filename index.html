@@ -1253,7 +1253,7 @@
   <header class="site-header">
     <div class="shell navbar">
       <a class="brand" href="./" aria-label="用戶個人控制台">
-        <span class="brand-mark">弘</span>
+        <span class="brand-mark">AI</span>
         <span>用戶個人控制台</span>
       </a>
       <button class="nav-toggle" type="button" aria-label="選單" id="navToggle">
@@ -1316,7 +1316,7 @@
           <h2 class="section-title">AI 架構互動地圖</h2>
         </div>
       </div>
-      <p class="section-desc" style="margin-bottom: 16px;">透過切換視角，逐步理解我的 AI 服務架構與 Agent 關係。</p>
+      <p class="section-desc" style="margin-bottom: 16px;">透過切換視角，逐步理解 AI 服務架構與 Agent 關係。</p>
 
       <div class="search-bar">
         <input class="search-input" type="text" id="searchInput" placeholder="搜尋工具、Agent、服務…" autocomplete="off">
@@ -1368,7 +1368,7 @@
           <h2 class="section-title">書籍管理入口</h2>
         </div>
       </div>
-      <p class="section-desc" style="margin-bottom: 20px;">我自己管理與查詢書籍用。</p>
+      <p class="section-desc" style="margin-bottom: 20px;">用於管理與查詢書籍。</p>
       <div class="card-grid book-grid" id="bookGrid"></div>
     </section>
 
@@ -1982,7 +1982,7 @@
       }
 
       /* ════════════════════════════════════════════
-         Map 1：我的日常使用路徑
+         Map 1：日常使用路徑
          ════════════════════════════════════════════ */
       function renderDailyUsage() {
         try {
@@ -1990,20 +1990,20 @@
           var container = $('archPanels');
           container.innerHTML = '';
 
-          var header = make('div', 'fm-header', '<div class="fm-title">我的日常使用路徑</div><div class="fm-desc">從用戶出發的 8 條使用路徑，展示每條路徑的入口工具與背後服務。</div>');
+          var header = make('div', 'fm-header', '<div class="fm-title">日常使用路徑</div><div class="fm-desc">從用戶出發的 8 條使用路徑，展示每條路徑的入口工具與背後服務。</div>');
           container.appendChild(header);
 
           var wrapper = make('div', 'fm-daily', '');
 
           var flows = [
-            { label: '想清楚', path: ['hongru', 'chatgpt', 'chatgpt-plus'] },
-            { label: '查資料', path: ['hongru', 'gemini', 'google-ai-pro'] },
-            { label: '整理文件', path: ['hongru', 'notebooklm', 'google-ai-pro'] },
-            { label: '生活／帳務／陪伴', path: ['hongru', 'yujie', 'openclaw'] },
-            { label: 'HomeLab／機器', path: ['hongru', 'xiaomi', 'hermes'] },
-            { label: '正式 coding', path: ['hongru', 'codex-entry', 'chatgpt-plus'] },
-            { label: '工程救火', path: ['hongru', 'antigravity2', 'google-ai-pro'] },
-            { label: '日常開發', path: ['hongru', 'opencode-entry', 'opencode-go'] }
+            { label: '想清楚', path: ['user', 'chatgpt', 'chatgpt-plus'] },
+            { label: '查資料', path: ['user', 'gemini', 'google-ai-pro'] },
+            { label: '整理文件', path: ['user', 'notebooklm', 'google-ai-pro'] },
+            { label: '生活／帳務／陪伴', path: ['user', 'yujie', 'openclaw'] },
+            { label: 'HomeLab／機器', path: ['user', 'xiaomi', 'hermes'] },
+            { label: '正式 coding', path: ['user', 'codex-entry', 'chatgpt-plus'] },
+            { label: '工程救火', path: ['user', 'antigravity2', 'google-ai-pro'] },
+            { label: '日常開發', path: ['user', 'opencode-entry', 'opencode-go'] }
           ];
 
           flows.forEach(function (f) {
@@ -2038,19 +2038,19 @@
           var container = $('archPanels');
           container.innerHTML = '';
 
-          var header = make('div', 'fm-header', '<div class="fm-title">Agent 關係圖</div><div class="fm-desc">語婕(OpenClaw)與筱蜜(Hermes)的完整路徑對照。</div>');
+          var header = make('div', 'fm-header', '<div class="fm-title">Agent 關係圖</div><div class="fm-desc">語婕使用 OpenClaw，筱蜜使用 Hermes；名稱與平台分開看。</div>');
           container.appendChild(header);
 
           var dual = make('div', 'fm-dual', '');
 
-          // Left: 語婕(OpenClaw)
+          // Left: 語婕
           var leftCol = make('div', 'fm-col', '');
-          var leftTitle = textEl('div', 'fm-col-title', '語婕(OpenClaw)路徑');
+          var leftTitle = textEl('div', 'fm-col-title', '語婕路徑');
           leftTitle.style.borderBottomColor = 'var(--pink)';
           leftTitle.style.color = 'var(--pink)';
           leftCol.appendChild(leftTitle);
           var leftFlow = make('div', 'fm-col-flow', '');
-          var leftPath = ['hongru', 'yujie', 'openclaw', 'kb-yujie', 'mcp-x4', 'agnes-yujie', 'media-yujie'];
+          var leftPath = ['user', 'yujie', 'openclaw', 'kb-yujie', 'mcp-x4', 'agnes-yujie', 'media-yujie'];
           leftPath.forEach(function (nodeId, idx) {
             if (idx > 0) {
               var eKey = leftPath[idx - 1] + '-' + nodeId;
@@ -2062,19 +2062,19 @@
             var el = makeNodeEl(nodeId);
             if (el) leftFlow.appendChild(el);
           });
-          var leftNote = make('div', 'fm-col-note', '語婕(OpenClaw)管生活：生活提醒、帳務、訂閱、陪伴。<br>技術問題可整理 brief 給筱蜜(Hermes)。');
+          var leftNote = make('div', 'fm-col-note', '語婕管生活：生活提醒、帳務、訂閱、陪伴。<br>背後平台是 OpenClaw；技術問題可整理 brief 給筱蜜。');
           leftCol.appendChild(leftFlow);
           leftCol.appendChild(leftNote);
           dual.appendChild(leftCol);
 
-          // Right: 筱蜜(Hermes)
+          // Right: 筱蜜
           var rightCol = make('div', 'fm-col', '');
-          var rightTitle = textEl('div', 'fm-col-title', '筱蜜(Hermes)路徑');
+          var rightTitle = textEl('div', 'fm-col-title', '筱蜜路徑');
           rightTitle.style.borderBottomColor = 'var(--purple)';
           rightTitle.style.color = 'var(--purple)';
           rightCol.appendChild(rightTitle);
           var rightFlow = make('div', 'fm-col-flow', '');
-          var rightPath = ['hongru', 'xiaomi', 'hermes', 'kb-xiaomi', 'mcp-x4', 'agnes-xiaomi', 'media-xiaomi'];
+          var rightPath = ['user', 'xiaomi', 'hermes', 'kb-xiaomi', 'mcp-x4', 'agnes-xiaomi', 'media-xiaomi'];
           rightPath.forEach(function (nodeId, idx) {
             if (idx > 0) {
               var eKey = rightPath[idx - 1] + '-' + nodeId;
@@ -2086,8 +2086,8 @@
             var el = makeNodeEl(nodeId);
             if (el) rightFlow.appendChild(el);
           });
-          // 筱蜜(Hermes) upgrade suggestions
-          var upgradeNote = '筱蜜(Hermes)管機器：Docker、PM2、log、SOP。<br>';
+          // 筱蜜 upgrade suggestions
+          var upgradeNote = '筱蜜管機器：Docker、PM2、log、SOP。背後平台是 Hermes。<br>';
           upgradeNote += '必要時建議升級到：';
           ['codex-engine', 'antigravity2-engine', 'opencode-engine'].forEach(function (engId, i) {
             if (i > 0) upgradeNote += '、';
@@ -2103,7 +2103,7 @@
 
           container.appendChild(dual);
 
-          var footNote = make('div', 'fm-col-note', 'Agnes 是語婕(OpenClaw)與筱蜜(Hermes)背後的自拍引擎，不是用戶直接操作。MCP 知識庫是活資料來源。');
+          var footNote = make('div', 'fm-col-note', 'Agnes 是語婕與筱蜜背後的自拍引擎，不是用戶直接操作。MCP 知識庫是活資料來源。');
           footNote.style.marginTop = '12px';
           container.appendChild(footNote);
           console.log('[render] renderAgentRelations (arch) end');
@@ -2333,7 +2333,7 @@
 
           var container = $('summaryStrip');
           container.innerHTML = '';
-          container.appendChild(makeItem(directCount, '直接入口', '我直接操作的介面'));
+          container.appendChild(makeItem(directCount, '直接入口', '用戶直接操作的介面'));
           container.appendChild(makeItem(paidCount, '付費服務', 'ChatGPT Plus / Google AI Pro / OpenCode GO'));
           container.appendChild(makeItem('×', '免費帳號 / Key', freeStr));
           container.appendChild(makeItem(selfHosted, '自架服務', 'M2 Pro / Mint / MCP ×4 / NewAPI / Ollama-Proxy / ComfyUI / OpenCode'));
