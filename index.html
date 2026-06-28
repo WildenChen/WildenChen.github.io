@@ -1390,8 +1390,8 @@
     <div class="shell">用戶個人控制台 · &copy; 2026 · 個人管理入口 · noindex / nofollow</div>
   </footer>
 
-  <script src="data/console-data.js?v=20260628-name-cleanup"></script>
-  <script src="data/architecture-data.js?v=20260628-name-cleanup"></script>
+  <script src="data/console-data.js?v=20260628-tabs"></script>
+  <script src="data/architecture-data.js?v=20260628-tabs"></script>
   <script>
     (function () {
       console.log('[boot] first script start');
@@ -1901,8 +1901,8 @@
           console.log('[render] renderArchTabs start');
           var container = $('archTabs');
           container.innerHTML = '';
-          // 4 flow maps + cost view + bundles
-          var tabs = A.maps.concat([{ id: 'cost-view', title: '成本視角' }, { id: 'bundles', title: '訂閱包視角' }]);
+          // Flow maps from data + derived cost view.
+          var tabs = A.maps.concat([{ id: 'cost-view', title: '成本視角' }]);
           tabs.forEach(function (m) {
             var btn = textEl('button', 'arch-tab' + (m.id === activeMapId ? ' active' : ''), m.title);
             btn.dataset.view = m.id;
@@ -2651,6 +2651,6 @@
       });
     })();
   </script>
-  <script src="assets/js/pwa.js?v=20260628-name-cleanup" defer></script>
+  <script src="assets/js/pwa.js?v=20260628-tabs" defer></script>
 </body>
 </html>
