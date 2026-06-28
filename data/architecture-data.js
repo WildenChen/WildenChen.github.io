@@ -692,8 +692,7 @@ var ARCH_DATA = {
       tags: ['付費', '雲端', '幕後'],
       description: '各大雲端 AI 服務。OpenAI / Google / Nvidia / OpenCode Zen / Agnes API 等。',
       notes: []
-    }
-  ],
+    },
 
 
     // ── ChatGPT Plus 子服務 ──
@@ -1097,7 +1096,8 @@ var ARCH_DATA = {
       isDirectUse: true,
       bundleId: 'google-ai-pro',
       serviceType: 'storage'
-    },
+    }
+  ],
   // ─── 邊定義 ───
   edges: [
     // 人 → 入口
@@ -1180,8 +1180,7 @@ var ARCH_DATA = {
     { from: 'cloud', to: 'nvidia-nim', label: '承載', type: 'hosts' },
     { from: 'cloud', to: 'opencode-zen', label: '承載', type: 'hosts' },
     { from: 'cloud', to: 'agnes', label: '承載', type: 'hosts' },
-    { from: 'cloud', to: 'copilot-student', label: '承載', type: 'hosts' }
-  ],
+    { from: 'cloud', to: 'copilot-student', label: '承載', type: 'hosts' },
 
 
     // ── ChatGPT Plus 訂閱包邊 ──
@@ -1210,7 +1209,8 @@ var ARCH_DATA = {
     { from: 'google-ai-pro', to: 'search-ai', label: '包含', type: 'bundle' },
     { from: 'google-ai-pro', to: 'gemini-image', label: '包含', type: 'bundle' },
     { from: 'google-ai-pro', to: 'veo', label: '包含', type: 'bundle' },
-    { from: 'google-ai-pro', to: 'one-storage', label: '包含', type: 'bundle' },
+    { from: 'google-ai-pro', to: 'one-storage', label: '包含', type: 'bundle' }
+  ],
   // ─── 流程圖定義 ───
   maps: [
     {
