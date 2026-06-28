@@ -1243,6 +1243,13 @@
   </style>
 </head>
 <body>
+  <style>#debugBox{display:none;background:#1a0a0a;color:#f88;padding:12px 16px;margin:8px;border:2px solid #f44;border-radius:8px;font:13px/1.5 monospace;white-space:pre-wrap;max-height:400px;overflow:auto;position:relative;z-index:999}img{max-width:100%;height:auto;background:#1e1e2e;min-height:48px}</style>
+  <div id="debugBox"></div>
+  <script>(function(){var b=document.getElementById('debugBox');function show(m,s){b.style.display='block';b.textContent+='['+s+'] '+m+'\n'}
+  window.addEventListener('error',function(e){show(e.error?e.error.stack:e.message,'ERR')});
+  window.addEventListener('unhandledrejection',function(e){show(e.reason?e.reason.stack:e.reason,'PROM')});
+  window.bootLog=function(){for(var _p=[],_i=0;_i<arguments.length;_i++)_p.push(arguments[_i]);console.log.apply(console,_p)};
+  })();</script>
   <header class="site-header">
     <div class="shell navbar">
       <a class="brand" href="./" aria-label="用戶個人控制台">
@@ -1387,6 +1394,7 @@
   <script src="data/architecture-data.js"></script>
   <script>
     (function () {
+      console.log('[boot] first script start');
       var D = CONSOLE_DATA;
       var activeTab = 'task';
 
@@ -1403,13 +1411,17 @@
       var TAB_LABELS = ['依任務看', '依入口看', '依部署位置看', '依訂閱狀態看', '依 Agent 關係看', '依幕後燃料看'];
 
       function renderTabs() {
-        var container = $('mapTabs');
-        TAB_KEYS.forEach(function (key, i) {
-          var btn = make('button', 'tab-btn' + (key === activeTab ? ' active' : ''), TAB_LABELS[i]);
-          btn.dataset.tab = key;
-          btn.addEventListener('click', function () { switchTab(key); });
-          container.appendChild(btn);
-        });
+        try {
+          console.log('[render] renderTabs start');
+          var container = $('mapTabs');
+          TAB_KEYS.forEach(function (key, i) {
+            var btn = make('button', 'tab-btn' + (key === activeTab ? ' active' : ''), TAB_LABELS[i]);
+            btn.dataset.tab = key;
+            btn.addEventListener('click', function () { switchTab(key); });
+            container.appendChild(btn);
+          });
+          console.log('[render] renderTabs end');
+        } catch (e) { console.error('[render] renderTabs error', e); }
       }
 
       function switchTab(key) {
@@ -1446,24 +1458,28 @@
       var activeTask = null;
 
       function renderTasks() {
-        var grid = $('taskGrid');
-        grid.innerHTML = '';
-        D.tasks.forEach(function (t) {
-          var visible = matchesSearch(t.label) || matchesSearch(t.firstChoice) || matchesSearch(t.why);
-          if (!visible) return;
-          var btn = make('button', 'task-btn' + (activeTask === t.id ? ' active' : ''), t.label);
-          btn.addEventListener('click', function () {
-            activeTask = t.id;
-            renderTasks();
-            showTaskDetail(t);
+        try {
+          console.log('[render] renderTasks start');
+          var grid = $('taskGrid');
+          grid.innerHTML = '';
+          D.tasks.forEach(function (t) {
+            var visible = matchesSearch(t.label) || matchesSearch(t.firstChoice) || matchesSearch(t.why);
+            if (!visible) return;
+            var btn = make('button', 'task-btn' + (activeTask === t.id ? ' active' : ''), t.label);
+            btn.addEventListener('click', function () {
+              activeTask = t.id;
+              renderTasks();
+              showTaskDetail(t);
+            });
+            grid.appendChild(btn);
           });
-          grid.appendChild(btn);
-        });
-        // Re-show detail if active task still exists
-        if (activeTask) {
-          var found = D.tasks.filter(function (t) { return t.id === activeTask; })[0];
-          if (found) showTaskDetail(found);
-        }
+          // Re-show detail if active task still exists
+          if (activeTask) {
+            var found = D.tasks.filter(function (t) { return t.id === activeTask; })[0];
+            if (found) showTaskDetail(found);
+          }
+          console.log('[render] renderTasks end');
+        } catch (e) { console.error('[render] renderTasks error', e); }
       }
 
       function showTaskDetail(t) {
@@ -1495,253 +1511,285 @@
 
       /* ─── View 2: Entries ─── */
       function renderEntries() {
-        var container = $('entryContainer');
-        container.innerHTML = '';
-        D.entryGroups.forEach(function (g) {
-          var filtered = g.items.filter(function (item) {
-            return matchesSearch(item.name) || matchesSearch(item.purpose) || matchesSearch(item.category);
-          });
-          if (!filtered.length) return;
-
-          var group = make('div', 'entry-group' + (g.group === '主力' ? ' main' : ' exploring'));
-          group.appendChild(make('h3', '', g.group));
-
-          var grid = make('div', 'entry-grid');
-          filtered.forEach(function (item) {
-            var card = make('div', 'card entry-card');
-            card.dataset.name = item.name;
-
-            var header = make('div', 'entry-card-header');
-            header.appendChild(make('span', 'entry-category', item.category));
-            header.appendChild(make('span', 'badge badge-gray', item.payment));
-            card.appendChild(header);
-
-            card.appendChild(make('div', 'entry-name', item.name));
-            card.appendChild(make('div', 'entry-purpose', item.purpose));
-
-            var detail = make('div', 'entry-detail');
-            detail.innerHTML =
-              '<div class="row"><span class="row-label">背後</span><span class="row-value">' + (item.behind || '-') + '</span></div>' +
-              '<div class="row"><span class="row-label">備註</span><span class="row-value">' + (item.note || '-') + '</span></div>';
-            card.appendChild(detail);
-
-            card.addEventListener('click', function () {
-              detail.classList.toggle('open');
+        try {
+          console.log('[render] renderEntries start');
+          var container = $('entryContainer');
+          container.innerHTML = '';
+          D.entryGroups.forEach(function (g) {
+            var filtered = g.items.filter(function (item) {
+              return matchesSearch(item.name) || matchesSearch(item.purpose) || matchesSearch(item.category);
             });
+            if (!filtered.length) return;
 
-            grid.appendChild(card);
+            var group = make('div', 'entry-group' + (g.group === '主力' ? ' main' : ' exploring'));
+            group.appendChild(make('h3', '', g.group));
+
+            var grid = make('div', 'entry-grid');
+            filtered.forEach(function (item) {
+              var card = make('div', 'card entry-card');
+              card.dataset.name = item.name;
+
+              var header = make('div', 'entry-card-header');
+              header.appendChild(make('span', 'entry-category', item.category));
+              header.appendChild(make('span', 'badge badge-gray', item.payment));
+              card.appendChild(header);
+
+              card.appendChild(make('div', 'entry-name', item.name));
+              card.appendChild(make('div', 'entry-purpose', item.purpose));
+
+              var detail = make('div', 'entry-detail');
+              detail.innerHTML =
+                '<div class="row"><span class="row-label">背後</span><span class="row-value">' + (item.behind || '-') + '</span></div>' +
+                '<div class="row"><span class="row-label">備註</span><span class="row-value">' + (item.note || '-') + '</span></div>';
+              card.appendChild(detail);
+
+              card.addEventListener('click', function () {
+                detail.classList.toggle('open');
+              });
+
+              grid.appendChild(card);
+            });
+            group.appendChild(grid);
+            container.appendChild(group);
           });
-          group.appendChild(grid);
-          container.appendChild(group);
-        });
+          console.log('[render] renderEntries end');
+        } catch (e) { console.error('[render] renderEntries error', e); }
       }
 
       /* ─── View 3: Locations ─── */
       function renderLocations() {
-        var grid = $('locationGrid');
-        grid.innerHTML = '';
-        D.locationGroups.forEach(function (g) {
-          var filtered = g.services.filter(function (s) {
-            return matchesSearch(s.name) || matchesSearch(s.description);
+        try {
+          console.log('[render] renderLocations start');
+          var grid = $('locationGrid');
+          grid.innerHTML = '';
+          D.locationGroups.forEach(function (g) {
+            var filtered = g.services.filter(function (s) {
+              return matchesSearch(s.name) || matchesSearch(s.description);
+            });
+            if (!filtered.length) return;
+
+            var card = make('div', 'card location-card');
+            card.appendChild(make('div', 'location-title', g.location));
+            if (g.subtitle) card.appendChild(make('div', 'location-subtitle', g.subtitle));
+
+            filtered.forEach(function (s) {
+              var div = make('div', 'loc-service');
+              var nameEl = make('div', 'loc-service-name', s.name);
+              if (s.badge) {
+                var badge = make('span', 'badge-dual', s.badge);
+                nameEl.appendChild(badge);
+              }
+              div.appendChild(nameEl);
+              if (s.description) div.appendChild(make('div', 'loc-service-desc', s.description));
+              card.appendChild(div);
+            });
+
+            grid.appendChild(card);
           });
-          if (!filtered.length) return;
-
-          var card = make('div', 'card location-card');
-          card.appendChild(make('div', 'location-title', g.location));
-          if (g.subtitle) card.appendChild(make('div', 'location-subtitle', g.subtitle));
-
-          filtered.forEach(function (s) {
-            var div = make('div', 'loc-service');
-            var nameEl = make('div', 'loc-service-name', s.name);
-            if (s.badge) {
-              var badge = make('span', 'badge-dual', s.badge);
-              nameEl.appendChild(badge);
-            }
-            div.appendChild(nameEl);
-            if (s.description) div.appendChild(make('div', 'loc-service-desc', s.description));
-            card.appendChild(div);
-          });
-
-          grid.appendChild(card);
-        });
+          console.log('[render] renderLocations end');
+        } catch (e) { console.error('[render] renderLocations error', e); }
       }
 
       /* ─── View 4: Subscriptions ─── */
       function renderSubscriptions() {
-        var grid = $('subGrid');
-        grid.innerHTML = '';
-        D.subscriptionGroups.forEach(function (g) {
-          var filtered = g.items.filter(function (item) {
-            return matchesSearch(item.name) || matchesSearch(item.description);
+        try {
+          console.log('[render] renderSubscriptions start');
+          var grid = $('subGrid');
+          grid.innerHTML = '';
+          D.subscriptionGroups.forEach(function (g) {
+            var filtered = g.items.filter(function (item) {
+              return matchesSearch(item.name) || matchesSearch(item.description);
+            });
+            if (!filtered.length) return;
+
+            var cls = g.group === '付費' ? 'paid' : (g.group === '免費' ? 'free' : 'self-hosted');
+            var card = make('div', 'card sub-card ' + cls);
+            card.appendChild(make('h3', '', g.group));
+
+            filtered.forEach(function (item) {
+              var div = make('div', 'sub-item');
+              var nameEl = make('div', 'sub-item-name', item.name);
+              if (item.badge) {
+                var badge = make('span', 'badge-dual', item.badge);
+                nameEl.appendChild(badge);
+              }
+              div.appendChild(nameEl);
+              if (item.description) div.appendChild(make('div', 'sub-item-desc', item.description));
+              card.appendChild(div);
+            });
+
+            grid.appendChild(card);
           });
-          if (!filtered.length) return;
-
-          var cls = g.group === '付費' ? 'paid' : (g.group === '免費' ? 'free' : 'self-hosted');
-          var card = make('div', 'card sub-card ' + cls);
-          card.appendChild(make('h3', '', g.group));
-
-          filtered.forEach(function (item) {
-            var div = make('div', 'sub-item');
-            var nameEl = make('div', 'sub-item-name', item.name);
-            if (item.badge) {
-              var badge = make('span', 'badge-dual', item.badge);
-              nameEl.appendChild(badge);
-            }
-            div.appendChild(nameEl);
-            if (item.description) div.appendChild(make('div', 'sub-item-desc', item.description));
-            card.appendChild(div);
-          });
-
-          grid.appendChild(card);
-        });
+          console.log('[render] renderSubscriptions end');
+        } catch (e) { console.error('[render] renderSubscriptions error', e); }
       }
 
       /* ─── View 5: Agent Relations ─── */
       function renderAgentRelations() {
-        var cards = $('agentCards');
-        cards.innerHTML = '';
-        var list = $('relationList');
-        list.innerHTML = '';
+        try {
+          console.log('[render] renderAgentRelations start');
+          var cards = $('agentCards');
+          cards.innerHTML = '';
+          var list = $('relationList');
+          list.innerHTML = '';
 
-        D.agentRelations.agents.forEach(function (a) {
-          var visible = matchesSearch(a.name) || matchesSearch(a.role) || matchesSearch(a.manages);
-          if (!visible) return;
+          D.agentRelations.agents.forEach(function (a) {
+            var visible = matchesSearch(a.name) || matchesSearch(a.role) || matchesSearch(a.manages);
+            if (!visible) return;
 
-          var card = make('div', 'card agent-card-lg');
-          card.style.setProperty('--agent-color', a.color || 'var(--accent)');
-          card.appendChild(make('div', 'agent-name', a.name));
+            var card = make('div', 'card agent-card-lg');
+            card.style.setProperty('--agent-color', a.color || 'var(--accent)');
+            card.appendChild(make('div', 'agent-name', a.name));
 
-          var fields = [
-            { label: '平台', value: a.platform },
-            { label: '角色', value: a.role },
-            { label: '負責', value: a.manages },
-            { label: '自拍', value: a.selfie },
-            { label: '知識', value: a.knowledge }
-          ];
-          if (a.note) fields.push({ label: '備註', value: a.note });
+            var fields = [
+              { label: '平台', value: a.platform },
+              { label: '角色', value: a.role },
+              { label: '負責', value: a.manages },
+              { label: '自拍', value: a.selfie },
+              { label: '知識', value: a.knowledge }
+            ];
+            if (a.note) fields.push({ label: '備註', value: a.note });
 
-          fields.forEach(function (f) {
-            var field = make('div', 'agent-field');
-            field.appendChild(make('div', 'agent-field-label', f.label));
-            field.appendChild(make('div', 'agent-field-value', f.value));
-            card.appendChild(field);
+            fields.forEach(function (f) {
+              var field = make('div', 'agent-field');
+              field.appendChild(make('div', 'agent-field-label', f.label));
+              field.appendChild(make('div', 'agent-field-value', f.value));
+              card.appendChild(field);
+            });
+
+            cards.appendChild(card);
           });
 
-          cards.appendChild(card);
-        });
+          D.agentRelations.connections.forEach(function (c) {
+            var visible = matchesSearch(c.from) || matchesSearch(c.to) || matchesSearch(c.type);
+            if (!visible) return;
 
-        D.agentRelations.connections.forEach(function (c) {
-          var visible = matchesSearch(c.from) || matchesSearch(c.to) || matchesSearch(c.type);
-          if (!visible) return;
-
-          var item = make('div', 'relation-item');
-          item.appendChild(make('span', 'relation-from', c.from));
-          item.appendChild(make('span', 'relation-arrow', '→'));
-          item.appendChild(make('span', 'relation-label', c.type));
-          item.appendChild(make('span', 'relation-to', c.to));
-          list.appendChild(item);
-        });
+            var item = make('div', 'relation-item');
+            item.appendChild(make('span', 'relation-from', c.from));
+            item.appendChild(make('span', 'relation-arrow', '→'));
+            item.appendChild(make('span', 'relation-label', c.type));
+            item.appendChild(make('span', 'relation-to', c.to));
+            list.appendChild(item);
+          });
+          console.log('[render] renderAgentRelations end');
+        } catch (e) { console.error('[render] renderAgentRelations error', e); }
       }
 
       /* ─── View 6: Fuel ─── */
       function renderFuel() {
-        var grid = $('fuelGrid');
-        grid.innerHTML = '';
-        D.fuelItems.forEach(function (f) {
-          var visible = matchesSearch(f.name) || matchesSearch(f.type) || matchesSearch(f.description);
-          if (!visible) return;
+        try {
+          console.log('[render] renderFuel start');
+          var grid = $('fuelGrid');
+          grid.innerHTML = '';
+          D.fuelItems.forEach(function (f) {
+            var visible = matchesSearch(f.name) || matchesSearch(f.type) || matchesSearch(f.description);
+            if (!visible) return;
 
-          var card = make('div', 'card fuel-card');
-          card.appendChild(make('div', 'fuel-name', f.name));
-          card.appendChild(make('div', 'fuel-type', f.type));
-          if (f.description) card.appendChild(make('div', 'fuel-desc', f.description));
+            var card = make('div', 'card fuel-card');
+            card.appendChild(make('div', 'fuel-name', f.name));
+            card.appendChild(make('div', 'fuel-type', f.type));
+            if (f.description) card.appendChild(make('div', 'fuel-desc', f.description));
 
-          if (f.children && f.children.length) {
-            var children = make('div', 'fuel-children');
-            f.children.forEach(function (child) {
-              children.appendChild(make('div', 'fuel-child', child));
-            });
-            card.appendChild(children);
-          }
+            if (f.children && f.children.length) {
+              var children = make('div', 'fuel-children');
+              f.children.forEach(function (child) {
+                children.appendChild(make('div', 'fuel-child', child));
+              });
+              card.appendChild(children);
+            }
 
-          grid.appendChild(card);
-        });
+            grid.appendChild(card);
+          });
+          console.log('[render] renderFuel end');
+        } catch (e) { console.error('[render] renderFuel error', e); }
       }
 
       /* ─── Books ─── */
       function renderBooks() {
-        var grid = $('bookGrid');
-        D.books.forEach(function (b) {
-          var card = make('div', 'card book-card');
-          card.appendChild(make('div', 'book-title', b.title));
-          card.appendChild(make('div', 'book-desc', b.description));
+        try {
+          console.log('[render] renderBooks start');
+          var grid = $('bookGrid');
+          D.books.forEach(function (b) {
+            var card = make('div', 'card book-card');
+            card.appendChild(make('div', 'book-title', b.title));
+            card.appendChild(make('div', 'book-desc', b.description));
 
-          var actions = make('div', 'book-actions');
-          if (b.readUrl) {
-            var readBtn = make('a', 'btn btn-primary', '閱讀');
-            readBtn.href = b.readUrl; readBtn.target = '_blank'; readBtn.rel = 'noopener';
-            actions.appendChild(readBtn);
-          }
-          if (b.manageUrl) {
-            var manageBtn = make('a', 'btn', '管理');
-            manageBtn.href = b.manageUrl; manageBtn.target = '_blank'; manageBtn.rel = 'noopener';
-            actions.appendChild(manageBtn);
-          } else {
-            actions.appendChild(make('span', 'btn btn-todo', '管理：TODO'));
-          }
-          actions.appendChild(make('span', 'badge badge-green', b.status));
-          card.appendChild(actions);
-          grid.appendChild(card);
-        });
+            var actions = make('div', 'book-actions');
+            if (b.readUrl) {
+              var readBtn = make('a', 'btn btn-primary', '閱讀');
+              readBtn.href = b.readUrl; readBtn.target = '_blank'; readBtn.rel = 'noopener';
+              actions.appendChild(readBtn);
+            }
+            if (b.manageUrl) {
+              var manageBtn = make('a', 'btn', '管理');
+              manageBtn.href = b.manageUrl; manageBtn.target = '_blank'; manageBtn.rel = 'noopener';
+              actions.appendChild(manageBtn);
+            } else {
+              actions.appendChild(make('span', 'btn btn-todo', '管理：TODO'));
+            }
+            actions.appendChild(make('span', 'badge badge-green', b.status));
+            card.appendChild(actions);
+            grid.appendChild(card);
+          });
+          console.log('[render] renderBooks end');
+        } catch (e) { console.error('[render] renderBooks error', e); }
       }
 
       /* ─── Projects ─── */
       function renderProjects() {
-        var grid = $('projectGrid');
-        D.projects.forEach(function (p) {
-          var card = make('div', 'card project-card');
-          var top = make('div', 'project-top');
-          top.appendChild(make('div', 'project-name', p.name));
+        try {
+          console.log('[render] renderProjects start');
+          var grid = $('projectGrid');
+          D.projects.forEach(function (p) {
+            var card = make('div', 'card project-card');
+            var top = make('div', 'project-top');
+            top.appendChild(make('div', 'project-name', p.name));
 
-          var meta = make('div', 'project-meta');
-          meta.appendChild(make('span', 'badge badge-purple', p.type));
-          var statusClass = { '使用中': 'badge-green', '實驗中': 'badge-amber', '歸檔': 'badge-rose' }[p.status] || 'badge-gray';
-          meta.appendChild(make('span', 'badge ' + statusClass, p.status));
+            var meta = make('div', 'project-meta');
+            meta.appendChild(make('span', 'badge badge-purple', p.type));
+            var statusClass = { '使用中': 'badge-green', '實驗中': 'badge-amber', '歸檔': 'badge-rose' }[p.status] || 'badge-gray';
+            meta.appendChild(make('span', 'badge ' + statusClass, p.status));
 
-          card.appendChild(top);
-          card.appendChild(meta);
-          card.appendChild(make('div', 'project-purpose', p.purpose));
+            card.appendChild(top);
+            card.appendChild(meta);
+            card.appendChild(make('div', 'project-purpose', p.purpose));
 
-          var links = make('div', 'link-group');
-          for (var key in p.links) {
-            var url = p.links[key];
-            if (url) {
-              var lnk = make('a', 'btn', key);
-              lnk.href = url;
-              if (url.startsWith('http')) { lnk.target = '_blank'; lnk.rel = 'noopener'; }
-              links.appendChild(lnk);
-            } else {
-              links.appendChild(make('span', 'btn btn-todo', key + '：TODO'));
+            var links = make('div', 'link-group');
+            for (var key in p.links) {
+              var url = p.links[key];
+              if (url) {
+                var lnk = make('a', 'btn', key);
+                lnk.href = url;
+                if (url.startsWith('http')) { lnk.target = '_blank'; lnk.rel = 'noopener'; }
+                links.appendChild(lnk);
+              } else {
+                links.appendChild(make('span', 'btn btn-todo', key + '：TODO'));
+              }
             }
-          }
-          if (!Object.keys(p.links).length) links.appendChild(make('span', 'btn btn-todo', 'TODO'));
-          card.appendChild(links);
-          grid.appendChild(card);
-        });
+            if (!Object.keys(p.links).length) links.appendChild(make('span', 'btn btn-todo', 'TODO'));
+            card.appendChild(links);
+            grid.appendChild(card);
+          });
+          console.log('[render] renderProjects end');
+        } catch (e) { console.error('[render] renderProjects error', e); }
       }
 
       /* ─── Init ─── */
       document.addEventListener('DOMContentLoaded', function () {
-        $('searchInput').addEventListener('input', filterCurrentView);
-        renderTabs();
-        renderTasks();
-        renderEntries();
-        renderLocations();
-        renderSubscriptions();
-        renderAgentRelations();
-        renderFuel();
-        renderBooks();
-        renderProjects();
+        try {
+          console.log('[boot] first script DOMContentLoaded start');
+          $('searchInput').addEventListener('input', filterCurrentView);
+          renderTabs();
+          renderTasks();
+          renderEntries();
+          renderLocations();
+          renderSubscriptions();
+          renderAgentRelations();
+          renderFuel();
+          renderBooks();
+          renderProjects();
+          console.log('[boot] first script DOMContentLoaded done');
+        } catch (e) { console.error('[boot] first script init error', e); }
       });
 
       /* ─── Mobile Nav ─── */
@@ -1766,6 +1814,7 @@
   </script>
   <script>
     (function () {
+      console.log('[boot] second script start');
       var A = ARCH_DATA;
 
       function $(id) { return document.getElementById(id); }
@@ -1848,16 +1897,20 @@
 
       /* ─── Tabs ─── */
       function renderArchTabs() {
-        var container = $('archTabs');
-        container.innerHTML = '';
-        // 4 flow maps + cost view + bundles
-        var tabs = A.maps.concat([{ id: 'cost-view', title: '成本視角' }, { id: 'bundles', title: '訂閱包視角' }]);
-        tabs.forEach(function (m) {
-          var btn = textEl('button', 'arch-tab' + (m.id === activeMapId ? ' active' : ''), m.title);
-          btn.dataset.view = m.id;
-          btn.addEventListener('click', function () { switchArchTab(m.id); });
-          container.appendChild(btn);
-        });
+        try {
+          console.log('[render] renderArchTabs start');
+          var container = $('archTabs');
+          container.innerHTML = '';
+          // 4 flow maps + cost view + bundles
+          var tabs = A.maps.concat([{ id: 'cost-view', title: '成本視角' }, { id: 'bundles', title: '訂閱包視角' }]);
+          tabs.forEach(function (m) {
+            var btn = textEl('button', 'arch-tab' + (m.id === activeMapId ? ' active' : ''), m.title);
+            btn.dataset.view = m.id;
+            btn.addEventListener('click', function () { switchArchTab(m.id); });
+            container.appendChild(btn);
+          });
+          console.log('[render] renderArchTabs end');
+        } catch (e) { console.error('[render] renderArchTabs error', e); }
       }
 
       function switchArchTab(id) {
@@ -1932,572 +1985,669 @@
          Map 1：我的日常使用路徑
          ════════════════════════════════════════════ */
       function renderDailyUsage() {
-        var container = $('archPanels');
-        container.innerHTML = '';
+        try {
+          console.log('[render] renderDailyUsage start');
+          var container = $('archPanels');
+          container.innerHTML = '';
 
-        var header = make('div', 'fm-header', '<div class="fm-title">我的日常使用路徑</div><div class="fm-desc">從用戶出發的 8 條使用路徑，展示每條路徑的入口工具與背後服務。</div>');
-        container.appendChild(header);
+          var header = make('div', 'fm-header', '<div class="fm-title">我的日常使用路徑</div><div class="fm-desc">從用戶出發的 8 條使用路徑，展示每條路徑的入口工具與背後服務。</div>');
+          container.appendChild(header);
 
-        var wrapper = make('div', 'fm-daily', '');
+          var wrapper = make('div', 'fm-daily', '');
 
-        var flows = [
-          { label: '想清楚', path: ['hongru', 'chatgpt', 'chatgpt-plus'] },
-          { label: '查資料', path: ['hongru', 'gemini', 'google-ai-pro'] },
-          { label: '整理文件', path: ['hongru', 'notebooklm', 'google-ai-pro'] },
-          { label: '生活／帳務／陪伴', path: ['hongru', 'yujie', 'openclaw'] },
-          { label: 'HomeLab／機器', path: ['hongru', 'xiaomi', 'hermes'] },
-          { label: '正式 coding', path: ['hongru', 'codex-entry', 'chatgpt-plus'] },
-          { label: '工程救火', path: ['hongru', 'antigravity2', 'google-ai-pro'] },
-          { label: '日常開發', path: ['hongru', 'opencode-entry', 'opencode-go'] }
-        ];
+          var flows = [
+            { label: '想清楚', path: ['hongru', 'chatgpt', 'chatgpt-plus'] },
+            { label: '查資料', path: ['hongru', 'gemini', 'google-ai-pro'] },
+            { label: '整理文件', path: ['hongru', 'notebooklm', 'google-ai-pro'] },
+            { label: '生活／帳務／陪伴', path: ['hongru', 'yujie', 'openclaw'] },
+            { label: 'HomeLab／機器', path: ['hongru', 'xiaomi', 'hermes'] },
+            { label: '正式 coding', path: ['hongru', 'codex-entry', 'chatgpt-plus'] },
+            { label: '工程救火', path: ['hongru', 'antigravity2', 'google-ai-pro'] },
+            { label: '日常開發', path: ['hongru', 'opencode-entry', 'opencode-go'] }
+          ];
 
-        flows.forEach(function (f) {
-          var row = make('div', 'fm-daily-row', '');
-          var label = make('span', 'fm-daily-label', f.label);
-          row.appendChild(label);
-          f.path.forEach(function (nodeId, idx) {
-            if (idx > 0) {
-              var eKey = f.path[idx - 1] + '-' + nodeId;
-              var edge = edgeMap[eKey];
-              var arrow = makeArrow(edge ? edge.label : '');
-              if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
-              row.appendChild(arrow);
-            }
-            var el = makeNodeEl(nodeId);
-            if (el) row.appendChild(el);
+          flows.forEach(function (f) {
+            var row = make('div', 'fm-daily-row', '');
+            var label = make('span', 'fm-daily-label', f.label);
+            row.appendChild(label);
+            f.path.forEach(function (nodeId, idx) {
+              if (idx > 0) {
+                var eKey = f.path[idx - 1] + '-' + nodeId;
+                var edge = edgeMap[eKey];
+                var arrow = makeArrow(edge ? edge.label : '');
+                if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+                row.appendChild(arrow);
+              }
+              var el = makeNodeEl(nodeId);
+              if (el) row.appendChild(el);
+            });
+            wrapper.appendChild(row);
           });
-          wrapper.appendChild(row);
-        });
 
-        container.appendChild(wrapper);
+          container.appendChild(wrapper);
+          console.log('[render] renderDailyUsage end');
+        } catch (e) { console.error('[render] renderDailyUsage error', e); }
       }
 
       /* ════════════════════════════════════════════
          Map 2：Agent 關係圖
          ════════════════════════════════════════════ */
       function renderAgentRelations() {
-        var container = $('archPanels');
-        container.innerHTML = '';
+        try {
+          console.log('[render] renderAgentRelations (arch) start');
+          var container = $('archPanels');
+          container.innerHTML = '';
 
-        var header = make('div', 'fm-header', '<div class="fm-title">Agent 關係圖</div><div class="fm-desc">語婕(OpenClaw)與筱蜜(Hermes)的完整路徑對照。</div>');
-        container.appendChild(header);
+          var header = make('div', 'fm-header', '<div class="fm-title">Agent 關係圖</div><div class="fm-desc">語婕(OpenClaw)與筱蜜(Hermes)的完整路徑對照。</div>');
+          container.appendChild(header);
 
-        var dual = make('div', 'fm-dual', '');
+          var dual = make('div', 'fm-dual', '');
 
-        // Left: 語婕(OpenClaw)
-        var leftCol = make('div', 'fm-col', '');
-        var leftTitle = textEl('div', 'fm-col-title', '語婕(OpenClaw)路徑');
-        leftTitle.style.borderBottomColor = 'var(--pink)';
-        leftTitle.style.color = 'var(--pink)';
-        leftCol.appendChild(leftTitle);
-        var leftFlow = make('div', 'fm-col-flow', '');
-        var leftPath = ['hongru', 'yujie', 'openclaw', 'kb-yujie', 'mcp-x4', 'agnes-yujie', 'media-yujie'];
-        leftPath.forEach(function (nodeId, idx) {
-          if (idx > 0) {
-            var eKey = leftPath[idx - 1] + '-' + nodeId;
-            var edge = edgeMap[eKey];
-            var arrow = makeArrowV(edge ? edge.label : '');
-            if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
-            leftFlow.appendChild(arrow);
-          }
-          var el = makeNodeEl(nodeId);
-          if (el) leftFlow.appendChild(el);
-        });
-        var leftNote = make('div', 'fm-col-note', '語婕(OpenClaw)管生活：生活提醒、帳務、訂閱、陪伴。<br>技術問題可整理 brief 給筱蜜(Hermes)。');
-        leftCol.appendChild(leftFlow);
-        leftCol.appendChild(leftNote);
-        dual.appendChild(leftCol);
+          // Left: 語婕(OpenClaw)
+          var leftCol = make('div', 'fm-col', '');
+          var leftTitle = textEl('div', 'fm-col-title', '語婕(OpenClaw)路徑');
+          leftTitle.style.borderBottomColor = 'var(--pink)';
+          leftTitle.style.color = 'var(--pink)';
+          leftCol.appendChild(leftTitle);
+          var leftFlow = make('div', 'fm-col-flow', '');
+          var leftPath = ['hongru', 'yujie', 'openclaw', 'kb-yujie', 'mcp-x4', 'agnes-yujie', 'media-yujie'];
+          leftPath.forEach(function (nodeId, idx) {
+            if (idx > 0) {
+              var eKey = leftPath[idx - 1] + '-' + nodeId;
+              var edge = edgeMap[eKey];
+              var arrow = makeArrowV(edge ? edge.label : '');
+              if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+              leftFlow.appendChild(arrow);
+            }
+            var el = makeNodeEl(nodeId);
+            if (el) leftFlow.appendChild(el);
+          });
+          var leftNote = make('div', 'fm-col-note', '語婕(OpenClaw)管生活：生活提醒、帳務、訂閱、陪伴。<br>技術問題可整理 brief 給筱蜜(Hermes)。');
+          leftCol.appendChild(leftFlow);
+          leftCol.appendChild(leftNote);
+          dual.appendChild(leftCol);
 
-        // Right: 筱蜜(Hermes)
-        var rightCol = make('div', 'fm-col', '');
-        var rightTitle = textEl('div', 'fm-col-title', '筱蜜(Hermes)路徑');
-        rightTitle.style.borderBottomColor = 'var(--purple)';
-        rightTitle.style.color = 'var(--purple)';
-        rightCol.appendChild(rightTitle);
-        var rightFlow = make('div', 'fm-col-flow', '');
-        var rightPath = ['hongru', 'xiaomi', 'hermes', 'kb-xiaomi', 'mcp-x4', 'agnes-xiaomi', 'media-xiaomi'];
-        rightPath.forEach(function (nodeId, idx) {
-          if (idx > 0) {
-            var eKey = rightPath[idx - 1] + '-' + nodeId;
-            var edge = edgeMap[eKey];
-            var arrow = makeArrowV(edge ? edge.label : '');
-            if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
-            rightFlow.appendChild(arrow);
-          }
-          var el = makeNodeEl(nodeId);
-          if (el) rightFlow.appendChild(el);
-        });
-        // 筱蜜(Hermes) upgrade suggestions
-        var upgradeNote = '筱蜜(Hermes)管機器：Docker、PM2、log、SOP。<br>';
-        upgradeNote += '必要時建議升級到：';
-        ['codex-engine', 'antigravity2-engine', 'opencode-engine'].forEach(function (engId, i) {
-          if (i > 0) upgradeNote += '、';
-          upgradeNote += nodeMap[engId].name;
-        });
-        upgradeNote += '。';
-        var rightNote = make('div', 'fm-col-note', upgradeNote);
-        rightNote.addEventListener('click', function () {});
-        rightCol.appendChild(rightFlow);
-        rightCol.appendChild(rightNote);
-        dual.appendChild(rightCol);
+          // Right: 筱蜜(Hermes)
+          var rightCol = make('div', 'fm-col', '');
+          var rightTitle = textEl('div', 'fm-col-title', '筱蜜(Hermes)路徑');
+          rightTitle.style.borderBottomColor = 'var(--purple)';
+          rightTitle.style.color = 'var(--purple)';
+          rightCol.appendChild(rightTitle);
+          var rightFlow = make('div', 'fm-col-flow', '');
+          var rightPath = ['hongru', 'xiaomi', 'hermes', 'kb-xiaomi', 'mcp-x4', 'agnes-xiaomi', 'media-xiaomi'];
+          rightPath.forEach(function (nodeId, idx) {
+            if (idx > 0) {
+              var eKey = rightPath[idx - 1] + '-' + nodeId;
+              var edge = edgeMap[eKey];
+              var arrow = makeArrowV(edge ? edge.label : '');
+              if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+              rightFlow.appendChild(arrow);
+            }
+            var el = makeNodeEl(nodeId);
+            if (el) rightFlow.appendChild(el);
+          });
+          // 筱蜜(Hermes) upgrade suggestions
+          var upgradeNote = '筱蜜(Hermes)管機器：Docker、PM2、log、SOP。<br>';
+          upgradeNote += '必要時建議升級到：';
+          ['codex-engine', 'antigravity2-engine', 'opencode-engine'].forEach(function (engId, i) {
+            if (i > 0) upgradeNote += '、';
+            var engNode = nodeMap[engId];
+            upgradeNote += engNode ? engNode.name : '（未知）';
+          });
+          upgradeNote += '。';
+          var rightNote = make('div', 'fm-col-note', upgradeNote);
+          rightNote.addEventListener('click', function () {});
+          rightCol.appendChild(rightFlow);
+          rightCol.appendChild(rightNote);
+          dual.appendChild(rightCol);
 
-        container.appendChild(dual);
+          container.appendChild(dual);
 
-        var footNote = make('div', 'fm-col-note', 'Agnes 是語婕(OpenClaw)與筱蜜(Hermes)背後的自拍引擎，不是用戶直接操作。MCP 知識庫是活資料來源。');
-        footNote.style.marginTop = '12px';
-        container.appendChild(footNote);
+          var footNote = make('div', 'fm-col-note', 'Agnes 是語婕(OpenClaw)與筱蜜(Hermes)背後的自拍引擎，不是用戶直接操作。MCP 知識庫是活資料來源。');
+          footNote.style.marginTop = '12px';
+          container.appendChild(footNote);
+          console.log('[render] renderAgentRelations (arch) end');
+        } catch (e) { console.error('[render] renderAgentRelations (arch) error', e); }
       }
 
       /* ════════════════════════════════════════════
          Map 3：模型燃料與端點
          ════════════════════════════════════════════ */
       function renderFuelMap() {
-        var container = $('archPanels');
-        container.innerHTML = '';
+        try {
+          console.log('[render] renderFuelMap start');
+          var container = $('archPanels');
+          container.innerHTML = '';
 
-        var header = make('div', 'fm-header', '<div class="fm-title">模型燃料與端點關係圖</div><div class="fm-desc">誰供應模型、誰管理端點、誰消費額度。</div>');
-        container.appendChild(header);
+          var header = make('div', 'fm-header', '<div class="fm-title">模型燃料與端點關係圖</div><div class="fm-desc">誰供應模型、誰管理端點、誰消費額度。</div>');
+          container.appendChild(header);
 
-        var grid = make('div', '', '');
-        grid.style.cssText = 'display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));';
+          var grid = make('div', '', '');
+          grid.style.cssText = 'display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));';
 
-        var groups = [
-          {
-            title: '<span style="color:var(--accent)">●</span> ChatGPT Plus（付費·雲端）',
-            provider: 'chatgpt-plus',
-            consumers: ['chatgpt', 'codex-entry', 'codex-engine']
-          },
-          {
-            title: '<span style="color:var(--sky)">●</span> Google AI Pro（付費·雲端）',
-            provider: 'google-ai-pro',
-            consumers: ['gemini', 'antigravity2', 'notebooklm', 'antigravity2-engine']
-          },
-          {
-            title: '<span style="color:var(--gold)">●</span> OpenCode GO（付費·雲端）',
-            provider: 'opencode-go',
-            consumers: ['opencode-entry', 'claude-cc', 'opencode-engine', 'claude-cc-engine']
-          },
-          {
-            title: '<span style="color:var(--purple)">●</span> Ollama-cloud-Proxy（自架·M2 Pro）',
-            provider: 'ollama-cloud-proxy',
-            consumers: ['ollama-accounts']
-          },
-          {
-            title: '<span style="color:var(--green)">●</span> NewAPI（自架·Mint）',
-            provider: 'newapi',
-            consumers: ['nvidia-nim', 'opencode-zen']
-          },
-          {
-            title: '<span style="color:var(--pink)">●</span> Agnes API（付費·API）',
-            provider: 'agnes',
-            consumers: ['agnes-yujie', 'agnes-xiaomi']
-          },
-          {
-            title: '<span style="color:var(--amber)">●</span> Copilot Student（免費·雲端）',
-            provider: 'copilot-student',
-            consumers: []
-          }
-        ];
+          var groups = [
+            {
+              title: '<span style="color:var(--accent)">●</span> ChatGPT Plus（付費·雲端）',
+              provider: 'chatgpt-plus',
+              consumers: ['chatgpt', 'codex-entry', 'codex-engine']
+            },
+            {
+              title: '<span style="color:var(--sky)">●</span> Google AI Pro（付費·雲端）',
+              provider: 'google-ai-pro',
+              consumers: ['gemini', 'antigravity2', 'notebooklm', 'antigravity2-engine']
+            },
+            {
+              title: '<span style="color:var(--gold)">●</span> OpenCode GO（付費·雲端）',
+              provider: 'opencode-go',
+              consumers: ['opencode-entry', 'claude-cc', 'opencode-engine', 'claude-cc-engine']
+            },
+            {
+              title: '<span style="color:var(--purple)">●</span> Ollama-cloud-Proxy（自架·M2 Pro）',
+              provider: 'ollama-cloud-proxy',
+              consumers: ['ollama-accounts']
+            },
+            {
+              title: '<span style="color:var(--green)">●</span> NewAPI（自架·Mint）',
+              provider: 'newapi',
+              consumers: ['nvidia-nim', 'opencode-zen']
+            },
+            {
+              title: '<span style="color:var(--pink)">●</span> Agnes API（付費·API）',
+              provider: 'agnes',
+              consumers: ['agnes-yujie', 'agnes-xiaomi']
+            },
+            {
+              title: '<span style="color:var(--amber)">●</span> Copilot Student（免費·雲端）',
+              provider: 'copilot-student',
+              consumers: []
+            }
+          ];
 
-        groups.forEach(function (g) {
-          var group = make('div', 'fm-group', '');
-          group.innerHTML = '<div class="fm-group-header">' + g.title + '</div>';
-          var body = make('div', 'fm-group-body', '');
-          var providerEl = makeNodeEl(g.provider);
-          if (providerEl) body.appendChild(providerEl);
-          g.consumers.forEach(function (cId, i) {
-            var eKey = g.provider + '-' + cId;
-            var edge = edgeMap[eKey];
-            var row = make('div', '', '');
-            row.style.cssText = 'display:flex;align-items:center;gap:6px;padding-left:12px;';
-            var arrow = makeArrow(edge ? edge.label : '');
-            if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
-            row.appendChild(arrow);
-            var el = makeNodeEl(cId);
-            if (el) row.appendChild(el);
-            body.appendChild(row);
+          groups.forEach(function (g) {
+            var group = make('div', 'fm-group', '');
+            group.innerHTML = '<div class="fm-group-header">' + g.title + '</div>';
+            var body = make('div', 'fm-group-body', '');
+            var providerEl = makeNodeEl(g.provider);
+            if (providerEl) body.appendChild(providerEl);
+            g.consumers.forEach(function (cId, i) {
+              var eKey = g.provider + '-' + cId;
+              var edge = edgeMap[eKey];
+              var row = make('div', '', '');
+              row.style.cssText = 'display:flex;align-items:center;gap:6px;padding-left:12px;';
+              var arrow = makeArrow(edge ? edge.label : '');
+              if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+              row.appendChild(arrow);
+              var el = makeNodeEl(cId);
+              if (el) row.appendChild(el);
+              body.appendChild(row);
+            });
+            group.appendChild(body);
+            grid.appendChild(group);
           });
-          group.appendChild(body);
-          grid.appendChild(group);
-        });
 
-        container.appendChild(grid);
+          container.appendChild(grid);
 
-        var note = make('div', 'fm-col-note', '付費訂閱（ChatGPT Plus / Google AI Pro / OpenCode GO）是主要模型來源。自架代理（Ollama-cloud-Proxy / NewAPI）管理免費端點。Agnes 提供媒體生成能力。');
-        note.style.marginTop = '12px';
-        container.appendChild(note);
+          var note = make('div', 'fm-col-note', '付費訂閱（ChatGPT Plus / Google AI Pro / OpenCode GO）是主要模型來源。自架代理（Ollama-cloud-Proxy / NewAPI）管理免費端點。Agnes 提供媒體生成能力。');
+          note.style.marginTop = '12px';
+          container.appendChild(note);
+          console.log('[render] renderFuelMap end');
+        } catch (e) { console.error('[render] renderFuelMap error', e); }
       }
 
       /* ════════════════════════════════════════════
          Map 4：HomeLab 部署關係圖
          ════════════════════════════════════════════ */
       function renderDeploymentMap() {
-        var container = $('archPanels');
-        container.innerHTML = '';
+        try {
+          console.log('[render] renderDeploymentMap start');
+          var container = $('archPanels');
+          container.innerHTML = '';
 
-        var header = make('div', 'fm-header', '<div class="fm-title">HomeLab 部署關係圖</div><div class="fm-desc">所有服務跑在哪台主機上，以及跨主機的依賴關係。</div>');
-        container.appendChild(header);
+          var header = make('div', 'fm-header', '<div class="fm-title">HomeLab 部署關係圖</div><div class="fm-desc">所有服務跑在哪台主機上，以及跨主機的依賴關係。</div>');
+          container.appendChild(header);
 
-        var deploy = make('div', 'fm-deploy', '');
+          var deploy = make('div', 'fm-deploy', '');
 
-        // Zone 1: 雲端
-        var cloudZone = make('div', 'fm-deploy-zone', '');
-        cloudZone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--sky)">☁️ 雲端</div>';
-        var cloudBody = make('div', 'fm-deploy-zone-body', '');
-        var cloudServices = ['chatgpt-plus', 'google-ai-pro', 'opencode-go', 'copilot-student', 'nvidia-nim', 'opencode-zen', 'agnes'];
-        cloudServices.forEach(function (id) {
-          var el = makeNodeEl(id);
-          if (el) cloudBody.appendChild(el);
-        });
-        cloudZone.appendChild(cloudBody);
-        deploy.appendChild(cloudZone);
+          // Zone 1: 雲端
+          var cloudZone = make('div', 'fm-deploy-zone', '');
+          cloudZone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--sky)">☁️ 雲端</div>';
+          var cloudBody = make('div', 'fm-deploy-zone-body', '');
+          var cloudServices = ['chatgpt-plus', 'google-ai-pro', 'opencode-go', 'copilot-student', 'nvidia-nim', 'opencode-zen', 'agnes'];
+          cloudServices.forEach(function (id) {
+            var el = makeNodeEl(id);
+            if (el) cloudBody.appendChild(el);
+          });
+          cloudZone.appendChild(cloudBody);
+          deploy.appendChild(cloudZone);
 
-        // Arrow between zones
-        var arrow1 = make('div', '', '');
-        arrow1.style.cssText = 'text-align:center;font-size:0.8rem;color:var(--faint);padding:2px 0;';
-        arrow1.textContent = '↓ 運行·承載';
-        deploy.appendChild(arrow1);
+          // Arrow between zones
+          var arrow1 = make('div', '', '');
+          arrow1.style.cssText = 'text-align:center;font-size:0.8rem;color:var(--faint);padding:2px 0;';
+          arrow1.textContent = '↓ 運行·承載';
+          deploy.appendChild(arrow1);
 
-        // Zone 2: M2 Pro
-        var m2Zone = make('div', 'fm-deploy-zone', '');
-        m2Zone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--purple)">🖥 M2 Pro Mac mini（AI 主機）</div>';
-        var m2Body = make('div', 'fm-deploy-zone-body', '');
-        var m2Services = ['opencode-engine', 'ollama-cloud-proxy', 'comfyui', 'mcp-x4', 'openclaw', 'hermes'];
-        m2Services.forEach(function (id) {
-          var el = makeNodeEl(id);
-          if (el) m2Body.appendChild(el);
-        });
-        m2Zone.appendChild(m2Body);
-        deploy.appendChild(m2Zone);
+          // Zone 2: M2 Pro
+          var m2Zone = make('div', 'fm-deploy-zone', '');
+          m2Zone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--purple)">🖥 M2 Pro Mac mini（AI 主機）</div>';
+          var m2Body = make('div', 'fm-deploy-zone-body', '');
+          var m2Services = ['opencode-engine', 'ollama-cloud-proxy', 'comfyui', 'mcp-x4', 'openclaw', 'hermes'];
+          m2Services.forEach(function (id) {
+            var el = makeNodeEl(id);
+            if (el) m2Body.appendChild(el);
+          });
+          m2Zone.appendChild(m2Body);
+          deploy.appendChild(m2Zone);
 
-        // Cross connections from M2 Pro
-        var m2Cross = make('div', 'fm-deploy-cross', '');
-        m2Cross.innerHTML = '<div class="fm-deploy-cross-title">M2 Pro 對外連線</div>';
-        var m2Outs = [
-          { from: 'ollama-cloud-proxy', to: 'ollama-accounts' },
-          { from: 'opencode-engine', to: 'comfyui', label: '腳本操作' }
-        ];
-        m2Outs.forEach(function (conn) {
-          var item = make('div', 'fm-deploy-cross-item', '');
-          var fromNode = makeNodeEl(conn.from);
-          if (fromNode) item.appendChild(fromNode);
-          var eKey = conn.from + '-' + conn.to;
-          var edge = edgeMap[eKey];
-          var arrow = makeArrow(conn.label || (edge ? edge.label : ''));
-          if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
-          item.appendChild(arrow);
-          var toNode = makeNodeEl(conn.to);
-          if (toNode) item.appendChild(toNode);
-          m2Cross.appendChild(item);
-        });
-        // MCP query from hermes
-        var mcpItem = make('div', 'fm-deploy-cross-item', '');
-        var hermesEl = makeNodeEl('hermes');
-        if (hermesEl) mcpItem.appendChild(hermesEl);
-        var mcpArrow = makeArrow('查詢');
-        (function () {
-          var eKey = 'hermes-to-mcp-x4';
-          var edge = edgeMap[eKey];
-          if (edge) mcpArrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
-        })();
-        mcpItem.appendChild(mcpArrow);
-        var mcpEl = makeNodeEl('mcp-x4');
-        if (mcpEl) mcpItem.appendChild(mcpEl);
-        m2Cross.appendChild(mcpItem);
-        deploy.appendChild(m2Cross);
+          // Cross connections from M2 Pro
+          var m2Cross = make('div', 'fm-deploy-cross', '');
+          m2Cross.innerHTML = '<div class="fm-deploy-cross-title">M2 Pro 對外連線</div>';
+          var m2Outs = [
+            { from: 'ollama-cloud-proxy', to: 'ollama-accounts' },
+            { from: 'opencode-engine', to: 'comfyui', label: '腳本操作' }
+          ];
+          m2Outs.forEach(function (conn) {
+            var item = make('div', 'fm-deploy-cross-item', '');
+            var fromNode = makeNodeEl(conn.from);
+            if (fromNode) item.appendChild(fromNode);
+            var eKey = conn.from + '-' + conn.to;
+            var edge = edgeMap[eKey];
+            var arrow = makeArrow(conn.label || (edge ? edge.label : ''));
+            if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+            item.appendChild(arrow);
+            var toNode = makeNodeEl(conn.to);
+            if (toNode) item.appendChild(toNode);
+            m2Cross.appendChild(item);
+          });
+          // MCP query from hermes
+          var mcpItem = make('div', 'fm-deploy-cross-item', '');
+          var hermesEl = makeNodeEl('hermes');
+          if (hermesEl) mcpItem.appendChild(hermesEl);
+          var mcpArrow = makeArrow('查詢');
+          (function () {
+            var eKey = 'hermes-to-mcp-x4';
+            var edge = edgeMap[eKey];
+            if (edge) mcpArrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+          })();
+          mcpItem.appendChild(mcpArrow);
+          var mcpEl = makeNodeEl('mcp-x4');
+          if (mcpEl) mcpItem.appendChild(mcpEl);
+          m2Cross.appendChild(mcpItem);
+          deploy.appendChild(m2Cross);
 
-        var arrow2 = make('div', '', '');
-        arrow2.style.cssText = 'text-align:center;font-size:0.8rem;color:var(--faint);padding:2px 0;';
-        arrow2.textContent = '↓ 運行';
-        deploy.appendChild(arrow2);
+          var arrow2 = make('div', '', '');
+          arrow2.style.cssText = 'text-align:center;font-size:0.8rem;color:var(--faint);padding:2px 0;';
+          arrow2.textContent = '↓ 運行';
+          deploy.appendChild(arrow2);
 
-        // Zone 3: Mint
-        var mintZone = make('div', 'fm-deploy-zone', '');
-        mintZone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--green)">🌱 Mint（HomeLab 基礎服務主機）</div>';
-        var mintBody = make('div', 'fm-deploy-zone-body', '');
-        var mintServices = ['newapi'];
-        mintServices.forEach(function (id) {
-          var el = makeNodeEl(id);
-          if (el) mintBody.appendChild(el);
-        });
-        mintZone.appendChild(mintBody);
-        deploy.appendChild(mintZone);
+          // Zone 3: Mint
+          var mintZone = make('div', 'fm-deploy-zone', '');
+          mintZone.innerHTML = '<div class="fm-deploy-zone-header" style="color:var(--green)">🌱 Mint（HomeLab 基礎服務主機）</div>';
+          var mintBody = make('div', 'fm-deploy-zone-body', '');
+          var mintServices = ['newapi'];
+          mintServices.forEach(function (id) {
+            var el = makeNodeEl(id);
+            if (el) mintBody.appendChild(el);
+          });
+          mintZone.appendChild(mintBody);
+          deploy.appendChild(mintZone);
 
-        // Cross connections from Mint
-        var mintCross = make('div', 'fm-deploy-cross', '');
-        mintCross.innerHTML = '<div class="fm-deploy-cross-title">Mint 對外連線</div>';
-        var mintOuts = [
-          { from: 'newapi', to: 'nvidia-nim' },
-          { from: 'newapi', to: 'opencode-zen' }
-        ];
-        mintOuts.forEach(function (conn) {
-          var item = make('div', 'fm-deploy-cross-item', '');
-          var fromNode = makeNodeEl(conn.from);
-          if (fromNode) item.appendChild(fromNode);
-          var eKey = conn.from + '-' + conn.to;
-          var edge = edgeMap[eKey];
-          var arrow = makeArrow(edge ? edge.label : '');
-          if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
-          item.appendChild(arrow);
-          var toNode = makeNodeEl(conn.to);
-          if (toNode) item.appendChild(toNode);
-          mintCross.appendChild(item);
-        });
-        deploy.appendChild(mintCross);
+          // Cross connections from Mint
+          var mintCross = make('div', 'fm-deploy-cross', '');
+          mintCross.innerHTML = '<div class="fm-deploy-cross-title">Mint 對外連線</div>';
+          var mintOuts = [
+            { from: 'newapi', to: 'nvidia-nim' },
+            { from: 'newapi', to: 'opencode-zen' }
+          ];
+          mintOuts.forEach(function (conn) {
+            var item = make('div', 'fm-deploy-cross-item', '');
+            var fromNode = makeNodeEl(conn.from);
+            if (fromNode) item.appendChild(fromNode);
+            var eKey = conn.from + '-' + conn.to;
+            var edge = edgeMap[eKey];
+            var arrow = makeArrow(edge ? edge.label : '');
+            if (edge) arrow.addEventListener('click', function (ev) { ev.stopPropagation(); showArchEdge(eKey); });
+            item.appendChild(arrow);
+            var toNode = makeNodeEl(conn.to);
+            if (toNode) item.appendChild(toNode);
+            mintCross.appendChild(item);
+          });
+          deploy.appendChild(mintCross);
 
-        container.appendChild(deploy);
+          container.appendChild(deploy);
+          console.log('[render] renderDeploymentMap end');
+        } catch (e) { console.error('[render] renderDeploymentMap error', e); }
       }
 
       /* ════════════════════════════════════════════
          Summary Strip
          ════════════════════════════════════════════ */
       function renderSummaryStrip() {
-        var nodes = A.nodes;
-        var directCount = nodes.filter(function (n) { return n.type === 'entry'; }).length;
-        var paidCount = nodes.filter(function (n) { return n.id === 'chatgpt-plus' || n.id === 'google-ai-pro' || n.id === 'opencode-go'; }).length;
-        var selfHosted = nodes.filter(function (n) { return n.paymentStatus === 'self-hosted' && n.type !== 'infra'; }).length;
-        var knowCount = nodes.filter(function (n) { return n.role === 'knowledge'; }).length;
-        var freeStr = 'Ollama ×15、NIM ×4、OpenCode Zen ×4、Agnes ×2、Copilot Student';
+        try {
+          console.log('[render] renderSummaryStrip start');
+          var nodes = A.nodes;
+          var directCount = nodes.filter(function (n) { return n.type === 'entry'; }).length;
+          var paidCount = nodes.filter(function (n) { return n.id === 'chatgpt-plus' || n.id === 'google-ai-pro' || n.id === 'opencode-go'; }).length;
+          var selfHosted = nodes.filter(function (n) { return n.paymentStatus === 'self-hosted' && n.type !== 'infra'; }).length;
+          var knowCount = nodes.filter(function (n) { return n.role === 'knowledge'; }).length;
+          var freeStr = 'Ollama ×15、NIM ×4、OpenCode Zen ×4、Agnes ×2、Copilot Student';
 
-        var container = $('summaryStrip');
-        container.innerHTML = '';
-        container.appendChild(makeItem(directCount, '直接入口', '我直接操作的介面'));
-        container.appendChild(makeItem(paidCount, '付費服務', 'ChatGPT Plus / Google AI Pro / OpenCode GO'));
-        container.appendChild(makeItem('×', '免費帳號 / Key', freeStr));
-        container.appendChild(makeItem(selfHosted, '自架服務', 'M2 Pro / Mint / MCP ×4 / NewAPI / Ollama-Proxy / ComfyUI / OpenCode'));
-        container.appendChild(makeItem(knowCount, '知識庫', '4 MCP + 個人知識庫'));
+          var container = $('summaryStrip');
+          container.innerHTML = '';
+          container.appendChild(makeItem(directCount, '直接入口', '我直接操作的介面'));
+          container.appendChild(makeItem(paidCount, '付費服務', 'ChatGPT Plus / Google AI Pro / OpenCode GO'));
+          container.appendChild(makeItem('×', '免費帳號 / Key', freeStr));
+          container.appendChild(makeItem(selfHosted, '自架服務', 'M2 Pro / Mint / MCP ×4 / NewAPI / Ollama-Proxy / ComfyUI / OpenCode'));
+          container.appendChild(makeItem(knowCount, '知識庫', '4 MCP + 個人知識庫'));
 
-        function makeItem(num, label, detail) {
-          var el = make('div', 'summary-item', '');
-          var numEl = make('span', 'summary-num', String(num));
-          numEl.style.color = num === '×' ? 'var(--accent)' : 'var(--gold)';
-          el.appendChild(numEl);
-          el.appendChild(textEl('span', 'summary-label', label));
-          el.appendChild(textEl('span', 'summary-detail', detail));
-          el.style.width = '';
-          return el;
-        }
+          function makeItem(num, label, detail) {
+            var el = make('div', 'summary-item', '');
+            var numEl = make('span', 'summary-num', String(num));
+            numEl.style.color = num === '×' ? 'var(--accent)' : 'var(--gold)';
+            el.appendChild(numEl);
+            el.appendChild(textEl('span', 'summary-label', label));
+            el.appendChild(textEl('span', 'summary-detail', detail));
+            el.style.width = '';
+            return el;
+          }
+          console.log('[render] renderSummaryStrip end');
+        } catch (e) { console.error('[render] renderSummaryStrip error', e); }
       }
 
       /* ════════════════════════════════════════════
          Cost View
          ════════════════════════════════════════════ */
       function renderCostView() {
-        var container = $('archPanels');
-        container.innerHTML = '';
+        try {
+          console.log('[render] renderCostView start');
+          var container = $('archPanels');
+          container.innerHTML = '';
 
-        var header = make('div', 'fm-header', '<div class="fm-title">成本／額度視角</div><div class="fm-desc">一眼看出哪些要花錢、哪些免費、哪些自架。</div>');
-        container.appendChild(header);
+          var header = make('div', 'fm-header', '<div class="fm-title">成本／額度視角</div><div class="fm-desc">一眼看出哪些要花錢、哪些免費、哪些自架。</div>');
+          container.appendChild(header);
 
-        var grid = make('div', 'cost-grid', '');
+          var grid = make('div', 'cost-grid', '');
 
-        // Column 1: 付費
-        var paidCol = make('div', 'cost-col', '');
-        paidCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment paid">付費</span> 訂閱服務</div>';
-        var paidBody = make('div', 'cost-col-body', '');
-        var subGroups = [
-          { title: 'ChatGPT Plus', items: ['chatgpt', 'codex-entry', 'codex-engine'] },
-          { title: 'Google AI Pro', items: ['gemini', 'antigravity2', 'notebooklm', 'antigravity2-engine'] },
-          { title: 'OpenCode GO', items: ['opencode-entry', 'claude-cc', 'opencode-engine', 'claude-cc-engine'] },
-          { title: 'Agnes API', items: ['agnes-yujie', 'agnes-xiaomi'] }
-        ];
-        subGroups.forEach(function (g) {
-          var group = make('div', 'cost-group', '');
-          group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
-          var flow = make('div', 'cost-flow', '');
-          g.items.forEach(function (id, i) {
-            var row = make('div', 'cost-flow-row', '');
-            if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
-            var el = makeNodeEl(id);
-            if (el) row.appendChild(el);
-            flow.appendChild(row);
+          // Column 1: 付費
+          var paidCol = make('div', 'cost-col', '');
+          paidCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment paid">付費</span> 訂閱服務</div>';
+          var paidBody = make('div', 'cost-col-body', '');
+          var subGroups = [
+            { title: 'ChatGPT Plus', items: ['chatgpt', 'codex-entry', 'codex-engine'] },
+            { title: 'Google AI Pro', items: ['gemini', 'antigravity2', 'notebooklm', 'antigravity2-engine'] },
+            { title: 'OpenCode GO', items: ['opencode-entry', 'claude-cc', 'opencode-engine', 'claude-cc-engine'] },
+            { title: 'Agnes API', items: ['agnes-yujie', 'agnes-xiaomi'] }
+          ];
+          subGroups.forEach(function (g) {
+            var group = make('div', 'cost-group', '');
+            group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
+            var flow = make('div', 'cost-flow', '');
+            g.items.forEach(function (id, i) {
+              var row = make('div', 'cost-flow-row', '');
+              if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
+              var el = makeNodeEl(id);
+              if (el) row.appendChild(el);
+              flow.appendChild(row);
+            });
+            group.appendChild(flow);
+            paidBody.appendChild(group);
           });
-          group.appendChild(flow);
-          paidBody.appendChild(group);
-        });
-        paidCol.appendChild(paidBody);
-        grid.appendChild(paidCol);
+          paidCol.appendChild(paidBody);
+          grid.appendChild(paidCol);
 
-        // Column 2: 免費
-        var freeCol = make('div', 'cost-col', '');
-        freeCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment free">免費</span> 免費帳號 / Key</div>';
-        var freeBody = make('div', 'cost-col-body', '');
-        var freeGroups = [
-          { title: 'Copilot Student（學生方案）', items: ['copilot-student'] },
-          { title: 'Ollama ×15（由 Proxy 管理）', items: ['ollama-cloud-proxy', 'ollama-accounts'] },
-          { title: 'NIM ×4 / OpenCode Zen ×4（由 NewAPI 管理）', items: ['newapi', 'nvidia-nim', 'opencode-zen'] },
-          { title: 'Agnes 免費 Key', items: ['agnes-yujie', 'agnes-xiaomi'] }
-        ];
-        freeGroups.forEach(function (g) {
-          var group = make('div', 'cost-group', '');
-          group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
-          var flow = make('div', 'cost-flow', '');
-          g.items.forEach(function (id, i) {
-            var row = make('div', 'cost-flow-row', '');
-            if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
-            var el = makeNodeEl(id);
-            if (el) row.appendChild(el);
-            flow.appendChild(row);
+          // Column 2: 免費
+          var freeCol = make('div', 'cost-col', '');
+          freeCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment free">免費</span> 免費帳號 / Key</div>';
+          var freeBody = make('div', 'cost-col-body', '');
+          var freeGroups = [
+            { title: 'Copilot Student（學生方案）', items: ['copilot-student'] },
+            { title: 'Ollama ×15（由 Proxy 管理）', items: ['ollama-cloud-proxy', 'ollama-accounts'] },
+            { title: 'NIM ×4 / OpenCode Zen ×4（由 NewAPI 管理）', items: ['newapi', 'nvidia-nim', 'opencode-zen'] },
+            { title: 'Agnes 免費 Key', items: ['agnes-yujie', 'agnes-xiaomi'] }
+          ];
+          freeGroups.forEach(function (g) {
+            var group = make('div', 'cost-group', '');
+            group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
+            var flow = make('div', 'cost-flow', '');
+            g.items.forEach(function (id, i) {
+              var row = make('div', 'cost-flow-row', '');
+              if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
+              var el = makeNodeEl(id);
+              if (el) row.appendChild(el);
+              flow.appendChild(row);
+            });
+            group.appendChild(flow);
+            freeBody.appendChild(group);
           });
-          group.appendChild(flow);
-          freeBody.appendChild(group);
-        });
-        freeCol.appendChild(freeBody);
-        grid.appendChild(freeCol);
+          freeCol.appendChild(freeBody);
+          grid.appendChild(freeCol);
 
-        // Column 3: 自架
-        var selfCol = make('div', 'cost-col', '');
-        selfCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment self-hosted">自架</span> 自架但非訂閱</div>';
-        var selfBody = make('div', 'cost-col-body', '');
-        var selfGroups = [
-          { title: 'Agent 平台', items: ['openclaw', 'hermes'] },
-          { title: '模型代理', items: ['ollama-cloud-proxy', 'newapi'] },
-          { title: '知識庫', items: ['mcp-x4', 'kb-yujie', 'kb-xiaomi', 'kb-tech', 'kb-homelab'] },
-          { title: '媒體', items: ['comfyui'] },
-          { title: '主機', items: ['m2pro', 'mint'] }
-        ];
-        selfGroups.forEach(function (g) {
-          var group = make('div', 'cost-group', '');
-          group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
-          var flow = make('div', 'cost-flow', '');
-          g.items.forEach(function (id, i) {
-            var row = make('div', 'cost-flow-row', '');
-            if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
-            var el = makeNodeEl(id);
-            if (el) row.appendChild(el);
-            flow.appendChild(row);
+          // Column 3: 自架
+          var selfCol = make('div', 'cost-col', '');
+          selfCol.innerHTML = '<div class="cost-col-header"><span class="badge badge-payment self-hosted">自架</span> 自架但非訂閱</div>';
+          var selfBody = make('div', 'cost-col-body', '');
+          var selfGroups = [
+            { title: 'Agent 平台', items: ['openclaw', 'hermes'] },
+            { title: '模型代理', items: ['ollama-cloud-proxy', 'newapi'] },
+            { title: '知識庫', items: ['mcp-x4', 'kb-yujie', 'kb-xiaomi', 'kb-tech', 'kb-homelab'] },
+            { title: '媒體', items: ['comfyui'] },
+            { title: '主機', items: ['m2pro', 'mint'] }
+          ];
+          selfGroups.forEach(function (g) {
+            var group = make('div', 'cost-group', '');
+            group.innerHTML = '<div class="cost-group-title">' + g.title + '</div>';
+            var flow = make('div', 'cost-flow', '');
+            g.items.forEach(function (id, i) {
+              var row = make('div', 'cost-flow-row', '');
+              if (i > 0) row.innerHTML = '<span class="cost-flow-arrow">→</span>';
+              var el = makeNodeEl(id);
+              if (el) row.appendChild(el);
+              flow.appendChild(row);
+            });
+            group.appendChild(flow);
+            selfBody.appendChild(group);
           });
-          group.appendChild(flow);
-          selfBody.appendChild(group);
-        });
-        selfCol.appendChild(selfBody);
-        grid.appendChild(selfCol);
+          selfCol.appendChild(selfBody);
+          grid.appendChild(selfCol);
 
-        container.appendChild(grid);
+          container.appendChild(grid);
+          console.log('[render] renderCostView end');
+        } catch (e) { console.error('[render] renderCostView error', e); }
       }
 
       /* ════════════════════════════════════════════
          Subscription Bundle Map
          ════════════════════════════════════════════ */
       function renderBundleMap() {
-        var container = $('archPanels');
-        container.innerHTML = '';
-        var header = make('div', 'fm-header', '<div class="fm-title">訂閱包視角</div><div class="fm-desc">把付費訂閱展開成可用服務，而不是只顯示單一工具。</div>');
-        container.appendChild(header);
+        try {
+          console.log('[render] renderBundleMap start');
+          var container = $('archPanels');
+          container.innerHTML = '';
+          var header = make('div', 'fm-header', '<div class="fm-title">訂閱包視角</div><div class="fm-desc">把付費訂閱展開成可用服務，而不是只顯示單一工具。</div>');
+          container.appendChild(header);
 
-        ['chatgpt-plus', 'google-ai-pro'].forEach(function (bundleId) {
-          var bundle = nodeMap[bundleId];
-          if (!bundle) return;
-          var children = A.nodes.filter(function (n) { return n.bundleId === bundleId; });
+          ['chatgpt-plus', 'google-ai-pro'].forEach(function (bundleId) {
+            var bundle = nodeMap[bundleId];
+            if (!bundle) return;
+            var children = A.nodes.filter(function (n) { return n.bundleId === bundleId; });
 
-          var wrapper = make('div', 'fm-bundle-container', '');
-          var headerEl = make('div', 'fm-bundle-header', '');
-          var nameEl = make('div', 'fm-bundle-name', '');
-          var nameHtml = bundle.name;
-          var bundleRoleHtml = bundle.role ? roleLabel(bundle.role) : '';
-          var bundlePayHtml = bundle.paymentStatus ? paymentLabel(bundle.paymentStatus) : '';
-          var bundleLocHtml = bundle.deployLocation ? deployLabel(bundle.deployLocation) : '';
-          nameEl.innerHTML = nameHtml + ' ' + bundleRoleHtml + bundlePayHtml + bundleLocHtml;
-          headerEl.appendChild(nameEl);
-          headerEl.appendChild(textEl('div', 'fm-bundle-desc', bundle.description));
-          if (bundle.notes && bundle.notes.length) {
-            var noteEl = make('div', 'fm-bundle-note', '');
-            noteEl.innerHTML = '📌 ' + bundle.notes.join('<br>');
-            headerEl.appendChild(noteEl);
-          }
-          wrapper.appendChild(headerEl);
+            var wrapper = make('div', 'fm-bundle-container', '');
+            var headerEl = make('div', 'fm-bundle-header', '');
+            var nameEl = make('div', 'fm-bundle-name', '');
+            var nameHtml = bundle.name;
+            var bundleRoleHtml = bundle.role ? roleLabel(bundle.role) : '';
+            var bundlePayHtml = bundle.paymentStatus ? paymentLabel(bundle.paymentStatus) : '';
+            var bundleLocHtml = bundle.deployLocation ? deployLabel(bundle.deployLocation) : '';
+            nameEl.innerHTML = nameHtml + ' ' + bundleRoleHtml + bundlePayHtml + bundleLocHtml;
+            headerEl.appendChild(nameEl);
+            headerEl.appendChild(textEl('div', 'fm-bundle-desc', bundle.description));
+            if (bundle.notes && bundle.notes.length) {
+              var noteEl = make('div', 'fm-bundle-note', '');
+              noteEl.innerHTML = '📌 ' + bundle.notes.join('<br>');
+              headerEl.appendChild(noteEl);
+            }
+            wrapper.appendChild(headerEl);
 
-          if (children.length) {
-            var grid = make('div', 'fm-bundle-children', '');
-            children.forEach(function (child) {
-              var card = make('div', 'fm-bundle-child', '');
-              card.addEventListener('click', function () { showArchNode(child.id); });
-              card.appendChild(textEl('div', 'fm-bundle-child-name', child.name));
-              if (child.description) {
-                card.appendChild(textEl('div', 'fm-bundle-child-desc', child.description));
-              }
-              var badgeRow = make('div', 'badge-row', '');
-              var badges = [];
-              if (child.serviceType) badges.push(serviceTypeBadge(child.serviceType));
-              if (child.paymentStatus) badges.push(paymentLabel(child.paymentStatus));
-              if (child.deployLocation) badges.push(deployLabel(child.deployLocation));
-              if (badges.length) badgeRow.innerHTML = badges.join('');
-              card.appendChild(badgeRow);
-              grid.appendChild(card);
-            });
-            wrapper.appendChild(grid);
-          }
-          container.appendChild(wrapper);
-        });
+            if (children.length) {
+              var grid = make('div', 'fm-bundle-children', '');
+              children.forEach(function (child) {
+                var card = make('div', 'fm-bundle-child', '');
+                card.addEventListener('click', function () { showArchNode(child.id); });
+                card.appendChild(textEl('div', 'fm-bundle-child-name', child.name));
+                if (child.description) {
+                  card.appendChild(textEl('div', 'fm-bundle-child-desc', child.description));
+                }
+                var badgeRow = make('div', 'badge-row', '');
+                var badges = [];
+                if (child.serviceType) badges.push(serviceTypeBadge(child.serviceType));
+                if (child.paymentStatus) badges.push(paymentLabel(child.paymentStatus));
+                if (child.deployLocation) badges.push(deployLabel(child.deployLocation));
+                if (badges.length) badgeRow.innerHTML = badges.join('');
+                card.appendChild(badgeRow);
+                grid.appendChild(card);
+              });
+              wrapper.appendChild(grid);
+            }
+            container.appendChild(wrapper);
+          });
+          console.log('[render] renderBundleMap end');
+        } catch (e) { console.error('[render] renderBundleMap error', e); }
       }
 
       /* ─── Legend ─── */
       function renderLegend() {
-        var container = $('archLegend');
-        container.innerHTML = '';
-        
-        // Payment legend
-        var payGroup = make('div', 'legend-group', '');
-        payGroup.innerHTML = '<span class="legend-title">付款</span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span><span class="legend-text">付費</span></span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span><span class="legend-text">免費</span></span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:#6ee7b7"></span><span class="legend-text">免費Key</span></span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:var(--indigo)"></span><span class="legend-text">自架</span></span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span><span class="legend-text">探索中</span></span>';
-        container.appendChild(payGroup);
-        
-        // Direct/Backend legend
-        var borderGroup = make('div', 'legend-group', '');
-        borderGroup.innerHTML = '<span class="legend-title">外框</span>' +
-          '<span class="legend-item"><span style="display:inline-block;width:14px;height:10px;border:2px solid var(--text);border-radius:3px;margin-right:3px"></span><span class="legend-text">直接操作</span></span>' +
-          '<span class="legend-item"><span style="display:inline-block;width:14px;height:10px;border:1px dashed var(--muted);border-radius:3px;margin-right:3px"></span><span class="legend-text">幕後服務</span></span>';
-        container.appendChild(borderGroup);
-        
-        // Location legend
-        var locGroup = make('div', 'legend-group', '');
-        locGroup.innerHTML = '<span class="legend-title">部署</span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:var(--sky)"></span><span class="legend-text">雲端</span></span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:var(--indigo)"></span><span class="legend-text">M2 Pro</span></span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span><span class="legend-text">Mint</span></span>' +
-          '<span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span><span class="legend-text">本機</span></span>';
-        container.appendChild(locGroup);
+        try {
+          console.log('[render] renderLegend start');
+          var container = $('archLegend');
+          container.innerHTML = '';
+          
+          // Payment legend
+          var payGroup = make('div', 'legend-group', '');
+          payGroup.innerHTML = '<span class="legend-title">付款</span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span><span class="legend-text">付費</span></span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span><span class="legend-text">免費</span></span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:#6ee7b7"></span><span class="legend-text">免費Key</span></span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:var(--indigo)"></span><span class="legend-text">自架</span></span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span><span class="legend-text">探索中</span></span>';
+          container.appendChild(payGroup);
+          
+          // Direct/Backend legend
+          var borderGroup = make('div', 'legend-group', '');
+          borderGroup.innerHTML = '<span class="legend-title">外框</span>' +
+            '<span class="legend-item"><span style="display:inline-block;width:14px;height:10px;border:2px solid var(--text);border-radius:3px;margin-right:3px"></span><span class="legend-text">直接操作</span></span>' +
+            '<span class="legend-item"><span style="display:inline-block;width:14px;height:10px;border:1px dashed var(--muted);border-radius:3px;margin-right:3px"></span><span class="legend-text">幕後服務</span></span>';
+          container.appendChild(borderGroup);
+          
+          // Location legend
+          var locGroup = make('div', 'legend-group', '');
+          locGroup.innerHTML = '<span class="legend-title">部署</span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:var(--sky)"></span><span class="legend-text">雲端</span></span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:var(--indigo)"></span><span class="legend-text">M2 Pro</span></span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span><span class="legend-text">Mint</span></span>' +
+            '<span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span><span class="legend-text">本機</span></span>';
+          container.appendChild(locGroup);
 
-        // Arrow legend
-        var arrowGroup = make('div', 'legend-group', '');
-        arrowGroup.innerHTML = '<span class="legend-title">箭頭</span>' +
-          '<span class="legend-item"><span style="font-size:0.75rem;color:var(--faint)">→</span><span class="legend-text">依賴/使用</span></span>';
-        container.appendChild(arrowGroup);
+          // Arrow legend
+          var arrowGroup = make('div', 'legend-group', '');
+          arrowGroup.innerHTML = '<span class="legend-title">箭頭</span>' +
+            '<span class="legend-item"><span style="font-size:0.75rem;color:var(--faint)">→</span><span class="legend-text">依賴/使用</span></span>';
+          container.appendChild(arrowGroup);
+          console.log('[render] renderLegend end');
+        } catch (e) { console.error('[render] renderLegend error', e); }
       }
 
       /* ─── Router ─── */
       function renderMap(id) {
-        switch (id) {
-          case 'daily-usage': renderDailyUsage(); break;
-          case 'agent-relations': renderAgentRelations(); break;
-          case 'fuel': renderFuelMap(); break;
-          case 'deployment': renderDeploymentMap(); break;
-          case 'cost-view': renderCostView(); break;
-          case 'bundles': renderBundleMap(); break;
+        console.log('[render] renderMap start id=' + id);
+        try {
+          switch (id) {
+            case 'daily-usage': renderDailyUsage(); break;
+            case 'agent-relations': renderAgentRelations(); break;
+            case 'fuel': renderFuelMap(); break;
+            case 'deployment': renderDeploymentMap(); break;
+            case 'cost-view': renderCostView(); break;
+            case 'bundles': renderBundleMap(); break;
+          }
+        } catch (e) { console.error('[render] renderMap error', e); }
+        console.log('[render] renderMap end');
+      }
+
+      /* ─── Self-diagnostics ─── */
+      function runDiagnostics(debugBox) {
+        var errors = [];
+        function check(cond, msg) { if (!cond) errors.push(msg); }
+        function log(msg) { if (debugBox) { debugBox.style.display = 'block'; debugBox.textContent += '[DIAG] ' + msg + '\n'; } }
+
+        log('Running diagnostics...');
+        check(typeof ARCH_DATA !== 'undefined', 'ARCH_DATA is undefined');
+        check(typeof CONSOLE_DATA !== 'undefined', 'CONSOLE_DATA is undefined');
+
+        if (A && A.nodes) {
+          check(Array.isArray(A.nodes), 'A.nodes is not an array');
+          check(A.nodes.length > 0, 'A.nodes is empty (' + A.nodes.length + ')');
+
+          var nodeIds = {};
+          A.nodes.forEach(function (n) {
+            check(n.id, 'Node missing id: ' + JSON.stringify(n).slice(0, 60));
+            nodeIds[n.id] = true;
+          });
+
+          if (A.edges) {
+            check(Array.isArray(A.edges), 'A.edges is not an array');
+            A.edges.forEach(function (e, i) {
+              check(e.from, 'Edge ' + i + ' missing from');
+              check(e.to, 'Edge ' + i + ' missing to');
+              check(nodeIds[e.from], 'Edge ' + i + ' from="' + e.from + '" not in nodes');
+              check(nodeIds[e.to], 'Edge ' + i + ' to="' + e.to + '" not in nodes');
+            });
+          }
+
+          if (A.maps) {
+            check(Array.isArray(A.maps), 'A.maps is not an array');
+            A.maps.forEach(function (m, i) {
+              check(m.id, 'Map ' + i + ' missing id');
+              check(m.title, 'Map ' + i + ' missing title');
+              if (m.nodeIds) {
+                m.nodeIds.forEach(function (nid) {
+                  check(nodeIds[nid], 'Map "' + m.id + '" nodeId "' + nid + '" not in nodes');
+                });
+              }
+            });
+          }
+        } else {
+          check(false, 'A (ARCH_DATA) is null or missing .nodes');
         }
+
+        log('Diagnostics complete: ' + errors.length + ' issue(s) found');
+        errors.forEach(function (e) { log('  ✕ ' + e); });
+
+        if (debugBox && errors.length) {
+          debugBox.style.borderColor = '#f44';
+        }
+        return errors;
       }
 
       /* ─── Init ─── */
       document.addEventListener('DOMContentLoaded', function () {
-        $('archDetailClose').addEventListener('click', function () {
-          $('archDetail').classList.remove('open');
-          $('archDetailOverlay').classList.remove('open');
-        });
-        $('archDetailOverlay').addEventListener('click', function () {
-          $('archDetail').classList.remove('open');
-          $('archDetailOverlay').classList.remove('open');
-        });
-        $('archEdgeClose').addEventListener('click', function () {
-          $('archEdgePopup').classList.remove('open');
-        });
-        renderSummaryStrip();
-        renderLegend();
-        renderArchTabs();
-        renderMap(activeMapId);
+        console.log('[boot] second script DOMContentLoaded start');
+        try {
+          $('archDetailClose').addEventListener('click', function () {
+            $('archDetail').classList.remove('open');
+            $('archDetailOverlay').classList.remove('open');
+          });
+          $('archDetailOverlay').addEventListener('click', function () {
+            $('archDetail').classList.remove('open');
+            $('archDetailOverlay').classList.remove('open');
+          });
+          $('archEdgeClose').addEventListener('click', function () {
+            $('archEdgePopup').classList.remove('open');
+          });
+          renderSummaryStrip();
+          renderLegend();
+          renderArchTabs();
+          renderMap(activeMapId);
+          runDiagnostics(document.getElementById('debugBox'));
+          console.log('[boot] second script DOMContentLoaded done');
+        } catch (e) { console.error('[boot] second script init error', e); }
       });
     })();
   </script>
